@@ -1,0 +1,30 @@
+\hypertarget{_connection_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Connection/\+Connection.h File Reference}
+\label{_connection_8h}\index{src/SSN\_API/Connection/Connection.h@{src/SSN\_API/Connection/Connection.h}}
+{\ttfamily \#include \char`\"{}../global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+U\+A\+R\+T/uart.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+N\+E\+T\+W\+O\+R\+K/network.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_connection_8h_aa6016f4175928697e95303cf5d820032}{Setup\+Connection}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a68480e541da8f08ac7150fa092a52e9f}{S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS}}, uint8\+\_\+t U\+D\+P\+\_\+\+S\+O\+C\+K\+ET)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_connection_8h_aa6016f4175928697e95303cf5d820032}\label{_connection_8h_aa6016f4175928697e95303cf5d820032}} 
+\index{Connection.h@{Connection.h}!SetupConnection@{SetupConnection}}
+\index{SetupConnection@{SetupConnection}!Connection.h@{Connection.h}}
+\doxysubsubsection{\texorpdfstring{SetupConnection()}{SetupConnection()}}
+{\footnotesize\ttfamily uint8\+\_\+t Setup\+Connection (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS,  }\item[{uint8\+\_\+t}]{U\+D\+P\+\_\+\+S\+O\+C\+K\+ET }\end{DoxyParamCaption})}
+
+Sets up Ethernet Connection for S\+SN 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS} & Six byte array containing the six bytes of S\+SN M\+AC address \\
+\hline
+{\em U\+D\+P\+\_\+\+S\+O\+C\+K\+ET} & S\+SN U\+DP socket number ~\newline
+ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Socket Number, should be the same as U\+D\+P\+\_\+\+S\+O\+C\+K\+ET if successfully created 
+\end{DoxyReturn}

@@ -1,0 +1,69 @@
+\hypertarget{uart_8c}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+U\+A\+R\+T/uart.c File Reference}
+\label{uart_8c}\index{src/SSN\_API/Drivers/UART/uart.c@{src/SSN\_API/Drivers/UART/uart.c}}
+{\ttfamily \#include \char`\"{}uart.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart_8c_ac1f14baa3de857ce0d2f996fba315cdb}{open\+\_\+\+U\+A\+R\+T2}} (unsigned int baudrate)
+\item 
+void \mbox{\hyperlink{uart_8c_a6a4127ad77b2b920d1dbeddad63ff432}{setup\+\_\+printf}} (unsigned int baudrate)
+\item 
+int \mbox{\hyperlink{uart_8c_a82f5f5374f5cb4ca2e479681849d9825}{Serial\+Transmit\+\_\+\+U\+A\+R\+T2}} (const char $\ast$buffer)
+\item 
+unsigned int \mbox{\hyperlink{uart_8c_a74fc5450b73fc2f28e88f1f1b604531b}{Serial\+Receive\+\_\+\+U\+A\+R\+T2}} (char $\ast$buffer, unsigned int max\+\_\+size)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{uart_8c_ac1f14baa3de857ce0d2f996fba315cdb}\label{uart_8c_ac1f14baa3de857ce0d2f996fba315cdb}} 
+\index{uart.c@{uart.c}!open\_UART2@{open\_UART2}}
+\index{open\_UART2@{open\_UART2}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{open\_UART2()}{open\_UART2()}}
+{\footnotesize\ttfamily void open\+\_\+\+U\+A\+R\+T2 (\begin{DoxyParamCaption}\item[{unsigned int}]{baudrate }\end{DoxyParamCaption})}
+
+Opens U\+A\+RT peripheral for communication 
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{uart_8c_a74fc5450b73fc2f28e88f1f1b604531b}\label{uart_8c_a74fc5450b73fc2f28e88f1f1b604531b}} 
+\index{uart.c@{uart.c}!SerialReceive\_UART2@{SerialReceive\_UART2}}
+\index{SerialReceive\_UART2@{SerialReceive\_UART2}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{SerialReceive\_UART2()}{SerialReceive\_UART2()}}
+{\footnotesize\ttfamily unsigned int Serial\+Receive\+\_\+\+U\+A\+R\+T2 (\begin{DoxyParamCaption}\item[{char $\ast$}]{buffer,  }\item[{unsigned int}]{max\+\_\+size }\end{DoxyParamCaption})}
+
+Receives a byte array over serial interface 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & A pointer to a byte array to write the received message into \\
+\hline
+{\em max\+\_\+size} & Maximum number of bytes expected to be received over serial interface \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{uart_8c_a82f5f5374f5cb4ca2e479681849d9825}\label{uart_8c_a82f5f5374f5cb4ca2e479681849d9825}} 
+\index{uart.c@{uart.c}!SerialTransmit\_UART2@{SerialTransmit\_UART2}}
+\index{SerialTransmit\_UART2@{SerialTransmit\_UART2}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{SerialTransmit\_UART2()}{SerialTransmit\_UART2()}}
+{\footnotesize\ttfamily int Serial\+Transmit\+\_\+\+U\+A\+R\+T2 (\begin{DoxyParamCaption}\item[{const char $\ast$}]{buffer }\end{DoxyParamCaption})}
+
+Transmits a byte array over serial interface 
+\begin{DoxyParams}{Parameters}
+{\em buffer} & A pointer to a byte array to send over the U\+A\+RT \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 if successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{uart_8c_a6a4127ad77b2b920d1dbeddad63ff432}\label{uart_8c_a6a4127ad77b2b920d1dbeddad63ff432}} 
+\index{uart.c@{uart.c}!setup\_printf@{setup\_printf}}
+\index{setup\_printf@{setup\_printf}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{setup\_printf()}{setup\_printf()}}
+{\footnotesize\ttfamily void setup\+\_\+printf (\begin{DoxyParamCaption}\item[{unsigned int}]{baudrate }\end{DoxyParamCaption})}
+
+Sets up the print function at a specific baudrate 
+\begin{DoxyParams}{Parameters}
+{\em baudrate} & \\
+\hline
+\end{DoxyParams}

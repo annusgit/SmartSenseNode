@@ -1,0 +1,315 @@
+\hypertarget{global_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/global.h File Reference}
+\label{global_8h}\index{src/SSN\_API/global.h@{src/SSN\_API/global.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$p32xxxx.\+h$>$}\newline
+{\ttfamily \#include $<$plib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Drivers/\+P\+S\+E\+U\+D\+O\+\_\+\+R\+T\+C\+C/pseudo\+\_\+rtcc.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{global_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}{\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{global_8h_a7e476b569a3714860cc40d57acaba880}{\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{global_8h_ab2d4245ea5e621e57f8f9d79430130cc}{S\+Y\+S\+T\+E\+M\+\_\+\+C\+LK}}~60000000
+\item 
+\#define \mbox{\hyperlink{global_8h_a363c506bb641897a610a40283aeececf}{P\+E\+R\+I\+P\+H\+\_\+\+C\+LK}}~30000000
+\item 
+\#define \mbox{\hyperlink{global_8h_aa434dcec48dab6319f5e931238522c8a}{S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT}}~8888
+\item 
+\#define \mbox{\hyperlink{global_8h_a073dbcb7f5bc4f4b45dc048b55eaff3d}{R\+E\+D\+\_\+\+L\+ED}}~B\+I\+T\+\_\+2
+\item 
+\#define \mbox{\hyperlink{global_8h_a01649d652fa50957c6ef3c32b1238038}{G\+R\+E\+E\+N\+\_\+\+L\+ED}}~B\+I\+T\+\_\+3
+\item 
+\#define \mbox{\hyperlink{global_8h_a534186b4703a22a116a6334826ec9512}{S\+S\+N\+\_\+\+I\+S\+\_\+\+A\+L\+I\+VE}}~100
+\item 
+\#define \mbox{\hyperlink{global_8h_a8784fbce20f366adaaea5b9d881855fb}{S\+E\+L\+F\+\_\+\+T\+E\+S\+T\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+S\+T\+A\+TE}}~0
+\item 
+\#define \mbox{\hyperlink{global_8h_ab0951da0ce58038f2ee072d7020a861c}{N\+O\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+T\+A\+TE}}~1
+\item 
+\#define \mbox{\hyperlink{global_8h_aa6edb55fea7c8330c40f8b0fb13a4af6}{N\+O\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+S\+T\+A\+TE}}~2
+\item 
+\#define \mbox{\hyperlink{global_8h_a6394823166db3a211fe1a66d672f4449}{N\+O\+\_\+\+M\+A\+C\+\_\+\+S\+T\+A\+TE}}~3
+\item 
+\#define \mbox{\hyperlink{global_8h_a2ac26cb03e2010a56880369175b2345c}{N\+O\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+T\+A\+TE}}~4
+\item 
+\#define \mbox{\hyperlink{global_8h_a3388339a37b779b4aa2a396108206010}{A\+C\+K\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+T\+A\+TE}}~5
+\item 
+\#define \mbox{\hyperlink{global_8h_a415f3070a942835d274ede1ccc1ad9d1}{N\+O\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+S\+T\+A\+TE}}~6
+\item 
+\#define \mbox{\hyperlink{global_8h_a37ac1c15b8bc14180b1a33f40d38f7ab}{A\+B\+N\+O\+R\+M\+A\+L\+\_\+\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+S\+T\+A\+TE}}~7
+\item 
+\#define \mbox{\hyperlink{global_8h_ac65ebfa1296e3ded2a9200db3b23c024}{N\+O\+R\+M\+A\+L\+\_\+\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+S\+T\+A\+TE}}~8
+\item 
+\#define \mbox{\hyperlink{global_8h_a58f48b40e041d5caecbd5ad0bd4183a6}{E\+E\+P\+R\+O\+M\+\_\+\+M\+A\+C\+\_\+\+L\+OC}}~0
+\item 
+\#define \mbox{\hyperlink{global_8h_ab883acf7e78b550b3c6f4296683dbd59}{E\+E\+P\+R\+O\+M\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+L\+OC}}~12
+\item 
+\#define \mbox{\hyperlink{global_8h_a76a12eb6d92228cbb287acd6dc6c8e54}{E\+E\+P\+R\+O\+M\+\_\+\+M\+A\+C\+\_\+\+S\+I\+ZE}}~6
+\item 
+\#define \mbox{\hyperlink{global_8h_a35a6539241cf8eb24b7d2d0445cc9e59}{E\+E\+P\+R\+O\+M\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+I\+ZE}}~13
+\item 
+\#define \mbox{\hyperlink{global_8h_aef41ead83ec2a5e8d8fd17f1c18ea195}{T\+I\+M\+E\+\_\+\+Of\+\_\+\+D\+A\+Y\+\_\+\+S\+I\+ZE}}~6
+\item 
+\#define \mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}~4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{global_8h_a8094d5127d1087cf887dd17c2b74d0b1}{delay}} (unsigned int counter)
+\item 
+static void \mbox{\hyperlink{global_8h_ab7c1e02467002c06a34bcfebe86df75e}{sleep\+\_\+for\+\_\+microseconds}} (unsigned int us)
+\item 
+static void \mbox{\hyperlink{global_8h_abb7f6dfbe64d2c70c3aceb457fb87b56}{setup\+\_\+\+Interrupts}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_ae5d2de3768ddd1860c17d60913608348}{Clear\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+T\+OR}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_a5b4e7f38e5c0898772b0b5e31ea5a6fb}{setup\+\_\+\+L\+E\+D\+\_\+\+Indicator}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_a427bfd001e206fc729219e145b882c44}{Node\+\_\+\+Up\+\_\+\+Not\+\_\+\+Configured\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_ab0511c12e9509d9f2ac617e7376042e0}{No\+\_\+\+Ethernet\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_ae116b1f006943767a04ec6c3a3548c11}{Self\+\_\+\+Test\+\_\+\+Failed\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_aa4d907a865e2a867c822c0a7a403332f}{Normal\+\_\+\+Operation\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_a179008a739092d3a0c0d4cfca6883d27}{Current\+\_\+\+Sensors\+\_\+\+Disconnected\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_ab26aacb8c8aa2e950e4dcad3d3478943}{Abnormal\+\_\+\+Activity\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} ()
+\item 
+static void \mbox{\hyperlink{global_8h_a9577e78cab849c421c7af74b4ecfcb17}{S\+S\+N\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE}} (uint8\+\_\+t this\+\_\+state)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{global_8h_a7e476b569a3714860cc40d57acaba880}\label{global_8h_a7e476b569a3714860cc40d57acaba880}} 
+\index{global.h@{global.h}!\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+\index{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{global_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}\label{global_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}} 
+\index{global.h@{global.h}!\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}}
+\index{\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{\_SUPPRESS\_PLIB\_WARNING}{\_SUPPRESS\_PLIB\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{global_8h_a37ac1c15b8bc14180b1a33f40d38f7ab}\label{global_8h_a37ac1c15b8bc14180b1a33f40d38f7ab}} 
+\index{global.h@{global.h}!ABNORMAL\_ACTIVITY\_STATE@{ABNORMAL\_ACTIVITY\_STATE}}
+\index{ABNORMAL\_ACTIVITY\_STATE@{ABNORMAL\_ACTIVITY\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{ABNORMAL\_ACTIVITY\_STATE}{ABNORMAL\_ACTIVITY\_STATE}}
+{\footnotesize\ttfamily \#define A\+B\+N\+O\+R\+M\+A\+L\+\_\+\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+S\+T\+A\+TE~7}
+
+\mbox{\Hypertarget{global_8h_a3388339a37b779b4aa2a396108206010}\label{global_8h_a3388339a37b779b4aa2a396108206010}} 
+\index{global.h@{global.h}!ACK\_CONFIG\_STATE@{ACK\_CONFIG\_STATE}}
+\index{ACK\_CONFIG\_STATE@{ACK\_CONFIG\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{ACK\_CONFIG\_STATE}{ACK\_CONFIG\_STATE}}
+{\footnotesize\ttfamily \#define A\+C\+K\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+T\+A\+TE~5}
+
+\mbox{\Hypertarget{global_8h_ab883acf7e78b550b3c6f4296683dbd59}\label{global_8h_ab883acf7e78b550b3c6f4296683dbd59}} 
+\index{global.h@{global.h}!EEPROM\_CONFIG\_LOC@{EEPROM\_CONFIG\_LOC}}
+\index{EEPROM\_CONFIG\_LOC@{EEPROM\_CONFIG\_LOC}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_CONFIG\_LOC}{EEPROM\_CONFIG\_LOC}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+L\+OC~12}
+
+\mbox{\Hypertarget{global_8h_a35a6539241cf8eb24b7d2d0445cc9e59}\label{global_8h_a35a6539241cf8eb24b7d2d0445cc9e59}} 
+\index{global.h@{global.h}!EEPROM\_CONFIG\_SIZE@{EEPROM\_CONFIG\_SIZE}}
+\index{EEPROM\_CONFIG\_SIZE@{EEPROM\_CONFIG\_SIZE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_CONFIG\_SIZE}{EEPROM\_CONFIG\_SIZE}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+I\+ZE~13}
+
+\mbox{\Hypertarget{global_8h_a58f48b40e041d5caecbd5ad0bd4183a6}\label{global_8h_a58f48b40e041d5caecbd5ad0bd4183a6}} 
+\index{global.h@{global.h}!EEPROM\_MAC\_LOC@{EEPROM\_MAC\_LOC}}
+\index{EEPROM\_MAC\_LOC@{EEPROM\_MAC\_LOC}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_MAC\_LOC}{EEPROM\_MAC\_LOC}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+M\+A\+C\+\_\+\+L\+OC~0}
+
+\mbox{\Hypertarget{global_8h_a76a12eb6d92228cbb287acd6dc6c8e54}\label{global_8h_a76a12eb6d92228cbb287acd6dc6c8e54}} 
+\index{global.h@{global.h}!EEPROM\_MAC\_SIZE@{EEPROM\_MAC\_SIZE}}
+\index{EEPROM\_MAC\_SIZE@{EEPROM\_MAC\_SIZE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_MAC\_SIZE}{EEPROM\_MAC\_SIZE}}
+{\footnotesize\ttfamily \#define E\+E\+P\+R\+O\+M\+\_\+\+M\+A\+C\+\_\+\+S\+I\+ZE~6}
+
+\mbox{\Hypertarget{global_8h_a01649d652fa50957c6ef3c32b1238038}\label{global_8h_a01649d652fa50957c6ef3c32b1238038}} 
+\index{global.h@{global.h}!GREEN\_LED@{GREEN\_LED}}
+\index{GREEN\_LED@{GREEN\_LED}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{GREEN\_LED}{GREEN\_LED}}
+{\footnotesize\ttfamily \#define G\+R\+E\+E\+N\+\_\+\+L\+ED~B\+I\+T\+\_\+3}
+
+Green led pin on S\+SN \mbox{\Hypertarget{global_8h_a2ac26cb03e2010a56880369175b2345c}\label{global_8h_a2ac26cb03e2010a56880369175b2345c}} 
+\index{global.h@{global.h}!NO\_CONFIG\_STATE@{NO\_CONFIG\_STATE}}
+\index{NO\_CONFIG\_STATE@{NO\_CONFIG\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NO\_CONFIG\_STATE}{NO\_CONFIG\_STATE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+T\+A\+TE~4}
+
+\mbox{\Hypertarget{global_8h_ab0951da0ce58038f2ee072d7020a861c}\label{global_8h_ab0951da0ce58038f2ee072d7020a861c}} 
+\index{global.h@{global.h}!NO\_CURRENT\_SENSOR\_STATE@{NO\_CURRENT\_SENSOR\_STATE}}
+\index{NO\_CURRENT\_SENSOR\_STATE@{NO\_CURRENT\_SENSOR\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NO\_CURRENT\_SENSOR\_STATE}{NO\_CURRENT\_SENSOR\_STATE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+T\+A\+TE~1}
+
+\mbox{\Hypertarget{global_8h_aa6edb55fea7c8330c40f8b0fb13a4af6}\label{global_8h_aa6edb55fea7c8330c40f8b0fb13a4af6}} 
+\index{global.h@{global.h}!NO\_ETHERNET\_STATE@{NO\_ETHERNET\_STATE}}
+\index{NO\_ETHERNET\_STATE@{NO\_ETHERNET\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NO\_ETHERNET\_STATE}{NO\_ETHERNET\_STATE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+E\+T\+H\+E\+R\+N\+E\+T\+\_\+\+S\+T\+A\+TE~2}
+
+\mbox{\Hypertarget{global_8h_a6394823166db3a211fe1a66d672f4449}\label{global_8h_a6394823166db3a211fe1a66d672f4449}} 
+\index{global.h@{global.h}!NO\_MAC\_STATE@{NO\_MAC\_STATE}}
+\index{NO\_MAC\_STATE@{NO\_MAC\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NO\_MAC\_STATE}{NO\_MAC\_STATE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+M\+A\+C\+\_\+\+S\+T\+A\+TE~3}
+
+\mbox{\Hypertarget{global_8h_afe25976432eb99948fba4d9265ee2e3d}\label{global_8h_afe25976432eb99948fba4d9265ee2e3d}} 
+\index{global.h@{global.h}!NO\_OF\_MACHINES@{NO\_OF\_MACHINES}}
+\index{NO\_OF\_MACHINES@{NO\_OF\_MACHINES}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NO\_OF\_MACHINES}{NO\_OF\_MACHINES}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES~4}
+
+\mbox{\Hypertarget{global_8h_a415f3070a942835d274ede1ccc1ad9d1}\label{global_8h_a415f3070a942835d274ede1ccc1ad9d1}} 
+\index{global.h@{global.h}!NO\_TIMEOFDAY\_STATE@{NO\_TIMEOFDAY\_STATE}}
+\index{NO\_TIMEOFDAY\_STATE@{NO\_TIMEOFDAY\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NO\_TIMEOFDAY\_STATE}{NO\_TIMEOFDAY\_STATE}}
+{\footnotesize\ttfamily \#define N\+O\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+S\+T\+A\+TE~6}
+
+\mbox{\Hypertarget{global_8h_ac65ebfa1296e3ded2a9200db3b23c024}\label{global_8h_ac65ebfa1296e3ded2a9200db3b23c024}} 
+\index{global.h@{global.h}!NORMAL\_ACTIVITY\_STATE@{NORMAL\_ACTIVITY\_STATE}}
+\index{NORMAL\_ACTIVITY\_STATE@{NORMAL\_ACTIVITY\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{NORMAL\_ACTIVITY\_STATE}{NORMAL\_ACTIVITY\_STATE}}
+{\footnotesize\ttfamily \#define N\+O\+R\+M\+A\+L\+\_\+\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+S\+T\+A\+TE~8}
+
+\mbox{\Hypertarget{global_8h_a363c506bb641897a610a40283aeececf}\label{global_8h_a363c506bb641897a610a40283aeececf}} 
+\index{global.h@{global.h}!PERIPH\_CLK@{PERIPH\_CLK}}
+\index{PERIPH\_CLK@{PERIPH\_CLK}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{PERIPH\_CLK}{PERIPH\_CLK}}
+{\footnotesize\ttfamily \#define P\+E\+R\+I\+P\+H\+\_\+\+C\+LK~30000000}
+
+\mbox{\Hypertarget{global_8h_a073dbcb7f5bc4f4b45dc048b55eaff3d}\label{global_8h_a073dbcb7f5bc4f4b45dc048b55eaff3d}} 
+\index{global.h@{global.h}!RED\_LED@{RED\_LED}}
+\index{RED\_LED@{RED\_LED}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{RED\_LED}{RED\_LED}}
+{\footnotesize\ttfamily \#define R\+E\+D\+\_\+\+L\+ED~B\+I\+T\+\_\+2}
+
+Red led pin on S\+SN \mbox{\Hypertarget{global_8h_a8784fbce20f366adaaea5b9d881855fb}\label{global_8h_a8784fbce20f366adaaea5b9d881855fb}} 
+\index{global.h@{global.h}!SELF\_TEST\_FAILED\_STATE@{SELF\_TEST\_FAILED\_STATE}}
+\index{SELF\_TEST\_FAILED\_STATE@{SELF\_TEST\_FAILED\_STATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{SELF\_TEST\_FAILED\_STATE}{SELF\_TEST\_FAILED\_STATE}}
+{\footnotesize\ttfamily \#define S\+E\+L\+F\+\_\+\+T\+E\+S\+T\+\_\+\+F\+A\+I\+L\+E\+D\+\_\+\+S\+T\+A\+TE~0}
+
+States of our S\+SN \mbox{\Hypertarget{global_8h_aa434dcec48dab6319f5e931238522c8a}\label{global_8h_aa434dcec48dab6319f5e931238522c8a}} 
+\index{global.h@{global.h}!SSN\_DEFAULT\_PORT@{SSN\_DEFAULT\_PORT}}
+\index{SSN\_DEFAULT\_PORT@{SSN\_DEFAULT\_PORT}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{SSN\_DEFAULT\_PORT}{SSN\_DEFAULT\_PORT}}
+{\footnotesize\ttfamily \#define S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+P\+O\+RT~8888}
+
+\mbox{\Hypertarget{global_8h_a534186b4703a22a116a6334826ec9512}\label{global_8h_a534186b4703a22a116a6334826ec9512}} 
+\index{global.h@{global.h}!SSN\_IS\_ALIVE@{SSN\_IS\_ALIVE}}
+\index{SSN\_IS\_ALIVE@{SSN\_IS\_ALIVE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{SSN\_IS\_ALIVE}{SSN\_IS\_ALIVE}}
+{\footnotesize\ttfamily \#define S\+S\+N\+\_\+\+I\+S\+\_\+\+A\+L\+I\+VE~100}
+
+Simple always True variable for loops \mbox{\Hypertarget{global_8h_ab2d4245ea5e621e57f8f9d79430130cc}\label{global_8h_ab2d4245ea5e621e57f8f9d79430130cc}} 
+\index{global.h@{global.h}!SYSTEM\_CLK@{SYSTEM\_CLK}}
+\index{SYSTEM\_CLK@{SYSTEM\_CLK}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{SYSTEM\_CLK}{SYSTEM\_CLK}}
+{\footnotesize\ttfamily \#define S\+Y\+S\+T\+E\+M\+\_\+\+C\+LK~60000000}
+
+\mbox{\Hypertarget{global_8h_aef41ead83ec2a5e8d8fd17f1c18ea195}\label{global_8h_aef41ead83ec2a5e8d8fd17f1c18ea195}} 
+\index{global.h@{global.h}!TIME\_Of\_DAY\_SIZE@{TIME\_Of\_DAY\_SIZE}}
+\index{TIME\_Of\_DAY\_SIZE@{TIME\_Of\_DAY\_SIZE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{TIME\_Of\_DAY\_SIZE}{TIME\_Of\_DAY\_SIZE}}
+{\footnotesize\ttfamily \#define T\+I\+M\+E\+\_\+\+Of\+\_\+\+D\+A\+Y\+\_\+\+S\+I\+ZE~6}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{global_8h_ab26aacb8c8aa2e950e4dcad3d3478943}\label{global_8h_ab26aacb8c8aa2e950e4dcad3d3478943}} 
+\index{global.h@{global.h}!Abnormal\_Activity\_LED\_INDICATE@{Abnormal\_Activity\_LED\_INDICATE}}
+\index{Abnormal\_Activity\_LED\_INDICATE@{Abnormal\_Activity\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{Abnormal\_Activity\_LED\_INDICATE()}{Abnormal\_Activity\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void Abnormal\+\_\+\+Activity\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates Abnormal activity sensed in ambient temperature or relative humidity readings \mbox{\Hypertarget{global_8h_ae5d2de3768ddd1860c17d60913608348}\label{global_8h_ae5d2de3768ddd1860c17d60913608348}} 
+\index{global.h@{global.h}!Clear\_LED\_INDICATOR@{Clear\_LED\_INDICATOR}}
+\index{Clear\_LED\_INDICATOR@{Clear\_LED\_INDICATOR}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{Clear\_LED\_INDICATOR()}{Clear\_LED\_INDICATOR()}}
+{\footnotesize\ttfamily static void Clear\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+T\+OR (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Clears L\+ED indicator by turning off red/green lights \mbox{\Hypertarget{global_8h_a179008a739092d3a0c0d4cfca6883d27}\label{global_8h_a179008a739092d3a0c0d4cfca6883d27}} 
+\index{global.h@{global.h}!Current\_Sensors\_Disconnected\_LED\_INDICATE@{Current\_Sensors\_Disconnected\_LED\_INDICATE}}
+\index{Current\_Sensors\_Disconnected\_LED\_INDICATE@{Current\_Sensors\_Disconnected\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{Current\_Sensors\_Disconnected\_LED\_INDICATE()}{Current\_Sensors\_Disconnected\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void Current\+\_\+\+Sensors\+\_\+\+Disconnected\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates either no current sensors are connected to S\+SN or they are reading zero \mbox{\Hypertarget{global_8h_a8094d5127d1087cf887dd17c2b74d0b1}\label{global_8h_a8094d5127d1087cf887dd17c2b74d0b1}} 
+\index{global.h@{global.h}!delay@{delay}}
+\index{delay@{delay}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{delay()}{delay()}}
+{\footnotesize\ttfamily static void delay (\begin{DoxyParamCaption}\item[{unsigned int}]{counter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+A simple loop count based delay 
+\begin{DoxyParams}{Parameters}
+{\em counter} & The number of empty loop iterations to wait for \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{global_8h_ab0511c12e9509d9f2ac617e7376042e0}\label{global_8h_ab0511c12e9509d9f2ac617e7376042e0}} 
+\index{global.h@{global.h}!No\_Ethernet\_LED\_INDICATE@{No\_Ethernet\_LED\_INDICATE}}
+\index{No\_Ethernet\_LED\_INDICATE@{No\_Ethernet\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{No\_Ethernet\_LED\_INDICATE()}{No\_Ethernet\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void No\+\_\+\+Ethernet\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates no ethernet connection available \mbox{\Hypertarget{global_8h_a427bfd001e206fc729219e145b882c44}\label{global_8h_a427bfd001e206fc729219e145b882c44}} 
+\index{global.h@{global.h}!Node\_Up\_Not\_Configured\_LED\_INDICATE@{Node\_Up\_Not\_Configured\_LED\_INDICATE}}
+\index{Node\_Up\_Not\_Configured\_LED\_INDICATE@{Node\_Up\_Not\_Configured\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{Node\_Up\_Not\_Configured\_LED\_INDICATE()}{Node\_Up\_Not\_Configured\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void Node\+\_\+\+Up\+\_\+\+Not\+\_\+\+Configured\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates node not configured; Either no M\+AC or no configurations \mbox{\Hypertarget{global_8h_aa4d907a865e2a867c822c0a7a403332f}\label{global_8h_aa4d907a865e2a867c822c0a7a403332f}} 
+\index{global.h@{global.h}!Normal\_Operation\_LED\_INDICATE@{Normal\_Operation\_LED\_INDICATE}}
+\index{Normal\_Operation\_LED\_INDICATE@{Normal\_Operation\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{Normal\_Operation\_LED\_INDICATE()}{Normal\_Operation\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void Normal\+\_\+\+Operation\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates normal mode operation after all tests and message communication successful \mbox{\Hypertarget{global_8h_ae116b1f006943767a04ec6c3a3548c11}\label{global_8h_ae116b1f006943767a04ec6c3a3548c11}} 
+\index{global.h@{global.h}!Self\_Test\_Failed\_LED\_INDICATE@{Self\_Test\_Failed\_LED\_INDICATE}}
+\index{Self\_Test\_Failed\_LED\_INDICATE@{Self\_Test\_Failed\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{Self\_Test\_Failed\_LED\_INDICATE()}{Self\_Test\_Failed\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void Self\+\_\+\+Test\+\_\+\+Failed\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates failure in self tests; could be E\+E\+P\+R\+OM, temperature sensor or Ethernet failure \mbox{\Hypertarget{global_8h_abb7f6dfbe64d2c70c3aceb457fb87b56}\label{global_8h_abb7f6dfbe64d2c70c3aceb457fb87b56}} 
+\index{global.h@{global.h}!setup\_Interrupts@{setup\_Interrupts}}
+\index{setup\_Interrupts@{setup\_Interrupts}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{setup\_Interrupts()}{setup\_Interrupts()}}
+{\footnotesize\ttfamily static void setup\+\_\+\+Interrupts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+enable multivectored interrupts for P\+I\+C32\+MX \mbox{\Hypertarget{global_8h_a5b4e7f38e5c0898772b0b5e31ea5a6fb}\label{global_8h_a5b4e7f38e5c0898772b0b5e31ea5a6fb}} 
+\index{global.h@{global.h}!setup\_LED\_Indicator@{setup\_LED\_Indicator}}
+\index{setup\_LED\_Indicator@{setup\_LED\_Indicator}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{setup\_LED\_Indicator()}{setup\_LED\_Indicator()}}
+{\footnotesize\ttfamily static void setup\+\_\+\+L\+E\+D\+\_\+\+Indicator (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Sets up L\+ED indicator for S\+SN \mbox{\Hypertarget{global_8h_ab7c1e02467002c06a34bcfebe86df75e}\label{global_8h_ab7c1e02467002c06a34bcfebe86df75e}} 
+\index{global.h@{global.h}!sleep\_for\_microseconds@{sleep\_for\_microseconds}}
+\index{sleep\_for\_microseconds@{sleep\_for\_microseconds}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{sleep\_for\_microseconds()}{sleep\_for\_microseconds()}}
+{\footnotesize\ttfamily static void sleep\+\_\+for\+\_\+microseconds (\begin{DoxyParamCaption}\item[{unsigned int}]{us }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Sleep for microseconds 
+\begin{DoxyParams}{Parameters}
+{\em us} & The number of microseconds to sleep for \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{global_8h_a9577e78cab849c421c7af74b4ecfcb17}\label{global_8h_a9577e78cab849c421c7af74b4ecfcb17}} 
+\index{global.h@{global.h}!SSN\_LED\_INDICATE@{SSN\_LED\_INDICATE}}
+\index{SSN\_LED\_INDICATE@{SSN\_LED\_INDICATE}!global.h@{global.h}}
+\doxysubsubsection{\texorpdfstring{SSN\_LED\_INDICATE()}{SSN\_LED\_INDICATE()}}
+{\footnotesize\ttfamily static void S\+S\+N\+\_\+\+L\+E\+D\+\_\+\+I\+N\+D\+I\+C\+A\+TE (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{this\+\_\+state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Indicates S\+SN state from L\+ED 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+state} & A variable indicating the current state of S\+SN \\
+\hline
+\end{DoxyParams}

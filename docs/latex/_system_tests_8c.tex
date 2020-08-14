@@ -1,0 +1,23 @@
+\hypertarget{_system_tests_8c}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+System\+Tests/\+System\+Tests.c File Reference}
+\label{_system_tests_8c}\index{src/SSN\_API/SystemTests/SystemTests.c@{src/SSN\_API/SystemTests/SystemTests.c}}
+{\ttfamily \#include \char`\"{}System\+Tests.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_system_tests_8c_accf819ce4f3ede0b23e2d878e8d3992b}{Run\+System\+Tests}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_system_tests_8c_accf819ce4f3ede0b23e2d878e8d3992b}\label{_system_tests_8c_accf819ce4f3ede0b23e2d878e8d3992b}} 
+\index{SystemTests.c@{SystemTests.c}!RunSystemTests@{RunSystemTests}}
+\index{RunSystemTests@{RunSystemTests}!SystemTests.c@{SystemTests.c}}
+\doxysubsubsection{\texorpdfstring{RunSystemTests()}{RunSystemTests()}}
+{\footnotesize\ttfamily void Run\+System\+Tests (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Runs system diagnostic tests for checking if important peripherals are functioning properly; does not return if found faulty. Checks the following peripherals in that order.
+\begin{DoxyItemize}
+\item E\+E\+P\+R\+OM Read/\+Write
+\item Temperature and Humidity Sensor
+\item Ethernet Physical Connection 
+\end{DoxyItemize}

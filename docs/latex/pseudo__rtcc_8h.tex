@@ -1,0 +1,124 @@
+\hypertarget{pseudo__rtcc_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+P\+S\+E\+U\+D\+O\+\_\+\+R\+T\+C\+C/pseudo\+\_\+rtcc.h File Reference}
+\label{pseudo__rtcc_8h}\index{src/SSN\_API/Drivers/PSEUDO\_RTCC/pseudo\_rtcc.h@{src/SSN\_API/Drivers/PSEUDO\_RTCC/pseudo\_rtcc.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$p32xxxx.\+h$>$}\newline
+{\ttfamily \#include $<$plib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pseudo__rtcc_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}{\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{pseudo__rtcc_8h_a7e476b569a3714860cc40d57acaba880}{\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8h_a631413bd92f6241dd3b1e563e9f8b1c6}{setup\+\_\+\+Global\+\_\+\+Clock\+\_\+\+And\+\_\+\+S\+S\+N\+\_\+\+Half\+\_\+\+Second\+\_\+\+Heartbeat}} (uint32\+\_\+t P\+E\+R\+I\+P\+H\+\_\+\+C\+L\+O\+CK)
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8h_a3e057ab2f51b5ab5a3b61e3b81fe26a9}{stop\+\_\+\+Global\+\_\+\+Clock}} ()
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8h_a73ce9d253f99c2e4117abe095c7fecac}{set\+\_\+ssn\+\_\+time}} (uint8\+\_\+t $\ast$this\+\_\+time)
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8h_a1e47319a05895094d6027b705e08fdcb}{increment\+\_\+pseudo\+\_\+clock\+\_\+time}} (\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$this\+\_\+clock)
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8h_ad7fd1eebfaebe4d979c6185163ad3a83}{increment\+\_\+this\+\_\+clock\+\_\+time}} (uint8\+\_\+t $\ast$this\+\_\+clock)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} \mbox{\hyperlink{pseudo__rtcc_8h_a09fb643f4540e28ebc1f58b07ddc5050}{ssn\+\_\+clock}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{pseudo__rtcc_8h_a38ab522cb78db6924090117c6c4b0106}{ssn\+\_\+uptime\+\_\+in\+\_\+seconds}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{pseudo__rtcc_8h_a7e476b569a3714860cc40d57acaba880}\label{pseudo__rtcc_8h_a7e476b569a3714860cc40d57acaba880}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+\index{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{pseudo__rtcc_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}\label{pseudo__rtcc_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}}
+\index{\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{\_SUPPRESS\_PLIB\_WARNING}{\_SUPPRESS\_PLIB\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pseudo__rtcc_8h_a1e47319a05895094d6027b705e08fdcb}\label{pseudo__rtcc_8h_a1e47319a05895094d6027b705e08fdcb}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!increment\_pseudo\_clock\_time@{increment\_pseudo\_clock\_time}}
+\index{increment\_pseudo\_clock\_time@{increment\_pseudo\_clock\_time}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{increment\_pseudo\_clock\_time()}{increment\_pseudo\_clock\_time()}}
+{\footnotesize\ttfamily void increment\+\_\+pseudo\+\_\+clock\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$}]{this\+\_\+clock }\end{DoxyParamCaption})}
+
+Increments given clock time by one tick or one second 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+clock} & The \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} variable clock to increment \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8h_ad7fd1eebfaebe4d979c6185163ad3a83}\label{pseudo__rtcc_8h_ad7fd1eebfaebe4d979c6185163ad3a83}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!increment\_this\_clock\_time@{increment\_this\_clock\_time}}
+\index{increment\_this\_clock\_time@{increment\_this\_clock\_time}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{increment\_this\_clock\_time()}{increment\_this\_clock\_time()}}
+{\footnotesize\ttfamily void increment\+\_\+this\+\_\+clock\+\_\+time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{this\+\_\+clock }\end{DoxyParamCaption})}
+
+Increments given clock time by one tick or one second 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+clock} & The byte array representing clock to increment \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8h_a73ce9d253f99c2e4117abe095c7fecac}\label{pseudo__rtcc_8h_a73ce9d253f99c2e4117abe095c7fecac}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!set\_ssn\_time@{set\_ssn\_time}}
+\index{set\_ssn\_time@{set\_ssn\_time}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{set\_ssn\_time()}{set\_ssn\_time()}}
+{\footnotesize\ttfamily void set\+\_\+ssn\+\_\+time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{this\+\_\+time }\end{DoxyParamCaption})}
+
+Sets the S\+SN global time to give time 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+time} & Byte array containing hours, minutes, seconds, day, month and year of current time \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8h_a631413bd92f6241dd3b1e563e9f8b1c6}\label{pseudo__rtcc_8h_a631413bd92f6241dd3b1e563e9f8b1c6}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat@{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat}}
+\index{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat@{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat()}{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat()}}
+{\footnotesize\ttfamily void setup\+\_\+\+Global\+\_\+\+Clock\+\_\+\+And\+\_\+\+S\+S\+N\+\_\+\+Half\+\_\+\+Second\+\_\+\+Heartbeat (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{P\+E\+R\+I\+P\+H\+\_\+\+C\+L\+O\+CK }\end{DoxyParamCaption})}
+
+Sets up the global clock and half-\/second interrupt for S\+SN 
+\begin{DoxyParams}{Parameters}
+{\em P\+E\+R\+I\+P\+H\+\_\+\+C\+L\+O\+CK} & Peripheral clock of S\+SN \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8h_a3e057ab2f51b5ab5a3b61e3b81fe26a9}\label{pseudo__rtcc_8h_a3e057ab2f51b5ab5a3b61e3b81fe26a9}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!stop\_Global\_Clock@{stop\_Global\_Clock}}
+\index{stop\_Global\_Clock@{stop\_Global\_Clock}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{stop\_Global\_Clock()}{stop\_Global\_Clock()}}
+{\footnotesize\ttfamily void stop\+\_\+\+Global\+\_\+\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops the global S\+SN clock 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{pseudo__rtcc_8h_a09fb643f4540e28ebc1f58b07ddc5050}\label{pseudo__rtcc_8h_a09fb643f4540e28ebc1f58b07ddc5050}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!ssn\_clock@{ssn\_clock}}
+\index{ssn\_clock@{ssn\_clock}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{ssn\_clock}{ssn\_clock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} ssn\+\_\+clock}
+
+This is our global S\+SN clock variable \mbox{\Hypertarget{pseudo__rtcc_8h_a38ab522cb78db6924090117c6c4b0106}\label{pseudo__rtcc_8h_a38ab522cb78db6924090117c6c4b0106}} 
+\index{pseudo\_rtcc.h@{pseudo\_rtcc.h}!ssn\_uptime\_in\_seconds@{ssn\_uptime\_in\_seconds}}
+\index{ssn\_uptime\_in\_seconds@{ssn\_uptime\_in\_seconds}!pseudo\_rtcc.h@{pseudo\_rtcc.h}}
+\doxysubsubsection{\texorpdfstring{ssn\_uptime\_in\_seconds}{ssn\_uptime\_in\_seconds}}
+{\footnotesize\ttfamily uint32\+\_\+t ssn\+\_\+uptime\+\_\+in\+\_\+seconds}
+
+This is our global S\+SN clock in number of seconds, for how many seconds has the S\+SN been awake? 

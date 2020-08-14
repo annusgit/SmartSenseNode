@@ -1,0 +1,284 @@
+\hypertarget{main_8c}{}\doxysection{main.\+c File Reference}
+\label{main_8c}\index{main.c@{main.c}}
+{\ttfamily \#include \char`\"{}src/\+S\+S\+N\+\_\+\+A\+P\+I/\+S\+S\+N\+\_\+\+A\+P\+I.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{main_8c_a0c5ad667ee8b3fc41e20f88fef4093d8}{\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{main_8c_a7e476b569a3714860cc40d57acaba880}{\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a6c1566e34a03b418e468b59fe0bdd785}{\+\_\+\+\_\+\+I\+SR}} (\+\_\+\+T\+I\+M\+E\+R\+\_\+1\+\_\+\+V\+E\+C\+T\+OR, I\+P\+L4\+S\+O\+FT)
+\item 
+int \mbox{\hyperlink{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+S\+O\+C\+K\+ET \mbox{\hyperlink{main_8c_a4d98f0e1fc2286b06ce95bdf875f3873}{S\+S\+N\+\_\+\+U\+D\+P\+\_\+\+S\+O\+C\+K\+ET}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}} \mbox{[}$\,$\mbox{]} = \{192, 168, 1, 100\}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}} = 9999
+\item 
+uint32\+\_\+t \mbox{\hyperlink{main_8c_af20121647e8b2e66cbdb68cc9b190072}{S\+S\+N\+\_\+\+S\+E\+N\+T\+\_\+\+M\+E\+S\+S\+A\+G\+E\+S\+\_\+\+C\+O\+U\+N\+T\+ER}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a56d35d75f15c139534abac2f3b6fa427}{interrupts\+\_\+per\+\_\+second}} = 2
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_ad45fec976ad953004fd5c2db30b01c25}{half\+\_\+second\+\_\+counter}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_ac5421892f7786feea0a87741ff49170b}{report\+\_\+counter}} = 0
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_ab35539189035136dbcfd7d799291414e}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+T\+A\+TE}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a530afa2a0a6ffd12d43e1d74523a09a0}{S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL}} = 1
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a83d18a73ed2d54c78b4f55dae30a01c6}{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG}} \mbox{[}\mbox{\hyperlink{global_8h_a35a6539241cf8eb24b7d2d0445cc9e59}{E\+E\+P\+R\+O\+M\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+I\+ZE}}\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a27f066a0a34448b85c39ac8d0c5a127d}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_acbf1100a89d3eb6891b8268d444c03e2}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a642a7eec4e214f28cdbbb033b286881e}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS}} \mbox{[}4\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_abe9c0cc707863ac4653ed10a04306c30}{Machine\+\_\+load\+\_\+currents}} \mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a29207fa3772e4346d6fc95f5cd43ffb1}{Machine\+\_\+load\+\_\+percentages}} \mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}{Machine\+\_\+status}} \mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{\mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}, \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}, \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}, \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}\}
+\item 
+\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} \mbox{\hyperlink{main_8c_a15b39a8db0ae226b5f8fc4f53fac16c2}{Machine\+\_\+status\+\_\+timestamp}} \mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{main_8c_af06d36f7bd07ba0529591d9d30f25dff}{Machine\+\_\+status\+\_\+duration}} \mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a4b0162d3c9e447c253b2a48766bf67f2}{S\+S\+N\+\_\+\+U\+D\+P\+\_\+\+S\+O\+C\+K\+E\+T\+\_\+\+N\+UM}} = 1
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_ada2bb8f2f1d13265e26bbc6e80c92514}{S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+AC}} \mbox{[}$\,$\mbox{]} = \{0x\+AA, 0x\+BB, 0x\+CC, 0x\+DD, 0x\+EE, 0x\+FF\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a68480e541da8f08ac7150fa092a52e9f}{S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS}} \mbox{[}6\mbox{]} = \{0\}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_ac262a61942baf151c8e23f787a07c782}{temperature\+\_\+bytes}} \mbox{[}2\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_a5356128f764e4459ab5934fa79d8d87b}{relative\+\_\+humidity\+\_\+bytes}} \mbox{[}2\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_ac776b796af18d0812e0bdb5893ed710e}{temp\+\_\+humidity\+\_\+recv\+\_\+status}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_af483ca83bd3fb02e958e2400a0a43625}{abnormal\+\_\+activity}}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{main_8c_a7e476b569a3714860cc40d57acaba880}\label{main_8c_a7e476b569a3714860cc40d57acaba880}} 
+\index{main.c@{main.c}!\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+\index{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{main_8c_a0c5ad667ee8b3fc41e20f88fef4093d8}\label{main_8c_a0c5ad667ee8b3fc41e20f88fef4093d8}} 
+\index{main.c@{main.c}!\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}}
+\index{\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_SUPPRESS\_PLIB\_WARNING}{\_SUPPRESS\_PLIB\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a6c1566e34a03b418e468b59fe0bdd785}\label{main_8c_a6c1566e34a03b418e468b59fe0bdd785}} 
+\index{main.c@{main.c}!\_\_ISR@{\_\_ISR}}
+\index{\_\_ISR@{\_\_ISR}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{\_\_ISR()}{\_\_ISR()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+\+I\+SR (\begin{DoxyParamCaption}\item[{\+\_\+\+T\+I\+M\+E\+R\+\_\+1\+\_\+\+V\+E\+C\+T\+OR}]{,  }\item[{I\+P\+L4\+S\+O\+FT}]{ }\end{DoxyParamCaption})}
+
+Half-\/\+Second interrupt that controls our send message routine of the S\+SN. Half-\/second and not one second is because we can not set an interrupt of up to 1 second with the current clock of the S\+SN. We only start this interrupt service once we have Ethernet configured and all self-\/tests are successful. The message to be sent is constructed every half a second in the main function and only reported to the server after every \char`\"{}\+S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+A\+L\char`\"{} seconds. \mbox{\Hypertarget{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8c_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The main loop of S\+SN operation. It calls the following functions in order\+:
+\begin{DoxyItemize}
+\item Sets up all required peripherals
+\item Runs system tests for checking\+:
+\begin{DoxyEnumerate}
+\item E\+E\+P\+R\+OM Read/\+Write
+\item Temperature and Humidity Sensor
+\item Ethernet Physical Connection
+\end{DoxyEnumerate}
+\item Finds M\+AC address in E\+E\+P\+R\+OM; if available, assigns it to S\+SN; if not available, assigns default M\+AC address to S\+SN
+\item Sets up Ethernet connection using which ever M\+AC address was selected
+\item If using default M\+AC address, S\+SN sends periodic G\+E\+T\+\_\+\+M\+AC requests to S\+SN Server until it successfully retrieves one and resets self
+\item Waits for five seconds for new Current Sensor Configurations from S\+SN Server. These cannot be reprogrammed after this five seconds window
+\item If new configurations received, assigns them to S\+SN, writes them to E\+E\+P\+R\+OM and proceeds
+\item If new configurations not received, finds Current Sensor Configurations in E\+E\+P\+R\+OM; if available, assigns them to S\+SN; if not available S\+SN sends periodic G\+E\+T\+\_\+\+C\+O\+N\+F\+IG requests to S\+SN Server until it successfully retrieves one and writes them to E\+E\+P\+R\+OM and proceeds
+\item S\+SN sends periodic G\+E\+T\+\_\+\+Time\+Of\+Day requests to S\+SN Server until it successfully retrieves it and proceeds
+\item S\+SN starts global clock and half-\/second periodic interrupt
+\item S\+SN calculates machine status update and ambient conditions every 100 milliseconds. The I\+SR sends the status update after every \$\{S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL\} seconds 
+\end{DoxyItemize}
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_af483ca83bd3fb02e958e2400a0a43625}\label{main_8c_af483ca83bd3fb02e958e2400a0a43625}} 
+\index{main.c@{main.c}!abnormal\_activity@{abnormal\_activity}}
+\index{abnormal\_activity@{abnormal\_activity}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{abnormal\_activity}{abnormal\_activity}}
+{\footnotesize\ttfamily uint8\+\_\+t abnormal\+\_\+activity}
+
+S\+SN abnormal activity bit ~\newline
+ \mbox{\Hypertarget{main_8c_ad45fec976ad953004fd5c2db30b01c25}\label{main_8c_ad45fec976ad953004fd5c2db30b01c25}} 
+\index{main.c@{main.c}!half\_second\_counter@{half\_second\_counter}}
+\index{half\_second\_counter@{half\_second\_counter}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{half\_second\_counter}{half\_second\_counter}}
+{\footnotesize\ttfamily uint8\+\_\+t half\+\_\+second\+\_\+counter = 0}
+
+Counter variable for counting half seconds per second \mbox{\Hypertarget{main_8c_af27e3188294c2df66d975b74a09c001d}\label{main_8c_af27e3188294c2df66d975b74a09c001d}} 
+\index{main.c@{main.c}!i@{i}}
+\index{i@{i}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{i}{i}}
+{\footnotesize\ttfamily uint8\+\_\+t i}
+
+S\+SN loop variable ~\newline
+ \mbox{\Hypertarget{main_8c_a56d35d75f15c139534abac2f3b6fa427}\label{main_8c_a56d35d75f15c139534abac2f3b6fa427}} 
+\index{main.c@{main.c}!interrupts\_per\_second@{interrupts\_per\_second}}
+\index{interrupts\_per\_second@{interrupts\_per\_second}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{interrupts\_per\_second}{interrupts\_per\_second}}
+{\footnotesize\ttfamily uint8\+\_\+t interrupts\+\_\+per\+\_\+second = 2}
+
+Counter variable for interrupts per second \mbox{\Hypertarget{main_8c_abe9c0cc707863ac4653ed10a04306c30}\label{main_8c_abe9c0cc707863ac4653ed10a04306c30}} 
+\index{main.c@{main.c}!Machine\_load\_currents@{Machine\_load\_currents}}
+\index{Machine\_load\_currents@{Machine\_load\_currents}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Machine\_load\_currents}{Machine\_load\_currents}}
+{\footnotesize\ttfamily uint8\+\_\+t Machine\+\_\+load\+\_\+currents\mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{0\}}
+
+S\+SN machine load currents array \mbox{\Hypertarget{main_8c_a29207fa3772e4346d6fc95f5cd43ffb1}\label{main_8c_a29207fa3772e4346d6fc95f5cd43ffb1}} 
+\index{main.c@{main.c}!Machine\_load\_percentages@{Machine\_load\_percentages}}
+\index{Machine\_load\_percentages@{Machine\_load\_percentages}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Machine\_load\_percentages}{Machine\_load\_percentages}}
+{\footnotesize\ttfamily uint8\+\_\+t Machine\+\_\+load\+\_\+percentages\mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{0\}}
+
+S\+SN machine load percentages array \mbox{\Hypertarget{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}\label{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}} 
+\index{main.c@{main.c}!Machine\_status@{Machine\_status}}
+\index{Machine\_status@{Machine\_status}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Machine\_status}{Machine\_status}}
+{\footnotesize\ttfamily uint8\+\_\+t Machine\+\_\+status\mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{\mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}, \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}, \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}, \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}\}}
+
+S\+SN machine status array initialized to a Sentinel or Reset state \mbox{\Hypertarget{main_8c_af06d36f7bd07ba0529591d9d30f25dff}\label{main_8c_af06d36f7bd07ba0529591d9d30f25dff}} 
+\index{main.c@{main.c}!Machine\_status\_duration@{Machine\_status\_duration}}
+\index{Machine\_status\_duration@{Machine\_status\_duration}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Machine\_status\_duration}{Machine\_status\_duration}}
+{\footnotesize\ttfamily uint32\+\_\+t Machine\+\_\+status\+\_\+duration\mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]} = \{0\}}
+
+S\+SN machine status duration array for holding the number of seconds for which the machines have been in the current state \mbox{\Hypertarget{main_8c_a15b39a8db0ae226b5f8fc4f53fac16c2}\label{main_8c_a15b39a8db0ae226b5f8fc4f53fac16c2}} 
+\index{main.c@{main.c}!Machine\_status\_timestamp@{Machine\_status\_timestamp}}
+\index{Machine\_status\_timestamp@{Machine\_status\_timestamp}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{Machine\_status\_timestamp}{Machine\_status\_timestamp}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} Machine\+\_\+status\+\_\+timestamp\mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]}}
+
+S\+SN machine timestamps for recording since when the machines have been in the current states \mbox{\Hypertarget{main_8c_a5356128f764e4459ab5934fa79d8d87b}\label{main_8c_a5356128f764e4459ab5934fa79d8d87b}} 
+\index{main.c@{main.c}!relative\_humidity\_bytes@{relative\_humidity\_bytes}}
+\index{relative\_humidity\_bytes@{relative\_humidity\_bytes}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{relative\_humidity\_bytes}{relative\_humidity\_bytes}}
+{\footnotesize\ttfamily uint8\+\_\+t relative\+\_\+humidity\+\_\+bytes\mbox{[}2\mbox{]}}
+
+S\+SN relative humidity reading bytes ~\newline
+ \mbox{\Hypertarget{main_8c_ac5421892f7786feea0a87741ff49170b}\label{main_8c_ac5421892f7786feea0a87741ff49170b}} 
+\index{main.c@{main.c}!report\_counter@{report\_counter}}
+\index{report\_counter@{report\_counter}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{report\_counter}{report\_counter}}
+{\footnotesize\ttfamily uint8\+\_\+t report\+\_\+counter = 0}
+
+Counter variable for counting after how many intervals to send the status update \mbox{\Hypertarget{main_8c_a83d18a73ed2d54c78b4f55dae30a01c6}\label{main_8c_a83d18a73ed2d54c78b4f55dae30a01c6}} 
+\index{main.c@{main.c}!SSN\_CONFIG@{SSN\_CONFIG}}
+\index{SSN\_CONFIG@{SSN\_CONFIG}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_CONFIG}{SSN\_CONFIG}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+C\+O\+N\+F\+IG\mbox{[}\mbox{\hyperlink{global_8h_a35a6539241cf8eb24b7d2d0445cc9e59}{E\+E\+P\+R\+O\+M\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+I\+ZE}}\mbox{]}}
+
+S\+SN current sensor configurations \mbox{\Hypertarget{main_8c_a642a7eec4e214f28cdbbb033b286881e}\label{main_8c_a642a7eec4e214f28cdbbb033b286881e}} 
+\index{main.c@{main.c}!SSN\_CURRENT\_SENSOR\_MAXLOADS@{SSN\_CURRENT\_SENSOR\_MAXLOADS}}
+\index{SSN\_CURRENT\_SENSOR\_MAXLOADS@{SSN\_CURRENT\_SENSOR\_MAXLOADS}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_CURRENT\_SENSOR\_MAXLOADS}{SSN\_CURRENT\_SENSOR\_MAXLOADS}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS\mbox{[}4\mbox{]}}
+
+S\+SN machine maximum loads for calculating percentage loads on machines \mbox{\Hypertarget{main_8c_a27f066a0a34448b85c39ac8d0c5a127d}\label{main_8c_a27f066a0a34448b85c39ac8d0c5a127d}} 
+\index{main.c@{main.c}!SSN\_CURRENT\_SENSOR\_RATINGS@{SSN\_CURRENT\_SENSOR\_RATINGS}}
+\index{SSN\_CURRENT\_SENSOR\_RATINGS@{SSN\_CURRENT\_SENSOR\_RATINGS}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_CURRENT\_SENSOR\_RATINGS}{SSN\_CURRENT\_SENSOR\_RATINGS}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS\mbox{[}4\mbox{]}}
+
+S\+SN current sensor ratings \mbox{\Hypertarget{main_8c_acbf1100a89d3eb6891b8268d444c03e2}\label{main_8c_acbf1100a89d3eb6891b8268d444c03e2}} 
+\index{main.c@{main.c}!SSN\_CURRENT\_SENSOR\_THRESHOLDS@{SSN\_CURRENT\_SENSOR\_THRESHOLDS}}
+\index{SSN\_CURRENT\_SENSOR\_THRESHOLDS@{SSN\_CURRENT\_SENSOR\_THRESHOLDS}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_CURRENT\_SENSOR\_THRESHOLDS}{SSN\_CURRENT\_SENSOR\_THRESHOLDS}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS\mbox{[}4\mbox{]}}
+
+S\+SN machine thresholds for deciding I\+D\+LE state \mbox{\Hypertarget{main_8c_ab35539189035136dbcfd7d799291414e}\label{main_8c_ab35539189035136dbcfd7d799291414e}} 
+\index{main.c@{main.c}!SSN\_CURRENT\_STATE@{SSN\_CURRENT\_STATE}}
+\index{SSN\_CURRENT\_STATE@{SSN\_CURRENT\_STATE}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_CURRENT\_STATE}{SSN\_CURRENT\_STATE}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+T\+A\+TE}
+
+Current State of the S\+SN. There is no state machine of the S\+SN but we still use this variable to keep track at some instances \mbox{\Hypertarget{main_8c_ada2bb8f2f1d13265e26bbc6e80c92514}\label{main_8c_ada2bb8f2f1d13265e26bbc6e80c92514}} 
+\index{main.c@{main.c}!SSN\_DEFAULT\_MAC@{SSN\_DEFAULT\_MAC}}
+\index{SSN\_DEFAULT\_MAC@{SSN\_DEFAULT\_MAC}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_DEFAULT\_MAC}{SSN\_DEFAULT\_MAC}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+AC\mbox{[}$\,$\mbox{]} = \{0x\+AA, 0x\+BB, 0x\+CC, 0x\+DD, 0x\+EE, 0x\+FF\}}
+
+S\+SN default M\+AC address. This is the same for all S\+S\+Ns \mbox{\Hypertarget{main_8c_a68480e541da8f08ac7150fa092a52e9f}\label{main_8c_a68480e541da8f08ac7150fa092a52e9f}} 
+\index{main.c@{main.c}!SSN\_MAC\_ADDRESS@{SSN\_MAC\_ADDRESS}}
+\index{SSN\_MAC\_ADDRESS@{SSN\_MAC\_ADDRESS}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_MAC\_ADDRESS}{SSN\_MAC\_ADDRESS}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS\mbox{[}6\mbox{]} = \{0\}}
+
+S\+SN current M\+AC address. May hold the default M\+AC or the one received from S\+SN Server. The last two bytes are the S\+SN Identity \mbox{\Hypertarget{main_8c_a530afa2a0a6ffd12d43e1d74523a09a0}\label{main_8c_a530afa2a0a6ffd12d43e1d74523a09a0}} 
+\index{main.c@{main.c}!SSN\_REPORT\_INTERVAL@{SSN\_REPORT\_INTERVAL}}
+\index{SSN\_REPORT\_INTERVAL@{SSN\_REPORT\_INTERVAL}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_REPORT\_INTERVAL}{SSN\_REPORT\_INTERVAL}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL = 1}
+
+Report Interval of S\+SN set according to the configurations passed to the S\+SN \mbox{\Hypertarget{main_8c_af20121647e8b2e66cbdb68cc9b190072}\label{main_8c_af20121647e8b2e66cbdb68cc9b190072}} 
+\index{main.c@{main.c}!SSN\_SENT\_MESSAGES\_COUNTER@{SSN\_SENT\_MESSAGES\_COUNTER}}
+\index{SSN\_SENT\_MESSAGES\_COUNTER@{SSN\_SENT\_MESSAGES\_COUNTER}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_SENT\_MESSAGES\_COUNTER}{SSN\_SENT\_MESSAGES\_COUNTER}}
+{\footnotesize\ttfamily uint32\+\_\+t S\+S\+N\+\_\+\+S\+E\+N\+T\+\_\+\+M\+E\+S\+S\+A\+G\+E\+S\+\_\+\+C\+O\+U\+N\+T\+ER = 0}
+
+A counter to maintain how many messages have been sent from S\+SN to Server since wakeup \mbox{\Hypertarget{main_8c_af0a41c40c1889685df2f0902fd3b1038}\label{main_8c_af0a41c40c1889685df2f0902fd3b1038}} 
+\index{main.c@{main.c}!SSN\_SERVER\_IP@{SSN\_SERVER\_IP}}
+\index{SSN\_SERVER\_IP@{SSN\_SERVER\_IP}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_SERVER\_IP}{SSN\_SERVER\_IP}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP\mbox{[}$\,$\mbox{]} = \{192, 168, 1, 100\}}
+
+S\+SN Server Address \mbox{\Hypertarget{main_8c_af399cba06e4015d7ba32f5cde092fc30}\label{main_8c_af399cba06e4015d7ba32f5cde092fc30}} 
+\index{main.c@{main.c}!SSN\_SERVER\_PORT@{SSN\_SERVER\_PORT}}
+\index{SSN\_SERVER\_PORT@{SSN\_SERVER\_PORT}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_SERVER\_PORT}{SSN\_SERVER\_PORT}}
+{\footnotesize\ttfamily uint16\+\_\+t S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT = 9999}
+
+S\+SN Server P\+O\+RT \mbox{\Hypertarget{main_8c_a4d98f0e1fc2286b06ce95bdf875f3873}\label{main_8c_a4d98f0e1fc2286b06ce95bdf875f3873}} 
+\index{main.c@{main.c}!SSN\_UDP\_SOCKET@{SSN\_UDP\_SOCKET}}
+\index{SSN\_UDP\_SOCKET@{SSN\_UDP\_SOCKET}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_UDP\_SOCKET}{SSN\_UDP\_SOCKET}}
+{\footnotesize\ttfamily S\+O\+C\+K\+ET S\+S\+N\+\_\+\+U\+D\+P\+\_\+\+S\+O\+C\+K\+ET}
+
+Our S\+SN U\+DP communication socket \mbox{\Hypertarget{main_8c_a4b0162d3c9e447c253b2a48766bf67f2}\label{main_8c_a4b0162d3c9e447c253b2a48766bf67f2}} 
+\index{main.c@{main.c}!SSN\_UDP\_SOCKET\_NUM@{SSN\_UDP\_SOCKET\_NUM}}
+\index{SSN\_UDP\_SOCKET\_NUM@{SSN\_UDP\_SOCKET\_NUM}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{SSN\_UDP\_SOCKET\_NUM}{SSN\_UDP\_SOCKET\_NUM}}
+{\footnotesize\ttfamily uint8\+\_\+t S\+S\+N\+\_\+\+U\+D\+P\+\_\+\+S\+O\+C\+K\+E\+T\+\_\+\+N\+UM = 1}
+
+S\+SN U\+DP socket number \mbox{\Hypertarget{main_8c_ac776b796af18d0812e0bdb5893ed710e}\label{main_8c_ac776b796af18d0812e0bdb5893ed710e}} 
+\index{main.c@{main.c}!temp\_humidity\_recv\_status@{temp\_humidity\_recv\_status}}
+\index{temp\_humidity\_recv\_status@{temp\_humidity\_recv\_status}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{temp\_humidity\_recv\_status}{temp\_humidity\_recv\_status}}
+{\footnotesize\ttfamily uint8\+\_\+t temp\+\_\+humidity\+\_\+recv\+\_\+status}
+
+S\+SN temperature and humidity reading successful/unsuccessful status bit \mbox{\Hypertarget{main_8c_ac262a61942baf151c8e23f787a07c782}\label{main_8c_ac262a61942baf151c8e23f787a07c782}} 
+\index{main.c@{main.c}!temperature\_bytes@{temperature\_bytes}}
+\index{temperature\_bytes@{temperature\_bytes}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{temperature\_bytes}{temperature\_bytes}}
+{\footnotesize\ttfamily uint8\+\_\+t temperature\+\_\+bytes\mbox{[}2\mbox{]}}
+
+S\+SN temperature sensor reading bytes ~\newline
+ 

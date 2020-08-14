@@ -1,0 +1,83 @@
+\hypertarget{pseudo__rtcc_8c}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+P\+S\+E\+U\+D\+O\+\_\+\+R\+T\+C\+C/pseudo\+\_\+rtcc.c File Reference}
+\label{pseudo__rtcc_8c}\index{src/SSN\_API/Drivers/PSEUDO\_RTCC/pseudo\_rtcc.c@{src/SSN\_API/Drivers/PSEUDO\_RTCC/pseudo\_rtcc.c}}
+{\ttfamily \#include \char`\"{}pseudo\+\_\+rtcc.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8c_a631413bd92f6241dd3b1e563e9f8b1c6}{setup\+\_\+\+Global\+\_\+\+Clock\+\_\+\+And\+\_\+\+S\+S\+N\+\_\+\+Half\+\_\+\+Second\+\_\+\+Heartbeat}} (uint32\+\_\+t P\+E\+R\+I\+P\+H\+\_\+\+C\+L\+O\+CK)
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8c_a3e057ab2f51b5ab5a3b61e3b81fe26a9}{stop\+\_\+\+Global\+\_\+\+Clock}} ()
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8c_a73ce9d253f99c2e4117abe095c7fecac}{set\+\_\+ssn\+\_\+time}} (uint8\+\_\+t $\ast$this\+\_\+time)
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8c_a1e47319a05895094d6027b705e08fdcb}{increment\+\_\+pseudo\+\_\+clock\+\_\+time}} (\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$this\+\_\+clock)
+\item 
+void \mbox{\hyperlink{pseudo__rtcc_8c_ad7fd1eebfaebe4d979c6185163ad3a83}{increment\+\_\+this\+\_\+clock\+\_\+time}} (uint8\+\_\+t $\ast$this\+\_\+clock)
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{pseudo__rtcc_8c_a018c770c808352224b7f1cd146587f84}{Days\+\_\+in\+\_\+a\+\_\+\+Month}} \mbox{[}12\mbox{]} = \{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{pseudo__rtcc_8c_a1e47319a05895094d6027b705e08fdcb}\label{pseudo__rtcc_8c_a1e47319a05895094d6027b705e08fdcb}} 
+\index{pseudo\_rtcc.c@{pseudo\_rtcc.c}!increment\_pseudo\_clock\_time@{increment\_pseudo\_clock\_time}}
+\index{increment\_pseudo\_clock\_time@{increment\_pseudo\_clock\_time}!pseudo\_rtcc.c@{pseudo\_rtcc.c}}
+\doxysubsubsection{\texorpdfstring{increment\_pseudo\_clock\_time()}{increment\_pseudo\_clock\_time()}}
+{\footnotesize\ttfamily void increment\+\_\+pseudo\+\_\+clock\+\_\+time (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$}]{this\+\_\+clock }\end{DoxyParamCaption})}
+
+Increments given clock time by one tick or one second 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+clock} & The \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} variable clock to increment \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8c_ad7fd1eebfaebe4d979c6185163ad3a83}\label{pseudo__rtcc_8c_ad7fd1eebfaebe4d979c6185163ad3a83}} 
+\index{pseudo\_rtcc.c@{pseudo\_rtcc.c}!increment\_this\_clock\_time@{increment\_this\_clock\_time}}
+\index{increment\_this\_clock\_time@{increment\_this\_clock\_time}!pseudo\_rtcc.c@{pseudo\_rtcc.c}}
+\doxysubsubsection{\texorpdfstring{increment\_this\_clock\_time()}{increment\_this\_clock\_time()}}
+{\footnotesize\ttfamily void increment\+\_\+this\+\_\+clock\+\_\+time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{this\+\_\+clock }\end{DoxyParamCaption})}
+
+Increments given clock time by one tick or one second 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+clock} & The byte array representing clock to increment \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8c_a73ce9d253f99c2e4117abe095c7fecac}\label{pseudo__rtcc_8c_a73ce9d253f99c2e4117abe095c7fecac}} 
+\index{pseudo\_rtcc.c@{pseudo\_rtcc.c}!set\_ssn\_time@{set\_ssn\_time}}
+\index{set\_ssn\_time@{set\_ssn\_time}!pseudo\_rtcc.c@{pseudo\_rtcc.c}}
+\doxysubsubsection{\texorpdfstring{set\_ssn\_time()}{set\_ssn\_time()}}
+{\footnotesize\ttfamily void set\+\_\+ssn\+\_\+time (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{this\+\_\+time }\end{DoxyParamCaption})}
+
+Sets the S\+SN global time to give time 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+time} & Byte array containing hours, minutes, seconds, day, month and year of current time \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8c_a631413bd92f6241dd3b1e563e9f8b1c6}\label{pseudo__rtcc_8c_a631413bd92f6241dd3b1e563e9f8b1c6}} 
+\index{pseudo\_rtcc.c@{pseudo\_rtcc.c}!setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat@{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat}}
+\index{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat@{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat}!pseudo\_rtcc.c@{pseudo\_rtcc.c}}
+\doxysubsubsection{\texorpdfstring{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat()}{setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat()}}
+{\footnotesize\ttfamily void setup\+\_\+\+Global\+\_\+\+Clock\+\_\+\+And\+\_\+\+S\+S\+N\+\_\+\+Half\+\_\+\+Second\+\_\+\+Heartbeat (\begin{DoxyParamCaption}\item[{uint32\+\_\+t}]{P\+E\+R\+I\+P\+H\+\_\+\+C\+L\+O\+CK }\end{DoxyParamCaption})}
+
+Sets up the global clock and half-\/second interrupt for S\+SN 
+\begin{DoxyParams}{Parameters}
+{\em P\+E\+R\+I\+P\+H\+\_\+\+C\+L\+O\+CK} & Peripheral clock of S\+SN \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pseudo__rtcc_8c_a3e057ab2f51b5ab5a3b61e3b81fe26a9}\label{pseudo__rtcc_8c_a3e057ab2f51b5ab5a3b61e3b81fe26a9}} 
+\index{pseudo\_rtcc.c@{pseudo\_rtcc.c}!stop\_Global\_Clock@{stop\_Global\_Clock}}
+\index{stop\_Global\_Clock@{stop\_Global\_Clock}!pseudo\_rtcc.c@{pseudo\_rtcc.c}}
+\doxysubsubsection{\texorpdfstring{stop\_Global\_Clock()}{stop\_Global\_Clock()}}
+{\footnotesize\ttfamily void stop\+\_\+\+Global\+\_\+\+Clock (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops the global S\+SN clock 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{pseudo__rtcc_8c_a018c770c808352224b7f1cd146587f84}\label{pseudo__rtcc_8c_a018c770c808352224b7f1cd146587f84}} 
+\index{pseudo\_rtcc.c@{pseudo\_rtcc.c}!Days\_in\_a\_Month@{Days\_in\_a\_Month}}
+\index{Days\_in\_a\_Month@{Days\_in\_a\_Month}!pseudo\_rtcc.c@{pseudo\_rtcc.c}}
+\doxysubsubsection{\texorpdfstring{Days\_in\_a\_Month}{Days\_in\_a\_Month}}
+{\footnotesize\ttfamily uint8\+\_\+t Days\+\_\+in\+\_\+a\+\_\+\+Month\mbox{[}12\mbox{]} = \{31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31\}}
+

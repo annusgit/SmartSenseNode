@@ -1,0 +1,180 @@
+\hypertarget{eeprom_8c}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+E\+E\+P\+R\+O\+M/eeprom.c File Reference}
+\label{eeprom_8c}\index{src/SSN\_API/Drivers/EEPROM/eeprom.c@{src/SSN\_API/Drivers/EEPROM/eeprom.c}}
+{\ttfamily \#include \char`\"{}eeprom.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{eeprom_8c_af9914f40ecc88b132eef730883a8f51f}{open\+\_\+\+I2\+C1}} ()
+\item 
+void \mbox{\hyperlink{eeprom_8c_a937a661c9cf957183d9c9a9e7d0a9409}{setup\+\_\+\+E\+E\+P\+R\+OM}} ()
+\item 
+void \mbox{\hyperlink{eeprom_8c_a9eee983317d23d373951055ebb7c8861}{I2\+C1\+\_\+wait\+\_\+while\+\_\+busy}} ()
+\item 
+void \mbox{\hyperlink{eeprom_8c_ab7ab4bef12d24d4c3b7ef34ea06cf9d5}{I2\+C1\+\_\+transmit\+\_\+start\+\_\+bit}} ()
+\item 
+void \mbox{\hyperlink{eeprom_8c_a9bccc64cb19e61ba1cfcc9fa36a515d8}{I2\+C1\+\_\+transmit\+\_\+stop\+\_\+bit}} ()
+\item 
+void \mbox{\hyperlink{eeprom_8c_ac8b8da9de570d52c22905fbc3b47c924}{I2\+C1\+\_\+transmit\+\_\+restart\+\_\+bit}} ()
+\item 
+void \mbox{\hyperlink{eeprom_8c_ace1ee1af9242806f77c4437247adb2e3}{I2\+C1\+\_\+transmit\+\_\+byte}} (uint8\+\_\+t byte)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_a2325d854eb1cf48bd1f9031f91f71120}{I2\+C1\+\_\+receive\+\_\+byte}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_ad7285ac01eb8af3e1c27a9134c9e4732}{E\+E\+P\+R\+O\+M\+\_\+\+Write\+\_\+\+B\+Y\+TE}} (uint8\+\_\+t block, uint8\+\_\+t address, uint8\+\_\+t data)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_abbb7a994523d200b647c6c6fe8cc61df}{E\+E\+P\+R\+O\+M\+\_\+\+Read\+\_\+\+B\+Y\+TE}} (uint8\+\_\+t block, uint8\+\_\+t address)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_ad65dff935ff3a79bdec6b2d2afdb4895}{E\+E\+P\+R\+O\+M\+\_\+\+Write\+\_\+\+Array}} (uint8\+\_\+t block, uint8\+\_\+t address, uint8\+\_\+t $\ast$arr, uint8\+\_\+t size)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_a2263e5c1e4dde85a0976d54020e49b7a}{E\+E\+P\+R\+O\+M\+\_\+\+Read\+\_\+\+Array}} (uint8\+\_\+t block, uint8\+\_\+t address, uint8\+\_\+t $\ast$arr, uint8\+\_\+t size)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_a314d1d5aea941212c7e036d404a587f5}{E\+E\+P\+R\+O\+M\+\_\+\+Clear}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{eeprom_8c_af90145795ad98b4af6c2afdb4d183b6d}{E\+E\+P\+R\+O\+M\+\_\+\+Check}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{eeprom_8c_af90145795ad98b4af6c2afdb4d183b6d}\label{eeprom_8c_af90145795ad98b4af6c2afdb4d183b6d}} 
+\index{eeprom.c@{eeprom.c}!EEPROM\_Check@{EEPROM\_Check}}
+\index{EEPROM\_Check@{EEPROM\_Check}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_Check()}{EEPROM\_Check()}}
+{\footnotesize\ttfamily uint8\+\_\+t E\+E\+P\+R\+O\+M\+\_\+\+Check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Checks E\+E\+P\+R\+OM read/write by writing and reading a single byte at a pre-\/defined location \begin{DoxyReturn}{Returns}
+{\bfseries{E\+E\+P\+R\+O\+M\+\_\+\+T\+E\+S\+T\+\_\+\+P\+A\+S\+S\+ED}} for successful test; {\bfseries{E\+E\+P\+R\+O\+M\+\_\+\+T\+E\+S\+T\+\_\+\+F\+A\+I\+L\+ED}} for failure 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eeprom_8c_a314d1d5aea941212c7e036d404a587f5}\label{eeprom_8c_a314d1d5aea941212c7e036d404a587f5}} 
+\index{eeprom.c@{eeprom.c}!EEPROM\_Clear@{EEPROM\_Clear}}
+\index{EEPROM\_Clear@{EEPROM\_Clear}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_Clear()}{EEPROM\_Clear()}}
+{\footnotesize\ttfamily uint8\+\_\+t E\+E\+P\+R\+O\+M\+\_\+\+Clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clears E\+E\+P\+R\+OM \begin{DoxyReturn}{Returns}
+1 for successfully cleared 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eeprom_8c_a2263e5c1e4dde85a0976d54020e49b7a}\label{eeprom_8c_a2263e5c1e4dde85a0976d54020e49b7a}} 
+\index{eeprom.c@{eeprom.c}!EEPROM\_Read\_Array@{EEPROM\_Read\_Array}}
+\index{EEPROM\_Read\_Array@{EEPROM\_Read\_Array}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_Read\_Array()}{EEPROM\_Read\_Array()}}
+{\footnotesize\ttfamily uint8\+\_\+t E\+E\+P\+R\+O\+M\+\_\+\+Read\+\_\+\+Array (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block,  }\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t $\ast$}]{arr,  }\item[{uint8\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Reads a byte array from the E\+E\+P\+R\+OM. Bytes are read from contiguous locations 
+\begin{DoxyParams}{Parameters}
+{\em block} & Block number to read from (1-\/4) \\
+\hline
+{\em address} & Address inside the block to start reading from (0-\/255) \\
+\hline
+{\em arr} & The byte array to write the read values into \\
+\hline
+{\em size} & The number of bytes to read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 for read successful 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eeprom_8c_abbb7a994523d200b647c6c6fe8cc61df}\label{eeprom_8c_abbb7a994523d200b647c6c6fe8cc61df}} 
+\index{eeprom.c@{eeprom.c}!EEPROM\_Read\_BYTE@{EEPROM\_Read\_BYTE}}
+\index{EEPROM\_Read\_BYTE@{EEPROM\_Read\_BYTE}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_Read\_BYTE()}{EEPROM\_Read\_BYTE()}}
+{\footnotesize\ttfamily uint8\+\_\+t E\+E\+P\+R\+O\+M\+\_\+\+Read\+\_\+\+B\+Y\+TE (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block,  }\item[{uint8\+\_\+t}]{address }\end{DoxyParamCaption})}
+
+Reads a single byte from the E\+E\+P\+R\+OM 
+\begin{DoxyParams}{Parameters}
+{\em block} & Block number to read from (1-\/4) \\
+\hline
+{\em address} & Address inside the block to read from (0-\/255) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The single byte read from this location 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eeprom_8c_ad65dff935ff3a79bdec6b2d2afdb4895}\label{eeprom_8c_ad65dff935ff3a79bdec6b2d2afdb4895}} 
+\index{eeprom.c@{eeprom.c}!EEPROM\_Write\_Array@{EEPROM\_Write\_Array}}
+\index{EEPROM\_Write\_Array@{EEPROM\_Write\_Array}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_Write\_Array()}{EEPROM\_Write\_Array()}}
+{\footnotesize\ttfamily uint8\+\_\+t E\+E\+P\+R\+O\+M\+\_\+\+Write\+\_\+\+Array (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block,  }\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t $\ast$}]{arr,  }\item[{uint8\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+Writes byte array into the E\+E\+P\+R\+OM. Bytes are written at contiguous locations 
+\begin{DoxyParams}{Parameters}
+{\em block} & Block number to write into (1-\/4) \\
+\hline
+{\em address} & Address inside the block to start writing from (0-\/255) \\
+\hline
+{\em arr} & The byte array to write into the E\+E\+P\+R\+OM \\
+\hline
+{\em size} & The number of bytes to write \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{eeprom_8c_ad7285ac01eb8af3e1c27a9134c9e4732}\label{eeprom_8c_ad7285ac01eb8af3e1c27a9134c9e4732}} 
+\index{eeprom.c@{eeprom.c}!EEPROM\_Write\_BYTE@{EEPROM\_Write\_BYTE}}
+\index{EEPROM\_Write\_BYTE@{EEPROM\_Write\_BYTE}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{EEPROM\_Write\_BYTE()}{EEPROM\_Write\_BYTE()}}
+{\footnotesize\ttfamily uint8\+\_\+t E\+E\+P\+R\+O\+M\+\_\+\+Write\+\_\+\+B\+Y\+TE (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{block,  }\item[{uint8\+\_\+t}]{address,  }\item[{uint8\+\_\+t}]{data }\end{DoxyParamCaption})}
+
+Writes single byte into the E\+E\+P\+R\+OM 
+\begin{DoxyParams}{Parameters}
+{\em block} & Block number to write into (1-\/4) \\
+\hline
+{\em address} & Address inside the block to write into (0-\/255) \\
+\hline
+{\em data} & The single byte to write at this location \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{eeprom_8c_a2325d854eb1cf48bd1f9031f91f71120}\label{eeprom_8c_a2325d854eb1cf48bd1f9031f91f71120}} 
+\index{eeprom.c@{eeprom.c}!I2C1\_receive\_byte@{I2C1\_receive\_byte}}
+\index{I2C1\_receive\_byte@{I2C1\_receive\_byte}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{I2C1\_receive\_byte()}{I2C1\_receive\_byte()}}
+{\footnotesize\ttfamily uint8\+\_\+t I2\+C1\+\_\+receive\+\_\+byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Recieves byte over I2\+C1 \begin{DoxyReturn}{Returns}
+Single byte read over I2\+C1 
+\end{DoxyReturn}
+\mbox{\Hypertarget{eeprom_8c_ace1ee1af9242806f77c4437247adb2e3}\label{eeprom_8c_ace1ee1af9242806f77c4437247adb2e3}} 
+\index{eeprom.c@{eeprom.c}!I2C1\_transmit\_byte@{I2C1\_transmit\_byte}}
+\index{I2C1\_transmit\_byte@{I2C1\_transmit\_byte}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{I2C1\_transmit\_byte()}{I2C1\_transmit\_byte()}}
+{\footnotesize\ttfamily void I2\+C1\+\_\+transmit\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})}
+
+Transmit single byte over I2C 
+\begin{DoxyParams}{Parameters}
+{\em byte} & Single byte to transmit \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{eeprom_8c_ac8b8da9de570d52c22905fbc3b47c924}\label{eeprom_8c_ac8b8da9de570d52c22905fbc3b47c924}} 
+\index{eeprom.c@{eeprom.c}!I2C1\_transmit\_restart\_bit@{I2C1\_transmit\_restart\_bit}}
+\index{I2C1\_transmit\_restart\_bit@{I2C1\_transmit\_restart\_bit}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{I2C1\_transmit\_restart\_bit()}{I2C1\_transmit\_restart\_bit()}}
+{\footnotesize\ttfamily void I2\+C1\+\_\+transmit\+\_\+restart\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Transmit single bit for restarting I2C communication \mbox{\Hypertarget{eeprom_8c_ab7ab4bef12d24d4c3b7ef34ea06cf9d5}\label{eeprom_8c_ab7ab4bef12d24d4c3b7ef34ea06cf9d5}} 
+\index{eeprom.c@{eeprom.c}!I2C1\_transmit\_start\_bit@{I2C1\_transmit\_start\_bit}}
+\index{I2C1\_transmit\_start\_bit@{I2C1\_transmit\_start\_bit}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{I2C1\_transmit\_start\_bit()}{I2C1\_transmit\_start\_bit()}}
+{\footnotesize\ttfamily void I2\+C1\+\_\+transmit\+\_\+start\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Transmit single bit for starting I2C communication \mbox{\Hypertarget{eeprom_8c_a9bccc64cb19e61ba1cfcc9fa36a515d8}\label{eeprom_8c_a9bccc64cb19e61ba1cfcc9fa36a515d8}} 
+\index{eeprom.c@{eeprom.c}!I2C1\_transmit\_stop\_bit@{I2C1\_transmit\_stop\_bit}}
+\index{I2C1\_transmit\_stop\_bit@{I2C1\_transmit\_stop\_bit}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{I2C1\_transmit\_stop\_bit()}{I2C1\_transmit\_stop\_bit()}}
+{\footnotesize\ttfamily void I2\+C1\+\_\+transmit\+\_\+stop\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Transmit single bit for stoping I2C communication \mbox{\Hypertarget{eeprom_8c_a9eee983317d23d373951055ebb7c8861}\label{eeprom_8c_a9eee983317d23d373951055ebb7c8861}} 
+\index{eeprom.c@{eeprom.c}!I2C1\_wait\_while\_busy@{I2C1\_wait\_while\_busy}}
+\index{I2C1\_wait\_while\_busy@{I2C1\_wait\_while\_busy}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{I2C1\_wait\_while\_busy()}{I2C1\_wait\_while\_busy()}}
+{\footnotesize\ttfamily void I2\+C1\+\_\+wait\+\_\+while\+\_\+busy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Waits while I2\+C1 is busy reading or writing \mbox{\Hypertarget{eeprom_8c_af9914f40ecc88b132eef730883a8f51f}\label{eeprom_8c_af9914f40ecc88b132eef730883a8f51f}} 
+\index{eeprom.c@{eeprom.c}!open\_I2C1@{open\_I2C1}}
+\index{open\_I2C1@{open\_I2C1}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{open\_I2C1()}{open\_I2C1()}}
+{\footnotesize\ttfamily void open\+\_\+\+I2\+C1 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Opens I2\+C1 peripheral \mbox{\Hypertarget{eeprom_8c_a937a661c9cf957183d9c9a9e7d0a9409}\label{eeprom_8c_a937a661c9cf957183d9c9a9e7d0a9409}} 
+\index{eeprom.c@{eeprom.c}!setup\_EEPROM@{setup\_EEPROM}}
+\index{setup\_EEPROM@{setup\_EEPROM}!eeprom.c@{eeprom.c}}
+\doxysubsubsection{\texorpdfstring{setup\_EEPROM()}{setup\_EEPROM()}}
+{\footnotesize\ttfamily void setup\+\_\+\+E\+E\+P\+R\+OM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets up E\+E\+P\+R\+OM using I2\+C1 

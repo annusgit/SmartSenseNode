@@ -1,0 +1,372 @@
+\hypertarget{messages_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+M\+E\+S\+S\+A\+G\+E\+S/messages.h File Reference}
+\label{messages_8h}\index{src/SSN\_API/Drivers/MESSAGES/messages.h@{src/SSN\_API/Drivers/MESSAGES/messages.h}}
+{\ttfamily \#include $<$xc.\+h$>$}\newline
+{\ttfamily \#include $<$p32xxxx.\+h$>$}\newline
+{\ttfamily \#include $<$plib.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}../../global.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{messages_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}{\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{messages_8h_a7e476b569a3714860cc40d57acaba880}{\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{messages_8h_a27efd713d57fd875e874816740cdab9c}{max\+\_\+send\+\_\+message\+\_\+size}}~110
+\item 
+\#define \mbox{\hyperlink{messages_8h_afc886171d2b4ef0e4b435d95d6e27726}{max\+\_\+recv\+\_\+message\+\_\+size}}~15
+\item 
+\#define \mbox{\hyperlink{messages_8h_a58d63bd8de2e64e7b1b7db0d494f31fe}{G\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~1
+\item 
+\#define \mbox{\hyperlink{messages_8h_a4741bd5c006d09b6464a9800f67b676d}{S\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~2
+\item 
+\#define \mbox{\hyperlink{messages_8h_a486798c0fb1ed1bdae805ac48f7da008}{G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~3
+\item 
+\#define \mbox{\hyperlink{messages_8h_adf9ca476db24a715e3ba3fea6931be4d}{S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~4
+\item 
+\#define \mbox{\hyperlink{messages_8h_a473251710834ba03dac2080e3428200f}{G\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~5
+\item 
+\#define \mbox{\hyperlink{messages_8h_a7efb7b0af254178f05c616d9531fbc74}{S\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~6
+\item 
+\#define \mbox{\hyperlink{messages_8h_ae568b97d8fa19b0f177dcddd9154b11c}{A\+C\+K\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~7
+\item 
+\#define \mbox{\hyperlink{messages_8h_a4f08c163d766838f72c3ea0b6a905834}{S\+T\+A\+T\+U\+S\+\_\+\+U\+P\+D\+A\+T\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~8
+\item 
+\#define \mbox{\hyperlink{messages_8h_ae473cfca946dcf2b8b46c9c9be041347}{R\+E\+S\+E\+T\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+T\+I\+M\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~9
+\item 
+\#define \mbox{\hyperlink{messages_8h_a3a98df4c97ba1d5b7181141d1cb9b4b0}{D\+E\+B\+U\+G\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+C\+L\+E\+A\+R\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~10
+\item 
+\#define \mbox{\hyperlink{messages_8h_a205d5693794abaac8122d0e9bea771cd}{D\+E\+B\+U\+G\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+S\+N\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID}}~11
+\item 
+\#define \mbox{\hyperlink{messages_8h_a0131fa230ceeca8e6c810db1de22521b}{G\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~3
+\item 
+\#define \mbox{\hyperlink{messages_8h_aa276f43b4efd558410aa122ea3c7b127}{S\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~7
+\item 
+\#define \mbox{\hyperlink{messages_8h_ad510b775fd02f2c093545d314db51da9}{G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~3
+\item 
+\#define \mbox{\hyperlink{messages_8h_a167231229e69151b59cb35fea2d92a82}{S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~7
+\item 
+\#define \mbox{\hyperlink{messages_8h_ac17a8b37c5f5d870fa26c687ec66a594}{G\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~3
+\item 
+\#define \mbox{\hyperlink{messages_8h_a27c413d4d3231dcdbb6cf2fc37e39640}{S\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~14
+\item 
+\#define \mbox{\hyperlink{messages_8h_a47561b60e4301beca4f8528af756d438}{A\+C\+K\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~16
+\item 
+\#define \mbox{\hyperlink{messages_8h_ad26ed6157e7da216946c5b414f94426e}{S\+T\+A\+T\+U\+S\+\_\+\+U\+P\+D\+A\+T\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~64
+\item 
+\#define \mbox{\hyperlink{messages_8h_a2c249f901c89907c67abe51239271207}{R\+E\+S\+E\+T\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+T\+I\+M\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size}}~4
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_a563a3b9fa850e3d873296283b1fc51c0}{is\+\_\+\+Valid\+\_\+\+M\+AC}} (uint8\+\_\+t $\ast$mac\+\_\+address)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_acc103ab4826c7f52d110dc427c624ec2}{is\+\_\+\+Valid\+\_\+\+C\+O\+N\+F\+IG}} (uint8\+\_\+t $\ast$config\+\_\+array)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_a3c3c5279ce5e24b399b0bd4734113a16}{construct\+\_\+get\+\_\+mac\+\_\+message}} (uint8\+\_\+t $\ast$message\+\_\+array, uint8\+\_\+t $\ast$node\+\_\+id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_a0d21d44e35ba2057cd9bbf4fb7a3134d}{construct\+\_\+get\+\_\+timeofday\+\_\+message}} (uint8\+\_\+t $\ast$message\+\_\+array, uint8\+\_\+t $\ast$node\+\_\+id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_a05e5bdff9e5d70d62f856a73163ea52a}{construct\+\_\+get\+\_\+configuration\+\_\+message}} (uint8\+\_\+t $\ast$message\+\_\+array, uint8\+\_\+t $\ast$node\+\_\+id)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_ae3ee53bb37358ad195ce11e3b8963e0d}{construct\+\_\+ack\+\_\+configuration\+\_\+message}} (uint8\+\_\+t $\ast$message\+\_\+array, uint8\+\_\+t $\ast$node\+\_\+id, uint8\+\_\+t $\ast$received\+\_\+configs)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_acc0bd4177f217358eb1029c3e05591cc}{construct\+\_\+status\+\_\+update\+\_\+message}} (uint8\+\_\+t $\ast$message\+\_\+array, uint8\+\_\+t $\ast$node\+\_\+id, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_ac262a61942baf151c8e23f787a07c782}{temperature\+\_\+bytes}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a5356128f764e4459ab5934fa79d8d87b}{relative\+\_\+humidity\+\_\+bytes}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_abe9c0cc707863ac4653ed10a04306c30}{Machine\+\_\+load\+\_\+currents}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a29207fa3772e4346d6fc95f5cd43ffb1}{Machine\+\_\+load\+\_\+percentages}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}{Machine\+\_\+status}}, uint32\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af06d36f7bd07ba0529591d9d30f25dff}{Machine\+\_\+status\+\_\+duration}}, \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$\mbox{\hyperlink{main_8c_a15b39a8db0ae226b5f8fc4f53fac16c2}{Machine\+\_\+status\+\_\+timestamp}}, uint32\+\_\+t node\+\_\+uptime\+\_\+in\+\_\+seconds, uint8\+\_\+t \mbox{\hyperlink{main_8c_af483ca83bd3fb02e958e2400a0a43625}{abnormal\+\_\+activity}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{messages_8h_a2369f700a15b4eeeeca4ea7ede220966}{decipher\+\_\+received\+\_\+message}} (uint8\+\_\+t $\ast$message, uint8\+\_\+t $\ast$params)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{messages_8h_a7e476b569a3714860cc40d57acaba880}\label{messages_8h_a7e476b569a3714860cc40d57acaba880}} 
+\index{messages.h@{messages.h}!\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+\index{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{messages_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}\label{messages_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}} 
+\index{messages.h@{messages.h}!\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}}
+\index{\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{\_SUPPRESS\_PLIB\_WARNING}{\_SUPPRESS\_PLIB\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{messages_8h_ae568b97d8fa19b0f177dcddd9154b11c}\label{messages_8h_ae568b97d8fa19b0f177dcddd9154b11c}} 
+\index{messages.h@{messages.h}!ACK\_CONFIG\_MESSAGE\_ID@{ACK\_CONFIG\_MESSAGE\_ID}}
+\index{ACK\_CONFIG\_MESSAGE\_ID@{ACK\_CONFIG\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{ACK\_CONFIG\_MESSAGE\_ID}{ACK\_CONFIG\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define A\+C\+K\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~7}
+
+Message id for acknowledge current sensor configurations message to Server \mbox{\Hypertarget{messages_8h_a47561b60e4301beca4f8528af756d438}\label{messages_8h_a47561b60e4301beca4f8528af756d438}} 
+\index{messages.h@{messages.h}!ACK\_CONFIG\_MESSAGE\_Size@{ACK\_CONFIG\_MESSAGE\_Size}}
+\index{ACK\_CONFIG\_MESSAGE\_Size@{ACK\_CONFIG\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{ACK\_CONFIG\_MESSAGE\_Size}{ACK\_CONFIG\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define A\+C\+K\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~16}
+
+\mbox{\Hypertarget{messages_8h_a3a98df4c97ba1d5b7181141d1cb9b4b0}\label{messages_8h_a3a98df4c97ba1d5b7181141d1cb9b4b0}} 
+\index{messages.h@{messages.h}!DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID@{DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID}}
+\index{DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID@{DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID}{DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+\+E\+E\+P\+R\+O\+M\+\_\+\+C\+L\+E\+A\+R\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~10}
+
+Message id for requesting S\+SN E\+E\+P\+R\+OM Clear received from Server \mbox{\Hypertarget{messages_8h_a205d5693794abaac8122d0e9bea771cd}\label{messages_8h_a205d5693794abaac8122d0e9bea771cd}} 
+\index{messages.h@{messages.h}!DEBUG\_RESET\_SSN\_MESSAGE\_ID@{DEBUG\_RESET\_SSN\_MESSAGE\_ID}}
+\index{DEBUG\_RESET\_SSN\_MESSAGE\_ID@{DEBUG\_RESET\_SSN\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{DEBUG\_RESET\_SSN\_MESSAGE\_ID}{DEBUG\_RESET\_SSN\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define D\+E\+B\+U\+G\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+S\+N\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~11}
+
+Message id for requesting S\+SN Reset received from Server \mbox{\Hypertarget{messages_8h_a473251710834ba03dac2080e3428200f}\label{messages_8h_a473251710834ba03dac2080e3428200f}} 
+\index{messages.h@{messages.h}!GET\_CONFIG\_MESSAGE\_ID@{GET\_CONFIG\_MESSAGE\_ID}}
+\index{GET\_CONFIG\_MESSAGE\_ID@{GET\_CONFIG\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONFIG\_MESSAGE\_ID}{GET\_CONFIG\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~5}
+
+Message id for requesting current sensor configurations from Server \mbox{\Hypertarget{messages_8h_ac17a8b37c5f5d870fa26c687ec66a594}\label{messages_8h_ac17a8b37c5f5d870fa26c687ec66a594}} 
+\index{messages.h@{messages.h}!GET\_CONFIG\_MESSAGE\_Size@{GET\_CONFIG\_MESSAGE\_Size}}
+\index{GET\_CONFIG\_MESSAGE\_Size@{GET\_CONFIG\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{GET\_CONFIG\_MESSAGE\_Size}{GET\_CONFIG\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~3}
+
+\mbox{\Hypertarget{messages_8h_a58d63bd8de2e64e7b1b7db0d494f31fe}\label{messages_8h_a58d63bd8de2e64e7b1b7db0d494f31fe}} 
+\index{messages.h@{messages.h}!GET\_MAC\_MESSAGE\_ID@{GET\_MAC\_MESSAGE\_ID}}
+\index{GET\_MAC\_MESSAGE\_ID@{GET\_MAC\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{GET\_MAC\_MESSAGE\_ID}{GET\_MAC\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~1}
+
+Message id for requesting M\+AC address from Server \mbox{\Hypertarget{messages_8h_a0131fa230ceeca8e6c810db1de22521b}\label{messages_8h_a0131fa230ceeca8e6c810db1de22521b}} 
+\index{messages.h@{messages.h}!GET\_MAC\_MESSAGE\_Size@{GET\_MAC\_MESSAGE\_Size}}
+\index{GET\_MAC\_MESSAGE\_Size@{GET\_MAC\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{GET\_MAC\_MESSAGE\_Size}{GET\_MAC\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~3}
+
+\mbox{\Hypertarget{messages_8h_a486798c0fb1ed1bdae805ac48f7da008}\label{messages_8h_a486798c0fb1ed1bdae805ac48f7da008}} 
+\index{messages.h@{messages.h}!GET\_TIMEOFDAY\_MESSAGE\_ID@{GET\_TIMEOFDAY\_MESSAGE\_ID}}
+\index{GET\_TIMEOFDAY\_MESSAGE\_ID@{GET\_TIMEOFDAY\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{GET\_TIMEOFDAY\_MESSAGE\_ID}{GET\_TIMEOFDAY\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~3}
+
+Message id for requesting time of day from Server \mbox{\Hypertarget{messages_8h_ad510b775fd02f2c093545d314db51da9}\label{messages_8h_ad510b775fd02f2c093545d314db51da9}} 
+\index{messages.h@{messages.h}!GET\_TIMEOFDAY\_MESSAGE\_Size@{GET\_TIMEOFDAY\_MESSAGE\_Size}}
+\index{GET\_TIMEOFDAY\_MESSAGE\_Size@{GET\_TIMEOFDAY\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{GET\_TIMEOFDAY\_MESSAGE\_Size}{GET\_TIMEOFDAY\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define G\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~3}
+
+\mbox{\Hypertarget{messages_8h_afc886171d2b4ef0e4b435d95d6e27726}\label{messages_8h_afc886171d2b4ef0e4b435d95d6e27726}} 
+\index{messages.h@{messages.h}!max\_recv\_message\_size@{max\_recv\_message\_size}}
+\index{max\_recv\_message\_size@{max\_recv\_message\_size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{max\_recv\_message\_size}{max\_recv\_message\_size}}
+{\footnotesize\ttfamily \#define max\+\_\+recv\+\_\+message\+\_\+size~15}
+
+Maximum Message size in bytes to receive over the network \mbox{\Hypertarget{messages_8h_a27efd713d57fd875e874816740cdab9c}\label{messages_8h_a27efd713d57fd875e874816740cdab9c}} 
+\index{messages.h@{messages.h}!max\_send\_message\_size@{max\_send\_message\_size}}
+\index{max\_send\_message\_size@{max\_send\_message\_size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{max\_send\_message\_size}{max\_send\_message\_size}}
+{\footnotesize\ttfamily \#define max\+\_\+send\+\_\+message\+\_\+size~110}
+
+Maximum Message size in bytes to send over the network \mbox{\Hypertarget{messages_8h_ae473cfca946dcf2b8b46c9c9be041347}\label{messages_8h_ae473cfca946dcf2b8b46c9c9be041347}} 
+\index{messages.h@{messages.h}!RESET\_MACHINE\_TIME\_MESSAGE\_ID@{RESET\_MACHINE\_TIME\_MESSAGE\_ID}}
+\index{RESET\_MACHINE\_TIME\_MESSAGE\_ID@{RESET\_MACHINE\_TIME\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{RESET\_MACHINE\_TIME\_MESSAGE\_ID}{RESET\_MACHINE\_TIME\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define R\+E\+S\+E\+T\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+T\+I\+M\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~9}
+
+Message id for machine reset accumulated time received from Server \mbox{\Hypertarget{messages_8h_a2c249f901c89907c67abe51239271207}\label{messages_8h_a2c249f901c89907c67abe51239271207}} 
+\index{messages.h@{messages.h}!RESET\_MACHINE\_TIME\_MESSAGE\_Size@{RESET\_MACHINE\_TIME\_MESSAGE\_Size}}
+\index{RESET\_MACHINE\_TIME\_MESSAGE\_Size@{RESET\_MACHINE\_TIME\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{RESET\_MACHINE\_TIME\_MESSAGE\_Size}{RESET\_MACHINE\_TIME\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define R\+E\+S\+E\+T\+\_\+\+M\+A\+C\+H\+I\+N\+E\+\_\+\+T\+I\+M\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~4}
+
+\mbox{\Hypertarget{messages_8h_a7efb7b0af254178f05c616d9531fbc74}\label{messages_8h_a7efb7b0af254178f05c616d9531fbc74}} 
+\index{messages.h@{messages.h}!SET\_CONFIG\_MESSAGE\_ID@{SET\_CONFIG\_MESSAGE\_ID}}
+\index{SET\_CONFIG\_MESSAGE\_ID@{SET\_CONFIG\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{SET\_CONFIG\_MESSAGE\_ID}{SET\_CONFIG\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~6}
+
+Message id for set current sensor configurations message received from Server \mbox{\Hypertarget{messages_8h_a27c413d4d3231dcdbb6cf2fc37e39640}\label{messages_8h_a27c413d4d3231dcdbb6cf2fc37e39640}} 
+\index{messages.h@{messages.h}!SET\_CONFIG\_MESSAGE\_Size@{SET\_CONFIG\_MESSAGE\_Size}}
+\index{SET\_CONFIG\_MESSAGE\_Size@{SET\_CONFIG\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{SET\_CONFIG\_MESSAGE\_Size}{SET\_CONFIG\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~14}
+
+\mbox{\Hypertarget{messages_8h_a4741bd5c006d09b6464a9800f67b676d}\label{messages_8h_a4741bd5c006d09b6464a9800f67b676d}} 
+\index{messages.h@{messages.h}!SET\_MAC\_MESSAGE\_ID@{SET\_MAC\_MESSAGE\_ID}}
+\index{SET\_MAC\_MESSAGE\_ID@{SET\_MAC\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{SET\_MAC\_MESSAGE\_ID}{SET\_MAC\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~2}
+
+Message id for set M\+AC address message received from Server \mbox{\Hypertarget{messages_8h_aa276f43b4efd558410aa122ea3c7b127}\label{messages_8h_aa276f43b4efd558410aa122ea3c7b127}} 
+\index{messages.h@{messages.h}!SET\_MAC\_MESSAGE\_Size@{SET\_MAC\_MESSAGE\_Size}}
+\index{SET\_MAC\_MESSAGE\_Size@{SET\_MAC\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{SET\_MAC\_MESSAGE\_Size}{SET\_MAC\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+M\+A\+C\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~7}
+
+\mbox{\Hypertarget{messages_8h_adf9ca476db24a715e3ba3fea6931be4d}\label{messages_8h_adf9ca476db24a715e3ba3fea6931be4d}} 
+\index{messages.h@{messages.h}!SET\_TIMEOFDAY\_MESSAGE\_ID@{SET\_TIMEOFDAY\_MESSAGE\_ID}}
+\index{SET\_TIMEOFDAY\_MESSAGE\_ID@{SET\_TIMEOFDAY\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{SET\_TIMEOFDAY\_MESSAGE\_ID}{SET\_TIMEOFDAY\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~4}
+
+Message id for set time of day message received from Server \mbox{\Hypertarget{messages_8h_a167231229e69151b59cb35fea2d92a82}\label{messages_8h_a167231229e69151b59cb35fea2d92a82}} 
+\index{messages.h@{messages.h}!SET\_TIMEOFDAY\_MESSAGE\_Size@{SET\_TIMEOFDAY\_MESSAGE\_Size}}
+\index{SET\_TIMEOFDAY\_MESSAGE\_Size@{SET\_TIMEOFDAY\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{SET\_TIMEOFDAY\_MESSAGE\_Size}{SET\_TIMEOFDAY\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define S\+E\+T\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~7}
+
+\mbox{\Hypertarget{messages_8h_a4f08c163d766838f72c3ea0b6a905834}\label{messages_8h_a4f08c163d766838f72c3ea0b6a905834}} 
+\index{messages.h@{messages.h}!STATUS\_UPDATE\_MESSAGE\_ID@{STATUS\_UPDATE\_MESSAGE\_ID}}
+\index{STATUS\_UPDATE\_MESSAGE\_ID@{STATUS\_UPDATE\_MESSAGE\_ID}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_UPDATE\_MESSAGE\_ID}{STATUS\_UPDATE\_MESSAGE\_ID}}
+{\footnotesize\ttfamily \#define S\+T\+A\+T\+U\+S\+\_\+\+U\+P\+D\+A\+T\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+ID~8}
+
+Message id for status update message to send to Server \mbox{\Hypertarget{messages_8h_ad26ed6157e7da216946c5b414f94426e}\label{messages_8h_ad26ed6157e7da216946c5b414f94426e}} 
+\index{messages.h@{messages.h}!STATUS\_UPDATE\_MESSAGE\_Size@{STATUS\_UPDATE\_MESSAGE\_Size}}
+\index{STATUS\_UPDATE\_MESSAGE\_Size@{STATUS\_UPDATE\_MESSAGE\_Size}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{STATUS\_UPDATE\_MESSAGE\_Size}{STATUS\_UPDATE\_MESSAGE\_Size}}
+{\footnotesize\ttfamily \#define S\+T\+A\+T\+U\+S\+\_\+\+U\+P\+D\+A\+T\+E\+\_\+\+M\+E\+S\+S\+A\+G\+E\+\_\+\+Size~64}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{messages_8h_ae3ee53bb37358ad195ce11e3b8963e0d}\label{messages_8h_ae3ee53bb37358ad195ce11e3b8963e0d}} 
+\index{messages.h@{messages.h}!construct\_ack\_configuration\_message@{construct\_ack\_configuration\_message}}
+\index{construct\_ack\_configuration\_message@{construct\_ack\_configuration\_message}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{construct\_ack\_configuration\_message()}{construct\_ack\_configuration\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t construct\+\_\+ack\+\_\+configuration\+\_\+message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{message\+\_\+array,  }\item[{uint8\+\_\+t $\ast$}]{node\+\_\+id,  }\item[{uint8\+\_\+t $\ast$}]{received\+\_\+configs }\end{DoxyParamCaption})}
+
+Constructs Acknowledge Configuration message 
+\begin{DoxyParams}{Parameters}
+{\em message\+\_\+array} & Byte array to keep \\
+\hline
+{\em node\+\_\+id} & Identity of S\+SN, last two bytes of S\+SN M\+AC address \\
+\hline
+{\em received\+\_\+configs} & Byte array of current sensor configurations received from Server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Message size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_a05e5bdff9e5d70d62f856a73163ea52a}\label{messages_8h_a05e5bdff9e5d70d62f856a73163ea52a}} 
+\index{messages.h@{messages.h}!construct\_get\_configuration\_message@{construct\_get\_configuration\_message}}
+\index{construct\_get\_configuration\_message@{construct\_get\_configuration\_message}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{construct\_get\_configuration\_message()}{construct\_get\_configuration\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t construct\+\_\+get\+\_\+configuration\+\_\+message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{message\+\_\+array,  }\item[{uint8\+\_\+t $\ast$}]{node\+\_\+id }\end{DoxyParamCaption})}
+
+Constructs G\+E\+T\+\_\+\+C\+O\+N\+F\+IG request message to retrieve current sensor configurations 
+\begin{DoxyParams}{Parameters}
+{\em message\+\_\+array} & Byte array to keep \\
+\hline
+{\em node\+\_\+id} & Identity of S\+SN, last two bytes of S\+SN M\+AC address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Message size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_a3c3c5279ce5e24b399b0bd4734113a16}\label{messages_8h_a3c3c5279ce5e24b399b0bd4734113a16}} 
+\index{messages.h@{messages.h}!construct\_get\_mac\_message@{construct\_get\_mac\_message}}
+\index{construct\_get\_mac\_message@{construct\_get\_mac\_message}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{construct\_get\_mac\_message()}{construct\_get\_mac\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t construct\+\_\+get\+\_\+mac\+\_\+message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{message\+\_\+array,  }\item[{uint8\+\_\+t $\ast$}]{node\+\_\+id }\end{DoxyParamCaption})}
+
+Constructs G\+E\+T\+\_\+\+M\+AC request message 
+\begin{DoxyParams}{Parameters}
+{\em message\+\_\+array} & Byte array to keep \\
+\hline
+{\em node\+\_\+id} & Identity of S\+SN, last two bytes of S\+SN M\+AC address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Message size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_a0d21d44e35ba2057cd9bbf4fb7a3134d}\label{messages_8h_a0d21d44e35ba2057cd9bbf4fb7a3134d}} 
+\index{messages.h@{messages.h}!construct\_get\_timeofday\_message@{construct\_get\_timeofday\_message}}
+\index{construct\_get\_timeofday\_message@{construct\_get\_timeofday\_message}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{construct\_get\_timeofday\_message()}{construct\_get\_timeofday\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t construct\+\_\+get\+\_\+timeofday\+\_\+message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{message\+\_\+array,  }\item[{uint8\+\_\+t $\ast$}]{node\+\_\+id }\end{DoxyParamCaption})}
+
+Constructs G\+E\+T\+\_\+\+Time\+Of\+Day request message 
+\begin{DoxyParams}{Parameters}
+{\em message\+\_\+array} & Byte array to keep \\
+\hline
+{\em node\+\_\+id} & Identity of S\+SN, last two bytes of S\+SN M\+AC address \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Message size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_acc0bd4177f217358eb1029c3e05591cc}\label{messages_8h_acc0bd4177f217358eb1029c3e05591cc}} 
+\index{messages.h@{messages.h}!construct\_status\_update\_message@{construct\_status\_update\_message}}
+\index{construct\_status\_update\_message@{construct\_status\_update\_message}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{construct\_status\_update\_message()}{construct\_status\_update\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t construct\+\_\+status\+\_\+update\+\_\+message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{message\+\_\+array,  }\item[{uint8\+\_\+t $\ast$}]{node\+\_\+id,  }\item[{uint8\+\_\+t $\ast$}]{temperature\+\_\+bytes,  }\item[{uint8\+\_\+t $\ast$}]{relative\+\_\+humidity\+\_\+bytes,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+load\+\_\+currents,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+load\+\_\+percentages,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+status,  }\item[{uint32\+\_\+t $\ast$}]{Machine\+\_\+status\+\_\+duration,  }\item[{\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$}]{Machine\+\_\+status\+\_\+timestamp,  }\item[{uint32\+\_\+t}]{node\+\_\+uptime\+\_\+in\+\_\+seconds,  }\item[{uint8\+\_\+t}]{abnormal\+\_\+activity }\end{DoxyParamCaption})}
+
+Constructs periodic status update message for Server 
+\begin{DoxyParams}{Parameters}
+{\em message\+\_\+array} & Byte array for keeping the constructed message \\
+\hline
+{\em node\+\_\+id} & Node identity in two bytes, last two bytes of current M\+AC address \\
+\hline
+{\em temperature\+\_\+bytes} & Byte array saving the temperature reading high and low bytes \\
+\hline
+{\em relative\+\_\+humidity\+\_\+bytes} & Byte array saving the relative humidity high and low bytes \\
+\hline
+{\em Machine\+\_\+load\+\_\+currents} & A byte array of machine load currents calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+load\+\_\+percentages} & A byte array of machine load percentages calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+status} & A byte array of machine status (O\+N/\+O\+F\+F/\+I\+D\+LE) calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+status\+\_\+duration} & An array of machine status duration indicating for how long the machines have been in current state \\
+\hline
+{\em Machine\+\_\+status\+\_\+timestamp} & An array of machine status timestamp indicating since when the machines have been in current state \\
+\hline
+{\em node\+\_\+uptime\+\_\+in\+\_\+seconds} & A four byte integer containing the number of seconds indicating for how long the S\+SN has been awake \\
+\hline
+{\em abnormal\+\_\+activity} & A single byte indicating N\+O\+R\+M\+AL or A\+B\+N\+O\+R\+M\+AL ambient condition based on temperature and humidity readings \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Message size in bytes 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_a2369f700a15b4eeeeca4ea7ede220966}\label{messages_8h_a2369f700a15b4eeeeca4ea7ede220966}} 
+\index{messages.h@{messages.h}!decipher\_received\_message@{decipher\_received\_message}}
+\index{decipher\_received\_message@{decipher\_received\_message}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{decipher\_received\_message()}{decipher\_received\_message()}}
+{\footnotesize\ttfamily uint8\+\_\+t decipher\+\_\+received\+\_\+message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{message,  }\item[{uint8\+\_\+t $\ast$}]{params }\end{DoxyParamCaption})}
+
+Deciphers the received message and returns whatever data was received with it 
+\begin{DoxyParams}{Parameters}
+{\em message} & Message byte array received from Server \\
+\hline
+{\em params} & The parameters array to save the received data into in specific order \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Message ID of received message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_acc103ab4826c7f52d110dc427c624ec2}\label{messages_8h_acc103ab4826c7f52d110dc427c624ec2}} 
+\index{messages.h@{messages.h}!is\_Valid\_CONFIG@{is\_Valid\_CONFIG}}
+\index{is\_Valid\_CONFIG@{is\_Valid\_CONFIG}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{is\_Valid\_CONFIG()}{is\_Valid\_CONFIG()}}
+{\footnotesize\ttfamily uint8\+\_\+t is\+\_\+\+Valid\+\_\+\+C\+O\+N\+F\+IG (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{config\+\_\+array }\end{DoxyParamCaption})}
+
+Checks the validity of current sensor configurations 
+\begin{DoxyParams}{Parameters}
+{\em config\+\_\+array} & Byte array of current configurations \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if valid; 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{messages_8h_a563a3b9fa850e3d873296283b1fc51c0}\label{messages_8h_a563a3b9fa850e3d873296283b1fc51c0}} 
+\index{messages.h@{messages.h}!is\_Valid\_MAC@{is\_Valid\_MAC}}
+\index{is\_Valid\_MAC@{is\_Valid\_MAC}!messages.h@{messages.h}}
+\doxysubsubsection{\texorpdfstring{is\_Valid\_MAC()}{is\_Valid\_MAC()}}
+{\footnotesize\ttfamily uint8\+\_\+t is\+\_\+\+Valid\+\_\+\+M\+AC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{mac\+\_\+address }\end{DoxyParamCaption})}
+
+Checks the validity of M\+AC address whether it is custom M\+AC or default M\+AC address of S\+SN 
+\begin{DoxyParams}{Parameters}
+{\em mac\+\_\+address} & Six bytes of current M\+AC address of S\+SN \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if valid; 0 otherwise 
+\end{DoxyReturn}

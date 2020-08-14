@@ -1,0 +1,406 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Smart Sense Node (S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}SN) Firmware Documentation}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Introduction}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Installation}{1}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Step 1\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}: Opening the box}{1}{subsection.1.2.1}%
+\contentsline {chapter}{\numberline {2}Class Index}{3}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Class List}{3}{section.2.1}%
+\contentsline {chapter}{\numberline {3}File Index}{5}{chapter.3}%
+\contentsline {section}{\numberline {3.1}File List}{5}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Class Documentation}{7}{chapter.4}%
+\contentsline {section}{\numberline {4.1}pseudo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}clock Struct Reference}{7}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Detailed Description}{7}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Member Data Documentation}{7}{subsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.1}day}{7}{subsubsection.4.1.2.1}%
+\contentsline {subsubsection}{\numberline {4.1.2.2}hours}{7}{subsubsection.4.1.2.2}%
+\contentsline {subsubsection}{\numberline {4.1.2.3}minutes}{8}{subsubsection.4.1.2.3}%
+\contentsline {subsubsection}{\numberline {4.1.2.4}month}{8}{subsubsection.4.1.2.4}%
+\contentsline {subsubsection}{\numberline {4.1.2.5}seconds}{8}{subsubsection.4.1.2.5}%
+\contentsline {subsubsection}{\numberline {4.1.2.6}year}{8}{subsubsection.4.1.2.6}%
+\contentsline {chapter}{\numberline {5}File Documentation}{9}{chapter.5}%
+\contentsline {section}{\numberline {5.1}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}c File Reference}{9}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Macro Definition Documentation}{10}{subsection.5.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{10}{subsubsection.5.1.1.1}%
+\contentsline {subsubsection}{\numberline {5.1.1.2}\_SUPPRESS\_PLIB\_WARNING}{10}{subsubsection.5.1.1.2}%
+\contentsline {subsection}{\numberline {5.1.2}Function Documentation}{10}{subsection.5.1.2}%
+\contentsline {subsubsection}{\numberline {5.1.2.1}\_\_ISR()}{10}{subsubsection.5.1.2.1}%
+\contentsline {subsubsection}{\numberline {5.1.2.2}main()}{11}{subsubsection.5.1.2.2}%
+\contentsline {subsection}{\numberline {5.1.3}Variable Documentation}{11}{subsection.5.1.3}%
+\contentsline {subsubsection}{\numberline {5.1.3.1}abnormal\_activity}{11}{subsubsection.5.1.3.1}%
+\contentsline {subsubsection}{\numberline {5.1.3.2}half\_second\_counter}{11}{subsubsection.5.1.3.2}%
+\contentsline {subsubsection}{\numberline {5.1.3.3}i}{12}{subsubsection.5.1.3.3}%
+\contentsline {subsubsection}{\numberline {5.1.3.4}interrupts\_per\_second}{12}{subsubsection.5.1.3.4}%
+\contentsline {subsubsection}{\numberline {5.1.3.5}Machine\_load\_currents}{12}{subsubsection.5.1.3.5}%
+\contentsline {subsubsection}{\numberline {5.1.3.6}Machine\_load\_percentages}{12}{subsubsection.5.1.3.6}%
+\contentsline {subsubsection}{\numberline {5.1.3.7}Machine\_status}{12}{subsubsection.5.1.3.7}%
+\contentsline {subsubsection}{\numberline {5.1.3.8}Machine\_status\_duration}{12}{subsubsection.5.1.3.8}%
+\contentsline {subsubsection}{\numberline {5.1.3.9}Machine\_status\_timestamp}{12}{subsubsection.5.1.3.9}%
+\contentsline {subsubsection}{\numberline {5.1.3.10}relative\_humidity\_bytes}{13}{subsubsection.5.1.3.10}%
+\contentsline {subsubsection}{\numberline {5.1.3.11}report\_counter}{13}{subsubsection.5.1.3.11}%
+\contentsline {subsubsection}{\numberline {5.1.3.12}SSN\_CONFIG}{13}{subsubsection.5.1.3.12}%
+\contentsline {subsubsection}{\numberline {5.1.3.13}SSN\_CURRENT\_SENSOR\_MAXLOADS}{13}{subsubsection.5.1.3.13}%
+\contentsline {subsubsection}{\numberline {5.1.3.14}SSN\_CURRENT\_SENSOR\_RATINGS}{13}{subsubsection.5.1.3.14}%
+\contentsline {subsubsection}{\numberline {5.1.3.15}SSN\_CURRENT\_SENSOR\_THRESHOLDS}{13}{subsubsection.5.1.3.15}%
+\contentsline {subsubsection}{\numberline {5.1.3.16}SSN\_CURRENT\_STATE}{13}{subsubsection.5.1.3.16}%
+\contentsline {subsubsection}{\numberline {5.1.3.17}SSN\_DEFAULT\_MAC}{14}{subsubsection.5.1.3.17}%
+\contentsline {subsubsection}{\numberline {5.1.3.18}SSN\_MAC\_ADDRESS}{14}{subsubsection.5.1.3.18}%
+\contentsline {subsubsection}{\numberline {5.1.3.19}SSN\_REPORT\_INTERVAL}{14}{subsubsection.5.1.3.19}%
+\contentsline {subsubsection}{\numberline {5.1.3.20}SSN\_SENT\_MESSAGES\_COUNTER}{14}{subsubsection.5.1.3.20}%
+\contentsline {subsubsection}{\numberline {5.1.3.21}SSN\_SERVER\_IP}{14}{subsubsection.5.1.3.21}%
+\contentsline {subsubsection}{\numberline {5.1.3.22}SSN\_SERVER\_PORT}{14}{subsubsection.5.1.3.22}%
+\contentsline {subsubsection}{\numberline {5.1.3.23}SSN\_UDP\_SOCKET}{14}{subsubsection.5.1.3.23}%
+\contentsline {subsubsection}{\numberline {5.1.3.24}SSN\_UDP\_SOCKET\_NUM}{15}{subsubsection.5.1.3.24}%
+\contentsline {subsubsection}{\numberline {5.1.3.25}temp\_humidity\_recv\_status}{15}{subsubsection.5.1.3.25}%
+\contentsline {subsubsection}{\numberline {5.1.3.26}temperature\_bytes}{15}{subsubsection.5.1.3.26}%
+\contentsline {section}{\numberline {5.2}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Communication/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Communication.c File Reference}{15}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}Function Documentation}{16}{subsection.5.2.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.1}Receive\_CONFIG()}{16}{subsubsection.5.2.1.1}%
+\contentsline {subsubsection}{\numberline {5.2.1.2}Receive\_MAC()}{16}{subsubsection.5.2.1.2}%
+\contentsline {subsubsection}{\numberline {5.2.1.3}Receive\_TimeOfDay()}{17}{subsubsection.5.2.1.3}%
+\contentsline {subsubsection}{\numberline {5.2.1.4}Send\_ACKCONFIG\_Message()}{17}{subsubsection.5.2.1.4}%
+\contentsline {subsubsection}{\numberline {5.2.1.5}Send\_GETCONFIG\_Message()}{18}{subsubsection.5.2.1.5}%
+\contentsline {subsubsection}{\numberline {5.2.1.6}Send\_GETMAC\_Message()}{18}{subsubsection.5.2.1.6}%
+\contentsline {subsubsection}{\numberline {5.2.1.7}Send\_GETTimeOfDay\_Message()}{18}{subsubsection.5.2.1.7}%
+\contentsline {subsubsection}{\numberline {5.2.1.8}Send\_STATUSUPDATE\_Message()}{19}{subsubsection.5.2.1.8}%
+\contentsline {subsubsection}{\numberline {5.2.1.9}SendMessage()}{20}{subsubsection.5.2.1.9}%
+\contentsline {section}{\numberline {5.3}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Communication/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Communication.h File Reference}{20}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}Function Documentation}{21}{subsection.5.3.1}%
+\contentsline {subsubsection}{\numberline {5.3.1.1}Receive\_CONFIG()}{21}{subsubsection.5.3.1.1}%
+\contentsline {subsubsection}{\numberline {5.3.1.2}Receive\_MAC()}{21}{subsubsection.5.3.1.2}%
+\contentsline {subsubsection}{\numberline {5.3.1.3}Receive\_TimeOfDay()}{22}{subsubsection.5.3.1.3}%
+\contentsline {subsubsection}{\numberline {5.3.1.4}Send\_ACKCONFIG\_Message()}{22}{subsubsection.5.3.1.4}%
+\contentsline {subsubsection}{\numberline {5.3.1.5}Send\_GETCONFIG\_Message()}{23}{subsubsection.5.3.1.5}%
+\contentsline {subsubsection}{\numberline {5.3.1.6}Send\_GETMAC\_Message()}{23}{subsubsection.5.3.1.6}%
+\contentsline {subsubsection}{\numberline {5.3.1.7}Send\_GETTimeOfDay\_Message()}{23}{subsubsection.5.3.1.7}%
+\contentsline {subsubsection}{\numberline {5.3.1.8}Send\_STATUSUPDATE\_Message()}{24}{subsubsection.5.3.1.8}%
+\contentsline {subsubsection}{\numberline {5.3.1.9}SendMessage()}{25}{subsubsection.5.3.1.9}%
+\contentsline {section}{\numberline {5.4}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Connection/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Connection.c File Reference}{25}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Function Documentation}{25}{subsection.5.4.1}%
+\contentsline {subsubsection}{\numberline {5.4.1.1}SetupConnection()}{25}{subsubsection.5.4.1.1}%
+\contentsline {section}{\numberline {5.5}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Connection/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Connection.h File Reference}{26}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Function Documentation}{26}{subsection.5.5.1}%
+\contentsline {subsubsection}{\numberline {5.5.1.1}SetupConnection()}{26}{subsubsection.5.5.1.1}%
+\contentsline {section}{\numberline {5.6}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R/current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sensor.c File Reference}{26}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Macro Definition Documentation}{27}{subsection.5.6.1}%
+\contentsline {subsubsection}{\numberline {5.6.1.1}PARAM1}{27}{subsubsection.5.6.1.1}%
+\contentsline {subsubsection}{\numberline {5.6.1.2}PARAM2}{27}{subsubsection.5.6.1.2}%
+\contentsline {subsubsection}{\numberline {5.6.1.3}PARAM3}{27}{subsubsection.5.6.1.3}%
+\contentsline {subsubsection}{\numberline {5.6.1.4}PARAM4}{28}{subsubsection.5.6.1.4}%
+\contentsline {subsubsection}{\numberline {5.6.1.5}PARAM5}{28}{subsubsection.5.6.1.5}%
+\contentsline {subsection}{\numberline {5.6.2}Function Documentation}{28}{subsection.5.6.2}%
+\contentsline {subsubsection}{\numberline {5.6.2.1}Calculate\_RMS\_Current\_On\_All\_Channels()}{28}{subsubsection.5.6.2.1}%
+\contentsline {subsubsection}{\numberline {5.6.2.2}Current\_CSensor\_Read\_RMS()}{28}{subsubsection.5.6.2.2}%
+\contentsline {subsubsection}{\numberline {5.6.2.3}Current\_VSensor\_Read\_RMS()}{29}{subsubsection.5.6.2.3}%
+\contentsline {subsubsection}{\numberline {5.6.2.4}CurrentSensor\_Read\_RMS()}{29}{subsubsection.5.6.2.4}%
+\contentsline {subsubsection}{\numberline {5.6.2.5}Get\_Machines\_Status\_Update()}{30}{subsubsection.5.6.2.5}%
+\contentsline {subsubsection}{\numberline {5.6.2.6}open\_ADC()}{30}{subsubsection.5.6.2.6}%
+\contentsline {subsubsection}{\numberline {5.6.2.7}sample\_Current\_Sensor\_channel()}{30}{subsubsection.5.6.2.7}%
+\contentsline {subsubsection}{\numberline {5.6.2.8}setup\_Current\_Sensors()}{31}{subsubsection.5.6.2.8}%
+\contentsline {section}{\numberline {5.7}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R/current\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sensor.h File Reference}{31}{section.5.7}%
+\contentsline {subsection}{\numberline {5.7.1}Macro Definition Documentation}{32}{subsection.5.7.1}%
+\contentsline {subsubsection}{\numberline {5.7.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{32}{subsubsection.5.7.1.1}%
+\contentsline {subsubsection}{\numberline {5.7.1.2}\_SUPPRESS\_PLIB\_WARNING}{32}{subsubsection.5.7.1.2}%
+\contentsline {subsubsection}{\numberline {5.7.1.3}CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}{32}{subsubsection.5.7.1.3}%
+\contentsline {subsubsection}{\numberline {5.7.1.4}NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS}{32}{subsubsection.5.7.1.4}%
+\contentsline {subsubsection}{\numberline {5.7.1.5}VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}{32}{subsubsection.5.7.1.5}%
+\contentsline {subsection}{\numberline {5.7.2}Enumeration Type Documentation}{32}{subsection.5.7.2}%
+\contentsline {subsubsection}{\numberline {5.7.2.1}Machine\_Status}{32}{subsubsection.5.7.2.1}%
+\contentsline {subsection}{\numberline {5.7.3}Function Documentation}{33}{subsection.5.7.3}%
+\contentsline {subsubsection}{\numberline {5.7.3.1}Calculate\_RMS\_Current\_On\_All\_Channels()}{33}{subsubsection.5.7.3.1}%
+\contentsline {subsubsection}{\numberline {5.7.3.2}Current\_CSensor\_Read\_RMS()}{33}{subsubsection.5.7.3.2}%
+\contentsline {subsubsection}{\numberline {5.7.3.3}Current\_VSensor\_Read\_RMS()}{34}{subsubsection.5.7.3.3}%
+\contentsline {subsubsection}{\numberline {5.7.3.4}CurrentSensor\_Read\_RMS()}{34}{subsubsection.5.7.3.4}%
+\contentsline {subsubsection}{\numberline {5.7.3.5}Get\_Machines\_Status\_Update()}{35}{subsubsection.5.7.3.5}%
+\contentsline {subsubsection}{\numberline {5.7.3.6}open\_ADC()}{35}{subsubsection.5.7.3.6}%
+\contentsline {subsubsection}{\numberline {5.7.3.7}sample\_Current\_Sensor\_channel()}{35}{subsubsection.5.7.3.7}%
+\contentsline {subsubsection}{\numberline {5.7.3.8}setup\_Current\_Sensors()}{36}{subsubsection.5.7.3.8}%
+\contentsline {subsection}{\numberline {5.7.4}Variable Documentation}{36}{subsection.5.7.4}%
+\contentsline {subsubsection}{\numberline {5.7.4.1}MACHINES\_STATE\_TIME\_MARKERS}{36}{subsubsection.5.7.4.1}%
+\contentsline {section}{\numberline {5.8}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/eeprom.c File Reference}{36}{section.5.8}%
+\contentsline {subsection}{\numberline {5.8.1}Function Documentation}{37}{subsection.5.8.1}%
+\contentsline {subsubsection}{\numberline {5.8.1.1}EEPROM\_Check()}{37}{subsubsection.5.8.1.1}%
+\contentsline {subsubsection}{\numberline {5.8.1.2}EEPROM\_Clear()}{37}{subsubsection.5.8.1.2}%
+\contentsline {subsubsection}{\numberline {5.8.1.3}EEPROM\_Read\_Array()}{37}{subsubsection.5.8.1.3}%
+\contentsline {subsubsection}{\numberline {5.8.1.4}EEPROM\_Read\_BYTE()}{38}{subsubsection.5.8.1.4}%
+\contentsline {subsubsection}{\numberline {5.8.1.5}EEPROM\_Write\_Array()}{38}{subsubsection.5.8.1.5}%
+\contentsline {subsubsection}{\numberline {5.8.1.6}EEPROM\_Write\_BYTE()}{38}{subsubsection.5.8.1.6}%
+\contentsline {subsubsection}{\numberline {5.8.1.7}I2C1\_receive\_byte()}{39}{subsubsection.5.8.1.7}%
+\contentsline {subsubsection}{\numberline {5.8.1.8}I2C1\_transmit\_byte()}{39}{subsubsection.5.8.1.8}%
+\contentsline {subsubsection}{\numberline {5.8.1.9}I2C1\_transmit\_restart\_bit()}{39}{subsubsection.5.8.1.9}%
+\contentsline {subsubsection}{\numberline {5.8.1.10}I2C1\_transmit\_start\_bit()}{39}{subsubsection.5.8.1.10}%
+\contentsline {subsubsection}{\numberline {5.8.1.11}I2C1\_transmit\_stop\_bit()}{40}{subsubsection.5.8.1.11}%
+\contentsline {subsubsection}{\numberline {5.8.1.12}I2C1\_wait\_while\_busy()}{40}{subsubsection.5.8.1.12}%
+\contentsline {subsubsection}{\numberline {5.8.1.13}open\_I2C1()}{40}{subsubsection.5.8.1.13}%
+\contentsline {subsubsection}{\numberline {5.8.1.14}setup\_EEPROM()}{40}{subsubsection.5.8.1.14}%
+\contentsline {section}{\numberline {5.9}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M/eeprom.h File Reference}{40}{section.5.9}%
+\contentsline {subsection}{\numberline {5.9.1}Macro Definition Documentation}{41}{subsection.5.9.1}%
+\contentsline {subsubsection}{\numberline {5.9.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{41}{subsubsection.5.9.1.1}%
+\contentsline {subsubsection}{\numberline {5.9.1.2}\_SUPPRESS\_PLIB\_WARNING}{41}{subsubsection.5.9.1.2}%
+\contentsline {subsubsection}{\numberline {5.9.1.3}EEPROM\_24LC08\_BASE\_ADDRESS}{41}{subsubsection.5.9.1.3}%
+\contentsline {subsubsection}{\numberline {5.9.1.4}EEPROM\_24LC08\_READ\_BIT}{42}{subsubsection.5.9.1.4}%
+\contentsline {subsubsection}{\numberline {5.9.1.5}EEPROM\_24LC08\_WRITE\_BIT}{42}{subsubsection.5.9.1.5}%
+\contentsline {subsubsection}{\numberline {5.9.1.6}EEPROM\_BLOCK\_SIZE}{42}{subsubsection.5.9.1.6}%
+\contentsline {subsubsection}{\numberline {5.9.1.7}EEPROM\_BYTE\_READ}{42}{subsubsection.5.9.1.7}%
+\contentsline {subsubsection}{\numberline {5.9.1.8}EEPROM\_BYTE\_WRITE}{42}{subsubsection.5.9.1.8}%
+\contentsline {subsubsection}{\numberline {5.9.1.9}EEPROM\_CLEAR\_VALUE}{42}{subsubsection.5.9.1.9}%
+\contentsline {subsubsection}{\numberline {5.9.1.10}EEPROM\_TEST\_FAILED}{42}{subsubsection.5.9.1.10}%
+\contentsline {subsubsection}{\numberline {5.9.1.11}EEPROM\_TEST\_LOCATION}{42}{subsubsection.5.9.1.11}%
+\contentsline {subsubsection}{\numberline {5.9.1.12}EEPROM\_TEST\_PASSED}{43}{subsubsection.5.9.1.12}%
+\contentsline {subsubsection}{\numberline {5.9.1.13}EEPROM\_TEST\_VALUE}{43}{subsubsection.5.9.1.13}%
+\contentsline {subsection}{\numberline {5.9.2}Enumeration Type Documentation}{43}{subsection.5.9.2}%
+\contentsline {subsubsection}{\numberline {5.9.2.1}EEPROM\_24LC08\_BLOCKS}{43}{subsubsection.5.9.2.1}%
+\contentsline {subsection}{\numberline {5.9.3}Function Documentation}{43}{subsection.5.9.3}%
+\contentsline {subsubsection}{\numberline {5.9.3.1}EEPROM\_Check()}{43}{subsubsection.5.9.3.1}%
+\contentsline {subsubsection}{\numberline {5.9.3.2}EEPROM\_Clear()}{44}{subsubsection.5.9.3.2}%
+\contentsline {subsubsection}{\numberline {5.9.3.3}EEPROM\_Read\_Array()}{44}{subsubsection.5.9.3.3}%
+\contentsline {subsubsection}{\numberline {5.9.3.4}EEPROM\_Read\_BYTE()}{44}{subsubsection.5.9.3.4}%
+\contentsline {subsubsection}{\numberline {5.9.3.5}EEPROM\_Write\_Array()}{45}{subsubsection.5.9.3.5}%
+\contentsline {subsubsection}{\numberline {5.9.3.6}EEPROM\_Write\_BYTE()}{45}{subsubsection.5.9.3.6}%
+\contentsline {subsubsection}{\numberline {5.9.3.7}I2C1\_receive\_byte()}{45}{subsubsection.5.9.3.7}%
+\contentsline {subsubsection}{\numberline {5.9.3.8}I2C1\_transmit\_byte()}{46}{subsubsection.5.9.3.8}%
+\contentsline {subsubsection}{\numberline {5.9.3.9}I2C1\_transmit\_restart\_bit()}{46}{subsubsection.5.9.3.9}%
+\contentsline {subsubsection}{\numberline {5.9.3.10}I2C1\_transmit\_start\_bit()}{46}{subsubsection.5.9.3.10}%
+\contentsline {subsubsection}{\numberline {5.9.3.11}I2C1\_transmit\_stop\_bit()}{46}{subsubsection.5.9.3.11}%
+\contentsline {subsubsection}{\numberline {5.9.3.12}I2C1\_wait\_while\_busy()}{46}{subsubsection.5.9.3.12}%
+\contentsline {subsubsection}{\numberline {5.9.3.13}open\_I2C1()}{46}{subsubsection.5.9.3.13}%
+\contentsline {subsubsection}{\numberline {5.9.3.14}setup\_EEPROM()}{47}{subsubsection.5.9.3.14}%
+\contentsline {section}{\numberline {5.10}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S/messages.c File Reference}{47}{section.5.10}%
+\contentsline {subsection}{\numberline {5.10.1}Function Documentation}{47}{subsection.5.10.1}%
+\contentsline {subsubsection}{\numberline {5.10.1.1}construct\_ack\_configuration\_message()}{47}{subsubsection.5.10.1.1}%
+\contentsline {subsubsection}{\numberline {5.10.1.2}construct\_get\_configuration\_message()}{48}{subsubsection.5.10.1.2}%
+\contentsline {subsubsection}{\numberline {5.10.1.3}construct\_get\_mac\_message()}{48}{subsubsection.5.10.1.3}%
+\contentsline {subsubsection}{\numberline {5.10.1.4}construct\_get\_timeofday\_message()}{48}{subsubsection.5.10.1.4}%
+\contentsline {subsubsection}{\numberline {5.10.1.5}construct\_status\_update\_message()}{49}{subsubsection.5.10.1.5}%
+\contentsline {subsubsection}{\numberline {5.10.1.6}decipher\_received\_message()}{50}{subsubsection.5.10.1.6}%
+\contentsline {subsubsection}{\numberline {5.10.1.7}get\_bytes\_from\_uint16()}{50}{subsubsection.5.10.1.7}%
+\contentsline {subsubsection}{\numberline {5.10.1.8}get\_bytes\_from\_uint32()}{50}{subsubsection.5.10.1.8}%
+\contentsline {subsubsection}{\numberline {5.10.1.9}is\_Valid\_CONFIG()}{50}{subsubsection.5.10.1.9}%
+\contentsline {subsubsection}{\numberline {5.10.1.10}is\_Valid\_MAC()}{51}{subsubsection.5.10.1.10}%
+\contentsline {section}{\numberline {5.11}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}G\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S/messages.h File Reference}{51}{section.5.11}%
+\contentsline {subsection}{\numberline {5.11.1}Macro Definition Documentation}{52}{subsection.5.11.1}%
+\contentsline {subsubsection}{\numberline {5.11.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{52}{subsubsection.5.11.1.1}%
+\contentsline {subsubsection}{\numberline {5.11.1.2}\_SUPPRESS\_PLIB\_WARNING}{52}{subsubsection.5.11.1.2}%
+\contentsline {subsubsection}{\numberline {5.11.1.3}ACK\_CONFIG\_MESSAGE\_ID}{52}{subsubsection.5.11.1.3}%
+\contentsline {subsubsection}{\numberline {5.11.1.4}ACK\_CONFIG\_MESSAGE\_Size}{53}{subsubsection.5.11.1.4}%
+\contentsline {subsubsection}{\numberline {5.11.1.5}DEBUG\_EEPROM\_CLEAR\_MESSAGE\_ID}{53}{subsubsection.5.11.1.5}%
+\contentsline {subsubsection}{\numberline {5.11.1.6}DEBUG\_RESET\_SSN\_MESSAGE\_ID}{53}{subsubsection.5.11.1.6}%
+\contentsline {subsubsection}{\numberline {5.11.1.7}GET\_CONFIG\_MESSAGE\_ID}{53}{subsubsection.5.11.1.7}%
+\contentsline {subsubsection}{\numberline {5.11.1.8}GET\_CONFIG\_MESSAGE\_Size}{53}{subsubsection.5.11.1.8}%
+\contentsline {subsubsection}{\numberline {5.11.1.9}GET\_MAC\_MESSAGE\_ID}{53}{subsubsection.5.11.1.9}%
+\contentsline {subsubsection}{\numberline {5.11.1.10}GET\_MAC\_MESSAGE\_Size}{53}{subsubsection.5.11.1.10}%
+\contentsline {subsubsection}{\numberline {5.11.1.11}GET\_TIMEOFDAY\_MESSAGE\_ID}{53}{subsubsection.5.11.1.11}%
+\contentsline {subsubsection}{\numberline {5.11.1.12}GET\_TIMEOFDAY\_MESSAGE\_Size}{54}{subsubsection.5.11.1.12}%
+\contentsline {subsubsection}{\numberline {5.11.1.13}max\_recv\_message\_size}{54}{subsubsection.5.11.1.13}%
+\contentsline {subsubsection}{\numberline {5.11.1.14}max\_send\_message\_size}{54}{subsubsection.5.11.1.14}%
+\contentsline {subsubsection}{\numberline {5.11.1.15}RESET\_MACHINE\_TIME\_MESSAGE\_ID}{54}{subsubsection.5.11.1.15}%
+\contentsline {subsubsection}{\numberline {5.11.1.16}RESET\_MACHINE\_TIME\_MESSAGE\_Size}{54}{subsubsection.5.11.1.16}%
+\contentsline {subsubsection}{\numberline {5.11.1.17}SET\_CONFIG\_MESSAGE\_ID}{54}{subsubsection.5.11.1.17}%
+\contentsline {subsubsection}{\numberline {5.11.1.18}SET\_CONFIG\_MESSAGE\_Size}{54}{subsubsection.5.11.1.18}%
+\contentsline {subsubsection}{\numberline {5.11.1.19}SET\_MAC\_MESSAGE\_ID}{54}{subsubsection.5.11.1.19}%
+\contentsline {subsubsection}{\numberline {5.11.1.20}SET\_MAC\_MESSAGE\_Size}{55}{subsubsection.5.11.1.20}%
+\contentsline {subsubsection}{\numberline {5.11.1.21}SET\_TIMEOFDAY\_MESSAGE\_ID}{55}{subsubsection.5.11.1.21}%
+\contentsline {subsubsection}{\numberline {5.11.1.22}SET\_TIMEOFDAY\_MESSAGE\_Size}{55}{subsubsection.5.11.1.22}%
+\contentsline {subsubsection}{\numberline {5.11.1.23}STATUS\_UPDATE\_MESSAGE\_ID}{55}{subsubsection.5.11.1.23}%
+\contentsline {subsubsection}{\numberline {5.11.1.24}STATUS\_UPDATE\_MESSAGE\_Size}{55}{subsubsection.5.11.1.24}%
+\contentsline {subsection}{\numberline {5.11.2}Function Documentation}{55}{subsection.5.11.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.1}construct\_ack\_configuration\_message()}{55}{subsubsection.5.11.2.1}%
+\contentsline {subsubsection}{\numberline {5.11.2.2}construct\_get\_configuration\_message()}{56}{subsubsection.5.11.2.2}%
+\contentsline {subsubsection}{\numberline {5.11.2.3}construct\_get\_mac\_message()}{56}{subsubsection.5.11.2.3}%
+\contentsline {subsubsection}{\numberline {5.11.2.4}construct\_get\_timeofday\_message()}{56}{subsubsection.5.11.2.4}%
+\contentsline {subsubsection}{\numberline {5.11.2.5}construct\_status\_update\_message()}{57}{subsubsection.5.11.2.5}%
+\contentsline {subsubsection}{\numberline {5.11.2.6}decipher\_received\_message()}{58}{subsubsection.5.11.2.6}%
+\contentsline {subsubsection}{\numberline {5.11.2.7}is\_Valid\_CONFIG()}{58}{subsubsection.5.11.2.7}%
+\contentsline {subsubsection}{\numberline {5.11.2.8}is\_Valid\_MAC()}{58}{subsubsection.5.11.2.8}%
+\contentsline {section}{\numberline {5.12}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}W\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}K/network.c File Reference}{59}{section.5.12}%
+\contentsline {subsection}{\numberline {5.12.1}Function Documentation}{59}{subsection.5.12.1}%
+\contentsline {subsubsection}{\numberline {5.12.1.1}\_\_ISR()}{59}{subsubsection.5.12.1.1}%
+\contentsline {subsubsection}{\numberline {5.12.1.2}Ethernet\_Assign\_MAC()}{59}{subsubsection.5.12.1.2}%
+\contentsline {subsubsection}{\numberline {5.12.1.3}Ethernet\_get\_IP\_from\_DHCP()}{60}{subsubsection.5.12.1.3}%
+\contentsline {subsubsection}{\numberline {5.12.1.4}Ethernet\_get\_physical\_link\_status()}{60}{subsubsection.5.12.1.4}%
+\contentsline {subsubsection}{\numberline {5.12.1.5}is\_Message\_Received\_Over\_UDP()}{60}{subsubsection.5.12.1.5}%
+\contentsline {subsubsection}{\numberline {5.12.1.6}open\_SPI2()}{60}{subsubsection.5.12.1.6}%
+\contentsline {subsubsection}{\numberline {5.12.1.7}Recv\_Message\_Over\_UDP()}{61}{subsubsection.5.12.1.7}%
+\contentsline {subsubsection}{\numberline {5.12.1.8}Send\_Message\_Over\_UDP()}{61}{subsubsection.5.12.1.8}%
+\contentsline {subsubsection}{\numberline {5.12.1.9}setup\_Ethernet()}{62}{subsubsection.5.12.1.9}%
+\contentsline {subsubsection}{\numberline {5.12.1.10}setup\_TIMER2\_with\_interrupt()}{62}{subsubsection.5.12.1.10}%
+\contentsline {subsubsection}{\numberline {5.12.1.11}SPI2\_send()}{62}{subsubsection.5.12.1.11}%
+\contentsline {subsubsection}{\numberline {5.12.1.12}stop\_TIMER2\_with\_interrupt()}{62}{subsubsection.5.12.1.12}%
+\contentsline {subsubsection}{\numberline {5.12.1.13}WIZ5500\_deselect()}{62}{subsubsection.5.12.1.13}%
+\contentsline {subsubsection}{\numberline {5.12.1.14}WIZ5500\_IP\_assigned\_callback()}{63}{subsubsection.5.12.1.14}%
+\contentsline {subsubsection}{\numberline {5.12.1.15}WIZ5500\_IP\_conflict\_callback()}{63}{subsubsection.5.12.1.15}%
+\contentsline {subsubsection}{\numberline {5.12.1.16}WIZ5500\_network\_initiate()}{63}{subsubsection.5.12.1.16}%
+\contentsline {subsubsection}{\numberline {5.12.1.17}WIZ5500\_read\_array()}{63}{subsubsection.5.12.1.17}%
+\contentsline {subsubsection}{\numberline {5.12.1.18}WIZ5500\_read\_byte()}{63}{subsubsection.5.12.1.18}%
+\contentsline {subsubsection}{\numberline {5.12.1.19}WIZ5500\_Reset()}{64}{subsubsection.5.12.1.19}%
+\contentsline {subsubsection}{\numberline {5.12.1.20}WIZ5500\_select()}{64}{subsubsection.5.12.1.20}%
+\contentsline {subsubsection}{\numberline {5.12.1.21}WIZ5500\_write\_array()}{64}{subsubsection.5.12.1.21}%
+\contentsline {subsubsection}{\numberline {5.12.1.22}WIZ5500\_write\_byte()}{64}{subsubsection.5.12.1.22}%
+\contentsline {section}{\numberline {5.13}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}W\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}K/network.h File Reference}{64}{section.5.13}%
+\contentsline {subsection}{\numberline {5.13.1}Macro Definition Documentation}{66}{subsection.5.13.1}%
+\contentsline {subsubsection}{\numberline {5.13.1.1}\_DHCP\_DEBUG\_}{66}{subsubsection.5.13.1.1}%
+\contentsline {subsubsection}{\numberline {5.13.1.2}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{66}{subsubsection.5.13.1.2}%
+\contentsline {subsubsection}{\numberline {5.13.1.3}\_MAIN\_DEBUG\_}{66}{subsubsection.5.13.1.3}%
+\contentsline {subsubsection}{\numberline {5.13.1.4}\_SUPPRESS\_PLIB\_WARNING}{66}{subsubsection.5.13.1.4}%
+\contentsline {subsubsection}{\numberline {5.13.1.5}DATA\_BUF\_SIZE}{66}{subsubsection.5.13.1.5}%
+\contentsline {subsubsection}{\numberline {5.13.1.6}MY\_MAX\_DHCP\_RETRY}{66}{subsubsection.5.13.1.6}%
+\contentsline {subsubsection}{\numberline {5.13.1.7}setPR2}{66}{subsubsection.5.13.1.7}%
+\contentsline {subsubsection}{\numberline {5.13.1.8}SOCK\_DHCP}{67}{subsubsection.5.13.1.8}%
+\contentsline {subsubsection}{\numberline {5.13.1.9}WIZ5500\_R\_COMMON\_RCR}{67}{subsubsection.5.13.1.9}%
+\contentsline {subsubsection}{\numberline {5.13.1.10}WIZ5500\_R\_COMMON\_RTR}{67}{subsubsection.5.13.1.10}%
+\contentsline {subsubsection}{\numberline {5.13.1.11}WIZ5500\_W\_COMMON\_RCR}{67}{subsubsection.5.13.1.11}%
+\contentsline {subsubsection}{\numberline {5.13.1.12}WIZ5500\_W\_COMMON\_RTR}{67}{subsubsection.5.13.1.12}%
+\contentsline {subsection}{\numberline {5.13.2}Function Documentation}{67}{subsection.5.13.2}%
+\contentsline {subsubsection}{\numberline {5.13.2.1}Ethernet\_Assign\_MAC()}{67}{subsubsection.5.13.2.1}%
+\contentsline {subsubsection}{\numberline {5.13.2.2}Ethernet\_get\_IP\_from\_DHCP()}{68}{subsubsection.5.13.2.2}%
+\contentsline {subsubsection}{\numberline {5.13.2.3}Ethernet\_get\_physical\_link\_status()}{68}{subsubsection.5.13.2.3}%
+\contentsline {subsubsection}{\numberline {5.13.2.4}is\_Message\_Received\_Over\_UDP()}{68}{subsubsection.5.13.2.4}%
+\contentsline {subsubsection}{\numberline {5.13.2.5}open\_SPI2()}{68}{subsubsection.5.13.2.5}%
+\contentsline {subsubsection}{\numberline {5.13.2.6}Recv\_Message\_Over\_UDP()}{68}{subsubsection.5.13.2.6}%
+\contentsline {subsubsection}{\numberline {5.13.2.7}Send\_Message\_Over\_UDP()}{69}{subsubsection.5.13.2.7}%
+\contentsline {subsubsection}{\numberline {5.13.2.8}setup\_Ethernet()}{69}{subsubsection.5.13.2.8}%
+\contentsline {subsubsection}{\numberline {5.13.2.9}setup\_TIMER2\_with\_interrupt()}{69}{subsubsection.5.13.2.9}%
+\contentsline {subsubsection}{\numberline {5.13.2.10}SPI2\_send()}{70}{subsubsection.5.13.2.10}%
+\contentsline {subsubsection}{\numberline {5.13.2.11}stop\_TIMER2\_with\_interrupt()}{70}{subsubsection.5.13.2.11}%
+\contentsline {subsubsection}{\numberline {5.13.2.12}WIZ5500\_deselect()}{70}{subsubsection.5.13.2.12}%
+\contentsline {subsubsection}{\numberline {5.13.2.13}WIZ5500\_IP\_assigned\_callback()}{70}{subsubsection.5.13.2.13}%
+\contentsline {subsubsection}{\numberline {5.13.2.14}WIZ5500\_IP\_conflict\_callback()}{70}{subsubsection.5.13.2.14}%
+\contentsline {subsubsection}{\numberline {5.13.2.15}WIZ5500\_network\_initiate()}{71}{subsubsection.5.13.2.15}%
+\contentsline {subsubsection}{\numberline {5.13.2.16}WIZ5500\_read\_array()}{71}{subsubsection.5.13.2.16}%
+\contentsline {subsubsection}{\numberline {5.13.2.17}WIZ5500\_read\_byte()}{71}{subsubsection.5.13.2.17}%
+\contentsline {subsubsection}{\numberline {5.13.2.18}WIZ5500\_Reset()}{71}{subsubsection.5.13.2.18}%
+\contentsline {subsubsection}{\numberline {5.13.2.19}WIZ5500\_select()}{71}{subsubsection.5.13.2.19}%
+\contentsline {subsubsection}{\numberline {5.13.2.20}WIZ5500\_write\_array()}{72}{subsubsection.5.13.2.20}%
+\contentsline {subsubsection}{\numberline {5.13.2.21}WIZ5500\_write\_byte()}{72}{subsubsection.5.13.2.21}%
+\contentsline {subsection}{\numberline {5.13.3}Variable Documentation}{72}{subsection.5.13.3}%
+\contentsline {subsubsection}{\numberline {5.13.3.1}gDATABUF}{72}{subsubsection.5.13.3.1}%
+\contentsline {subsubsection}{\numberline {5.13.3.2}msTicks}{72}{subsubsection.5.13.3.2}%
+\contentsline {subsubsection}{\numberline {5.13.3.3}prevTick}{73}{subsubsection.5.13.3.3}%
+\contentsline {subsubsection}{\numberline {5.13.3.4}WIZ5500\_network\_information}{73}{subsubsection.5.13.3.4}%
+\contentsline {section}{\numberline {5.14}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C/pseudo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}rtcc.c File Reference}{73}{section.5.14}%
+\contentsline {subsection}{\numberline {5.14.1}Function Documentation}{73}{subsection.5.14.1}%
+\contentsline {subsubsection}{\numberline {5.14.1.1}increment\_pseudo\_clock\_time()}{73}{subsubsection.5.14.1.1}%
+\contentsline {subsubsection}{\numberline {5.14.1.2}increment\_this\_clock\_time()}{74}{subsubsection.5.14.1.2}%
+\contentsline {subsubsection}{\numberline {5.14.1.3}set\_ssn\_time()}{74}{subsubsection.5.14.1.3}%
+\contentsline {subsubsection}{\numberline {5.14.1.4}setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat()}{74}{subsubsection.5.14.1.4}%
+\contentsline {subsubsection}{\numberline {5.14.1.5}stop\_Global\_Clock()}{74}{subsubsection.5.14.1.5}%
+\contentsline {subsection}{\numberline {5.14.2}Variable Documentation}{74}{subsection.5.14.2}%
+\contentsline {subsubsection}{\numberline {5.14.2.1}Days\_in\_a\_Month}{75}{subsubsection.5.14.2.1}%
+\contentsline {section}{\numberline {5.15}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}D\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}C/pseudo\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}rtcc.h File Reference}{75}{section.5.15}%
+\contentsline {subsection}{\numberline {5.15.1}Macro Definition Documentation}{75}{subsection.5.15.1}%
+\contentsline {subsubsection}{\numberline {5.15.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{75}{subsubsection.5.15.1.1}%
+\contentsline {subsubsection}{\numberline {5.15.1.2}\_SUPPRESS\_PLIB\_WARNING}{76}{subsubsection.5.15.1.2}%
+\contentsline {subsection}{\numberline {5.15.2}Function Documentation}{76}{subsection.5.15.2}%
+\contentsline {subsubsection}{\numberline {5.15.2.1}increment\_pseudo\_clock\_time()}{76}{subsubsection.5.15.2.1}%
+\contentsline {subsubsection}{\numberline {5.15.2.2}increment\_this\_clock\_time()}{76}{subsubsection.5.15.2.2}%
+\contentsline {subsubsection}{\numberline {5.15.2.3}set\_ssn\_time()}{76}{subsubsection.5.15.2.3}%
+\contentsline {subsubsection}{\numberline {5.15.2.4}setup\_Global\_Clock\_And\_SSN\_Half\_Second\_Heartbeat()}{77}{subsubsection.5.15.2.4}%
+\contentsline {subsubsection}{\numberline {5.15.2.5}stop\_Global\_Clock()}{77}{subsubsection.5.15.2.5}%
+\contentsline {subsection}{\numberline {5.15.3}Variable Documentation}{77}{subsection.5.15.3}%
+\contentsline {subsubsection}{\numberline {5.15.3.1}ssn\_clock}{77}{subsubsection.5.15.3.1}%
+\contentsline {subsubsection}{\numberline {5.15.3.2}ssn\_uptime\_in\_seconds}{77}{subsubsection.5.15.3.2}%
+\contentsline {section}{\numberline {5.16}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R/temperature\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sensor.c File Reference}{77}{section.5.16}%
+\contentsline {subsection}{\numberline {5.16.1}Function Documentation}{78}{subsection.5.16.1}%
+\contentsline {subsubsection}{\numberline {5.16.1.1}AM2320\_I2C2\_Read\_Temp\_and\_Humidity()}{78}{subsubsection.5.16.1.1}%
+\contentsline {subsubsection}{\numberline {5.16.1.2}ambient\_condition\_status()}{78}{subsubsection.5.16.1.2}%
+\contentsline {subsubsection}{\numberline {5.16.1.3}convert\_bytes\_to\_word()}{78}{subsubsection.5.16.1.3}%
+\contentsline {subsubsection}{\numberline {5.16.1.4}crc16()}{79}{subsubsection.5.16.1.4}%
+\contentsline {subsubsection}{\numberline {5.16.1.5}CRC\_check()}{79}{subsubsection.5.16.1.5}%
+\contentsline {subsubsection}{\numberline {5.16.1.6}I2C2\_ack()}{79}{subsubsection.5.16.1.6}%
+\contentsline {subsubsection}{\numberline {5.16.1.7}I2C2\_receive\_byte()}{80}{subsubsection.5.16.1.7}%
+\contentsline {subsubsection}{\numberline {5.16.1.8}I2C2\_transmit\_byte()}{80}{subsubsection.5.16.1.8}%
+\contentsline {subsubsection}{\numberline {5.16.1.9}I2C2\_transmit\_restart\_bit()}{80}{subsubsection.5.16.1.9}%
+\contentsline {subsubsection}{\numberline {5.16.1.10}I2C2\_transmit\_start\_bit()}{80}{subsubsection.5.16.1.10}%
+\contentsline {subsubsection}{\numberline {5.16.1.11}I2C2\_transmit\_stop\_bit()}{80}{subsubsection.5.16.1.11}%
+\contentsline {subsubsection}{\numberline {5.16.1.12}I2C2\_wait\_while\_busy()}{80}{subsubsection.5.16.1.12}%
+\contentsline {subsubsection}{\numberline {5.16.1.13}open\_I2C2()}{81}{subsubsection.5.16.1.13}%
+\contentsline {subsubsection}{\numberline {5.16.1.14}sample\_Temperature\_Humidity()}{81}{subsubsection.5.16.1.14}%
+\contentsline {subsubsection}{\numberline {5.16.1.15}sample\_Temperature\_Humidity\_bytes()}{81}{subsubsection.5.16.1.15}%
+\contentsline {subsubsection}{\numberline {5.16.1.16}setup\_Temperature\_Humidity\_Sensor()}{81}{subsubsection.5.16.1.16}%
+\contentsline {section}{\numberline {5.17}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}M\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}E\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}O\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R/temperature\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}sensor.h File Reference}{82}{section.5.17}%
+\contentsline {subsection}{\numberline {5.17.1}Macro Definition Documentation}{82}{subsection.5.17.1}%
+\contentsline {subsubsection}{\numberline {5.17.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{83}{subsubsection.5.17.1.1}%
+\contentsline {subsubsection}{\numberline {5.17.1.2}\_SUPPRESS\_PLIB\_WARNING}{83}{subsubsection.5.17.1.2}%
+\contentsline {subsubsection}{\numberline {5.17.1.3}ABNORMAL\_AMBIENT\_CONDITION}{83}{subsubsection.5.17.1.3}%
+\contentsline {subsubsection}{\numberline {5.17.1.4}AM2320\_I2C\_Address}{83}{subsubsection.5.17.1.4}%
+\contentsline {subsubsection}{\numberline {5.17.1.5}AM2320\_Num\_Bytes\_Requested}{83}{subsubsection.5.17.1.5}%
+\contentsline {subsubsection}{\numberline {5.17.1.6}AM2320\_Read\_Function\_Code}{83}{subsubsection.5.17.1.6}%
+\contentsline {subsubsection}{\numberline {5.17.1.7}AM2320\_Starting\_Address}{83}{subsubsection.5.17.1.7}%
+\contentsline {subsubsection}{\numberline {5.17.1.8}MAX\_NORMAL\_RELATIVE\_HUMIDITY}{83}{subsubsection.5.17.1.8}%
+\contentsline {subsubsection}{\numberline {5.17.1.9}MAX\_NORMAL\_TEMPERATURE}{84}{subsubsection.5.17.1.9}%
+\contentsline {subsubsection}{\numberline {5.17.1.10}MIN\_NORMAL\_RELATIVE\_HUMIDITY}{84}{subsubsection.5.17.1.10}%
+\contentsline {subsubsection}{\numberline {5.17.1.11}MIN\_NORMAL\_TEMPERATURE}{84}{subsubsection.5.17.1.11}%
+\contentsline {subsubsection}{\numberline {5.17.1.12}NORMAL\_AMBIENT\_CONDITION}{84}{subsubsection.5.17.1.12}%
+\contentsline {subsection}{\numberline {5.17.2}Function Documentation}{84}{subsection.5.17.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.1}AM2320\_I2C2\_Read\_Temp\_and\_Humidity()}{84}{subsubsection.5.17.2.1}%
+\contentsline {subsubsection}{\numberline {5.17.2.2}ambient\_condition\_status()}{84}{subsubsection.5.17.2.2}%
+\contentsline {subsubsection}{\numberline {5.17.2.3}convert\_bytes\_to\_word()}{84}{subsubsection.5.17.2.3}%
+\contentsline {subsubsection}{\numberline {5.17.2.4}crc16()}{85}{subsubsection.5.17.2.4}%
+\contentsline {subsubsection}{\numberline {5.17.2.5}CRC\_check()}{85}{subsubsection.5.17.2.5}%
+\contentsline {subsubsection}{\numberline {5.17.2.6}I2C2\_ack()}{85}{subsubsection.5.17.2.6}%
+\contentsline {subsubsection}{\numberline {5.17.2.7}I2C2\_receive\_byte()}{86}{subsubsection.5.17.2.7}%
+\contentsline {subsubsection}{\numberline {5.17.2.8}I2C2\_transmit\_byte()}{86}{subsubsection.5.17.2.8}%
+\contentsline {subsubsection}{\numberline {5.17.2.9}I2C2\_transmit\_restart\_bit()}{86}{subsubsection.5.17.2.9}%
+\contentsline {subsubsection}{\numberline {5.17.2.10}I2C2\_transmit\_start\_bit()}{86}{subsubsection.5.17.2.10}%
+\contentsline {subsubsection}{\numberline {5.17.2.11}I2C2\_transmit\_stop\_bit()}{86}{subsubsection.5.17.2.11}%
+\contentsline {subsubsection}{\numberline {5.17.2.12}I2C2\_wait\_while\_busy()}{86}{subsubsection.5.17.2.12}%
+\contentsline {subsubsection}{\numberline {5.17.2.13}open\_I2C2()}{87}{subsubsection.5.17.2.13}%
+\contentsline {subsubsection}{\numberline {5.17.2.14}sample\_Temperature\_Humidity()}{87}{subsubsection.5.17.2.14}%
+\contentsline {subsubsection}{\numberline {5.17.2.15}sample\_Temperature\_Humidity\_bytes()}{87}{subsubsection.5.17.2.15}%
+\contentsline {subsubsection}{\numberline {5.17.2.16}setup\_Temperature\_Humidity\_Sensor()}{87}{subsubsection.5.17.2.16}%
+\contentsline {subsection}{\numberline {5.17.3}Variable Documentation}{88}{subsection.5.17.3}%
+\contentsline {subsubsection}{\numberline {5.17.3.1}recv\_data}{88}{subsubsection.5.17.3.1}%
+\contentsline {section}{\numberline {5.18}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T/uart.c File Reference}{88}{section.5.18}%
+\contentsline {subsection}{\numberline {5.18.1}Function Documentation}{88}{subsection.5.18.1}%
+\contentsline {subsubsection}{\numberline {5.18.1.1}open\_UART2()}{88}{subsubsection.5.18.1.1}%
+\contentsline {subsubsection}{\numberline {5.18.1.2}SerialReceive\_UART2()}{88}{subsubsection.5.18.1.2}%
+\contentsline {subsubsection}{\numberline {5.18.1.3}SerialTransmit\_UART2()}{89}{subsubsection.5.18.1.3}%
+\contentsline {subsubsection}{\numberline {5.18.1.4}setup\_printf()}{89}{subsubsection.5.18.1.4}%
+\contentsline {section}{\numberline {5.19}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Drivers/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}U\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}R\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}T/uart.h File Reference}{89}{section.5.19}%
+\contentsline {subsection}{\numberline {5.19.1}Function Documentation}{90}{subsection.5.19.1}%
+\contentsline {subsubsection}{\numberline {5.19.1.1}open\_UART2()}{90}{subsubsection.5.19.1.1}%
+\contentsline {subsubsection}{\numberline {5.19.1.2}SerialReceive\_UART2()}{90}{subsubsection.5.19.1.2}%
+\contentsline {subsubsection}{\numberline {5.19.1.3}SerialTransmit\_UART2()}{90}{subsubsection.5.19.1.3}%
+\contentsline {subsubsection}{\numberline {5.19.1.4}setup\_printf()}{91}{subsubsection.5.19.1.4}%
+\contentsline {section}{\numberline {5.20}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Flash\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Memory/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Flash\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Memory.c File Reference}{91}{section.5.20}%
+\contentsline {subsection}{\numberline {5.20.1}Function Documentation}{91}{subsection.5.20.1}%
+\contentsline {subsubsection}{\numberline {5.20.1.1}FindMACInFlashMemory()}{91}{subsubsection.5.20.1.1}%
+\contentsline {subsubsection}{\numberline {5.20.1.2}FindSensorConfigurationsInFlashMemory()}{92}{subsubsection.5.20.1.2}%
+\contentsline {section}{\numberline {5.21}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Flash\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Memory/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Flash\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Memory.h File Reference}{92}{section.5.21}%
+\contentsline {subsection}{\numberline {5.21.1}Function Documentation}{93}{subsection.5.21.1}%
+\contentsline {subsubsection}{\numberline {5.21.1.1}FindMACInFlashMemory()}{93}{subsubsection.5.21.1.1}%
+\contentsline {subsubsection}{\numberline {5.21.1.2}FindSensorConfigurationsInFlashMemory()}{93}{subsubsection.5.21.1.2}%
+\contentsline {section}{\numberline {5.22}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/global.h File Reference}{94}{section.5.22}%
+\contentsline {subsection}{\numberline {5.22.1}Macro Definition Documentation}{94}{subsection.5.22.1}%
+\contentsline {subsubsection}{\numberline {5.22.1.1}\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{94}{subsubsection.5.22.1.1}%
+\contentsline {subsubsection}{\numberline {5.22.1.2}\_SUPPRESS\_PLIB\_WARNING}{94}{subsubsection.5.22.1.2}%
+\contentsline {subsubsection}{\numberline {5.22.1.3}ABNORMAL\_ACTIVITY\_STATE}{95}{subsubsection.5.22.1.3}%
+\contentsline {subsubsection}{\numberline {5.22.1.4}ACK\_CONFIG\_STATE}{95}{subsubsection.5.22.1.4}%
+\contentsline {subsubsection}{\numberline {5.22.1.5}EEPROM\_CONFIG\_LOC}{95}{subsubsection.5.22.1.5}%
+\contentsline {subsubsection}{\numberline {5.22.1.6}EEPROM\_CONFIG\_SIZE}{95}{subsubsection.5.22.1.6}%
+\contentsline {subsubsection}{\numberline {5.22.1.7}EEPROM\_MAC\_LOC}{95}{subsubsection.5.22.1.7}%
+\contentsline {subsubsection}{\numberline {5.22.1.8}EEPROM\_MAC\_SIZE}{95}{subsubsection.5.22.1.8}%
+\contentsline {subsubsection}{\numberline {5.22.1.9}GREEN\_LED}{95}{subsubsection.5.22.1.9}%
+\contentsline {subsubsection}{\numberline {5.22.1.10}NO\_CONFIG\_STATE}{95}{subsubsection.5.22.1.10}%
+\contentsline {subsubsection}{\numberline {5.22.1.11}NO\_CURRENT\_SENSOR\_STATE}{96}{subsubsection.5.22.1.11}%
+\contentsline {subsubsection}{\numberline {5.22.1.12}NO\_ETHERNET\_STATE}{96}{subsubsection.5.22.1.12}%
+\contentsline {subsubsection}{\numberline {5.22.1.13}NO\_MAC\_STATE}{96}{subsubsection.5.22.1.13}%
+\contentsline {subsubsection}{\numberline {5.22.1.14}NO\_OF\_MACHINES}{96}{subsubsection.5.22.1.14}%
+\contentsline {subsubsection}{\numberline {5.22.1.15}NO\_TIMEOFDAY\_STATE}{96}{subsubsection.5.22.1.15}%
+\contentsline {subsubsection}{\numberline {5.22.1.16}NORMAL\_ACTIVITY\_STATE}{96}{subsubsection.5.22.1.16}%
+\contentsline {subsubsection}{\numberline {5.22.1.17}PERIPH\_CLK}{96}{subsubsection.5.22.1.17}%
+\contentsline {subsubsection}{\numberline {5.22.1.18}RED\_LED}{96}{subsubsection.5.22.1.18}%
+\contentsline {subsubsection}{\numberline {5.22.1.19}SELF\_TEST\_FAILED\_STATE}{97}{subsubsection.5.22.1.19}%
+\contentsline {subsubsection}{\numberline {5.22.1.20}SSN\_DEFAULT\_PORT}{97}{subsubsection.5.22.1.20}%
+\contentsline {subsubsection}{\numberline {5.22.1.21}SSN\_IS\_ALIVE}{97}{subsubsection.5.22.1.21}%
+\contentsline {subsubsection}{\numberline {5.22.1.22}SYSTEM\_CLK}{97}{subsubsection.5.22.1.22}%
+\contentsline {subsubsection}{\numberline {5.22.1.23}TIME\_Of\_DAY\_SIZE}{97}{subsubsection.5.22.1.23}%
+\contentsline {section}{\numberline {5.23}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}PI.h File Reference}{97}{section.5.23}%
+\contentsline {section}{\numberline {5.24}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}System\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tests/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}System\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tests.c File Reference}{97}{section.5.24}%
+\contentsline {subsection}{\numberline {5.24.1}Function Documentation}{98}{subsection.5.24.1}%
+\contentsline {subsubsection}{\numberline {5.24.1.1}RunSystemTests()}{98}{subsubsection.5.24.1.1}%
+\contentsline {section}{\numberline {5.25}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}S\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}N\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}A\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}P\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}I/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}System\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tests/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}System\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tests.h File Reference}{98}{section.5.25}%
+\contentsline {subsection}{\numberline {5.25.1}Function Documentation}{98}{subsection.5.25.1}%
+\contentsline {subsubsection}{\numberline {5.25.1.1}RunSystemTests()}{98}{subsubsection.5.25.1.1}%
+\contentsline {subsection}{\numberline {5.25.2}Variable Documentation}{99}{subsection.5.25.2}%
+\contentsline {subsubsection}{\numberline {5.25.2.1}relative\_humidity\_bytes}{99}{subsubsection.5.25.2.1}%
+\contentsline {subsubsection}{\numberline {5.25.2.2}temperature\_bytes}{99}{subsubsection.5.25.2.2}%

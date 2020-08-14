@@ -1,0 +1,307 @@
+\hypertarget{temperature__sensor_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+T\+E\+M\+P\+E\+R\+A\+T\+U\+R\+E\+\_\+\+S\+E\+N\+S\+O\+R/temperature\+\_\+sensor.h File Reference}
+\label{temperature__sensor_8h}\index{src/SSN\_API/Drivers/TEMPERATURE\_SENSOR/temperature\_sensor.h@{src/SSN\_API/Drivers/TEMPERATURE\_SENSOR/temperature\_sensor.h}}
+{\ttfamily \#include \char`\"{}../../global.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$plib.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}{\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a7e476b569a3714860cc40d57acaba880}{\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a3c289b1a01b3989fbd8c13d26ef6c2fb}{A\+M2320\+\_\+\+I2\+C\+\_\+\+Address}}~0x\+B8
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_af3b7164b0799546929f023a82ed8de4a}{A\+M2320\+\_\+\+Read\+\_\+\+Function\+\_\+\+Code}}~0x03
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a2f15f986551d2256324150be0231b38a}{A\+M2320\+\_\+\+Starting\+\_\+\+Address}}~0x00
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a159a38c0ce205c1cab2b53c8ecc45bec}{A\+M2320\+\_\+\+Num\+\_\+\+Bytes\+\_\+\+Requested}}~0x04
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a2817fdf09f140033b41f2adc63aa99a9}{M\+I\+N\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+T\+E\+M\+P\+E\+R\+A\+T\+U\+RE}}~0
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_ac234b597f056e1123d1f4224ee7dfc21}{M\+A\+X\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+T\+E\+M\+P\+E\+R\+A\+T\+U\+RE}}~60
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a236d7e34924558eaca456363584c33c0}{M\+I\+N\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+H\+U\+M\+I\+D\+I\+TY}}~0
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_a94b95045a4f03f27c983e1ceb12a3a00}{M\+A\+X\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+H\+U\+M\+I\+D\+I\+TY}}~100
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_ac2e1f8318fae79d10b4306aeab96d2e5}{N\+O\+R\+M\+A\+L\+\_\+\+A\+M\+B\+I\+E\+N\+T\+\_\+\+C\+O\+N\+D\+I\+T\+I\+ON}}~0
+\item 
+\#define \mbox{\hyperlink{temperature__sensor_8h_aa12fda6aeefd5137910217e58afbe7b0}{A\+B\+N\+O\+R\+M\+A\+L\+\_\+\+A\+M\+B\+I\+E\+N\+T\+\_\+\+C\+O\+N\+D\+I\+T\+I\+ON}}~1
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_a0c7dc69e2ed0d2619972eb9848340612}{open\+\_\+\+I2\+C2}} ()
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_a09d3f30fd89152b5c472844e74756554}{I2\+C2\+\_\+wait\+\_\+while\+\_\+busy}} ()
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_a7a4ebe243bb8a061906f97f0e5882d18}{I2\+C2\+\_\+transmit\+\_\+start\+\_\+bit}} ()
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_a74770cb18c1a782ee5ce81325fa274e1}{I2\+C2\+\_\+transmit\+\_\+stop\+\_\+bit}} ()
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_aa39cfb5b2674ac3e74d69b94080ab451}{I2\+C2\+\_\+transmit\+\_\+restart\+\_\+bit}} ()
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_adc7e8793c9a4c852df6d764512ea37b6}{I2\+C2\+\_\+transmit\+\_\+byte}} (uint8\+\_\+t byte)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_a836bfdd147150950824e451c7dc83363}{I2\+C2\+\_\+receive\+\_\+byte}} ()
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_ab6eb31e18cf4f021c5832b067c770d02}{I2\+C2\+\_\+ack}} (void)
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_a54e1e43bdfe0a2b6622ebe8c514258f7}{A\+M2320\+\_\+\+I2\+C2\+\_\+\+Read\+\_\+\+Temp\+\_\+and\+\_\+\+Humidity}} ()
+\item 
+unsigned short \mbox{\hyperlink{temperature__sensor_8h_a832e9e2e84f3402a51ded3b68f803ac5}{crc16}} (unsigned char $\ast$ptr, unsigned char len)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_a29d440d8ea921a5145d0872753d8631b}{C\+R\+C\+\_\+check}} ()
+\item 
+uint16\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_afdf4b4e4a09bcb14a27c538658a38f24}{convert\+\_\+bytes\+\_\+to\+\_\+word}} (int8\+\_\+t high\+\_\+byte, int8\+\_\+t low\+\_\+byte)
+\item 
+void \mbox{\hyperlink{temperature__sensor_8h_a6c03197948814a440bc07f1c9f4112b0}{setup\+\_\+\+Temperature\+\_\+\+Humidity\+\_\+\+Sensor}} ()
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_aa0de84a6a7e7f0195bdcd723cc33f242}{sample\+\_\+\+Temperature\+\_\+\+Humidity}} (uint16\+\_\+t $\ast$temperature, uint16\+\_\+t $\ast$relative\+\_\+humidity)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_aca77b14ff16552885b23911f8e684b73}{sample\+\_\+\+Temperature\+\_\+\+Humidity\+\_\+bytes}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_ac262a61942baf151c8e23f787a07c782}{temperature\+\_\+bytes}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a5356128f764e4459ab5934fa79d8d87b}{relative\+\_\+humidity\+\_\+bytes}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_a3cce6bc3ffc1de55a5ac9b82c6229bcf}{ambient\+\_\+condition\+\_\+status}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{temperature__sensor_8h_a09e27914c44083c7af7a0d4ab1007ec0}{recv\+\_\+data}} \mbox{[}8\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{temperature__sensor_8h_a7e476b569a3714860cc40d57acaba880}\label{temperature__sensor_8h_a7e476b569a3714860cc40d57acaba880}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+\index{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{temperature__sensor_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}\label{temperature__sensor_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}}
+\index{\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{\_SUPPRESS\_PLIB\_WARNING}{\_SUPPRESS\_PLIB\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{temperature__sensor_8h_aa12fda6aeefd5137910217e58afbe7b0}\label{temperature__sensor_8h_aa12fda6aeefd5137910217e58afbe7b0}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!ABNORMAL\_AMBIENT\_CONDITION@{ABNORMAL\_AMBIENT\_CONDITION}}
+\index{ABNORMAL\_AMBIENT\_CONDITION@{ABNORMAL\_AMBIENT\_CONDITION}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{ABNORMAL\_AMBIENT\_CONDITION}{ABNORMAL\_AMBIENT\_CONDITION}}
+{\footnotesize\ttfamily \#define A\+B\+N\+O\+R\+M\+A\+L\+\_\+\+A\+M\+B\+I\+E\+N\+T\+\_\+\+C\+O\+N\+D\+I\+T\+I\+ON~1}
+
+\mbox{\Hypertarget{temperature__sensor_8h_a3c289b1a01b3989fbd8c13d26ef6c2fb}\label{temperature__sensor_8h_a3c289b1a01b3989fbd8c13d26ef6c2fb}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!AM2320\_I2C\_Address@{AM2320\_I2C\_Address}}
+\index{AM2320\_I2C\_Address@{AM2320\_I2C\_Address}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{AM2320\_I2C\_Address}{AM2320\_I2C\_Address}}
+{\footnotesize\ttfamily \#define A\+M2320\+\_\+\+I2\+C\+\_\+\+Address~0x\+B8}
+
+\mbox{\Hypertarget{temperature__sensor_8h_a159a38c0ce205c1cab2b53c8ecc45bec}\label{temperature__sensor_8h_a159a38c0ce205c1cab2b53c8ecc45bec}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!AM2320\_Num\_Bytes\_Requested@{AM2320\_Num\_Bytes\_Requested}}
+\index{AM2320\_Num\_Bytes\_Requested@{AM2320\_Num\_Bytes\_Requested}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{AM2320\_Num\_Bytes\_Requested}{AM2320\_Num\_Bytes\_Requested}}
+{\footnotesize\ttfamily \#define A\+M2320\+\_\+\+Num\+\_\+\+Bytes\+\_\+\+Requested~0x04}
+
+\mbox{\Hypertarget{temperature__sensor_8h_af3b7164b0799546929f023a82ed8de4a}\label{temperature__sensor_8h_af3b7164b0799546929f023a82ed8de4a}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!AM2320\_Read\_Function\_Code@{AM2320\_Read\_Function\_Code}}
+\index{AM2320\_Read\_Function\_Code@{AM2320\_Read\_Function\_Code}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{AM2320\_Read\_Function\_Code}{AM2320\_Read\_Function\_Code}}
+{\footnotesize\ttfamily \#define A\+M2320\+\_\+\+Read\+\_\+\+Function\+\_\+\+Code~0x03}
+
+\mbox{\Hypertarget{temperature__sensor_8h_a2f15f986551d2256324150be0231b38a}\label{temperature__sensor_8h_a2f15f986551d2256324150be0231b38a}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!AM2320\_Starting\_Address@{AM2320\_Starting\_Address}}
+\index{AM2320\_Starting\_Address@{AM2320\_Starting\_Address}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{AM2320\_Starting\_Address}{AM2320\_Starting\_Address}}
+{\footnotesize\ttfamily \#define A\+M2320\+\_\+\+Starting\+\_\+\+Address~0x00}
+
+\mbox{\Hypertarget{temperature__sensor_8h_a94b95045a4f03f27c983e1ceb12a3a00}\label{temperature__sensor_8h_a94b95045a4f03f27c983e1ceb12a3a00}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!MAX\_NORMAL\_RELATIVE\_HUMIDITY@{MAX\_NORMAL\_RELATIVE\_HUMIDITY}}
+\index{MAX\_NORMAL\_RELATIVE\_HUMIDITY@{MAX\_NORMAL\_RELATIVE\_HUMIDITY}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NORMAL\_RELATIVE\_HUMIDITY}{MAX\_NORMAL\_RELATIVE\_HUMIDITY}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+H\+U\+M\+I\+D\+I\+TY~100}
+
+Maximum normal ambient relative humidity \mbox{\Hypertarget{temperature__sensor_8h_ac234b597f056e1123d1f4224ee7dfc21}\label{temperature__sensor_8h_ac234b597f056e1123d1f4224ee7dfc21}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!MAX\_NORMAL\_TEMPERATURE@{MAX\_NORMAL\_TEMPERATURE}}
+\index{MAX\_NORMAL\_TEMPERATURE@{MAX\_NORMAL\_TEMPERATURE}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_NORMAL\_TEMPERATURE}{MAX\_NORMAL\_TEMPERATURE}}
+{\footnotesize\ttfamily \#define M\+A\+X\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+T\+E\+M\+P\+E\+R\+A\+T\+U\+RE~60}
+
+Maximum normal ambient temperature \mbox{\Hypertarget{temperature__sensor_8h_a236d7e34924558eaca456363584c33c0}\label{temperature__sensor_8h_a236d7e34924558eaca456363584c33c0}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!MIN\_NORMAL\_RELATIVE\_HUMIDITY@{MIN\_NORMAL\_RELATIVE\_HUMIDITY}}
+\index{MIN\_NORMAL\_RELATIVE\_HUMIDITY@{MIN\_NORMAL\_RELATIVE\_HUMIDITY}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_NORMAL\_RELATIVE\_HUMIDITY}{MIN\_NORMAL\_RELATIVE\_HUMIDITY}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+R\+E\+L\+A\+T\+I\+V\+E\+\_\+\+H\+U\+M\+I\+D\+I\+TY~0}
+
+Minimum normal ambient relative humidity \mbox{\Hypertarget{temperature__sensor_8h_a2817fdf09f140033b41f2adc63aa99a9}\label{temperature__sensor_8h_a2817fdf09f140033b41f2adc63aa99a9}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!MIN\_NORMAL\_TEMPERATURE@{MIN\_NORMAL\_TEMPERATURE}}
+\index{MIN\_NORMAL\_TEMPERATURE@{MIN\_NORMAL\_TEMPERATURE}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{MIN\_NORMAL\_TEMPERATURE}{MIN\_NORMAL\_TEMPERATURE}}
+{\footnotesize\ttfamily \#define M\+I\+N\+\_\+\+N\+O\+R\+M\+A\+L\+\_\+\+T\+E\+M\+P\+E\+R\+A\+T\+U\+RE~0}
+
+Minimum normal ambient temperature \mbox{\Hypertarget{temperature__sensor_8h_ac2e1f8318fae79d10b4306aeab96d2e5}\label{temperature__sensor_8h_ac2e1f8318fae79d10b4306aeab96d2e5}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!NORMAL\_AMBIENT\_CONDITION@{NORMAL\_AMBIENT\_CONDITION}}
+\index{NORMAL\_AMBIENT\_CONDITION@{NORMAL\_AMBIENT\_CONDITION}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{NORMAL\_AMBIENT\_CONDITION}{NORMAL\_AMBIENT\_CONDITION}}
+{\footnotesize\ttfamily \#define N\+O\+R\+M\+A\+L\+\_\+\+A\+M\+B\+I\+E\+N\+T\+\_\+\+C\+O\+N\+D\+I\+T\+I\+ON~0}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{temperature__sensor_8h_a54e1e43bdfe0a2b6622ebe8c514258f7}\label{temperature__sensor_8h_a54e1e43bdfe0a2b6622ebe8c514258f7}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!AM2320\_I2C2\_Read\_Temp\_and\_Humidity@{AM2320\_I2C2\_Read\_Temp\_and\_Humidity}}
+\index{AM2320\_I2C2\_Read\_Temp\_and\_Humidity@{AM2320\_I2C2\_Read\_Temp\_and\_Humidity}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{AM2320\_I2C2\_Read\_Temp\_and\_Humidity()}{AM2320\_I2C2\_Read\_Temp\_and\_Humidity()}}
+{\footnotesize\ttfamily void A\+M2320\+\_\+\+I2\+C2\+\_\+\+Read\+\_\+\+Temp\+\_\+and\+\_\+\+Humidity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads the temperature and humidity bytes from A\+M2320 sensor using I2C. Read values are written into recv\+\_\+data array \mbox{\Hypertarget{temperature__sensor_8h_a3cce6bc3ffc1de55a5ac9b82c6229bcf}\label{temperature__sensor_8h_a3cce6bc3ffc1de55a5ac9b82c6229bcf}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!ambient\_condition\_status@{ambient\_condition\_status}}
+\index{ambient\_condition\_status@{ambient\_condition\_status}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{ambient\_condition\_status()}{ambient\_condition\_status()}}
+{\footnotesize\ttfamily uint8\+\_\+t ambient\+\_\+condition\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets ambient condition status \begin{DoxyReturn}{Returns}
+{\bfseries{N\+O\+R\+M\+A\+L\+\_\+\+A\+M\+B\+I\+E\+N\+T\+\_\+\+C\+O\+N\+D\+I\+T\+I\+ON}} if normal; {\bfseries{A\+B\+N\+O\+R\+M\+A\+L\+\_\+\+A\+M\+B\+I\+E\+N\+T\+\_\+\+C\+O\+N\+D\+I\+T\+I\+ON}} otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{temperature__sensor_8h_afdf4b4e4a09bcb14a27c538658a38f24}\label{temperature__sensor_8h_afdf4b4e4a09bcb14a27c538658a38f24}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!convert\_bytes\_to\_word@{convert\_bytes\_to\_word}}
+\index{convert\_bytes\_to\_word@{convert\_bytes\_to\_word}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{convert\_bytes\_to\_word()}{convert\_bytes\_to\_word()}}
+{\footnotesize\ttfamily uint16\+\_\+t convert\+\_\+bytes\+\_\+to\+\_\+word (\begin{DoxyParamCaption}\item[{int8\+\_\+t}]{high\+\_\+byte,  }\item[{int8\+\_\+t}]{low\+\_\+byte }\end{DoxyParamCaption})}
+
+Converts bytes to word by combining high and low bytes 
+\begin{DoxyParams}{Parameters}
+{\em high\+\_\+byte} & High byte of word \\
+\hline
+{\em low\+\_\+byte} & Low byte of word \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+16-\/bit Word 
+\end{DoxyReturn}
+\mbox{\Hypertarget{temperature__sensor_8h_a832e9e2e84f3402a51ded3b68f803ac5}\label{temperature__sensor_8h_a832e9e2e84f3402a51ded3b68f803ac5}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!crc16@{crc16}}
+\index{crc16@{crc16}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{crc16()}{crc16()}}
+{\footnotesize\ttfamily unsigned short crc16 (\begin{DoxyParamCaption}\item[{unsigned char $\ast$}]{ptr,  }\item[{unsigned char}]{len }\end{DoxyParamCaption})}
+
+Performs C\+RC check on received data 
+\begin{DoxyParams}{Parameters}
+{\em ptr} & Byte array containing received data \\
+\hline
+{\em len} & Length of data to check using C\+RC \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if C\+RC check OK; 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{temperature__sensor_8h_a29d440d8ea921a5145d0872753d8631b}\label{temperature__sensor_8h_a29d440d8ea921a5145d0872753d8631b}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!CRC\_check@{CRC\_check}}
+\index{CRC\_check@{CRC\_check}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{CRC\_check()}{CRC\_check()}}
+{\footnotesize\ttfamily uint8\+\_\+t C\+R\+C\+\_\+check (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Performs C\+RC check utilizing the crc16 function \mbox{\Hypertarget{temperature__sensor_8h_ab6eb31e18cf4f021c5832b067c770d02}\label{temperature__sensor_8h_ab6eb31e18cf4f021c5832b067c770d02}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_ack@{I2C2\_ack}}
+\index{I2C2\_ack@{I2C2\_ack}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_ack()}{I2C2\_ack()}}
+{\footnotesize\ttfamily void I2\+C2\+\_\+ack (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Acknowledges the received data over I2C via a single bit transmission \mbox{\Hypertarget{temperature__sensor_8h_a836bfdd147150950824e451c7dc83363}\label{temperature__sensor_8h_a836bfdd147150950824e451c7dc83363}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_receive\_byte@{I2C2\_receive\_byte}}
+\index{I2C2\_receive\_byte@{I2C2\_receive\_byte}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_receive\_byte()}{I2C2\_receive\_byte()}}
+{\footnotesize\ttfamily uint8\+\_\+t I2\+C2\+\_\+receive\+\_\+byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Recieves byte over I2\+C2 \begin{DoxyReturn}{Returns}
+Single byte read over I2\+C2 
+\end{DoxyReturn}
+\mbox{\Hypertarget{temperature__sensor_8h_adc7e8793c9a4c852df6d764512ea37b6}\label{temperature__sensor_8h_adc7e8793c9a4c852df6d764512ea37b6}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_transmit\_byte@{I2C2\_transmit\_byte}}
+\index{I2C2\_transmit\_byte@{I2C2\_transmit\_byte}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_transmit\_byte()}{I2C2\_transmit\_byte()}}
+{\footnotesize\ttfamily void I2\+C2\+\_\+transmit\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{byte }\end{DoxyParamCaption})}
+
+Transmit single byte over I2C 
+\begin{DoxyParams}{Parameters}
+{\em byte} & Single byte to transmit \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{temperature__sensor_8h_aa39cfb5b2674ac3e74d69b94080ab451}\label{temperature__sensor_8h_aa39cfb5b2674ac3e74d69b94080ab451}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_transmit\_restart\_bit@{I2C2\_transmit\_restart\_bit}}
+\index{I2C2\_transmit\_restart\_bit@{I2C2\_transmit\_restart\_bit}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_transmit\_restart\_bit()}{I2C2\_transmit\_restart\_bit()}}
+{\footnotesize\ttfamily void I2\+C2\+\_\+transmit\+\_\+restart\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Transmit single bit for restarting I2C communication \mbox{\Hypertarget{temperature__sensor_8h_a7a4ebe243bb8a061906f97f0e5882d18}\label{temperature__sensor_8h_a7a4ebe243bb8a061906f97f0e5882d18}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_transmit\_start\_bit@{I2C2\_transmit\_start\_bit}}
+\index{I2C2\_transmit\_start\_bit@{I2C2\_transmit\_start\_bit}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_transmit\_start\_bit()}{I2C2\_transmit\_start\_bit()}}
+{\footnotesize\ttfamily void I2\+C2\+\_\+transmit\+\_\+start\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Transmit single bit for starting I2C communication \mbox{\Hypertarget{temperature__sensor_8h_a74770cb18c1a782ee5ce81325fa274e1}\label{temperature__sensor_8h_a74770cb18c1a782ee5ce81325fa274e1}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_transmit\_stop\_bit@{I2C2\_transmit\_stop\_bit}}
+\index{I2C2\_transmit\_stop\_bit@{I2C2\_transmit\_stop\_bit}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_transmit\_stop\_bit()}{I2C2\_transmit\_stop\_bit()}}
+{\footnotesize\ttfamily void I2\+C2\+\_\+transmit\+\_\+stop\+\_\+bit (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Transmit single bit for stoping I2C communication \mbox{\Hypertarget{temperature__sensor_8h_a09d3f30fd89152b5c472844e74756554}\label{temperature__sensor_8h_a09d3f30fd89152b5c472844e74756554}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!I2C2\_wait\_while\_busy@{I2C2\_wait\_while\_busy}}
+\index{I2C2\_wait\_while\_busy@{I2C2\_wait\_while\_busy}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{I2C2\_wait\_while\_busy()}{I2C2\_wait\_while\_busy()}}
+{\footnotesize\ttfamily void I2\+C2\+\_\+wait\+\_\+while\+\_\+busy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Waits while I2\+C2 is busy reading or writing \mbox{\Hypertarget{temperature__sensor_8h_a0c7dc69e2ed0d2619972eb9848340612}\label{temperature__sensor_8h_a0c7dc69e2ed0d2619972eb9848340612}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!open\_I2C2@{open\_I2C2}}
+\index{open\_I2C2@{open\_I2C2}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{open\_I2C2()}{open\_I2C2()}}
+{\footnotesize\ttfamily void open\+\_\+\+I2\+C2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Opens I2\+C2 peripheral \mbox{\Hypertarget{temperature__sensor_8h_aa0de84a6a7e7f0195bdcd723cc33f242}\label{temperature__sensor_8h_aa0de84a6a7e7f0195bdcd723cc33f242}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!sample\_Temperature\_Humidity@{sample\_Temperature\_Humidity}}
+\index{sample\_Temperature\_Humidity@{sample\_Temperature\_Humidity}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{sample\_Temperature\_Humidity()}{sample\_Temperature\_Humidity()}}
+{\footnotesize\ttfamily uint8\+\_\+t sample\+\_\+\+Temperature\+\_\+\+Humidity (\begin{DoxyParamCaption}\item[{uint16\+\_\+t $\ast$}]{temperature,  }\item[{uint16\+\_\+t $\ast$}]{relative\+\_\+humidity }\end{DoxyParamCaption})}
+
+Samples temperature and humidity readings from sensor 
+\begin{DoxyParams}{Parameters}
+{\em temperature} & Pointer to 16-\/bit word to save temperature reading \\
+\hline
+{\em relative\+\_\+humidity} & Pointer to 16-\/bit word to save relative humidity reading \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if C\+RC check was OK; 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{temperature__sensor_8h_aca77b14ff16552885b23911f8e684b73}\label{temperature__sensor_8h_aca77b14ff16552885b23911f8e684b73}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!sample\_Temperature\_Humidity\_bytes@{sample\_Temperature\_Humidity\_bytes}}
+\index{sample\_Temperature\_Humidity\_bytes@{sample\_Temperature\_Humidity\_bytes}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{sample\_Temperature\_Humidity\_bytes()}{sample\_Temperature\_Humidity\_bytes()}}
+{\footnotesize\ttfamily uint8\+\_\+t sample\+\_\+\+Temperature\+\_\+\+Humidity\+\_\+bytes (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{temperature\+\_\+bytes,  }\item[{uint8\+\_\+t $\ast$}]{relative\+\_\+humidity\+\_\+bytes }\end{DoxyParamCaption})}
+
+Samples temperature and humidity readings from sensor 
+\begin{DoxyParams}{Parameters}
+{\em temperature\+\_\+bytes} & Pointer to 8-\/bit byte array to save temperature reading as bytes \\
+\hline
+{\em relative\+\_\+humidity\+\_\+bytes} & Pointer to 8-\/bit byte array to save relative humidity reading as bytes \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if C\+RC check was OK; 0 otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{temperature__sensor_8h_a6c03197948814a440bc07f1c9f4112b0}\label{temperature__sensor_8h_a6c03197948814a440bc07f1c9f4112b0}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!setup\_Temperature\_Humidity\_Sensor@{setup\_Temperature\_Humidity\_Sensor}}
+\index{setup\_Temperature\_Humidity\_Sensor@{setup\_Temperature\_Humidity\_Sensor}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{setup\_Temperature\_Humidity\_Sensor()}{setup\_Temperature\_Humidity\_Sensor()}}
+{\footnotesize\ttfamily void setup\+\_\+\+Temperature\+\_\+\+Humidity\+\_\+\+Sensor (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets up the A\+M2320 temperature sensor 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{temperature__sensor_8h_a09e27914c44083c7af7a0d4ab1007ec0}\label{temperature__sensor_8h_a09e27914c44083c7af7a0d4ab1007ec0}} 
+\index{temperature\_sensor.h@{temperature\_sensor.h}!recv\_data@{recv\_data}}
+\index{recv\_data@{recv\_data}!temperature\_sensor.h@{temperature\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{recv\_data}{recv\_data}}
+{\footnotesize\ttfamily uint8\+\_\+t recv\+\_\+data\mbox{[}8\mbox{]}}
+
+The data received from the temperature sensor A\+M2320, i.\+e., Control byte, number of bytes\textquotesingle{} byte, 4 data bytes, 2 C\+RC bytes 

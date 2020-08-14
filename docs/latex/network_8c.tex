@@ -1,0 +1,272 @@
+\hypertarget{network_8c}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+N\+E\+T\+W\+O\+R\+K/network.c File Reference}
+\label{network_8c}\index{src/SSN\_API/Drivers/NETWORK/network.c@{src/SSN\_API/Drivers/NETWORK/network.c}}
+{\ttfamily \#include \char`\"{}network.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{network_8c_ab9ea23326f52363b4c34157a28b1e78d}{W\+I\+Z5500\+\_\+\+Reset}} ()
+\item 
+void \mbox{\hyperlink{network_8c_a47c018d784ebc480ba8c0650651af1da}{open\+\_\+\+S\+P\+I2}} ()
+\item 
+void \mbox{\hyperlink{network_8c_abbb76a359aa1d3ee2463ebda012041f8}{setup\+\_\+\+Ethernet}} ()
+\item 
+unsigned int \mbox{\hyperlink{network_8c_a42a9a8e0a6119344d300a7affb454903}{S\+P\+I2\+\_\+send}} (unsigned int data)
+\item 
+void \mbox{\hyperlink{network_8c_ae2655cb9a55adf02ea481a11e514be36}{W\+I\+Z5500\+\_\+select}} (void)
+\item 
+void \mbox{\hyperlink{network_8c_a7575704b12c03b1eb890e20edb6ad449}{W\+I\+Z5500\+\_\+deselect}} (void)
+\item 
+void \mbox{\hyperlink{network_8c_aa734071893573562012bb9e0ae2a7aec}{W\+I\+Z5500\+\_\+write\+\_\+byte}} (uint8\+\_\+t wb)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{network_8c_a0f3dc535dd2ebb3a1a4031a3fa6bba42}{W\+I\+Z5500\+\_\+read\+\_\+byte}} ()
+\item 
+void \mbox{\hyperlink{network_8c_aee22609a4e2a7c223ff95052c592aef4}{W\+I\+Z5500\+\_\+write\+\_\+array}} (uint8\+\_\+t $\ast$addr\+Buf, uint8\+\_\+t $\ast$p\+Buf, uint16\+\_\+t len)
+\item 
+void \mbox{\hyperlink{network_8c_a1241fc800a203d0e215c72ba45562181}{W\+I\+Z5500\+\_\+read\+\_\+array}} (uint8\+\_\+t $\ast$addr\+Buf, uint8\+\_\+t $\ast$p\+Buf, uint16\+\_\+t len)
+\item 
+void \mbox{\hyperlink{network_8c_a5b7b05e964585acf3400072cf8f55a52}{W\+I\+Z5500\+\_\+network\+\_\+initiate}} (void)
+\item 
+void \mbox{\hyperlink{network_8c_a0afb6a41adcabcf6eb049b6092153382}{W\+I\+Z5500\+\_\+\+I\+P\+\_\+assigned\+\_\+callback}} (void)
+\item 
+void \mbox{\hyperlink{network_8c_ae02d29856bebbfdcdebb7eeaa6f87b1e}{W\+I\+Z5500\+\_\+\+I\+P\+\_\+conflict\+\_\+callback}} (void)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{network_8c_a85b2c73bd0a2f05eb0068da290d29cad}{Ethernet\+\_\+get\+\_\+physical\+\_\+link\+\_\+status}} ()
+\item 
+void \mbox{\hyperlink{network_8c_a6228fafd2fa16345a0f5af4a9c7ef32f}{Ethernet\+\_\+\+Assign\+\_\+\+M\+AC}} (uint8\+\_\+t $\ast$this\+\_\+mac)
+\item 
+void \mbox{\hyperlink{network_8c_a3fa621a084cf709c1eb5697cde1b51a0}{setup\+\_\+\+T\+I\+M\+E\+R2\+\_\+with\+\_\+interrupt}} (float delay\+\_\+time)
+\item 
+void \mbox{\hyperlink{network_8c_ad4039aeb374bdf8a74c58067b2ba1f63}{stop\+\_\+\+T\+I\+M\+E\+R2\+\_\+with\+\_\+interrupt}} ()
+\item 
+void \mbox{\hyperlink{network_8c_af638d4ee50edd0657184bf459cf76181}{\+\_\+\+\_\+\+I\+SR}} (\+\_\+\+T\+I\+M\+E\+R\+\_\+2\+\_\+\+V\+E\+C\+T\+OR, I\+P\+L4\+S\+O\+FT)
+\item 
+void \mbox{\hyperlink{network_8c_a193aafbb886524731e41aaa9471cc612}{Ethernet\+\_\+get\+\_\+\+I\+P\+\_\+from\+\_\+\+D\+H\+CP}} ()
+\item 
+int32\+\_\+t \mbox{\hyperlink{network_8c_a36cca163cc0439a5019256a944953a3a}{Send\+\_\+\+Message\+\_\+\+Over\+\_\+\+U\+DP}} (uint8\+\_\+t socket\+\_\+number, uint8\+\_\+t $\ast$message, uint8\+\_\+t message\+\_\+byte\+\_\+length, char $\ast$destination\+\_\+ip, uint16\+\_\+t destination\+\_\+port)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{network_8c_a36a313a6c4dbcb70ca936fe96d56ccff}{is\+\_\+\+Message\+\_\+\+Received\+\_\+\+Over\+\_\+\+U\+DP}} (uint8\+\_\+t socket\+\_\+number)
+\item 
+uint8\+\_\+t \mbox{\hyperlink{network_8c_a5119e8c8619424ebb2f68cc9714c425f}{Recv\+\_\+\+Message\+\_\+\+Over\+\_\+\+U\+DP}} (uint8\+\_\+t socket\+\_\+number, char $\ast$message, uint8\+\_\+t message\+\_\+byte\+\_\+length, char $\ast$destination\+\_\+ip, uint16\+\_\+t destination\+\_\+port)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{network_8c_af638d4ee50edd0657184bf459cf76181}\label{network_8c_af638d4ee50edd0657184bf459cf76181}} 
+\index{network.c@{network.c}!\_\_ISR@{\_\_ISR}}
+\index{\_\_ISR@{\_\_ISR}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{\_\_ISR()}{\_\_ISR()}}
+{\footnotesize\ttfamily void \+\_\+\+\_\+\+I\+SR (\begin{DoxyParamCaption}\item[{\+\_\+\+T\+I\+M\+E\+R\+\_\+2\+\_\+\+V\+E\+C\+T\+OR}]{,  }\item[{I\+P\+L4\+S\+O\+FT}]{ }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{network_8c_a6228fafd2fa16345a0f5af4a9c7ef32f}\label{network_8c_a6228fafd2fa16345a0f5af4a9c7ef32f}} 
+\index{network.c@{network.c}!Ethernet\_Assign\_MAC@{Ethernet\_Assign\_MAC}}
+\index{Ethernet\_Assign\_MAC@{Ethernet\_Assign\_MAC}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{Ethernet\_Assign\_MAC()}{Ethernet\_Assign\_MAC()}}
+{\footnotesize\ttfamily void Ethernet\+\_\+\+Assign\+\_\+\+M\+AC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{this\+\_\+mac }\end{DoxyParamCaption})}
+
+Assigns a M\+AC address to W5500 chip 
+\begin{DoxyParams}{Parameters}
+{\em this\+\_\+mac} & The byte array containing the M\+AC address \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{network_8c_a193aafbb886524731e41aaa9471cc612}\label{network_8c_a193aafbb886524731e41aaa9471cc612}} 
+\index{network.c@{network.c}!Ethernet\_get\_IP\_from\_DHCP@{Ethernet\_get\_IP\_from\_DHCP}}
+\index{Ethernet\_get\_IP\_from\_DHCP@{Ethernet\_get\_IP\_from\_DHCP}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{Ethernet\_get\_IP\_from\_DHCP()}{Ethernet\_get\_IP\_from\_DHCP()}}
+{\footnotesize\ttfamily void Ethernet\+\_\+get\+\_\+\+I\+P\+\_\+from\+\_\+\+D\+H\+CP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets an IP from D\+H\+CP; does not return until an IP is successfully retrieved \mbox{\Hypertarget{network_8c_a85b2c73bd0a2f05eb0068da290d29cad}\label{network_8c_a85b2c73bd0a2f05eb0068da290d29cad}} 
+\index{network.c@{network.c}!Ethernet\_get\_physical\_link\_status@{Ethernet\_get\_physical\_link\_status}}
+\index{Ethernet\_get\_physical\_link\_status@{Ethernet\_get\_physical\_link\_status}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{Ethernet\_get\_physical\_link\_status()}{Ethernet\_get\_physical\_link\_status()}}
+{\footnotesize\ttfamily uint8\+\_\+t Ethernet\+\_\+get\+\_\+physical\+\_\+link\+\_\+status (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets physical link status from the W5500 chip whether a network cable is connected to network or not \begin{DoxyReturn}{Returns}
+{\bfseries{P\+H\+Y\+\_\+\+L\+I\+N\+K\+\_\+\+ON}} if connection is available; {\bfseries{P\+H\+Y\+\_\+\+L\+I\+N\+K\+\_\+\+O\+FF}} otherwise 
+\end{DoxyReturn}
+\mbox{\Hypertarget{network_8c_a36a313a6c4dbcb70ca936fe96d56ccff}\label{network_8c_a36a313a6c4dbcb70ca936fe96d56ccff}} 
+\index{network.c@{network.c}!is\_Message\_Received\_Over\_UDP@{is\_Message\_Received\_Over\_UDP}}
+\index{is\_Message\_Received\_Over\_UDP@{is\_Message\_Received\_Over\_UDP}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{is\_Message\_Received\_Over\_UDP()}{is\_Message\_Received\_Over\_UDP()}}
+{\footnotesize\ttfamily uint8\+\_\+t is\+\_\+\+Message\+\_\+\+Received\+\_\+\+Over\+\_\+\+U\+DP (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{socket\+\_\+number }\end{DoxyParamCaption})}
+
+Tells whether a message was received or not and how many bytes are there in the buffer 
+\begin{DoxyParams}{Parameters}
+{\em socket\+\_\+number} & U\+DP socket number \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes in receive buffer of W5500. May contain more than one message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{network_8c_a47c018d784ebc480ba8c0650651af1da}\label{network_8c_a47c018d784ebc480ba8c0650651af1da}} 
+\index{network.c@{network.c}!open\_SPI2@{open\_SPI2}}
+\index{open\_SPI2@{open\_SPI2}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{open\_SPI2()}{open\_SPI2()}}
+{\footnotesize\ttfamily void open\+\_\+\+S\+P\+I2 (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Opens S\+P\+I2 for communication \mbox{\Hypertarget{network_8c_a5119e8c8619424ebb2f68cc9714c425f}\label{network_8c_a5119e8c8619424ebb2f68cc9714c425f}} 
+\index{network.c@{network.c}!Recv\_Message\_Over\_UDP@{Recv\_Message\_Over\_UDP}}
+\index{Recv\_Message\_Over\_UDP@{Recv\_Message\_Over\_UDP}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{Recv\_Message\_Over\_UDP()}{Recv\_Message\_Over\_UDP()}}
+{\footnotesize\ttfamily uint8\+\_\+t Recv\+\_\+\+Message\+\_\+\+Over\+\_\+\+U\+DP (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{socket\+\_\+number,  }\item[{char $\ast$}]{message,  }\item[{uint8\+\_\+t}]{message\+\_\+byte\+\_\+length,  }\item[{char $\ast$}]{destination\+\_\+ip,  }\item[{uint16\+\_\+t}]{destination\+\_\+port }\end{DoxyParamCaption})}
+
+Receives a message over U\+DP 
+\begin{DoxyParams}{Parameters}
+{\em socket\+\_\+number} & U\+DP socket number of S\+SN \\
+\hline
+{\em message} & The byte array in which the received message will be written into \\
+\hline
+{\em message\+\_\+byte\+\_\+length} & Maximum byte count that may be received in a single message \\
+\hline
+{\em destination\+\_\+ip} & IP of destination server \\
+\hline
+{\em destination\+\_\+port} & Port of destination server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of bytes in received message 
+\end{DoxyReturn}
+\mbox{\Hypertarget{network_8c_a36cca163cc0439a5019256a944953a3a}\label{network_8c_a36cca163cc0439a5019256a944953a3a}} 
+\index{network.c@{network.c}!Send\_Message\_Over\_UDP@{Send\_Message\_Over\_UDP}}
+\index{Send\_Message\_Over\_UDP@{Send\_Message\_Over\_UDP}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{Send\_Message\_Over\_UDP()}{Send\_Message\_Over\_UDP()}}
+{\footnotesize\ttfamily int32\+\_\+t Send\+\_\+\+Message\+\_\+\+Over\+\_\+\+U\+DP (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{socket\+\_\+number,  }\item[{uint8\+\_\+t $\ast$}]{message,  }\item[{uint8\+\_\+t}]{message\+\_\+byte\+\_\+length,  }\item[{char $\ast$}]{destination\+\_\+ip,  }\item[{uint16\+\_\+t}]{destination\+\_\+port }\end{DoxyParamCaption})}
+
+Sends a message over U\+DP 
+\begin{DoxyParams}{Parameters}
+{\em socket\+\_\+number} & U\+DP socket number \\
+\hline
+{\em message} & Byte array containing the message to send \\
+\hline
+{\em message\+\_\+byte\+\_\+length} & Number of bytes of the message to send \\
+\hline
+{\em desination\+\_\+ip} & IP of destination server \\
+\hline
+{\em destination\+\_\+port} & Port of destination server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{network_8c_abbb76a359aa1d3ee2463ebda012041f8}\label{network_8c_abbb76a359aa1d3ee2463ebda012041f8}} 
+\index{network.c@{network.c}!setup\_Ethernet@{setup\_Ethernet}}
+\index{setup\_Ethernet@{setup\_Ethernet}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{setup\_Ethernet()}{setup\_Ethernet()}}
+{\footnotesize\ttfamily void setup\+\_\+\+Ethernet (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets up Ethernet for communication \mbox{\Hypertarget{network_8c_a3fa621a084cf709c1eb5697cde1b51a0}\label{network_8c_a3fa621a084cf709c1eb5697cde1b51a0}} 
+\index{network.c@{network.c}!setup\_TIMER2\_with\_interrupt@{setup\_TIMER2\_with\_interrupt}}
+\index{setup\_TIMER2\_with\_interrupt@{setup\_TIMER2\_with\_interrupt}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{setup\_TIMER2\_with\_interrupt()}{setup\_TIMER2\_with\_interrupt()}}
+{\footnotesize\ttfamily void setup\+\_\+\+T\+I\+M\+E\+R2\+\_\+with\+\_\+interrupt (\begin{DoxyParamCaption}\item[{float}]{delay\+\_\+time }\end{DoxyParamCaption})}
+
+Sets up a timer interrupt required to make D\+H\+CP requests 
+\begin{DoxyParams}{Parameters}
+{\em delay\+\_\+time} & Period of interrupt in seconds \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{network_8c_a42a9a8e0a6119344d300a7affb454903}\label{network_8c_a42a9a8e0a6119344d300a7affb454903}} 
+\index{network.c@{network.c}!SPI2\_send@{SPI2\_send}}
+\index{SPI2\_send@{SPI2\_send}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{SPI2\_send()}{SPI2\_send()}}
+{\footnotesize\ttfamily unsigned int S\+P\+I2\+\_\+send (\begin{DoxyParamCaption}\item[{unsigned int}]{data }\end{DoxyParamCaption})}
+
+Sends and Receives a single byte over S\+PI interface 
+\begin{DoxyParams}{Parameters}
+{\em data} & Single byte to send over S\+PI \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Single byte received over S\+PI 
+\end{DoxyReturn}
+\mbox{\Hypertarget{network_8c_ad4039aeb374bdf8a74c58067b2ba1f63}\label{network_8c_ad4039aeb374bdf8a74c58067b2ba1f63}} 
+\index{network.c@{network.c}!stop\_TIMER2\_with\_interrupt@{stop\_TIMER2\_with\_interrupt}}
+\index{stop\_TIMER2\_with\_interrupt@{stop\_TIMER2\_with\_interrupt}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{stop\_TIMER2\_with\_interrupt()}{stop\_TIMER2\_with\_interrupt()}}
+{\footnotesize\ttfamily void stop\+\_\+\+T\+I\+M\+E\+R2\+\_\+with\+\_\+interrupt (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Stops the timer interrupt \mbox{\Hypertarget{network_8c_a7575704b12c03b1eb890e20edb6ad449}\label{network_8c_a7575704b12c03b1eb890e20edb6ad449}} 
+\index{network.c@{network.c}!WIZ5500\_deselect@{WIZ5500\_deselect}}
+\index{WIZ5500\_deselect@{WIZ5500\_deselect}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_deselect()}{WIZ5500\_deselect()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+deselect (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Deselects the W5500 chip for communication \mbox{\Hypertarget{network_8c_a0afb6a41adcabcf6eb049b6092153382}\label{network_8c_a0afb6a41adcabcf6eb049b6092153382}} 
+\index{network.c@{network.c}!WIZ5500\_IP\_assigned\_callback@{WIZ5500\_IP\_assigned\_callback}}
+\index{WIZ5500\_IP\_assigned\_callback@{WIZ5500\_IP\_assigned\_callback}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_IP\_assigned\_callback()}{WIZ5500\_IP\_assigned\_callback()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+\+I\+P\+\_\+assigned\+\_\+callback (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Callback function for when IP is received via D\+H\+CP \mbox{\Hypertarget{network_8c_ae02d29856bebbfdcdebb7eeaa6f87b1e}\label{network_8c_ae02d29856bebbfdcdebb7eeaa6f87b1e}} 
+\index{network.c@{network.c}!WIZ5500\_IP\_conflict\_callback@{WIZ5500\_IP\_conflict\_callback}}
+\index{WIZ5500\_IP\_conflict\_callback@{WIZ5500\_IP\_conflict\_callback}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_IP\_conflict\_callback()}{WIZ5500\_IP\_conflict\_callback()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+\+I\+P\+\_\+conflict\+\_\+callback (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Callback function for when IP conflict occurs \mbox{\Hypertarget{network_8c_a5b7b05e964585acf3400072cf8f55a52}\label{network_8c_a5b7b05e964585acf3400072cf8f55a52}} 
+\index{network.c@{network.c}!WIZ5500\_network\_initiate@{WIZ5500\_network\_initiate}}
+\index{WIZ5500\_network\_initiate@{WIZ5500\_network\_initiate}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_network\_initiate()}{WIZ5500\_network\_initiate()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+network\+\_\+initiate (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Initializes the W5500 chip from network communication \mbox{\Hypertarget{network_8c_a1241fc800a203d0e215c72ba45562181}\label{network_8c_a1241fc800a203d0e215c72ba45562181}} 
+\index{network.c@{network.c}!WIZ5500\_read\_array@{WIZ5500\_read\_array}}
+\index{WIZ5500\_read\_array@{WIZ5500\_read\_array}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_read\_array()}{WIZ5500\_read\_array()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+read\+\_\+array (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{addr\+Buf,  }\item[{uint8\+\_\+t $\ast$}]{p\+Buf,  }\item[{uint16\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Reads a byte array from W5500 chip 
+\begin{DoxyParams}{Parameters}
+{\em addr\+Buf} & Byte array containing the addresses to read from \\
+\hline
+{\em p\+Buf} & Byte array to write the read values into \\
+\hline
+{\em len} & The number of values to read from W5500 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{network_8c_a0f3dc535dd2ebb3a1a4031a3fa6bba42}\label{network_8c_a0f3dc535dd2ebb3a1a4031a3fa6bba42}} 
+\index{network.c@{network.c}!WIZ5500\_read\_byte@{WIZ5500\_read\_byte}}
+\index{WIZ5500\_read\_byte@{WIZ5500\_read\_byte}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_read\_byte()}{WIZ5500\_read\_byte()}}
+{\footnotesize\ttfamily uint8\+\_\+t W\+I\+Z5500\+\_\+read\+\_\+byte (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Reads a single byte from W5500 chip \begin{DoxyReturn}{Returns}
+Single byte received from W5500 chip 
+\end{DoxyReturn}
+\mbox{\Hypertarget{network_8c_ab9ea23326f52363b4c34157a28b1e78d}\label{network_8c_ab9ea23326f52363b4c34157a28b1e78d}} 
+\index{network.c@{network.c}!WIZ5500\_Reset@{WIZ5500\_Reset}}
+\index{WIZ5500\_Reset@{WIZ5500\_Reset}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_Reset()}{WIZ5500\_Reset()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+\+Reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Resets W5500 Ethernet offload chip \mbox{\Hypertarget{network_8c_ae2655cb9a55adf02ea481a11e514be36}\label{network_8c_ae2655cb9a55adf02ea481a11e514be36}} 
+\index{network.c@{network.c}!WIZ5500\_select@{WIZ5500\_select}}
+\index{WIZ5500\_select@{WIZ5500\_select}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_select()}{WIZ5500\_select()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+select (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Selects the W5500 chip for communication \mbox{\Hypertarget{network_8c_aee22609a4e2a7c223ff95052c592aef4}\label{network_8c_aee22609a4e2a7c223ff95052c592aef4}} 
+\index{network.c@{network.c}!WIZ5500\_write\_array@{WIZ5500\_write\_array}}
+\index{WIZ5500\_write\_array@{WIZ5500\_write\_array}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_write\_array()}{WIZ5500\_write\_array()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+write\+\_\+array (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{addr\+Buf,  }\item[{uint8\+\_\+t $\ast$}]{p\+Buf,  }\item[{uint16\+\_\+t}]{len }\end{DoxyParamCaption})}
+
+Writes a byte array to W5500 chip 
+\begin{DoxyParams}{Parameters}
+{\em addr\+Buf} & Byte array containing the addresses to write at \\
+\hline
+{\em p\+Buf} & Byte array of values to write at those locations \\
+\hline
+{\em len} & The number of values to write at W5500 \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{network_8c_aa734071893573562012bb9e0ae2a7aec}\label{network_8c_aa734071893573562012bb9e0ae2a7aec}} 
+\index{network.c@{network.c}!WIZ5500\_write\_byte@{WIZ5500\_write\_byte}}
+\index{WIZ5500\_write\_byte@{WIZ5500\_write\_byte}!network.c@{network.c}}
+\doxysubsubsection{\texorpdfstring{WIZ5500\_write\_byte()}{WIZ5500\_write\_byte()}}
+{\footnotesize\ttfamily void W\+I\+Z5500\+\_\+write\+\_\+byte (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{wb }\end{DoxyParamCaption})}
+
+Writes a single byte to W5500 chip 
+\begin{DoxyParams}{Parameters}
+{\em wb} & Byte to write \\
+\hline
+\end{DoxyParams}

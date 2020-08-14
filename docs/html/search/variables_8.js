@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['seconds_421',['seconds',['../structpseudo__clock.html#a9d406496a677e67e955969cd30f3d667',1,'pseudo_clock']]],
+  ['ssn_5fclock_422',['ssn_clock',['../pseudo__rtcc_8h.html#a09fb643f4540e28ebc1f58b07ddc5050',1,'pseudo_rtcc.h']]],
+  ['ssn_5fconfig_423',['SSN_CONFIG',['../main_8c.html#a83d18a73ed2d54c78b4f55dae30a01c6',1,'main.c']]],
+  ['ssn_5fcurrent_5fsensor_5fmaxloads_424',['SSN_CURRENT_SENSOR_MAXLOADS',['../main_8c.html#a642a7eec4e214f28cdbbb033b286881e',1,'main.c']]],
+  ['ssn_5fcurrent_5fsensor_5fratings_425',['SSN_CURRENT_SENSOR_RATINGS',['../main_8c.html#a27f066a0a34448b85c39ac8d0c5a127d',1,'main.c']]],
+  ['ssn_5fcurrent_5fsensor_5fthresholds_426',['SSN_CURRENT_SENSOR_THRESHOLDS',['../main_8c.html#acbf1100a89d3eb6891b8268d444c03e2',1,'main.c']]],
+  ['ssn_5fcurrent_5fstate_427',['SSN_CURRENT_STATE',['../main_8c.html#ab35539189035136dbcfd7d799291414e',1,'main.c']]],
+  ['ssn_5fdefault_5fmac_428',['SSN_DEFAULT_MAC',['../main_8c.html#ada2bb8f2f1d13265e26bbc6e80c92514',1,'main.c']]],
+  ['ssn_5fmac_5faddress_429',['SSN_MAC_ADDRESS',['../main_8c.html#a68480e541da8f08ac7150fa092a52e9f',1,'main.c']]],
+  ['ssn_5freport_5finterval_430',['SSN_REPORT_INTERVAL',['../main_8c.html#a530afa2a0a6ffd12d43e1d74523a09a0',1,'main.c']]],
+  ['ssn_5fsent_5fmessages_5fcounter_431',['SSN_SENT_MESSAGES_COUNTER',['../main_8c.html#af20121647e8b2e66cbdb68cc9b190072',1,'main.c']]],
+  ['ssn_5fserver_5fip_432',['SSN_SERVER_IP',['../main_8c.html#af0a41c40c1889685df2f0902fd3b1038',1,'main.c']]],
+  ['ssn_5fserver_5fport_433',['SSN_SERVER_PORT',['../main_8c.html#af399cba06e4015d7ba32f5cde092fc30',1,'main.c']]],
+  ['ssn_5fudp_5fsocket_434',['SSN_UDP_SOCKET',['../main_8c.html#a4d98f0e1fc2286b06ce95bdf875f3873',1,'main.c']]],
+  ['ssn_5fudp_5fsocket_5fnum_435',['SSN_UDP_SOCKET_NUM',['../main_8c.html#a4b0162d3c9e447c253b2a48766bf67f2',1,'main.c']]],
+  ['ssn_5fuptime_5fin_5fseconds_436',['ssn_uptime_in_seconds',['../pseudo__rtcc_8h.html#a38ab522cb78db6924090117c6c4b0106',1,'pseudo_rtcc.h']]]
+];

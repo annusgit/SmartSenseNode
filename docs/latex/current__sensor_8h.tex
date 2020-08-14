@@ -1,0 +1,250 @@
+\hypertarget{current__sensor_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Drivers/\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R/current\+\_\+sensor.h File Reference}
+\label{current__sensor_8h}\index{src/SSN\_API/Drivers/CURRENT\_SENSOR/current\_sensor.h@{src/SSN\_API/Drivers/CURRENT\_SENSOR/current\_sensor.h}}
+{\ttfamily \#include \char`\"{}../../global.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$plib.\+h$>$}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{current__sensor_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}{\+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{current__sensor_8h_a7e476b569a3714860cc40d57acaba880}{\+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}}
+\item 
+\#define \mbox{\hyperlink{current__sensor_8h_a6c428c55320415d38109e7329279b5fc}{N\+U\+M\+\_\+\+O\+F\+\_\+\+A\+D\+C\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+F\+O\+R\+\_\+\+I\+R\+MS}}~400
+\item 
+\#define \mbox{\hyperlink{current__sensor_8h_aff8c781e960117d7b5f3d1f758d4f1e0}{V\+O\+L\+T\+A\+G\+E\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+C\+A\+L\+AR}}~1
+\item 
+\#define \mbox{\hyperlink{current__sensor_8h_a69eb219b76525a9cecef9a1449239fa6}{C\+U\+R\+R\+E\+N\+T\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+C\+A\+L\+AR}}~2
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1}{Machine\+\_\+\+Status}} \{ \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a830bbd60935892334f4e6b5a2a0468ae}{M\+A\+C\+H\+I\+N\+E\+\_\+\+O\+FF}} =0, 
+\mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a1ea1956941780e8d0f009df515a79ada}{M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+D\+LE}}, 
+\mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a47e8e374cafda6af1c95de6b59eca7df}{M\+A\+C\+H\+I\+N\+E\+\_\+\+ON}}, 
+\mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}{M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{current__sensor_8h_af4efc6ea0c8849c1c2694f8cfc2e8e8e}{open\+\_\+\+A\+DC}} ()
+\item 
+void \mbox{\hyperlink{current__sensor_8h_abea9536f54a90a215eb5decee4909fea}{setup\+\_\+\+Current\+\_\+\+Sensors}} ()
+\item 
+uint16\+\_\+t \mbox{\hyperlink{current__sensor_8h_afc79b6d5375fec0b876903e18733bb01}{sample\+\_\+\+Current\+\_\+\+Sensor\+\_\+channel}} (uint8\+\_\+t channel)
+\item 
+unsigned char \mbox{\hyperlink{current__sensor_8h_a6609d54aa4bd0353af13b8f81241d77e}{Current\+Sensor\+\_\+\+Read\+\_\+\+R\+MS}} (uint8\+\_\+t channel, uint16\+\_\+t num\+\_\+samples, uint8\+\_\+t S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+NG, float S\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+C\+A\+L\+AR)
+\item 
+void \mbox{\hyperlink{current__sensor_8h_a0bcafa2fd18522dac0fd333b933eb326}{Calculate\+\_\+\+R\+M\+S\+\_\+\+Current\+\_\+\+On\+\_\+\+All\+\_\+\+Channels}} (uint8\+\_\+t $\ast$S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS, uint16\+\_\+t num\+\_\+samples, unsigned char $\ast$single\+\_\+byte\+\_\+\+R\+M\+S\+\_\+\+C\+U\+R\+R\+E\+N\+TS)
+\item 
+float \mbox{\hyperlink{current__sensor_8h_a73a7a94eebce95d6198257fcc1f27a0c}{Current\+\_\+\+V\+Sensor\+\_\+\+Read\+\_\+\+R\+MS}} (uint8\+\_\+t channel, uint16\+\_\+t $\ast$current\+\_\+samples\+\_\+array, uint16\+\_\+t num\+\_\+samples, uint8\+\_\+t sensor\+\_\+max\+\_\+value)
+\item 
+float \mbox{\hyperlink{current__sensor_8h_a977335a5087d19344dfe20bc5884ce4c}{Current\+\_\+\+C\+Sensor\+\_\+\+Read\+\_\+\+R\+MS}} (uint8\+\_\+t channel, uint16\+\_\+t $\ast$current\+\_\+samples\+\_\+array, uint16\+\_\+t num\+\_\+samples, uint8\+\_\+t sensor\+\_\+max\+\_\+value)
+\item 
+void \mbox{\hyperlink{current__sensor_8h_ad62715971da564ee657f2149d3f5cd88}{Get\+\_\+\+Machines\+\_\+\+Status\+\_\+\+Update}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a27f066a0a34448b85c39ac8d0c5a127d}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_acbf1100a89d3eb6891b8268d444c03e2}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a642a7eec4e214f28cdbbb033b286881e}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_abe9c0cc707863ac4653ed10a04306c30}{Machine\+\_\+load\+\_\+currents}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a29207fa3772e4346d6fc95f5cd43ffb1}{Machine\+\_\+load\+\_\+percentages}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}{Machine\+\_\+status}}, uint32\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af06d36f7bd07ba0529591d9d30f25dff}{Machine\+\_\+status\+\_\+duration}}, \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$\mbox{\hyperlink{main_8c_a15b39a8db0ae226b5f8fc4f53fac16c2}{Machine\+\_\+status\+\_\+timestamp}})
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{current__sensor_8h_ac56e99b35c34d2843f9cef0ea1149edc}{M\+A\+C\+H\+I\+N\+E\+S\+\_\+\+S\+T\+A\+T\+E\+\_\+\+T\+I\+M\+E\+\_\+\+M\+A\+R\+K\+E\+RS}} \mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{current__sensor_8h_a7e476b569a3714860cc40d57acaba880}\label{current__sensor_8h_a7e476b569a3714860cc40d57acaba880}} 
+\index{current\_sensor.h@{current\_sensor.h}!\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+\index{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING@{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}{\_DISABLE\_OPENADC10\_CONFIGPORT\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+D\+I\+S\+A\+B\+L\+E\+\_\+\+O\+P\+E\+N\+A\+D\+C10\+\_\+\+C\+O\+N\+F\+I\+G\+P\+O\+R\+T\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{current__sensor_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}\label{current__sensor_8h_a0c5ad667ee8b3fc41e20f88fef4093d8}} 
+\index{current\_sensor.h@{current\_sensor.h}!\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}}
+\index{\_SUPPRESS\_PLIB\_WARNING@{\_SUPPRESS\_PLIB\_WARNING}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{\_SUPPRESS\_PLIB\_WARNING}{\_SUPPRESS\_PLIB\_WARNING}}
+{\footnotesize\ttfamily \#define \+\_\+\+S\+U\+P\+P\+R\+E\+S\+S\+\_\+\+P\+L\+I\+B\+\_\+\+W\+A\+R\+N\+I\+NG}
+
+\mbox{\Hypertarget{current__sensor_8h_a69eb219b76525a9cecef9a1449239fa6}\label{current__sensor_8h_a69eb219b76525a9cecef9a1449239fa6}} 
+\index{current\_sensor.h@{current\_sensor.h}!CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR@{CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}}
+\index{CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR@{CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}{CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}}
+{\footnotesize\ttfamily \#define C\+U\+R\+R\+E\+N\+T\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+C\+A\+L\+AR~2}
+
+An implementation specific scalar value for current output current sensors \mbox{\Hypertarget{current__sensor_8h_a6c428c55320415d38109e7329279b5fc}\label{current__sensor_8h_a6c428c55320415d38109e7329279b5fc}} 
+\index{current\_sensor.h@{current\_sensor.h}!NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS@{NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS}}
+\index{NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS@{NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS}{NUM\_OF\_ADC\_SAMPLES\_FOR\_IRMS}}
+{\footnotesize\ttfamily \#define N\+U\+M\+\_\+\+O\+F\+\_\+\+A\+D\+C\+\_\+\+S\+A\+M\+P\+L\+E\+S\+\_\+\+F\+O\+R\+\_\+\+I\+R\+MS~400}
+
+Number of samples from A\+DC channel to calculate the Root Mean Square Current \mbox{\Hypertarget{current__sensor_8h_aff8c781e960117d7b5f3d1f758d4f1e0}\label{current__sensor_8h_aff8c781e960117d7b5f3d1f758d4f1e0}} 
+\index{current\_sensor.h@{current\_sensor.h}!VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR@{VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}}
+\index{VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR@{VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}{VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}}
+{\footnotesize\ttfamily \#define V\+O\+L\+T\+A\+G\+E\+\_\+\+O\+U\+T\+P\+U\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+S\+C\+A\+L\+AR~1}
+
+An implementation specific scalar value for voltage output current sensors 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1}\label{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1}} 
+\index{current\_sensor.h@{current\_sensor.h}!Machine\_Status@{Machine\_Status}}
+\index{Machine\_Status@{Machine\_Status}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{Machine\_Status}{Machine\_Status}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1}{Machine\+\_\+\+Status}}}
+
+Enumeration for listing the possible machine states \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MACHINE\_OFF@{MACHINE\_OFF}!current\_sensor.h@{current\_sensor.h}}\index{current\_sensor.h@{current\_sensor.h}!MACHINE\_OFF@{MACHINE\_OFF}}}\mbox{\Hypertarget{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a830bbd60935892334f4e6b5a2a0468ae}\label{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a830bbd60935892334f4e6b5a2a0468ae}} 
+M\+A\+C\+H\+I\+N\+E\+\_\+\+O\+FF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MACHINE\_IDLE@{MACHINE\_IDLE}!current\_sensor.h@{current\_sensor.h}}\index{current\_sensor.h@{current\_sensor.h}!MACHINE\_IDLE@{MACHINE\_IDLE}}}\mbox{\Hypertarget{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a1ea1956941780e8d0f009df515a79ada}\label{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a1ea1956941780e8d0f009df515a79ada}} 
+M\+A\+C\+H\+I\+N\+E\+\_\+\+I\+D\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MACHINE\_ON@{MACHINE\_ON}!current\_sensor.h@{current\_sensor.h}}\index{current\_sensor.h@{current\_sensor.h}!MACHINE\_ON@{MACHINE\_ON}}}\mbox{\Hypertarget{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a47e8e374cafda6af1c95de6b59eca7df}\label{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a47e8e374cafda6af1c95de6b59eca7df}} 
+M\+A\+C\+H\+I\+N\+E\+\_\+\+ON&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{MACHINE\_RESET\_SENTINEL\_STATE@{MACHINE\_RESET\_SENTINEL\_STATE}!current\_sensor.h@{current\_sensor.h}}\index{current\_sensor.h@{current\_sensor.h}!MACHINE\_RESET\_SENTINEL\_STATE@{MACHINE\_RESET\_SENTINEL\_STATE}}}\mbox{\Hypertarget{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}\label{current__sensor_8h_aaf7da482440a7021c7cccd7706742ee1a2ac50fcf14931c40f34d4330346ae48b}} 
+M\+A\+C\+H\+I\+N\+E\+\_\+\+R\+E\+S\+E\+T\+\_\+\+S\+E\+N\+T\+I\+N\+E\+L\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{current__sensor_8h_a0bcafa2fd18522dac0fd333b933eb326}\label{current__sensor_8h_a0bcafa2fd18522dac0fd333b933eb326}} 
+\index{current\_sensor.h@{current\_sensor.h}!Calculate\_RMS\_Current\_On\_All\_Channels@{Calculate\_RMS\_Current\_On\_All\_Channels}}
+\index{Calculate\_RMS\_Current\_On\_All\_Channels@{Calculate\_RMS\_Current\_On\_All\_Channels}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{Calculate\_RMS\_Current\_On\_All\_Channels()}{Calculate\_RMS\_Current\_On\_All\_Channels()}}
+{\footnotesize\ttfamily void Calculate\+\_\+\+R\+M\+S\+\_\+\+Current\+\_\+\+On\+\_\+\+All\+\_\+\+Channels (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS,  }\item[{uint16\+\_\+t}]{num\+\_\+samples,  }\item[{unsigned char $\ast$}]{single\+\_\+byte\+\_\+\+R\+M\+S\+\_\+\+C\+U\+R\+R\+E\+N\+TS }\end{DoxyParamCaption})}
+
+Calculates R\+MS value of current on all A\+DC channels 
+\begin{DoxyParams}{Parameters}
+{\em S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS} & Array of sensor ratings to consider for calculating R\+MS values \\
+\hline
+{\em num\+\_\+samples} & Number of samples to read on each channel for calculating R\+MS values \\
+\hline
+{\em single\+\_\+byte\+\_\+\+R\+M\+S\+\_\+\+C\+U\+R\+R\+E\+N\+TS} & Byte array to hold single byte integer R\+MS currents for each channel \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{current__sensor_8h_a977335a5087d19344dfe20bc5884ce4c}\label{current__sensor_8h_a977335a5087d19344dfe20bc5884ce4c}} 
+\index{current\_sensor.h@{current\_sensor.h}!Current\_CSensor\_Read\_RMS@{Current\_CSensor\_Read\_RMS}}
+\index{Current\_CSensor\_Read\_RMS@{Current\_CSensor\_Read\_RMS}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{Current\_CSensor\_Read\_RMS()}{Current\_CSensor\_Read\_RMS()}}
+{\footnotesize\ttfamily float Current\+\_\+\+C\+Sensor\+\_\+\+Read\+\_\+\+R\+MS (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel,  }\item[{uint16\+\_\+t $\ast$}]{current\+\_\+samples\+\_\+array,  }\item[{uint16\+\_\+t}]{num\+\_\+samples,  }\item[{uint8\+\_\+t}]{sensor\+\_\+max\+\_\+value }\end{DoxyParamCaption})}
+
+Calculates R\+MS value of current for a current output current sensor. Expects the A\+DC channel has already been sampled 
+\begin{DoxyParams}{Parameters}
+{\em channel} & Which channel to sample \\
+\hline
+{\em current\+\_\+samples\+\_\+array} & Array holding the A\+DC samples \\
+\hline
+{\em num\+\_\+samples} & Number of samples in the A\+DC samples array \\
+\hline
+{\em sensor\+\_\+max\+\_\+value} & Rating of the current sensor for which R\+MS is to be computed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+MS value of current 
+\end{DoxyReturn}
+\mbox{\Hypertarget{current__sensor_8h_a73a7a94eebce95d6198257fcc1f27a0c}\label{current__sensor_8h_a73a7a94eebce95d6198257fcc1f27a0c}} 
+\index{current\_sensor.h@{current\_sensor.h}!Current\_VSensor\_Read\_RMS@{Current\_VSensor\_Read\_RMS}}
+\index{Current\_VSensor\_Read\_RMS@{Current\_VSensor\_Read\_RMS}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{Current\_VSensor\_Read\_RMS()}{Current\_VSensor\_Read\_RMS()}}
+{\footnotesize\ttfamily float Current\+\_\+\+V\+Sensor\+\_\+\+Read\+\_\+\+R\+MS (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel,  }\item[{uint16\+\_\+t $\ast$}]{current\+\_\+samples\+\_\+array,  }\item[{uint16\+\_\+t}]{num\+\_\+samples,  }\item[{uint8\+\_\+t}]{sensor\+\_\+max\+\_\+value }\end{DoxyParamCaption})}
+
+Calculates R\+MS value of current for a voltage output current sensor. Expects the A\+DC channel has already been sampled 
+\begin{DoxyParams}{Parameters}
+{\em channel} & Which channel to sample \\
+\hline
+{\em current\+\_\+samples\+\_\+array} & Array holding the A\+DC samples \\
+\hline
+{\em num\+\_\+samples} & Number of samples in the A\+DC samples array \\
+\hline
+{\em sensor\+\_\+max\+\_\+value} & Rating of the current sensor for which R\+MS is to be computed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+R\+MS value of current 
+\end{DoxyReturn}
+\mbox{\Hypertarget{current__sensor_8h_a6609d54aa4bd0353af13b8f81241d77e}\label{current__sensor_8h_a6609d54aa4bd0353af13b8f81241d77e}} 
+\index{current\_sensor.h@{current\_sensor.h}!CurrentSensor\_Read\_RMS@{CurrentSensor\_Read\_RMS}}
+\index{CurrentSensor\_Read\_RMS@{CurrentSensor\_Read\_RMS}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{CurrentSensor\_Read\_RMS()}{CurrentSensor\_Read\_RMS()}}
+{\footnotesize\ttfamily unsigned char Current\+Sensor\+\_\+\+Read\+\_\+\+R\+MS (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel,  }\item[{uint16\+\_\+t}]{num\+\_\+samples,  }\item[{uint8\+\_\+t}]{S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+NG,  }\item[{float}]{S\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+C\+A\+L\+AR }\end{DoxyParamCaption})}
+
+Calculates R\+MS value of current on one A\+DC channel 
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number to sample; expected 1-\/4 \\
+\hline
+{\em num\+\_\+samples} & Number of samples to read for calculating R\+MS value \\
+\hline
+{\em S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+NG} & Sensor rating to consider for calculating R\+MS value \\
+\hline
+{\em S\+E\+N\+S\+O\+R\+\_\+\+T\+Y\+P\+E\+\_\+\+S\+C\+A\+L\+AR} & Sensor type scalar varies with type of sensor, either voltage output or current output \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Single byte integer R\+MS value of current at this channel 
+\end{DoxyReturn}
+\mbox{\Hypertarget{current__sensor_8h_ad62715971da564ee657f2149d3f5cd88}\label{current__sensor_8h_ad62715971da564ee657f2149d3f5cd88}} 
+\index{current\_sensor.h@{current\_sensor.h}!Get\_Machines\_Status\_Update@{Get\_Machines\_Status\_Update}}
+\index{Get\_Machines\_Status\_Update@{Get\_Machines\_Status\_Update}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{Get\_Machines\_Status\_Update()}{Get\_Machines\_Status\_Update()}}
+{\footnotesize\ttfamily void Get\+\_\+\+Machines\+\_\+\+Status\+\_\+\+Update (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+load\+\_\+currents,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+load\+\_\+percentages,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+status,  }\item[{uint32\+\_\+t $\ast$}]{Machine\+\_\+status\+\_\+duration,  }\item[{\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$}]{Machine\+\_\+status\+\_\+timestamp }\end{DoxyParamCaption})}
+
+Calculates R\+MS values of current for each A\+DC channel along with the load percentages, machine status, timestamps and duration in state 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS} & Byte array for saving current sensor ratings \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS} & Byte array for saving machine thresholds for deciding I\+D\+LE state of machines \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS} & Byte array for saving machine maximum loads for calculating percentage loads \\
+\hline
+{\em Machine\+\_\+load\+\_\+currents} & A byte array of machine load currents calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+load\+\_\+percentages} & A byte array of machine load percentages calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+status} & A byte array of machine status (O\+N/\+O\+F\+F/\+I\+D\+LE) calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+status\+\_\+duration} & An array of machine status duration indicating for how long the machines have been in current state \\
+\hline
+{\em Machine\+\_\+status\+\_\+timestamp} & An array of machine status timestamp indicating since when the machines have been in current state \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{current__sensor_8h_af4efc6ea0c8849c1c2694f8cfc2e8e8e}\label{current__sensor_8h_af4efc6ea0c8849c1c2694f8cfc2e8e8e}} 
+\index{current\_sensor.h@{current\_sensor.h}!open\_ADC@{open\_ADC}}
+\index{open\_ADC@{open\_ADC}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{open\_ADC()}{open\_ADC()}}
+{\footnotesize\ttfamily void open\+\_\+\+A\+DC (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Setups up A\+DC peripheral \mbox{\Hypertarget{current__sensor_8h_afc79b6d5375fec0b876903e18733bb01}\label{current__sensor_8h_afc79b6d5375fec0b876903e18733bb01}} 
+\index{current\_sensor.h@{current\_sensor.h}!sample\_Current\_Sensor\_channel@{sample\_Current\_Sensor\_channel}}
+\index{sample\_Current\_Sensor\_channel@{sample\_Current\_Sensor\_channel}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{sample\_Current\_Sensor\_channel()}{sample\_Current\_Sensor\_channel()}}
+{\footnotesize\ttfamily uint16\+\_\+t sample\+\_\+\+Current\+\_\+\+Sensor\+\_\+channel (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{channel }\end{DoxyParamCaption})}
+
+Samples specific A\+DC channel 
+\begin{DoxyParams}{Parameters}
+{\em channel} & Channel number to sample; expected 1-\/4 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+16-\/bit A\+DC sample value 
+\end{DoxyReturn}
+\mbox{\Hypertarget{current__sensor_8h_abea9536f54a90a215eb5decee4909fea}\label{current__sensor_8h_abea9536f54a90a215eb5decee4909fea}} 
+\index{current\_sensor.h@{current\_sensor.h}!setup\_Current\_Sensors@{setup\_Current\_Sensors}}
+\index{setup\_Current\_Sensors@{setup\_Current\_Sensors}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{setup\_Current\_Sensors()}{setup\_Current\_Sensors()}}
+{\footnotesize\ttfamily void setup\+\_\+\+Current\+\_\+\+Sensors (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets up Current Sensors for S\+SN 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{current__sensor_8h_ac56e99b35c34d2843f9cef0ea1149edc}\label{current__sensor_8h_ac56e99b35c34d2843f9cef0ea1149edc}} 
+\index{current\_sensor.h@{current\_sensor.h}!MACHINES\_STATE\_TIME\_MARKERS@{MACHINES\_STATE\_TIME\_MARKERS}}
+\index{MACHINES\_STATE\_TIME\_MARKERS@{MACHINES\_STATE\_TIME\_MARKERS}!current\_sensor.h@{current\_sensor.h}}
+\doxysubsubsection{\texorpdfstring{MACHINES\_STATE\_TIME\_MARKERS}{MACHINES\_STATE\_TIME\_MARKERS}}
+{\footnotesize\ttfamily uint32\+\_\+t M\+A\+C\+H\+I\+N\+E\+S\+\_\+\+S\+T\+A\+T\+E\+\_\+\+T\+I\+M\+E\+\_\+\+M\+A\+R\+K\+E\+RS\mbox{[}\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{N\+O\+\_\+\+O\+F\+\_\+\+M\+A\+C\+H\+I\+N\+ES}}\mbox{]}}
+
+Implementation specific machine status time markers for keeping state timestamps 

@@ -1,0 +1,51 @@
+\hypertarget{_flash_memory_8c}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Flash\+Memory/\+Flash\+Memory.c File Reference}
+\label{_flash_memory_8c}\index{src/SSN\_API/FlashMemory/FlashMemory.c@{src/SSN\_API/FlashMemory/FlashMemory.c}}
+{\ttfamily \#include \char`\"{}Flash\+Memory.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_flash_memory_8c_afcc3141aa8d4a9dea3a9dfdc73f6906a}{Find\+M\+A\+C\+In\+Flash\+Memory}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a68480e541da8f08ac7150fa092a52e9f}{S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_ada2bb8f2f1d13265e26bbc6e80c92514}{S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+AC}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_flash_memory_8c_a74e6ed09055627285b59542745475550}{Find\+Sensor\+Configurations\+In\+Flash\+Memory}} (uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a83d18a73ed2d54c78b4f55dae30a01c6}{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a530afa2a0a6ffd12d43e1d74523a09a0}{S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a27f066a0a34448b85c39ac8d0c5a127d}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_acbf1100a89d3eb6891b8268d444c03e2}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a642a7eec4e214f28cdbbb033b286881e}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_flash_memory_8c_afcc3141aa8d4a9dea3a9dfdc73f6906a}\label{_flash_memory_8c_afcc3141aa8d4a9dea3a9dfdc73f6906a}} 
+\index{FlashMemory.c@{FlashMemory.c}!FindMACInFlashMemory@{FindMACInFlashMemory}}
+\index{FindMACInFlashMemory@{FindMACInFlashMemory}!FlashMemory.c@{FlashMemory.c}}
+\doxysubsubsection{\texorpdfstring{FindMACInFlashMemory()}{FindMACInFlashMemory()}}
+{\footnotesize\ttfamily uint8\+\_\+t Find\+M\+A\+C\+In\+Flash\+Memory (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+AC }\end{DoxyParamCaption})}
+
+Finds M\+AC address in E\+E\+P\+R\+OM 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+M\+A\+C\+\_\+\+A\+D\+D\+R\+E\+SS} & Six byte array containing the six bytes of S\+SN M\+AC address \\
+\hline
+{\em S\+S\+N\+\_\+\+D\+E\+F\+A\+U\+L\+T\+\_\+\+M\+AC} & Six byte array containing the six bytes of default S\+SN M\+AC address in case nothing in found in E\+E\+P\+R\+OM \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{N\+O\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+T\+A\+TE}} if M\+AC address is found in E\+E\+P\+R\+OM; else {\bfseries{N\+O\+\_\+\+M\+A\+C\+\_\+\+S\+T\+A\+TE}} 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_flash_memory_8c_a74e6ed09055627285b59542745475550}\label{_flash_memory_8c_a74e6ed09055627285b59542745475550}} 
+\index{FlashMemory.c@{FlashMemory.c}!FindSensorConfigurationsInFlashMemory@{FindSensorConfigurationsInFlashMemory}}
+\index{FindSensorConfigurationsInFlashMemory@{FindSensorConfigurationsInFlashMemory}!FlashMemory.c@{FlashMemory.c}}
+\doxysubsubsection{\texorpdfstring{FindSensorConfigurationsInFlashMemory()}{FindSensorConfigurationsInFlashMemory()}}
+{\footnotesize\ttfamily uint8\+\_\+t Find\+Sensor\+Configurations\+In\+Flash\+Memory (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS }\end{DoxyParamCaption})}
+
+Finds Current Sensor Configurations in E\+E\+P\+R\+OM 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+C\+O\+N\+F\+IG} & Byte array in which current sensor configurations will be written \\
+\hline
+{\em S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL} & Pointer to byte variable containing S\+SN status update interval (period of S\+SN status updates, e.\+g., 1 sec) \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS} & Byte array in which current sensor ratings will be written \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS} & Byte array in which machine threshold currents will be written to decide I\+D\+LE state for machines \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS} & Byte array in which machine maximum load currents will be written to calculate load percentages \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+{\bfseries{N\+O\+\_\+\+T\+I\+M\+E\+O\+F\+D\+A\+Y\+\_\+\+S\+T\+A\+TE}} if sensor configurations are found in E\+E\+P\+R\+OM; else {\bfseries{N\+O\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+S\+T\+A\+TE}} 
+\end{DoxyReturn}

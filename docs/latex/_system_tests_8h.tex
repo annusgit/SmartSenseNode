@@ -1,0 +1,49 @@
+\hypertarget{_system_tests_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+System\+Tests/\+System\+Tests.h File Reference}
+\label{_system_tests_8h}\index{src/SSN\_API/SystemTests/SystemTests.h@{src/SSN\_API/SystemTests/SystemTests.h}}
+{\ttfamily \#include \char`\"{}../global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+U\+A\+R\+T/uart.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+E\+E\+P\+R\+O\+M/eeprom.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+N\+E\+T\+W\+O\+R\+K/network.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+T\+E\+M\+P\+E\+R\+A\+T\+U\+R\+E\+\_\+\+S\+E\+N\+S\+O\+R/temperature\+\_\+sensor.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_system_tests_8h_accf819ce4f3ede0b23e2d878e8d3992b}{Run\+System\+Tests}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_system_tests_8h_ac262a61942baf151c8e23f787a07c782}{temperature\+\_\+bytes}} \mbox{[}2\mbox{]}
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_system_tests_8h_a5356128f764e4459ab5934fa79d8d87b}{relative\+\_\+humidity\+\_\+bytes}} \mbox{[}2\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_system_tests_8h_accf819ce4f3ede0b23e2d878e8d3992b}\label{_system_tests_8h_accf819ce4f3ede0b23e2d878e8d3992b}} 
+\index{SystemTests.h@{SystemTests.h}!RunSystemTests@{RunSystemTests}}
+\index{RunSystemTests@{RunSystemTests}!SystemTests.h@{SystemTests.h}}
+\doxysubsubsection{\texorpdfstring{RunSystemTests()}{RunSystemTests()}}
+{\footnotesize\ttfamily void Run\+System\+Tests (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Runs system diagnostic tests for checking if important peripherals are functioning properly; does not return if found faulty. Checks the following peripherals in that order.
+\begin{DoxyItemize}
+\item E\+E\+P\+R\+OM Read/\+Write
+\item Temperature and Humidity Sensor
+\item Ethernet Physical Connection 
+\end{DoxyItemize}
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_system_tests_8h_a5356128f764e4459ab5934fa79d8d87b}\label{_system_tests_8h_a5356128f764e4459ab5934fa79d8d87b}} 
+\index{SystemTests.h@{SystemTests.h}!relative\_humidity\_bytes@{relative\_humidity\_bytes}}
+\index{relative\_humidity\_bytes@{relative\_humidity\_bytes}!SystemTests.h@{SystemTests.h}}
+\doxysubsubsection{\texorpdfstring{relative\_humidity\_bytes}{relative\_humidity\_bytes}}
+{\footnotesize\ttfamily uint8\+\_\+t relative\+\_\+humidity\+\_\+bytes\mbox{[}2\mbox{]}}
+
+Relative humidity reading bytes for internal testing only \mbox{\Hypertarget{_system_tests_8h_ac262a61942baf151c8e23f787a07c782}\label{_system_tests_8h_ac262a61942baf151c8e23f787a07c782}} 
+\index{SystemTests.h@{SystemTests.h}!temperature\_bytes@{temperature\_bytes}}
+\index{temperature\_bytes@{temperature\_bytes}!SystemTests.h@{SystemTests.h}}
+\doxysubsubsection{\texorpdfstring{temperature\_bytes}{temperature\_bytes}}
+{\footnotesize\ttfamily uint8\+\_\+t temperature\+\_\+bytes\mbox{[}2\mbox{]}}
+
+Temperature reading bytes for internal testing only 

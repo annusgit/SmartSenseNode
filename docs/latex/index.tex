@@ -1,0 +1,157 @@
+\label{_Contents}%
+ \hypertarget{index_contents_sec}{}\doxysection{Table of Contents}\label{index_contents_sec}
+\href{\#Introduction}{\texttt{ Introduction}}~\newline
+ \href{\#API}{\texttt{ A\+PI}}~\newline
+ \href{\#CodingStandard}{\texttt{ Coding Standard}}~\newline
+ \href{\#VersionLog}{\texttt{ Version Log}}~\newline
+ \href{\#Acronyms}{\texttt{ Acronyms}}~\newline
+ \href{\#Documentation}{\texttt{ Documentation}}~\newline
+ \href{\#Requirements}{\texttt{ Requirements}}~\newline
+ \href{\#Tools}{\texttt{ Tools}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Introduction}%
+ \hypertarget{index_intro_sec}{}\doxysection{Introduction}\label{index_intro_sec}
+This document summarizes the core functions, variables and A\+P\+Is used for the development of S\+SN firmware.
+
+
+
+Based on the design problem for an Io\+T-\/based Smart Sense Node Network, our design is built around the following hardware/components.
+\begin{DoxyItemize}
+\item P\+I\+C32\+M\+X170\+F256B Microcontroller with the following on-\/chip resources
+\begin{DoxyEnumerate}
+\item 256KB Program Memory (Flash) and 64KB Data Memory (S\+R\+AM)
+\item Multiple A\+DC channels with upto a Million Samples Per Second and 10-\/bit resolution
+\item Support for I2C and S\+PI peripherals
+\end{DoxyEnumerate}
+\item 24L\+C08 1KB E\+E\+P\+R\+OM with I2C interface
+\item W5500 Ethernet Offload Chip with S\+PI interface and integrated M\+AC and P\+HY
+\item A\+M2320 Temperature and humidity sensor with I2C interface ~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+\end{DoxyItemize}
+
+\DoxyHorRuler{0}
+
+
+\label{_API}%
+ \hypertarget{index_api_sec}{}\doxysection{A\+PI}\label{index_api_sec}
+The S\+SN A\+PI is a High-\/level A\+PI that deals with devices such as Flash Memory and Ethernet at an abstract level hiding the peripheral level details of individual devices such as the protocols being used to communicate and single byte transactions between the M\+CU and peripherals. This A\+PI is itself dependant on a Driver A\+PI for each peripheral/device in use.
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Coding Standard}%
+ \hypertarget{index_CodingStandard_sec}{}\doxysection{Coding\+Standard}\label{index_CodingStandard_sec}
+Most of the A\+PI functions are designed on the basis of dependancy injection. For example, consider the following function definition 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{void} \mbox{\hyperlink{current__sensor_8c_a0bcafa2fd18522dac0fd333b933eb326}{Calculate\_RMS\_Current\_On\_All\_Channels}}(uint8\_t* SENSOR\_RATINGS, uint16\_t num\_samples, \textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char}* single\_byte\_RMS\_CURRENTS) \{}
+\DoxyCodeLine{     uint32\_t count = 0, ADC\_raw\_samples[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\}, max\_ADC\_raw\_sample[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\}, ADC\_raw\_non\_zero\_sum[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\}, ADC\_raw\_non\_zero\_count[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\};}
+\DoxyCodeLine{     uint32\_t MAX\_SAMPLE\_BASED\_CURRENT\_RMS\_value[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\}, AVERAGE\_SAMPLE\_BASED\_CURRENT\_RMS\_value[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\}, CURRENT\_RMS\_VALUE[\mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}] = \{0\};}
+\DoxyCodeLine{     \textcolor{keywordtype}{float} SENSOR\_TYPE\_SCALAR;}
+\DoxyCodeLine{     uint8\_t \mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}};}
+\DoxyCodeLine{     }
+\DoxyCodeLine{     \textcolor{keywordflow}{while}(count < num\_samples) \{}
+\DoxyCodeLine{         }
+\DoxyCodeLine{         \textcolor{keywordflow}{for} (\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}} = 0; \mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}} < \mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}; \mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}++) \{}
+\DoxyCodeLine{             \textcolor{comment}{// Sample one value from ith channel}}
+\DoxyCodeLine{             ADC\_raw\_samples[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] = \mbox{\hyperlink{current__sensor_8c_afc79b6d5375fec0b876903e18733bb01}{sample\_Current\_Sensor\_channel}}(\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}});}
+\DoxyCodeLine{             \textcolor{comment}{// record the maximum value in this sample space for MAX Sample based RMS calculation for ith channel}}
+\DoxyCodeLine{             \textcolor{keywordflow}{if} (ADC\_raw\_samples[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] > max\_ADC\_raw\_sample[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}])}
+\DoxyCodeLine{                 max\_ADC\_raw\_sample[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] = ADC\_raw\_samples[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}];}
+\DoxyCodeLine{             \textcolor{comment}{// record every non-\/zero value in this sample space for AVERAGE Sample based RMS calculation for ith channel}}
+\DoxyCodeLine{             \textcolor{keywordflow}{if} (ADC\_raw\_samples[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] > 0) \{}
+\DoxyCodeLine{                 ADC\_raw\_non\_zero\_sum[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] += ADC\_raw\_samples[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}];}
+\DoxyCodeLine{                 ADC\_raw\_non\_zero\_count[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}]++;}
+\DoxyCodeLine{             \}}
+\DoxyCodeLine{         \}}
+\DoxyCodeLine{         count++;}
+\DoxyCodeLine{         \textcolor{comment}{// pick 200 samples per wave cycle of AC Sine Wave @ 50Hz => 100us sampling period}}
+\DoxyCodeLine{         \mbox{\hyperlink{global_8h_ab7c1e02467002c06a34bcfebe86df75e}{sleep\_for\_microseconds}}(100); }
+\DoxyCodeLine{     \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{     \textcolor{comment}{// Calculate the RMS Current Values using two methods and average them}}
+\DoxyCodeLine{     \textcolor{keywordflow}{for} (\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}} = 0; \mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}} < \mbox{\hyperlink{global_8h_afe25976432eb99948fba4d9265ee2e3d}{NO\_OF\_MACHINES}}; \mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}++) \{}
+\DoxyCodeLine{         SENSOR\_TYPE\_SCALAR = \mbox{\hyperlink{current__sensor_8h_aff8c781e960117d7b5f3d1f758d4f1e0}{VOLTAGE\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}};}
+\DoxyCodeLine{         \textcolor{keywordflow}{if} (SENSOR\_RATINGS[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] == 100)}
+\DoxyCodeLine{             SENSOR\_TYPE\_SCALAR = \mbox{\hyperlink{current__sensor_8h_a69eb219b76525a9cecef9a1449239fa6}{CURRENT\_OUTPUT\_CURRENT\_SENSOR\_SCALAR}};}
+\DoxyCodeLine{         MAX\_SAMPLE\_BASED\_CURRENT\_RMS\_value[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] = (SENSOR\_RATINGS[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] / 724.07) * SENSOR\_TYPE\_SCALAR * (0.707 * (float)max\_ADC\_raw\_sample[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}]);}
+\DoxyCodeLine{         AVERAGE\_SAMPLE\_BASED\_CURRENT\_RMS\_value[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] = (SENSOR\_RATINGS[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] / 718.89) * SENSOR\_TYPE\_SCALAR * (1.1 * (float)ADC\_raw\_non\_zero\_sum[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}]/ADC\_raw\_non\_zero\_count[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}]);}
+\DoxyCodeLine{         CURRENT\_RMS\_VALUE[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] = (float)(MAX\_SAMPLE\_BASED\_CURRENT\_RMS\_value[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] + AVERAGE\_SAMPLE\_BASED\_CURRENT\_RMS\_value[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}]) / 2;}
+\DoxyCodeLine{         single\_byte\_RMS\_CURRENTS[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}] = (\textcolor{keywordtype}{unsigned} char)CURRENT\_RMS\_VALUE[\mbox{\hyperlink{main_8c_af27e3188294c2df66d975b74a09c001d}{i}}];}
+\DoxyCodeLine{     \}}
+\DoxyCodeLine{ \}}
+\end{DoxyCode}
+
+
+We use this function to calculate R\+MS value of currents for all current transformers by sampling all A\+DC channels but this function expects to receive the current ratings of these sensors from where ever this routine is invoked. It also requires the number of samples to take before making this calculation. Therefore the dependancies for this function are passed as parameters of this function call. Most of the functions in the S\+SN A\+PI are written in a similar way.
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Version Log}%
+ \hypertarget{index_VersionLog_sec}{}\doxysection{Version\+Log}\label{index_VersionLog_sec}
+The current state of S\+SN firmware is at {\bfseries{Version 1.\+0}}
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Acronyms}%
+ \hypertarget{index_Acronyms_sec}{}\doxysection{Acronyms}\label{index_Acronyms_sec}
+{\bfseries{S\+SN -\/$>$ Smart Sense Node}}
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Documentation}%
+ \hypertarget{index_Documentation_sec}{}\doxysection{Documentation}\label{index_Documentation_sec}
+The documentation is mostly presented in the Files tab. For viewing individual code files with documentation for functions and variables, go to {\bfseries{Files-\/$>$File List}} and click on the file symbols next to file names. Clicking on the names directly will show the source code inside those files.
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Requirements}%
+ \hypertarget{index_Requirements_sec}{}\doxysection{Requirements}\label{index_Requirements_sec}
+This firmware code relies on two dependencies
+\begin{DoxyItemize}
+\item Legacy Peripheral library for P\+I\+C32\+MX series M\+C\+Us available \href{https://www.microchip.com/SWLibraryWeb/product.aspx?product=PIC32\%20Peripheral\%20Library}{\texttt{ here}}
+\item Wiznet W5500 io\+Library driver available \href{http://wizwiki.net/wiki/doku.php/products:w5500:driver}{\texttt{ here}}
+\end{DoxyItemize}
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+
+
+\DoxyHorRuler{0}
+
+
+\label{_Tools}%
+ \hypertarget{index_Tools_sec}{}\doxysection{Tools}\label{index_Tools_sec}
+The entire firmware for this code has been written in {\bfseries{C}} using {\bfseries{M\+P\+L\+A\+BX I\+DE}} and {\bfseries{X\+C32 compiler v1.\+40}} available \href{https://www.microchip.com/development-tools/pic-and-dspic-downloads-archive}{\texttt{ here}}. The Peripheral library must be installed inside the X\+C32 compiler folder for correct inclusion in the source code.
+
+~\newline
+\href{\#Contents}{\texttt{ Table of Contents}}~\newline
+ 

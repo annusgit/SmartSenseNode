@@ -1,0 +1,217 @@
+\hypertarget{_communication_8h}{}\doxysection{src/\+S\+S\+N\+\_\+\+A\+P\+I/\+Communication/\+Communication.h File Reference}
+\label{_communication_8h}\index{src/SSN\_API/Communication/Communication.h@{src/SSN\_API/Communication/Communication.h}}
+{\ttfamily \#include \char`\"{}../global.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+U\+A\+R\+T/uart.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+E\+E\+P\+R\+O\+M/eeprom.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+N\+E\+T\+W\+O\+R\+K/network.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R/current\+\_\+sensor.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}../\+Drivers/\+Messages/messages.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_communication_8h_aab88bdb9154dfc73245a795989ec9f64}{Send\+Message}} (uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}}, uint8\+\_\+t $\ast$message\+\_\+to\+\_\+send, uint8\+\_\+t ssn\+\_\+message\+\_\+to\+\_\+send\+\_\+size)
+\item 
+void \mbox{\hyperlink{_communication_8h_a985663aea62fc20caf0228955889553f}{Send\+\_\+\+G\+E\+T\+M\+A\+C\+\_\+\+Message}} (uint8\+\_\+t $\ast$Node\+ID, uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}})
+\item 
+void \mbox{\hyperlink{_communication_8h_a90496dab8769630634263ef52715fb99}{Send\+\_\+\+G\+E\+T\+C\+O\+N\+F\+I\+G\+\_\+\+Message}} (uint8\+\_\+t $\ast$Node\+ID, uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}})
+\item 
+void \mbox{\hyperlink{_communication_8h_a938d65d10f49ab9e1071e56806677461}{Send\+\_\+\+A\+C\+K\+C\+O\+N\+F\+I\+G\+\_\+\+Message}} (uint8\+\_\+t $\ast$Node\+ID, uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a83d18a73ed2d54c78b4f55dae30a01c6}{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG}})
+\item 
+void \mbox{\hyperlink{_communication_8h_aaf9db99c9c57c1bd6eb0b62161d38ba7}{Send\+\_\+\+G\+E\+T\+Time\+Of\+Day\+\_\+\+Message}} (uint8\+\_\+t $\ast$Node\+ID, uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}})
+\item 
+void \mbox{\hyperlink{_communication_8h_a0eab2924b4d5c91c6cb6e93d19ac4876}{Send\+\_\+\+S\+T\+A\+T\+U\+S\+U\+P\+D\+A\+T\+E\+\_\+\+Message}} (uint8\+\_\+t $\ast$Node\+ID, uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_ac262a61942baf151c8e23f787a07c782}{temperature\+\_\+bytes}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a5356128f764e4459ab5934fa79d8d87b}{relative\+\_\+humidity\+\_\+bytes}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_abe9c0cc707863ac4653ed10a04306c30}{Machine\+\_\+load\+\_\+currents}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a29207fa3772e4346d6fc95f5cd43ffb1}{Machine\+\_\+load\+\_\+percentages}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}{Machine\+\_\+status}}, uint32\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af06d36f7bd07ba0529591d9d30f25dff}{Machine\+\_\+status\+\_\+duration}}, \mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$\mbox{\hyperlink{main_8c_a15b39a8db0ae226b5f8fc4f53fac16c2}{Machine\+\_\+status\+\_\+timestamp}}, uint32\+\_\+t \mbox{\hyperlink{pseudo__rtcc_8h_a38ab522cb78db6924090117c6c4b0106}{ssn\+\_\+uptime\+\_\+in\+\_\+seconds}}, uint8\+\_\+t \mbox{\hyperlink{main_8c_af483ca83bd3fb02e958e2400a0a43625}{abnormal\+\_\+activity}})
+\item 
+void \mbox{\hyperlink{_communication_8h_aca59486ddccb79d2017aaec90035577c}{Receive\+\_\+\+M\+AC}} (uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_communication_8h_a2a2c46bf1d33364b2496513d3d593f74}{Receive\+\_\+\+C\+O\+N\+F\+IG}} (uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a83d18a73ed2d54c78b4f55dae30a01c6}{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a530afa2a0a6ffd12d43e1d74523a09a0}{S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a27f066a0a34448b85c39ac8d0c5a127d}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_acbf1100a89d3eb6891b8268d444c03e2}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a642a7eec4e214f28cdbbb033b286881e}{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS}}, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_a7b37f58d5c84e0d6bfbc082e0f4acf57}{Machine\+\_\+status}})
+\item 
+uint8\+\_\+t \mbox{\hyperlink{_communication_8h_a1f50531a717ae15b6e154a8bb482c5e3}{Receive\+\_\+\+Time\+Of\+Day}} (uint8\+\_\+t S\+S\+N\+\_\+\+Socket, uint8\+\_\+t $\ast$\mbox{\hyperlink{main_8c_af0a41c40c1889685df2f0902fd3b1038}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP}}, uint16\+\_\+t \mbox{\hyperlink{main_8c_af399cba06e4015d7ba32f5cde092fc30}{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_communication_8h_a2a2c46bf1d33364b2496513d3d593f74}\label{_communication_8h_a2a2c46bf1d33364b2496513d3d593f74}} 
+\index{Communication.h@{Communication.h}!Receive\_CONFIG@{Receive\_CONFIG}}
+\index{Receive\_CONFIG@{Receive\_CONFIG}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Receive\_CONFIG()}{Receive\_CONFIG()}}
+{\footnotesize\ttfamily uint8\+\_\+t Receive\+\_\+\+C\+O\+N\+F\+IG (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+status }\end{DoxyParamCaption})}
+
+Receives a response for Sensor Configurations requested from S\+SN Server 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+O\+N\+F\+IG} & Byte array to save received configurations \\
+\hline
+{\em S\+S\+N\+\_\+\+R\+E\+P\+O\+R\+T\+\_\+\+I\+N\+T\+E\+R\+V\+AL} & Pointer to a single byte that saves the report interval for S\+SN status update message \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+R\+A\+T\+I\+N\+GS} & Byte array for saving current sensor ratings \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+T\+H\+R\+E\+S\+H\+O\+L\+DS} & Byte array for saving machine thresholds for deciding I\+D\+LE state of machines \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+E\+N\+S\+O\+R\+\_\+\+M\+A\+X\+L\+O\+A\+DS} & Byte array for saving machine maximum loads for calculating percentage loads \\
+\hline
+{\em Machine\+\_\+status} & Byte array of current machine status (O\+N/\+O\+F\+F/\+I\+D\+LE) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if received, else 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_communication_8h_aca59486ddccb79d2017aaec90035577c}\label{_communication_8h_aca59486ddccb79d2017aaec90035577c}} 
+\index{Communication.h@{Communication.h}!Receive\_MAC@{Receive\_MAC}}
+\index{Receive\_MAC@{Receive\_MAC}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Receive\_MAC()}{Receive\_MAC()}}
+{\footnotesize\ttfamily void Receive\+\_\+\+M\+AC (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT }\end{DoxyParamCaption})}
+
+Receives a response for M\+AC requested from S\+SN Server 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_communication_8h_a1f50531a717ae15b6e154a8bb482c5e3}\label{_communication_8h_a1f50531a717ae15b6e154a8bb482c5e3}} 
+\index{Communication.h@{Communication.h}!Receive\_TimeOfDay@{Receive\_TimeOfDay}}
+\index{Receive\_TimeOfDay@{Receive\_TimeOfDay}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Receive\_TimeOfDay()}{Receive\_TimeOfDay()}}
+{\footnotesize\ttfamily uint8\+\_\+t Receive\+\_\+\+Time\+Of\+Day (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT }\end{DoxyParamCaption})}
+
+Receives a response for Time of Day requested from S\+SN Server 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if received, else 0 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_communication_8h_a938d65d10f49ab9e1071e56806677461}\label{_communication_8h_a938d65d10f49ab9e1071e56806677461}} 
+\index{Communication.h@{Communication.h}!Send\_ACKCONFIG\_Message@{Send\_ACKCONFIG\_Message}}
+\index{Send\_ACKCONFIG\_Message@{Send\_ACKCONFIG\_Message}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Send\_ACKCONFIG\_Message()}{Send\_ACKCONFIG\_Message()}}
+{\footnotesize\ttfamily void Send\+\_\+\+A\+C\+K\+C\+O\+N\+F\+I\+G\+\_\+\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Node\+ID,  }\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+C\+O\+N\+F\+IG }\end{DoxyParamCaption})}
+
+Sends an Acknowledge for Sensor Configuration message received from S\+SN Server 
+\begin{DoxyParams}{Parameters}
+{\em Node\+ID} & Two byte identity of S\+SN which are the last two bytes of the M\+AC address \\
+\hline
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+C\+O\+N\+F\+IG} & Configurations array previously received from S\+SN Server \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_communication_8h_a90496dab8769630634263ef52715fb99}\label{_communication_8h_a90496dab8769630634263ef52715fb99}} 
+\index{Communication.h@{Communication.h}!Send\_GETCONFIG\_Message@{Send\_GETCONFIG\_Message}}
+\index{Send\_GETCONFIG\_Message@{Send\_GETCONFIG\_Message}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Send\_GETCONFIG\_Message()}{Send\_GETCONFIG\_Message()}}
+{\footnotesize\ttfamily void Send\+\_\+\+G\+E\+T\+C\+O\+N\+F\+I\+G\+\_\+\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Node\+ID,  }\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT }\end{DoxyParamCaption})}
+
+Sends a Sensor Configuration Request message to receive a configuration for S\+SN to compute statistics of the connected machines 
+\begin{DoxyParams}{Parameters}
+{\em Node\+ID} & Two byte identity of S\+SN which are the last two bytes of the M\+AC address \\
+\hline
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_communication_8h_a985663aea62fc20caf0228955889553f}\label{_communication_8h_a985663aea62fc20caf0228955889553f}} 
+\index{Communication.h@{Communication.h}!Send\_GETMAC\_Message@{Send\_GETMAC\_Message}}
+\index{Send\_GETMAC\_Message@{Send\_GETMAC\_Message}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Send\_GETMAC\_Message()}{Send\_GETMAC\_Message()}}
+{\footnotesize\ttfamily void Send\+\_\+\+G\+E\+T\+M\+A\+C\+\_\+\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Node\+ID,  }\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT }\end{DoxyParamCaption})}
+
+Sends a M\+AC Request message to receive a custom M\+AC address for host S\+SN 
+\begin{DoxyParams}{Parameters}
+{\em Node\+ID} & Two byte identity of S\+SN which are the last two bytes of the M\+AC address \\
+\hline
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_communication_8h_aaf9db99c9c57c1bd6eb0b62161d38ba7}\label{_communication_8h_aaf9db99c9c57c1bd6eb0b62161d38ba7}} 
+\index{Communication.h@{Communication.h}!Send\_GETTimeOfDay\_Message@{Send\_GETTimeOfDay\_Message}}
+\index{Send\_GETTimeOfDay\_Message@{Send\_GETTimeOfDay\_Message}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Send\_GETTimeOfDay\_Message()}{Send\_GETTimeOfDay\_Message()}}
+{\footnotesize\ttfamily void Send\+\_\+\+G\+E\+T\+Time\+Of\+Day\+\_\+\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Node\+ID,  }\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT }\end{DoxyParamCaption})}
+
+Sends a Time of Day Request message to S\+SN Server to receive the current time of day 
+\begin{DoxyParams}{Parameters}
+{\em Node\+ID} & Two byte identity of S\+SN which are the last two bytes of the M\+AC address \\
+\hline
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_communication_8h_a0eab2924b4d5c91c6cb6e93d19ac4876}\label{_communication_8h_a0eab2924b4d5c91c6cb6e93d19ac4876}} 
+\index{Communication.h@{Communication.h}!Send\_STATUSUPDATE\_Message@{Send\_STATUSUPDATE\_Message}}
+\index{Send\_STATUSUPDATE\_Message@{Send\_STATUSUPDATE\_Message}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{Send\_STATUSUPDATE\_Message()}{Send\_STATUSUPDATE\_Message()}}
+{\footnotesize\ttfamily void Send\+\_\+\+S\+T\+A\+T\+U\+S\+U\+P\+D\+A\+T\+E\+\_\+\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t $\ast$}]{Node\+ID,  }\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT,  }\item[{uint8\+\_\+t $\ast$}]{temperature\+\_\+bytes,  }\item[{uint8\+\_\+t $\ast$}]{relative\+\_\+humidity\+\_\+bytes,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+load\+\_\+currents,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+load\+\_\+percentages,  }\item[{uint8\+\_\+t $\ast$}]{Machine\+\_\+status,  }\item[{uint32\+\_\+t $\ast$}]{Machine\+\_\+status\+\_\+duration,  }\item[{\mbox{\hyperlink{structpseudo__clock}{pseudo\+\_\+clock}} $\ast$}]{Machine\+\_\+status\+\_\+timestamp,  }\item[{uint32\+\_\+t}]{ssn\+\_\+uptime\+\_\+in\+\_\+seconds,  }\item[{uint8\+\_\+t}]{abnormal\+\_\+activity }\end{DoxyParamCaption})}
+
+Sends a Status Update message to S\+SN Server containing the machine status and ambient conditions 
+\begin{DoxyParams}{Parameters}
+{\em Node\+ID} & Two byte identity of S\+SN which are the last two bytes of the M\+AC address \\
+\hline
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em temperature\+\_\+bytes} & Two byte temperature reading containing the high and low byte of temperature in that order \\
+\hline
+{\em relative\+\_\+humidity\+\_\+bytes} & Two byte relative humidity reading containing the high and low byte of humidity in that order \\
+\hline
+{\em Machine\+\_\+load\+\_\+currents} & A byte array of machine load currents calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+load\+\_\+percentages} & A byte array of machine load percentages calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+status} & A byte array of machine status (O\+N/\+O\+F\+F/\+I\+D\+LE) calculated by S\+SN \\
+\hline
+{\em Machine\+\_\+status\+\_\+duration} & An array of machine status duration indicating for how long the machines have been in current state \\
+\hline
+{\em Machine\+\_\+status\+\_\+timestamp} & An array of machine status timestamp indicating since when the machines have been in current state \\
+\hline
+{\em ssn\+\_\+uptime\+\_\+in\+\_\+seconds} & A four byte integer containing the number of seconds indicating for how long the S\+SN has been awake \\
+\hline
+{\em abnormal\+\_\+activity} & A single byte indicating N\+O\+R\+M\+AL or A\+B\+N\+O\+R\+M\+AL ambient condition based on temperature and humidity readings \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_communication_8h_aab88bdb9154dfc73245a795989ec9f64}\label{_communication_8h_aab88bdb9154dfc73245a795989ec9f64}} 
+\index{Communication.h@{Communication.h}!SendMessage@{SendMessage}}
+\index{SendMessage@{SendMessage}!Communication.h@{Communication.h}}
+\doxysubsubsection{\texorpdfstring{SendMessage()}{SendMessage()}}
+{\footnotesize\ttfamily void Send\+Message (\begin{DoxyParamCaption}\item[{uint8\+\_\+t}]{S\+S\+N\+\_\+\+Socket,  }\item[{uint8\+\_\+t $\ast$}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP,  }\item[{uint16\+\_\+t}]{S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT,  }\item[{uint8\+\_\+t $\ast$}]{message\+\_\+to\+\_\+send,  }\item[{uint8\+\_\+t}]{ssn\+\_\+message\+\_\+to\+\_\+send\+\_\+size }\end{DoxyParamCaption})}
+
+Sends a message to over U\+DP 
+\begin{DoxyParams}{Parameters}
+{\em S\+S\+N\+\_\+\+Socket} & U\+DP socket used by S\+SN \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+IP} & IP of the destination Server \\
+\hline
+{\em S\+S\+N\+\_\+\+S\+E\+R\+V\+E\+R\+\_\+\+P\+O\+RT} & Port of the destination Server \\
+\hline
+{\em message\+\_\+to\+\_\+send} & The byte or char array of message \\
+\hline
+{\em ssn\+\_\+message\+\_\+to\+\_\+send\+\_\+size} & Message size in bytes \\
+\hline
+\end{DoxyParams}
