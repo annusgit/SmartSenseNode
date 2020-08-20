@@ -2,7 +2,7 @@
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 
 #pragma config FWDTEN   = OFF           // Turn off watchdog timer
-#pragma config WDTPS    = PS8192        // 4 second Watchdog Timer with 80MHz clock
+//#pragma config WDTPS    = PS8192        // 4 second Watchdog Timer with 80MHz clock
 #pragma config FSOSCEN  = OFF           // Secondary Oscillator Enable (Disabled)
 #pragma config FNOSC    = FRCPLL        // Select 8MHz internal Fast RC (FRC) oscillator with PLL
 #pragma config FPLLIDIV = DIV_2         // Divide PLL input (FRC) -> 4MHz
@@ -82,45 +82,50 @@ uint8_t i;
  *  interrupt of up to 1 second with the current clock of the SSN. We only start this interrupt service once we have Ethernet configured 
  *  and all self-tests are successful. The message to be sent is constructed every half a second in the main function and only reported 
  *  to the server after every "SSN_REPORT_INTERVAL" seconds. */
-//void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
-//    // clear timer 1 interrupt flag, IFS0<4>
-//    IFS0CLR = 0x0010;       
-//    // Indicate the status of SSN from the SSN LED after every half second
-//    SSN_LED_INDICATE(SSN_CURRENT_STATE);
-//    // check of we have reached one second interval (because two half-seconds make one second)
-//    half_second_counter++;
-//    if (half_second_counter >= interrupts_per_second) {
-//        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        /* Normal routines that should execute in any case, whether we are messaging or not */
-//        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        // reset half second counter
-//        half_second_counter = 0;
-//        // add a second to report counter
-//        report_counter++;
-//        // increment global uptime in seconds
-//        ssn_uptime_in_seconds++;
-//        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//        // Is it time to report and interrupt is enabled?
-//        if (report_counter >= SSN_REPORT_INTERVAL) {
-//            // Reset the reporting counter
-//            report_counter = 0;
-//            message_count++;
-//            // open and close socket every time we must send a new message
-//            SSN_UDP_SOCKET = socket(SSN_UDP_SOCKET_NUM, Sn_MR_UDP, SSN_DEFAULT_PORT, 0x00);
-//            if(SSN_UDP_SOCKET==SSN_UDP_SOCKET_NUM) {
-//                all_good = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-//                        Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_clock, abnormal_activity);
-//                if(!all_good) {
-//                    printf("-> Socket Error.\n");
-//                }
-//                close(SSN_UDP_SOCKET);
-//            } else {
-//                printf("-> Socket Initialization Failed.\n");
-//            }
-//        }
-//    }
-//}
+void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
+    // clear timer 1 interrupt flag, IFS0<4>
+    IFS0CLR = 0x0010;       
+    // Indicate the status of SSN from the SSN LED after every half second
+    SSN_LED_INDICATE(SSN_CURRENT_STATE);
+    // check of we have reached one second interval (because two half-seconds make one second)
+    half_second_counter++;
+    if (half_second_counter >= interrupts_per_second) {
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /* Normal routines that should execute in any case, whether we are messaging or not */
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // reset half second counter
+        half_second_counter = 0;
+        // add a second to report counter
+        report_counter++;
+        // increment global uptime in seconds
+        ssn_uptime_in_seconds++;
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // Is it time to report and interrupt is enabled?
+        if (report_counter >= SSN_REPORT_INTERVAL) {
+            // Reset the reporting counter
+            report_counter = 0;
+            message_count++;
+            // open and close socket every time we must send a new message
+            SSN_UDP_SOCKET = socket(SSN_UDP_SOCKET_NUM, Sn_MR_UDP, SSN_DEFAULT_PORT, 0x00);
+            if(SSN_UDP_SOCKET==SSN_UDP_SOCKET_NUM) {
+                all_good = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
+                        Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_clock, abnormal_activity);
+                if(!all_good) {
+                    printf("-> Socket Error.\n");
+                    printf("Socket Corrupted. Reinitializing..\n");
+                    //setup_Ethernet(5000000);
+                    //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
+                    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+                    printf("Reinitialization Successful.\n");
+                }
+                close(SSN_UDP_SOCKET);
+            } else {
+                printf("-> Socket Initialization Failed.\n");
+            }
+        }
+    }
+}
 
 /** 
  * The main loop of SSN operation. It calls the following functions in order:
@@ -264,7 +269,7 @@ int main() {
         sleep_for_microseconds(100000);
     }
     // Start the global clock that will trigger a response each half of a second through our half-second interrupt defined above Main function
-    // setup_Global_Clock_And_SSN_Half_Second_Heartbeat(PERIPH_CLK);
+     setup_Global_Clock_And_SSN_Half_Second_Heartbeat(PERIPH_CLK);
     //InterruptEnabled = true;
     while(SSN_IS_ALIVE) {
         // sample sensors and do calculations
@@ -276,6 +281,14 @@ int main() {
         else {
             SSN_CURRENT_STATE = ABNORMAL_ACTIVITY_STATE;
         }
+        
+        /****************************************************************************************************************************************************************************************
+        /****************************************************************************************************************************************************************************************
+        /****************************************************************************************************************************************************************************************
+        /****************************************************************************************************************************************************************************************
+         * Network critical section begins here. Disable all interrupts for now
+         */
+        DisableGlobalInterrupt();
         // We can receive configurations and time of day on the fly
         Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, 
                 Machine_status);
@@ -285,43 +298,16 @@ int main() {
             printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
             No_Ethernet_LED_INDICATE();
         }
+        EnableGlobalInterrupt();
+        /*
+         * Network critical section ends here. Enable all interrupts for now
+         ***************************************************************************************************************************************************************************************/
+         /**************************************************************************************************************************************************************************************/
+         /**************************************************************************************************************************************************************************************/
+         /**************************************************************************************************************************************************************************************/
+
         Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, Machine_load_percentages, Machine_status, 
                 Machine_status_duration, Machine_status_timestamp);
-        // Indicate the status of SSN from the SSN LED after every half second
-        SSN_LED_INDICATE(SSN_CURRENT_STATE);
-        // check of we have reached one second interval (because two half-seconds make one second)
-        delays_per_second_counter++;
-        if (delays_per_second_counter >= 9) { // 10 because the loop delay is 100ms
-            // 1 second passed?
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            /* Normal routines that should execute in any case, whether we are messaging or not */
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // reset half second counter
-            delays_per_second_counter = 0;
-            // add a second to report counter
-            report_counter++;
-            // increment global uptime in seconds
-            ssn_uptime_in_seconds++;
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-            // Is it time to report and interrupt is enabled?
-            if (report_counter >= SSN_REPORT_INTERVAL) {
-                // Reset the reporting counter
-                report_counter = 0;
-                message_count++;
-                // open and close socket every time we must send a new message
-                all_good = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                        Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_clock, abnormal_activity);
-            }
-        }
-        // if socket gets corrupted, we reinitialize/reset the whole thing
-        if(!all_good) {
-            printf("Socket Corrupted. Reinitializing..\n");
-            setup_Ethernet(5000000);
-//            SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
-            SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-            printf("Reinitialization Successful.\n");
-        }
         // sleep for 100 milliseconds
         sleep_for_microseconds(100000);
     }
