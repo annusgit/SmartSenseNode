@@ -164,6 +164,7 @@ static inline void SSN_Setup() {
     setup_Temperature_Humidity_Sensor();
     setup_LED_Indicator();
     setup_Interrupts();
+    EnableWDT();
 }
 
 

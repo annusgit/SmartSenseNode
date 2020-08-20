@@ -2,6 +2,7 @@
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 
 #pragma config FWDTEN   = OFF           // Turn off watchdog timer
+#pragma config WDTPS    = PS8192        // 4 second Watchdog Timer with 80MHz clock
 #pragma config FSOSCEN  = OFF           // Secondary Oscillator Enable (Disabled)
 #pragma config FNOSC    = FRCPLL        // Select 8MHz internal Fast RC (FRC) oscillator with PLL
 #pragma config FPLLIDIV = DIV_2         // Divide PLL input (FRC) -> 4MHz
@@ -279,13 +280,13 @@ int main() {
         Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, 
                 Machine_status);
         Receive_TimeOfDay(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-        Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, Machine_load_percentages, Machine_status, 
-                Machine_status_duration, Machine_status_timestamp);
         //Check Ethernet Physical Link Status before sending message
         if (Ethernet_get_physical_link_status() == PHY_LINK_OFF) {
             printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
             No_Ethernet_LED_INDICATE();
         }
+        Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, Machine_load_percentages, Machine_status, 
+                Machine_status_duration, Machine_status_timestamp);
         // Indicate the status of SSN from the SSN LED after every half second
         SSN_LED_INDICATE(SSN_CURRENT_STATE);
         // check of we have reached one second interval (because two half-seconds make one second)
