@@ -2,7 +2,6 @@
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 
 #pragma config FWDTEN   = OFF           // Turn off watchdog timer
-//#pragma config WDTPS    = PS8192        // 4 second Watchdog Timer with 80MHz clock
 #pragma config FSOSCEN  = OFF           // Secondary Oscillator Enable (Disabled)
 #pragma config FNOSC    = FRCPLL        // Select 8MHz internal Fast RC (FRC) oscillator with PLL
 #pragma config FPLLIDIV = DIV_2         // Divide PLL input (FRC) -> 4MHz
@@ -99,6 +98,7 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
         report_counter++;
         // increment global uptime in seconds
         ssn_uptime_in_seconds++;
+        ssn_dynamic_clock++;
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // Is it time to report and interrupt is enabled?
@@ -106,22 +106,16 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
             // Reset the reporting counter
             report_counter = 0;
             message_count++;
-            // open and close socket every time we must send a new message
-            SSN_UDP_SOCKET = socket(SSN_UDP_SOCKET_NUM, Sn_MR_UDP, SSN_DEFAULT_PORT, 0x00);
-            if(SSN_UDP_SOCKET==SSN_UDP_SOCKET_NUM) {
-                all_good = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                        Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_clock, abnormal_activity);
-                if(!all_good) {
-                    printf("-> Socket Error.\n");
-                    printf("Socket Corrupted. Reinitializing..\n");
-                    //setup_Ethernet(5000000);
-                    //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
-                    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-                    printf("Reinitialization Successful.\n");
-                }
-                close(SSN_UDP_SOCKET);
-            } else {
-                printf("-> Socket Initialization Failed.\n");
+            all_good = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
+                    Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+            if(!all_good) {
+                SSN_CURRENT_STATE = NO_ETHERNET_STATE;
+                printf("-> Socket Error.\n");
+                printf("Socket Corrupted. Reinitializing..\n");
+                //setup_Ethernet(5000000);
+                //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
+                SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+                printf("Reinitialization Successful.\n");
             }
         }
     }
@@ -184,16 +178,8 @@ int main() {
     bool NewConfigsReceived = false;        
     while (SendAfter < 50) {
         // Try to receive a message every 100 milliseconds
-        if (Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, 
-                Machine_status)) {
-            // Copy from the configurations, the sensor ratings, thresholds and maximum load values into our variables
-//            for (i = 0; i < NO_OF_MACHINES; i++) {
-//                // Get the parameters from the Configurations
-//                SSN_CURRENT_SENSOR_RATINGS[i]    = SSN_CONFIG[3*i+0];
-//                SSN_CURRENT_SENSOR_THRESHOLDS[i] = SSN_CONFIG[3*i+1];
-//                SSN_CURRENT_SENSOR_MAXLOADS[i]   = SSN_CONFIG[3*i+2];
-//            }
-//            SSN_REPORT_INTERVAL = SSN_CONFIG[12];
+        if (Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, 
+                SSN_CURRENT_SENSOR_MAXLOADS, Machine_status)) {
             NewConfigsReceived = true;
             break;
         }
@@ -223,14 +209,6 @@ int main() {
             // Try to receive a message every 100 milliseconds
             if (Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, 
                     SSN_CURRENT_SENSOR_MAXLOADS, Machine_status)) {
-                // Copy from the configurations, the sensor ratings, thresholds and maximum load values into our variables
-//                for (i = 0; i < NO_OF_MACHINES; i++) {
-//                    // Get the parameters from the Configurations
-//                    SSN_CURRENT_SENSOR_RATINGS[i]    = SSN_CONFIG[3*i+0];
-//                    SSN_CURRENT_SENSOR_THRESHOLDS[i] = SSN_CONFIG[3*i+1];
-//                    SSN_CURRENT_SENSOR_MAXLOADS[i]   = SSN_CONFIG[3*i+2];
-//                }
-//                SSN_REPORT_INTERVAL = SSN_CONFIG[12];
                 break;
             }
             // Give LED indication every second
@@ -296,7 +274,7 @@ int main() {
         //Check Ethernet Physical Link Status before sending message
         if (Ethernet_get_physical_link_status() == PHY_LINK_OFF) {
             printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
-            No_Ethernet_LED_INDICATE();
+            SSN_CURRENT_STATE = NO_ETHERNET_STATE;
         }
         EnableGlobalInterrupt();
         /*

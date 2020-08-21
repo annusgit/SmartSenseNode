@@ -24,7 +24,7 @@ typedef struct {
 } pseudo_clock;
 
 /** This is our global SSN clock variable */
-uint32_t ssn_clock;
+uint32_t ssn_static_clock, ssn_dynamic_clock;
 
 /** This is our global SSN clock in number of seconds, for how many seconds has the SSN been awake? */
 uint32_t ssn_uptime_in_seconds;

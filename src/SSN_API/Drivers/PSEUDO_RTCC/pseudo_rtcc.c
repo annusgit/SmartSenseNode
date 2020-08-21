@@ -29,7 +29,9 @@ void setup_Global_Clock_And_SSN_Half_Second_Heartbeat(uint32_t PERIPH_CLOCK) {
 }
 
 void set_ssn_time(uint32_t this_time) {
-    ssn_clock = this_time;
+    // assign both clocks the same time
+    ssn_static_clock = this_time;
+    ssn_dynamic_clock = this_time;
 }
 
 void stop_Global_Clock() {

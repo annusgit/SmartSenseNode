@@ -307,16 +307,14 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         }
         /* Has the machine status changed just now? */
         if (Machine_status[i] != this_machine_prev_status) {
-            // printf(">>>>>>>>>>>>>>>>>> State Changed >>>>>>>>>>>>>>>>>>>\n");
-            // set machine's current status time marker to node's current time
-            MACHINES_STATE_TIME_MARKERS[i] = ssn_uptime_in_seconds;
             // assign the current SSN Clock timestamp
-            Machine_status_timestamp[i] = ssn_clock+ssn_uptime_in_seconds;
+            Machine_status_timestamp[i] = ssn_dynamic_clock;
+            Machine_status_duration[i] = 0; // because it just its state
         }
         else {
             /* Else the machine is sustaining its state */
             // printf(">>>>>>>>>>>>>>>>>> States %d %d\n", Machine_status[i], this_machine_prev_status);
-            Machine_status_duration[i] = ssn_uptime_in_seconds - MACHINES_STATE_TIME_MARKERS[i];
+            Machine_status_duration[i] = ssn_dynamic_clock - Machine_status_timestamp[i];
         }
     }
 }
