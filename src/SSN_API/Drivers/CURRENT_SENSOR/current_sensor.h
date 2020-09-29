@@ -20,10 +20,12 @@
 #define CURRENT_OUTPUT_CURRENT_SENSOR_SCALAR    2
 
 /** Enumeration for listing the possible machine states */
-enum Machine_Status {MACHINE_OFF=0, MACHINE_IDLE, MACHINE_ON, MACHINE_RESET_SENTINEL_STATE};
+enum Machine_Status {MACHINE_OFF=0, MACHINE_IDLE, MACHINE_ON};
 
 /** Implementation specific machine status time markers for keeping state timestamps */
 uint32_t MACHINES_STATE_TIME_MARKERS[NO_OF_MACHINES];
+/** Implementation specific machine status durations for keeping edge-case state timestamps */
+uint32_t MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[NO_OF_MACHINES];
 
 /** Machine load RMS averages */
 #define n_for_rms_averaging     8
@@ -102,8 +104,9 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* current_samples_array,
  * @param Machine_status A byte array of machine status (ON/OFF/IDLE) calculated by SSN
  * @param Machine_status_duration An array of machine status duration indicating for how long the machines have been in current state
  * @param Machine_status_timestamp An array of machine status timestamp indicating since when the machines have been in current state
+ * @return Status_change_flag a flag that will indicate if the state of any machine has changed
  */
-void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
+bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
         uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp);
 
 

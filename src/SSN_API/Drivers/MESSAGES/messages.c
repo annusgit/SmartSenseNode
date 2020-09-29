@@ -21,6 +21,11 @@ uint8_t is_Valid_CONFIG(uint8_t* config_array) {
     return valid > 0 ? 1: valid;
 }
 
+void clear_array(uint8_t* this_array, uint32_t this_size) {
+    uint8_t i = 0; for (i=0; i<this_size; i++) {
+        this_array[i] = 0;
+    }
+}
 
 uint8_t construct_get_mac_message(uint8_t* message_array, uint8_t* node_id) {
     uint8_t count = 0;
@@ -54,7 +59,7 @@ uint8_t construct_get_configuration_message(uint8_t* message_array, uint8_t* nod
 
 uint8_t construct_ack_configuration_message(uint8_t* message_array, uint8_t* node_id, uint8_t* received_configs) {
     uint8_t count = 0;
-   
+    
     /* Send the NODE ID */
     message_array[count++] = node_id[0];
     message_array[count++] = node_id[1];
@@ -74,7 +79,7 @@ uint8_t construct_ack_configuration_message(uint8_t* message_array, uint8_t* nod
 
 uint8_t construct_get_timeofday_message(uint8_t* message_array, uint8_t* node_id) {
     uint8_t count = 0;
-   
+
     /* Send the NODE ID */
     message_array[count++] = node_id[0];
     message_array[count++] = node_id[1];

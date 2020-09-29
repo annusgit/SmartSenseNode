@@ -11,30 +11,33 @@ bool SendMessage(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
     else {
         printf("-> Error : %d\n", send_message_status);
         return false;
-//        close(SSN_Socket);
-//        sleep_for_microseconds(500000); // sleep for 500ms
-//        socket(SSN_Socket, Sn_MR_UDP, SSN_DEFAULT_PORT, 0x00);
-//        printf("-> Socket Reinitialization Successful\n");
-//        printf("-> Reinitialization Successful\n");
     }
 }
 
 void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
+    /* Clear the message array */
+    clear_array(message_to_send, max_send_message_size);
     uint8_t ssn_message_to_send_size = construct_get_mac_message(message_to_send, NodeID);
     SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);
 }
 
 void Send_GETCONFIG_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
+    /* Clear the message array */
+    clear_array(message_to_send, max_send_message_size);
     uint8_t ssn_message_to_send_size = construct_get_configuration_message(message_to_send, NodeID);
     SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);
 }
 
 void Send_ACKCONFIG_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* SSN_CONFIG) {
+    /* Clear the message array */
+    clear_array(message_to_send, max_send_message_size);
     uint8_t ssn_message_to_send_size = construct_ack_configuration_message(message_to_send, NodeID, SSN_CONFIG);
     SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);
 }
 
 void Send_GETTimeOfDay_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
+    /* Clear the message array */
+    clear_array(message_to_send, max_send_message_size);
     uint8_t ssn_message_to_send_size = construct_get_timeofday_message(message_to_send, NodeID);
     SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);
 }
@@ -42,17 +45,23 @@ void Send_GETTimeOfDay_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN
 bool Send_STATUSUPDATE_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
         float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
         uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity) {
+    /* Clear the message array but we can't because if we do, this will throw an error at the server end */
+    //clear_array(message_to_send, max_send_message_size);
     // Finally, construct the full status update message structure
     uint8_t ssn_message_to_send_size = construct_status_update_message(message_to_send, NodeID, temperature_bytes, relative_humidity_bytes, Machine_load_currents, Machine_load_percentages, 
             Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity);
     if(ssn_message_to_send_size!=60) {
-        // we are stuck now..
+        // This is not possible but still..
         printf("(Message BAD) ");
     }
     return SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);    
 }
 
 void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
+    
+    /* Clear the message array */
+    clear_array(message_to_recv, max_recv_message_size);
+    
     uint32_t Received_Message_Bytes_in_Buffer;
     uint8_t received_message_id, received_message_status;
 
@@ -79,6 +88,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
                 EEPROM_Write_Array(EEPROM_BLOCK_0, EEPROM_MAC_LOC, params, EEPROM_MAC_SIZE);
                 // reset the SSN from software
                 SoftReset();
+                while(1);
                 break;
 
             // Only for debugging, will be removed
@@ -92,6 +102,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
                 // reset the SSN
                 printf("(DEBUG): Reseting Controller Now...\n");
                 SoftReset();
+                while(1);
                 break;
 
             // Only for debugging, will be removed
@@ -103,6 +114,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
                 printf("(DEBUG): Reseting Controller Now...\n");
                 sleep_for_microseconds(1000000);
                 SoftReset();
+                while(1);
                 break;
 
             default:
@@ -115,6 +127,10 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
 
 uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* SSN_CONFIG, uint8_t* SSN_REPORT_INTERVAL, uint8_t* SSN_CURRENT_SENSOR_RATINGS, 
         uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, uint8_t* Machine_status) {
+    
+    /* Clear the message array */
+    clear_array(message_to_recv, max_recv_message_size);
+    
     uint32_t Received_Message_Bytes_in_Buffer;
     uint8_t received_message_id, received_message_status;
     
@@ -161,7 +177,7 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
                     SSN_CURRENT_SENSOR_RATINGS[3], SSN_CURRENT_SENSOR_THRESHOLDS[3], SSN_CURRENT_SENSOR_MAXLOADS[3], *SSN_REPORT_INTERVAL);
                 // Reset Machine States 
                 for (i = 0; i < NO_OF_MACHINES; i++)
-                    Machine_status[i] = MACHINE_RESET_SENTINEL_STATE;
+                    Machine_status[i] = MACHINE_OFF;
                 return 1;
                 break;
 
@@ -169,24 +185,28 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
             // This message will clear the EEPROM of our SSN
             case DEBUG_EEPROM_CLEAR_MESSAGE_ID:
                 // stop the global timer
-                stop_Global_Clock();
+                //stop_Global_Clock();
+                DisableGlobalInterrupt();
                 printf("(DEBUG): Clearing EEPROM Now...\n");
                 // Clear EEPROM and reset node
                 EEPROM_Clear();
                 // reset the SSN
                 printf("(DEBUG): Reseting Controller Now...\n");
                 SoftReset();
+                while(1);
                 break;
 
             // Only for debugging, will be removed
             // This message will reset our SSN
             case DEBUG_RESET_SSN_MESSAGE_ID:
                 // stop the global timer
-                stop_Global_Clock();
+                //stop_Global_Clock();
+                DisableGlobalInterrupt();
                 // reset the SSN
                 printf("(DEBUG): Reseting Controller Now...\n");
                 sleep_for_microseconds(1000000);
                 SoftReset();
+                while(1);
                 break;
 
             default:
@@ -199,6 +219,10 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
 }
 
 uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
+    
+    /* Clear the message array */
+    clear_array(message_to_recv, max_recv_message_size);
+    
     uint32_t Received_Message_Bytes_in_Buffer;
     uint8_t received_message_id, received_message_status;
     uint32_t TimeOFDayTick;
@@ -238,6 +262,7 @@ uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t S
                 // reset the SSN
                 printf("(DEBUG): Reseting Controller Now...\n");
                 SoftReset();
+                while(1);
                 break;
 
             // Only for debugging, will be removed
@@ -249,6 +274,7 @@ uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t S
                 printf("(DEBUG): Reseting Controller Now...\n");
                 sleep_for_microseconds(1000000);
                 SoftReset();
+                while(1);
                 break;
 
             default:

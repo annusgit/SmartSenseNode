@@ -13,7 +13,6 @@ uint8_t FindMACInFlashMemory(uint8_t* SSN_MAC_ADDRESS, uint8_t* SSN_DEFAULT_MAC)
         for (i = 0; i < 6; i++)
             SSN_MAC_ADDRESS[i] = SSN_DEFAULT_MAC[i];
         // Since we have no custom MAC address with us, set state to ask for MAC address with Get_MAC message
-//        SSN_CURRENT_STATE = NO_MAC_STATE;
         return NO_MAC_STATE;
     } 
     else {

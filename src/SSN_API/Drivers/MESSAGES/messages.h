@@ -67,6 +67,14 @@ uint8_t is_Valid_MAC(uint8_t* mac_address);
  */
 uint8_t is_Valid_CONFIG(uint8_t* config_array);
 
+/**
+ * 
+ * @param message_array
+ * @param node_id
+ * @return 
+ */
+void clear_array(uint8_t* this_array, uint32_t this_size);
+
 /** 
  * Constructs GET_MAC request message
  * @param message_array Byte array to keep 

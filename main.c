@@ -2,6 +2,7 @@
 #define _DISABLE_OPENADC10_CONFIGPORT_WARNING
 
 #pragma config FWDTEN   = OFF           // Turn off watchdog timer
+#pragma config WDTPS    = PS4096        // Watchdog timer period
 #pragma config FSOSCEN  = OFF           // Secondary Oscillator Enable (Disabled)
 #pragma config FNOSC    = FRCPLL        // Select 8MHz internal Fast RC (FRC) oscillator with PLL
 #pragma config FPLLIDIV = DIV_2         // Divide PLL input (FRC) -> 4MHz
@@ -13,85 +14,18 @@
 
 #include "src/SSN_API/SSN_API.h"
 
-/** Our SSN UDP communication socket */
-SOCKET SSN_UDP_SOCKET;
-/** SSN Server Address */
-uint8_t SSN_SERVER_IP[] = {192, 168, 0, 100};
-/** SSN Server PORT */
-uint16_t SSN_SERVER_PORT = 9999;
-
-/** Static IP Assignment */
-uint8_t SSN_STATIC_IP[4]        = {192, 168, 0, 103};
-uint8_t SSN_SUBNET_MASK[4]      = {255, 255, 255, 0};
-uint8_t SSN_GATWAY_ADDRESS[4]   = {192, 168, 0, 1};
-
-/** A counter to maintain how many messages have been sent from SSN to Server since wakeup */
-uint32_t SSN_SENT_MESSAGES_COUNTER = 0;
-/** Boolean variable for Interrupt Enabled or not */
-bool InterruptEnabled = false;
-/** Counter variable for interrupts per second */
-uint8_t interrupts_per_second = 2;
-/** Counter variable for counting half seconds per second */
-uint8_t half_second_counter = 0, delays_per_second_counter = 0; 
-/** Counter variable for counting after how many intervals to send the status update */
-uint8_t report_counter = 0;
-/** Current State of the SSN. There is no state machine of the SSN but we still use this variable to keep track at some instances */
-uint8_t SSN_CURRENT_STATE;
-/** Report Interval of SSN set according to the configurations passed to the SSN */
-uint8_t SSN_REPORT_INTERVAL = 1;
-/** SSN current sensor configurations */
-uint8_t SSN_CONFIG[EEPROM_CONFIG_SIZE];
-/** SSN current sensor ratings */
-uint8_t SSN_CURRENT_SENSOR_RATINGS[4];
-/** SSN machine thresholds for deciding IDLE state */
-uint8_t SSN_CURRENT_SENSOR_THRESHOLDS[4];
-/** SSN machine maximum loads for calculating percentage loads on machines */
-uint8_t SSN_CURRENT_SENSOR_MAXLOADS[4];
-/** SSN machine load currents array */
-float Machine_load_currents[NO_OF_MACHINES] = {0};
-/** SSN machine load percentages array */
-uint8_t Machine_load_percentages[NO_OF_MACHINES] = {0};
-/** SSN machine status array initialized to a Sentinel or Reset state */
-uint8_t Machine_status[NO_OF_MACHINES] = {MACHINE_RESET_SENTINEL_STATE, MACHINE_RESET_SENTINEL_STATE, MACHINE_RESET_SENTINEL_STATE, MACHINE_RESET_SENTINEL_STATE};
-/** SSN machine timestamps for recording since when the machines have been in the current states */
-uint32_t Machine_status_timestamp[NO_OF_MACHINES];
-/** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */
-uint32_t Machine_status_duration[NO_OF_MACHINES] = {0};
-/** SSN UDP socket number */
-uint8_t SSN_UDP_SOCKET_NUM = 4;
-/** SSN default MAC address. This is the same for all SSNs */
-uint8_t SSN_DEFAULT_MAC[] = {0xAA, 0xBB, 0xCC, 0xDD, 0xEE, 0xFF};
-/** SSN current MAC address. May hold the default MAC or the one received from SSN Server. The last two bytes are the SSN Identity */
-uint8_t SSN_MAC_ADDRESS[6] = {0};
-/** SSN temperature sensor reading bytes  */
-uint8_t temperature_bytes[2];
-/** SSN relative humidity reading bytes  */
-uint8_t relative_humidity_bytes[2];
-/** SSN temperature and humidity reading successful/unsuccessful status bit */
-uint8_t temp_humidity_recv_status; 
-/** SSN abnormal activity bit  */
-uint8_t abnormal_activity;
-/** */
-uint32_t message_count = 0; 
-bool all_good = true;
-/** SSN loop variable  */
-uint8_t i;
-
-/** Half-Second interrupt that controls our send message routine of the SSN. Half-second and not one second is because we can not set an 
+/** Half-Second interrupt that controls our send messag    e routine of the SSN. Half-second and not one second is because we can not set an 
  *  interrupt of up to 1 second with the current clock of the SSN. We only start this interrupt service once we have Ethernet configured 
  *  and all self-tests are successful. The message to be sent is constructed every half a second in the main function and only reported 
  *  to the server after every "SSN_REPORT_INTERVAL" seconds. */
 void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
     // clear timer 1 interrupt flag, IFS0<4>
-    IFS0CLR = 0x0010;       
+    IFS0bits.T1IF = 0x00;
     // Indicate the status of SSN from the SSN LED after every half second
     SSN_LED_INDICATE(SSN_CURRENT_STATE);
     // check of we have reached one second interval (because two half-seconds make one second)
     half_second_counter++;
     if (half_second_counter >= interrupts_per_second) {
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        /* Normal routines that should execute in any case, whether we are messaging or not */
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         // reset half second counter
         half_second_counter = 0;
         // add a second to report counter
@@ -99,25 +33,18 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
         // increment global uptime in seconds
         ssn_uptime_in_seconds++;
         ssn_dynamic_clock++;
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // Is it time to report and interrupt is enabled?
+        // Is it time to report?
         if (report_counter >= SSN_REPORT_INTERVAL) {
             // Reset the reporting counter
             report_counter = 0;
             message_count++;
-            all_good = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
+            socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
                     Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
-            if(!all_good) {
-                SSN_CURRENT_STATE = NO_ETHERNET_STATE;
-                printf("-> Socket Error.\n");
-                printf("Socket Corrupted. Reinitializing..\n");
-                //setup_Ethernet(5000000);
-                //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
-                SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-                printf("Reinitialization Successful.\n");
-            }
+            SSN_RESET_IF_SOCKET_CORRUPTED();
         }
+        //SSN_RESET_AFTER_N_SECONDS(2*3600); // Test only
+        SSN_RESET_AFTER_N_SECONDS(8*3600);
+        //SSN_RESET_AFTER_N_SECONDS_IF_NO_MACHINE_ON(8*3600);
     }
 }
 
@@ -143,149 +70,50 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
 int main() {
     // Setup Smart Sense Node
     SSN_Setup();
+    // Check the EEPROM, temperature sensor and network connection before proceeding
     RunSystemTests();
-    SSN_CURRENT_STATE = FindMACInFlashMemory(SSN_MAC_ADDRESS, SSN_DEFAULT_MAC);
-    // Start Ethernet Now with a MAC address (either default MAC or custom SSN MAC)
-//    SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
+    // We need a watchdog to make sure we don't get stuck forever
+    EnableWatchdog();
+    // First find MAC in flash memory or assign default MAC address
+    SSN_COPY_MAC_FROM_MEMORY();
+    // We can chose two ways to operate over UDP; static or dynamic IP
+    //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
     SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-    uint16_t SendAfter = 0;
-    // When we will receive a MAC address (if we didn't have it), we will reset the controller
-    while (SSN_CURRENT_STATE == NO_MAC_STATE) {
-        // Check Ethernet Physical Link Status before sending message
-        if (Ethernet_get_physical_link_status() == PHY_LINK_OFF) {
-            printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
-            No_Ethernet_LED_INDICATE();
-        }
-        // request a MAC address after every 5 seconds
-        if (SendAfter % 50 == 0) {
-            Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-        }
-        // Try to receive a message every 100 milliseconds
-        Receive_MAC(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-        // Give LED indication every second
-        if (SendAfter % 10 == 0) {
-            Node_Up_Not_Configured_LED_INDICATE();
-        }
-        SendAfter++;        
-        // 100 milliseconds
-        sleep_for_microseconds(100000);
-    }
-    // Wait for new configurations for five seconds
-    printf("LOG: Waiting for updated configurations from Server...\n");
-    // Notify the server you are waiting for configurations
-    Send_GETCONFIG_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-    SendAfter = 0; 
-    bool NewConfigsReceived = false;        
-    while (SendAfter < 50) {
-        // Try to receive a message every 100 milliseconds
-        if (Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, 
-                SSN_CURRENT_SENSOR_MAXLOADS, Machine_status)) {
-            NewConfigsReceived = true;
-            break;
-        }
-        // Give LED indication every second
-        if (SendAfter % 10 == 0) {
-            Node_Up_Not_Configured_LED_INDICATE();
-        }
-        SendAfter++;
-        // 100 milliseconds
-        sleep_for_microseconds(100000);
-    }
-    
-    if (!NewConfigsReceived) {
-        // Find configurations in EEPROM
-        SSN_CURRENT_STATE = FindSensorConfigurationsInFlashMemory(SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS);
-        SendAfter = 0;
-        while (SSN_CURRENT_STATE == NO_CONFIG_STATE) {
-            // Check Ethernet Physical Link Status before sending message
-            if (Ethernet_get_physical_link_status() == PHY_LINK_OFF) {
-                printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
-                No_Ethernet_LED_INDICATE();
-            }
-            // request a MAC address after every 5 seconds
-            if (SendAfter % 50 == 0) {
-                Send_GETCONFIG_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-            }
-            // Try to receive a message every 100 milliseconds
-            if (Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, 
-                    SSN_CURRENT_SENSOR_MAXLOADS, Machine_status)) {
-                break;
-            }
-            // Give LED indication every second
-            if (SendAfter % 10 == 0) {
-                Node_Up_Not_Configured_LED_INDICATE();
-            }
-            SendAfter++;
-            // 100 milliseconds
-            sleep_for_microseconds(100000);
-        }
-    }
-    // Get time of day
-    SendAfter = 0;
-    while (1) {
-        // Check Ethernet Physical Link Status before sending message
-        if (Ethernet_get_physical_link_status() == PHY_LINK_OFF) {
-            printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
-            No_Ethernet_LED_INDICATE();
-        }
-        // request a MAC address after every 5 seconds
-        if (SendAfter % 50 == 0) {
-            Send_GETTimeOfDay_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-        }
-        // Try to receive a message every 100 milliseconds
-        if (Receive_TimeOfDay(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT)) {
-            // initialize SSN's uptime
-            ssn_uptime_in_seconds = 0;
-            break;   
-        }
-        // Give LED indication every second
-        if (SendAfter % 10 == 0) {
-            Node_Up_Not_Configured_LED_INDICATE();
-        }
-        SendAfter++;        
-        // 100 milliseconds
-        sleep_for_microseconds(100000);
-    }
+    // Get MAC address for SSN if we didn't have one already
+    SSN_GET_MAC();
+    // Get SSN configurations for SSN or pick from EEPROM if already assigned
+    SSN_GET_CONFIG();
+    // Receive time of day from the server for accurate timestamps
+    SSN_GET_TIMEOFDAY();
+    // Clear the watchdog
+    ServiceWatchdog();
     // Start the global clock that will trigger a response each half of a second through our half-second interrupt defined above Main function
-     setup_Global_Clock_And_SSN_Half_Second_Heartbeat(PERIPH_CLK);
+    setup_Global_Clock_And_Half_Second_Interrupt(PERIPH_CLK);
     //InterruptEnabled = true;
     while(SSN_IS_ALIVE) {
-        // sample sensors and do calculations
-        temp_humidity_recv_status = sample_Temperature_Humidity_bytes(temperature_bytes, relative_humidity_bytes);
-        abnormal_activity = ambient_condition_status();
-        if (abnormal_activity == NORMAL_AMBIENT_CONDITION) {
-            SSN_CURRENT_STATE = NORMAL_ACTIVITY_STATE;
-        }
-        else {
-            SSN_CURRENT_STATE = ABNORMAL_ACTIVITY_STATE;
-        }
-        
-        /****************************************************************************************************************************************************************************************
-        /****************************************************************************************************************************************************************************************
-        /****************************************************************************************************************************************************************************************
-        /****************************************************************************************************************************************************************************************
-         * Network critical section begins here. Disable all interrupts for now
-         */
+        // Read temperature and humidity sensor
+        //SSN_GET_AMBIENT_CONDITION();
+        // Network critical section begins here. Disable all interrupts
         DisableGlobalInterrupt();
-        // We can receive configurations and time of day on the fly
-        Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, 
-                Machine_status);
-        Receive_TimeOfDay(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-        //Check Ethernet Physical Link Status before sending message
-        if (Ethernet_get_physical_link_status() == PHY_LINK_OFF) {
-            printf("LOG: Ethernet Physical Link BAD. Can't Send Message...\n");
-            SSN_CURRENT_STATE = NO_ETHERNET_STATE;
-        }
+        // Receive time of day or new configurations if they are sent from the server
+        SSN_RECEIVE_ASYNC_MESSAGE();
+        // Make sure Ethernet is working fine (blocking if no physical link available)
+        SSN_CHECK_ETHERNET_CONNECTION();
+        //Reset node if we have been running for more than 8 hours
+        SSN_RESET_AFTER_N_SECONDS(8*3600);
+        // Network critical section ends here. Enable all interrupts
         EnableGlobalInterrupt();
-        /*
-         * Network critical section ends here. Enable all interrupts for now
-         ***************************************************************************************************************************************************************************************/
-         /**************************************************************************************************************************************************************************************/
-         /**************************************************************************************************************************************************************************************/
-         /**************************************************************************************************************************************************************************************/
-
-        Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, Machine_load_percentages, Machine_status, 
-                Machine_status_duration, Machine_status_timestamp);
+        // Get load currents and status of machines
+        machine_status_change_flag = Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, 
+                Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp);
+        // we will report our status update out of sync with reporting interval if a state changes, this will allow us for accurate timing measurements
+        if(machine_status_change_flag==true) {
+            message_count++;
+            socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
+                    Machine_load_percentages, Machine_status, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+        }
+        // Clear the watchdog
+        ServiceWatchdog();
         // sleep for 100 milliseconds
         sleep_for_microseconds(100000);
     }
@@ -293,39 +121,5 @@ int main() {
     return 1;
 }
 
-int main_current_testing() {
-    SSN_Setup();
-    SSN_CURRENT_SENSOR_RATINGS[0] = 100;
-    SSN_CURRENT_SENSOR_RATINGS[1] = 000;
-    SSN_CURRENT_SENSOR_RATINGS[2] = 030;
-    SSN_CURRENT_SENSOR_RATINGS[3] = 000;
-    while(true) {
-        printf("In here\n");
-        Calculate_RMS_Current_On_All_Channels(SSN_CURRENT_SENSOR_RATINGS, 400, Machine_load_currents);
-        // sleep for a second
-        sleep_for_microseconds(1000000);
-    }
-    // we should never get to this point
-    return 1;
-}
-
-int main_network_test() {
-    SSN_Setup();
-    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-    uint8_t test_message_array[100] = "I am Annus Zulfiqar and I am trying to test this network";
-    uint8_t test_message_size = 56;
-    while(true) {
-        all_good = SendMessage(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, test_message_array, test_message_size);
-        if(!all_good) {
-            printf("Socket Corrupted. Reinitializing..\n");
-            setup_Ethernet(5000000);
-            SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-            printf("Reinitialization Successful.\n");
-        }
-        sleep_for_microseconds(1000000);
-    }
-    // we should never get to this point
-    return 1;
-}
 
 

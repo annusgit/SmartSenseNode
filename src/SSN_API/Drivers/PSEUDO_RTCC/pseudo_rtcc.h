@@ -33,7 +33,7 @@ uint32_t ssn_uptime_in_seconds;
  * Sets up the global clock and half-second interrupt for SSN
  * @param PERIPH_CLOCK Peripheral clock of SSN
  */
-void setup_Global_Clock_And_SSN_Half_Second_Heartbeat(uint32_t PERIPH_CLOCK);
+void setup_Global_Clock_And_Half_Second_Interrupt(uint32_t PERIPH_CLOCK);
 
 /**
  * Starts half-second interrupt from Timer-1

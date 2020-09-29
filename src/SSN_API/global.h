@@ -96,6 +96,21 @@ static inline uint32_t get_uint32_from_bytes(uint8_t* bytes) {
     return (bytes[0] << 24) | (bytes[1] << 16) | (bytes[2] << 8) | bytes[3];
 }
 
+/**
+ * Rounds a given floating point to 2-decimal number
+ * @param float_val
+ * @return 2-decimal place rounded-off floating point number
+ */
+static inline float round_float_to_2_decimal_place(float float_val) { 
+    // https://www.geeksforgeeks.org/rounding-floating-point-number-two-decimal-places-c-c/
+    // 37.66666 * 100 =3766.66 
+    // 3766.66 + .5 =3767.16    for rounding off value 
+    // then type cast to int so value is 3767 
+    // then divided by 100 so the value converted into 37.67 
+    int rounded_float = (int)(float_val*100.0+0.5); 
+    return (float)rounded_float/100.0f; 
+} 
+
 /** 
  * Sleep for microseconds 
  * @param us The number of microseconds to sleep for
@@ -122,6 +137,15 @@ static inline void sleep_for_microseconds(unsigned int us) {
     }
     // turn off Timer5 so function is self-contained
     T5CONCLR = 0x8000;
+}
+
+static inline void EnableWatchdog() {
+    WDTCONbits.WDTCLR = 1;    
+    WDTCONbits.ON = 1;    
+}
+
+static inline void ServiceWatchdog() {
+    WDTCONbits.WDTCLR = 1;    
 }
 
 /** 

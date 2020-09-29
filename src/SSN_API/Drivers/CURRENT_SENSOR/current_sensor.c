@@ -161,9 +161,9 @@ void Calculate_True_RMS_Current_On_All_Channels(uint8_t* SENSOR_RATINGS, uint16_
     while(count < num_samples) {
         for (i = 0; i < NO_OF_MACHINES; i++) {
             if(SENSOR_RATINGS[i]==100) {
-                sensor_relative_scalar = 0.333; // max voltage of 1.65Vrms
+                sensor_relative_scalar = 1.0; //0.333; // max voltage of 1.65Vrms
             } else {
-                sensor_relative_scalar = 0.333; // max voltage of 1.00Vrms
+                sensor_relative_scalar = 1.0; //0.333; // max voltage of 1.00Vrms
             }
             // Sample one value from i-th channel
             uint16_t adc_raw_sample = sample_Current_Sensor_channel(i);
@@ -253,7 +253,7 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* adc_samples_array, uin
     return single_byte_raw_RMS_value;
 }
 
-void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
+bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
         uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp) {
     
     // This function will calculate the load currents, load percentages and machine on/off status for all four machines
@@ -263,12 +263,17 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     // All Sensor Threshold Currents in SSN_CONFIG are at: 2, 5, 8, 11  =>  SSN_CONFIG[3*i+2]
     // All Sensor Max Load Currents in SSN_CONFIG are at: 3, 6, 9, 12   =>  SSN_CONFIG[3*i+3]
     
+    bool status_change_flag = false;
+    
     /* Sample all channels and record their respective RMS currents before proceeding */
-    // Calculate_RMS_Current_On_All_Channels(SSN_CURRENT_SENSOR_RATINGS, 400, Machine_load_currents);
     Calculate_True_RMS_Current_On_All_Channels(SSN_CURRENT_SENSOR_RATINGS, 150, Machine_load_currents);
+    // Round-off machine currents to 2-decimal places
+    uint8_t i; for(i=0; i<NO_OF_MACHINES; i++) {
+        Machine_load_currents[i] = round_float_to_2_decimal_place(Machine_load_currents[i]);
+    }
     
     /* Decide the states of these machines based on current values and assign them timestamps */
-    uint8_t i, this_machine_rating, this_machine_maxload, this_machine_prev_status;
+    uint8_t this_machine_rating, this_machine_maxload, this_machine_prev_status;
     float this_machine_threshold;
     for (i = 0; i < NO_OF_MACHINES; i++) {
         /* Get the parameters from the Configurations */
@@ -290,7 +295,7 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             Machine_status_timestamp[i] = 0;
             // no need to proceed from here
             continue;
-        }        
+        }
         // Calculate the load percentage on the machine based on the maximum rated load and load current
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
@@ -308,14 +313,18 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         /* Has the machine status changed just now? */
         if (Machine_status[i] != this_machine_prev_status) {
             // assign the current SSN Clock timestamp
-            Machine_status_timestamp[i] = ssn_dynamic_clock;
+            Machine_status_timestamp[i] = ssn_dynamic_clock; // update the timestamp
+            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration for which the machine remained in the previous state
             Machine_status_duration[i] = 0; // because it just its state
+            status_change_flag = true; // set the flag to true
         }
         else {
             /* Else the machine is sustaining its state */
             // printf(">>>>>>>>>>>>>>>>>> States %d %d\n", Machine_status[i], this_machine_prev_status);
+            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration before updating it
             Machine_status_duration[i] = ssn_dynamic_clock - Machine_status_timestamp[i];
         }
     }
+    return status_change_flag;
 }
 
