@@ -185,36 +185,12 @@ void Calculate_True_RMS_Current_On_All_Channels(uint8_t* SENSOR_RATINGS, uint16_
         } else {
             CURRENT_RMS_VALUE[i] = (float)SENSOR_RATINGS[i] * sqrt(non_zero_voltage_squared_running_sum[i]/non_zero_voltage_count[i]);
         }
-        // now do RMS averaging for the last n samples
-        if(!n_samples_collected) {
-            RMS_buffer[i*n_for_rms_averaging+rms_sample_count] = CURRENT_RMS_VALUE[i];
-            running_RMS_sum[i] += CURRENT_RMS_VALUE[i];
-            RMS_CURRENTS[i] = CURRENT_RMS_VALUE[i];
-            if(i==NO_OF_MACHINES-1) {
-                // increment only at the last machine
-                rms_sample_count++;                
-            }
-            if(rms_sample_count>=n_for_rms_averaging) {
-                n_samples_collected = true;
-                rms_sample_count = 0;
-            }
-        } else {
-            last_sample_before_n_samples = RMS_buffer[i*n_for_rms_averaging+rms_sample_count];
-            RMS_buffer[i*n_for_rms_averaging+rms_sample_count] = CURRENT_RMS_VALUE[i];
-            running_RMS_sum[i] += (CURRENT_RMS_VALUE[i] - last_sample_before_n_samples);
-//            if(running_RMS_sum[i]<0) {
-//                running_RMS_sum[i] = 0;
-//            }
-            RMS_CURRENTS[i] = running_RMS_sum[i]/n_for_rms_averaging;
-            //printf("Running Sum @ %d/%d: %.2f\n", i+1, rms_sample_count, running_RMS_sum[i]);
-            if(i==NO_OF_MACHINES-1) {
-                // increment only at the last machine
-                rms_sample_count++;                
-            }
-            if(rms_sample_count>=n_for_rms_averaging) {
-                rms_sample_count = 0;
-            }
+        // calculate the average RMS current value over the buffered RMS values
+        float buffer_sum = 0;
+        uint8_t j=0; for(j=0; j<n_for_rms_averaging; j++) {
+            buffer_sum += RMS_buffer[i*n_for_rms_averaging+j];
         }
+        RMS_CURRENTS[i] = buffer_sum/n_for_rms_averaging;
     }
 //    printf("%.2f, %.2f, %.2f, %.2f\n", CURRENT_RMS_VALUE[0], CURRENT_RMS_VALUE[1], CURRENT_RMS_VALUE[2], CURRENT_RMS_VALUE[3]);
 }
