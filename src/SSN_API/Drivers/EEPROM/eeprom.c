@@ -12,61 +12,23 @@ void setup_EEPROM() {
     open_I2C1();
 }
 
-bool I2C1_wait_while_busy() {
-    // returns 1 if runs normally, returns 0 in case of timeout
-    uint16_t wait = 0;
-    while(I2C1CON & 0x1F || I2C1STATbits.TRSTAT){ // idle
-        if(wait++>=wait_loop_count_1) {
-            return 0;
-        }
-    }
-#ifdef _EEPROM_DEBUG_
-    printf("I2C1_wait_while_busy loop count: %d\n", wait);
-#endif
-    return 1;    
+void I2C1_wait_while_busy() {
+    while(I2C1CON & 0x1F || I2C1STATbits.TRSTAT); // idle
 }
 
-bool I2C1_transmit_start_bit() {
-    // returns 1 if runs normally, returns 0 in case of timeout
-    uint16_t wait = 0;
+void I2C1_transmit_start_bit() {
     I2C1CONbits.SEN = 1;
-    while (I2C1CONbits.SEN == 1){    
-        if (wait++>=wait_loop_count_1) {
-            return 0;
-        }
-    }
-#ifdef _EEPROM_DEBUG_
-    printf("I2C1_transmit_start_bit loop count: %d\n", wait);
-#endif
-    return 1;
+    while (I2C1CONbits.SEN == 1);    
 }
 
-bool I2C1_transmit_stop_bit() {
-    uint16_t wait = 0;
+void I2C1_transmit_stop_bit() {
 	I2C1CONbits.PEN = 1;
-    while (I2C1CONbits.PEN == 1){
-        if(wait++>=wait_loop_count_1) {
-            return 0;
-        }
-    }
-#ifdef _EEPROM_DEBUG_
-    printf("I2C1_transmit_restart_bit loop count: %d\n", wait);
-#endif
-    return 1;  
+    while (I2C1CONbits.PEN == 1);  
 }
 
-bool I2C1_transmit_restart_bit() {
-    uint16_t wait = 0;
+void I2C1_transmit_restart_bit() {
     I2C1CONbits.RSEN = 1;
-    while (I2C1CONbits.RSEN == 1){
-        if(wait++>=wait_loop_count_1) {
-            return 0;
-        }
-    }
-#ifdef _EEPROM_DEBUG_
-    printf("I2C1_transmit_restart_bit loop count: %d\n", wait);
-#endif
-    return 1;    
+    while (I2C1CONbits.RSEN == 1);    
 }
 
 void I2C1_transmit_byte(uint8_t byte) {
@@ -74,16 +36,8 @@ void I2C1_transmit_byte(uint8_t byte) {
 }
 
 uint8_t I2C1_receive_byte() {
-    uint16_t wait = 0;
     I2C1CONbits.RCEN = 1;                           // Receive enable
-    while (I2C1CONbits.RCEN || !I2C1STATbits.RBF){  // Wait until RCEN is cleared (automatic)  
-        if(wait++>=wait_loop_count_1) {
-            return 0;
-        }
-    }
-#ifdef _EEPROM_DEBUG_
-    printf("I2C1_transmit_restart_bit loop count: %d\n", wait);
-#endif
+    while (I2C1CONbits.RCEN || !I2C1STATbits.RBF);  // Wait until RCEN is cleared (automatic)  
     return I2C1RCV;
 }
 

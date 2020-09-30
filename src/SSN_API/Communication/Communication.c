@@ -44,13 +44,13 @@ void Send_GETTimeOfDay_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN
 
 bool Send_STATUSUPDATE_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
         float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
-        uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity, uint8_t* Machine_status_flag) {
+        uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity) {
     /* Clear the message array but we can't because if we do, this will throw an error at the server end */
     //clear_array(message_to_send, max_send_message_size);
     // Finally, construct the full status update message structure
     uint8_t ssn_message_to_send_size = construct_status_update_message(message_to_send, NodeID, temperature_bytes, relative_humidity_bytes, Machine_load_currents, Machine_load_percentages, 
-            Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity, Machine_status_flag);
-    if(ssn_message_to_send_size!=64) {
+            Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity);
+    if(ssn_message_to_send_size!=60) {
         // This is not possible but still..
         printf("(Message BAD) ");
     }
@@ -177,7 +177,7 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
                     SSN_CURRENT_SENSOR_RATINGS[3], SSN_CURRENT_SENSOR_THRESHOLDS[3], SSN_CURRENT_SENSOR_MAXLOADS[3], *SSN_REPORT_INTERVAL);
                 // Reset Machine States 
                 for (i = 0; i < NO_OF_MACHINES; i++)
-                    Machine_status[i] = SENSOR_NOT_CONNECTED;
+                    Machine_status[i] = MACHINE_OFF;
                 return 1;
                 break;
 

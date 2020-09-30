@@ -34,10 +34,6 @@
 /** EEPROM 24LC08 test failed */
 #define EEPROM_TEST_FAILED          0
 
-#define I2C1_NORMAL_OP_WAIT_LOOP_COUNT   1000  // after testing, 143 is the max number of loops required for reading from I2C
-#define I2C1_TEST_OP_WAIT_LOOP_COUNT     1000  // startup operation requires more time
-
-static uint32_t wait_loop_count_1 = I2C1_TEST_OP_WAIT_LOOP_COUNT;
 
 /** Our EEPROM chip has four blocks of memory, 256 bytes in each block */
 enum EEPROM_24LC08_BLOCKS {EEPROM_BLOCK_0=0, EEPROM_BLOCK_1, EEPROM_BLOCK_2, EEPROM_BLOCK_3, EEPROM_BLOCK_COUNT};
@@ -50,22 +46,22 @@ void open_I2C1();
 /** 
  * Waits while I2C1 is busy reading or writing
  */
-bool I2C1_wait_while_busy();
+void I2C1_wait_while_busy();
 
 /** 
  * Transmit single bit for starting I2C communication
  */
-bool I2C1_transmit_start_bit();
+void I2C1_transmit_start_bit();
 
 /** 
  * Transmit single bit for stoping I2C communication
  */
-bool I2C1_transmit_stop_bit();
+void I2C1_transmit_stop_bit();
 
 /** 
  * Transmit single bit for restarting I2C communication
  */
-bool I2C1_transmit_restart_bit();
+void I2C1_transmit_restart_bit();
 
 /** 
  * Transmit single byte over I2C
