@@ -28,9 +28,13 @@ uint32_t MACHINES_STATE_TIME_MARKERS[NO_OF_MACHINES];
 uint32_t MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[NO_OF_MACHINES];
 
 /** Machine load RMS averages */
-#define n_for_rms_averaging     8
+#define n_for_rms_averaging             8
+#define n_for_rms_status_assignment     50
+#define state_change_criteria           (int)(0.9*n_for_rms_status_assignment)
+#define off_current_threshold           0.5
 static uint8_t rms_sample_count = 0;
 static float RMS_buffer[NO_OF_MACHINES*n_for_rms_averaging] = {0};
+static float RMS_long_buffer[NO_OF_MACHINES*n_for_rms_status_assignment]={0};
 
 /** Setup up the ADC peripheral */
 void open_ADC();
@@ -108,5 +112,6 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* current_samples_array,
 bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
         uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp);
 
+int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold);
 
 #endif

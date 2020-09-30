@@ -277,14 +277,11 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
         // Also check previous state and decide how to update the machine status duration and timestamp
         this_machine_prev_status = Machine_status[i];
-        if (Machine_load_currents[i] == 0) {
-            Machine_status[i] = MACHINE_OFF;
-        }
-        else if (Machine_load_currents[i] < this_machine_threshold) {
-            Machine_status[i] = MACHINE_IDLE;
-        }
-        else {
-            Machine_status[i] = MACHINE_ON;
+        // Lagging State Assignment, happens only if we see consistent pattern of a state
+        // will remain persistent on noisy signals
+        int8_t updated_status = Get_Machine_Status(i, this_machine_threshold);                            
+        if(updated_status!=-1) {
+            Machine_status[i] = updated_status;
         }
         /* Has the machine status changed just now? */
         if (Machine_status[i] != this_machine_prev_status) {
@@ -304,3 +301,26 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     return status_change_flag;
 }
 
+int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){   
+    uint8_t j, OFF_count=0, IDLE_count=0, ON_count=0;
+        for (j = 0; j < n_for_rms_status_assignment; j++){
+            if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=0 &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=off_current_threshold){                           
+                OFF_count++;
+            } 
+            else if(RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=off_current_threshold &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=idle_threshold){
+                IDLE_count++;                        
+            }
+            else {
+                ON_count++;
+            }
+        }    
+        if (OFF_count>=state_change_criteria){                        
+            return MACHINE_OFF;               
+        } else if(IDLE_count>=state_change_criteria){                  
+            return MACHINE_IDLE;
+        } else if(ON_count>=state_change_criteria){
+            return MACHINE_ON;
+        } else {
+            return -1; // this indicates that we don't need to change our state
+        }
+}
