@@ -125,7 +125,7 @@ uint8_t construct_ack_configuration_message(uint8_t* message_array, uint8_t* nod
  */
 uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, float* Machine_load_currents, 
         uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint32_t node_uptime_in_seconds, 
-        uint8_t abnormal_activity);
+        uint8_t abnormal_activity, uint8_t* machine_status_flag);
 
 /**
  * Deciphers the received message and returns whatever data was received with it

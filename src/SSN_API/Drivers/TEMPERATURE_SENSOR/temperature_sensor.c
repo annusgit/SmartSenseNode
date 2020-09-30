@@ -4,7 +4,7 @@ void open_I2C2() {
     // setup the peripheral at 100KHz
     I2C2CON = 0x00;             // turn off the I2C2 module
     I2C2CONbits.DISSLW = 1;     // Disable slew rate for 100kHz
-    I2C2BRG = 0x091;            // 100KHz operation
+    I2C2BRG = 0x100;            // 25KHz operation
     I2C2CONbits.ON = 1;       // turn on the I2C2 module
     // setup the required pins for this peripheral
     PORTSetPinsDigitalOut(IOPORT_A, BIT_2);
@@ -160,7 +160,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     // stop bit
     if(!I2C2_transmit_stop_bit()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(2000);
+    sleep_for_microseconds(4000);
     
     // receive the output of the sensor in its specific format
     // initiate start condition
@@ -176,7 +176,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_wait_while_busy()) return 0;
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
     if (recv_data[0] == AM2320_Read_Function_Code)
 #ifdef _TEMPSENSOR_DEBUG_
         printf(">> Control byte received\n");
@@ -187,7 +187,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     recv_data[1] = (0xFF & I2C2RCV);
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
     if (recv_data[1] == AM2320_Num_Bytes_Requested)
 #ifdef _TEMPSENSOR_DEBUG_
     printf(">> Number byte received\n");
@@ -199,7 +199,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_wait_while_busy()) return 0;
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
     
     // Check if we have received an I2C byte
     if(!I2C2_is_byte_received()) return 0;
@@ -207,7 +207,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_wait_while_busy()) return 0;
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
     
     // Check if we have received an I2C byte
     if(!I2C2_is_byte_received()) return 0;
@@ -215,7 +215,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_wait_while_busy()) return 0;
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
 
     // Check if we have received an I2C byte
     if(!I2C2_is_byte_received()) return 0;
@@ -223,7 +223,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_wait_while_busy()) return 0;
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
     
     // Check if we have received an I2C byte
     if(!I2C2_is_byte_received()) return 0;
@@ -231,7 +231,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_wait_while_busy()) return 0;
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
-    sleep_for_microseconds(3);
+    sleep_for_microseconds(10);
 
     // Check if we have received an I2C byte
     if(!I2C2_is_byte_received()) return 0;
