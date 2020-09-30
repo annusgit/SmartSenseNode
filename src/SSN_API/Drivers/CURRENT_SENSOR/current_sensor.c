@@ -215,6 +215,27 @@ void Calculate_True_RMS_Current_On_All_Channels(uint8_t* SENSOR_RATINGS, uint16_
                 rms_sample_count = 0;
             }
         }
+                
+        if(!n_samples_collected_status_assignment) {
+            RMS_long_buffer[i*n_for_rms_status_assignment+rms_sample_count_status_assignment] = CURRENT_RMS_VALUE[i];
+            if(i==NO_OF_MACHINES-1) {
+                // increment only at the last machine
+                rms_sample_count_status_assignment++;                
+            }
+            if(rms_sample_count_status_assignment>=n_for_rms_status_assignment) {
+                n_samples_collected_status_assignment = true;
+                rms_sample_count_status_assignment = 0;
+            }
+        } else {
+            RMS_long_buffer[i*n_for_rms_status_assignment+rms_sample_count_status_assignment] = CURRENT_RMS_VALUE[i];
+            if(i==NO_OF_MACHINES-1) {
+                // increment only at the last machine
+                rms_sample_count_status_assignment++;                
+            }
+            if(rms_sample_count_status_assignment>=n_for_rms_status_assignment) {
+                rms_sample_count_status_assignment = 0;
+            }
+        }
     }
 //    printf("%.2f, %.2f, %.2f, %.2f\n", CURRENT_RMS_VALUE[0], CURRENT_RMS_VALUE[1], CURRENT_RMS_VALUE[2], CURRENT_RMS_VALUE[3]);
 }
@@ -253,8 +274,8 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* adc_samples_array, uin
     return single_byte_raw_RMS_value;
 }
 
-bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
-        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp) {
+void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
+        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint8_t* Machine_status_flag) {
     
     // This function will calculate the load currents, load percentages and machine on/off status for all four machines
     // It will also calculate the time-in-state in SSN-Seconds and assign a timestamp to the state as well
@@ -262,8 +283,6 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     // All Sensor Ratings in SSN_CONFIG are at: 1, 4, 7, 10             =>  SSN_CONFIG[3*i+1]
     // All Sensor Threshold Currents in SSN_CONFIG are at: 2, 5, 8, 11  =>  SSN_CONFIG[3*i+2]
     // All Sensor Max Load Currents in SSN_CONFIG are at: 3, 6, 9, 12   =>  SSN_CONFIG[3*i+3]
-    
-    bool status_change_flag = false;
     
     /* Sample all channels and record their respective RMS currents before proceeding */
     Calculate_True_RMS_Current_On_All_Channels(SSN_CURRENT_SENSOR_RATINGS, 150, Machine_load_currents);
@@ -278,17 +297,19 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     for (i = 0; i < NO_OF_MACHINES; i++) {
         /* Get the parameters from the Configurations */
         this_machine_rating     = SSN_CURRENT_SENSOR_RATINGS[i];
-        this_machine_threshold  = (float)SSN_CURRENT_SENSOR_THRESHOLDS[i]/10.0; // the thresholds 
+        this_machine_threshold  = (float)SSN_CURRENT_SENSOR_THRESHOLDS[i]/10.0; // the thresholds
+        current_machine_threshold = this_machine_threshold;
         this_machine_maxload    = SSN_CURRENT_SENSOR_MAXLOADS[i];
         // printf("Machine-%d: %d %d %d\n", i, this_machine_rating, this_machine_threshold, this_machine_maxload);
         // if the sensor is rated 0, it simply means no sensor attached, so everything is 0
         if (this_machine_rating == 0) {
             // load current is 0
+//            current_machine_rating=this_machine_rating;
             Machine_load_currents[i] = 0;
             // load percentage is 0
             Machine_load_percentages[i] = 0;
             // Machine Status is "OFF"
-            Machine_status[i] = MACHINE_OFF;
+            Machine_status[i] = SENSOR_NOT_CONNECTED;            
             // Machine is off, so no duration
             Machine_status_duration[i] = 0;
             // assign a completely zero timestamp
@@ -296,35 +317,95 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             // no need to proceed from here
             continue;
         }
+        if (Machine_status[i]==SENSOR_NOT_CONNECTED){
+            printf("Hi\n");
+            this_machine_prev_status=SENSOR_NOT_CONNECTED;
+            Machine_status[i]=MACHINE_OFF;
+            // assign the current SSN Clock timestamp
+            Machine_status_timestamp[i] = ssn_dynamic_clock;
+            Machine_status_duration[i] = 0; // because it just its state
+            Machine_status_flag[i]=1;
+            continue;
+        }
+//        current_machine_rating=this_machine_rating;
+        //printf("cmr for %d is %d\n",i,current_machine_rating);        
         // Calculate the load percentage on the machine based on the maximum rated load and load current
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
         // Also check previous state and decide how to update the machine status duration and timestamp
         this_machine_prev_status = Machine_status[i];
-        if (Machine_load_currents[i] == 0) {
-            Machine_status[i] = MACHINE_OFF;
+//        printf("1-Machine Status for %d is %d\n",i,Machine_status[i]);        
+//        if (Machine_load_currents[i] == 0) {
+//            Machine_status[i] = MACHINE_OFF;
+//        }
+//        else if (Machine_load_currents[i] < this_machine_threshold) {
+//            Machine_status[i] = MACHINE_IDLE;
+//        }
+//        else {
+//            Machine_status[i] = MACHINE_ON;
+//        }        
+        if (Machine_load_currents[i] < this_machine_threshold){     
+            uint8_t status=Check_Machine_Status(i);
+//            if (status==SENSOR_NOT_CONNECTED){
+//                Machine_status[i] = SENSOR_NOT_CONNECTED;
+//            }else 
+//                
+            if(status==MACHINE_OFF) {
+                Machine_status[i] = MACHINE_OFF;
+            }else{
+                Machine_status[i] = MACHINE_IDLE;
+            }
         }
-        else if (Machine_load_currents[i] < this_machine_threshold) {
-            Machine_status[i] = MACHINE_IDLE;
-        }
-        else {
+        else{
             Machine_status[i] = MACHINE_ON;
-        }
+        } 
+//        printf("Machine Load currents for %d is %0.2f \n",i,Machine_load_currents[i]);
+//        printf("2-Machine Status for %d is %d\n",i,Machine_status[i]);        
+//        if (Machine_status[i]=SENSOR_NOT_CONNECTED){
+//            continue;
+//        }
         /* Has the machine status changed just now? */
         if (Machine_status[i] != this_machine_prev_status) {
             // assign the current SSN Clock timestamp
-            Machine_status_timestamp[i] = ssn_dynamic_clock; // update the timestamp
-            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration for which the machine remained in the previous state
+            Machine_status_timestamp[i] = ssn_dynamic_clock;
             Machine_status_duration[i] = 0; // because it just its state
-            status_change_flag = true; // set the flag to true
+            Machine_status_flag[i]=1;
         }
         else {
             /* Else the machine is sustaining its state */
             // printf(">>>>>>>>>>>>>>>>>> States %d %d\n", Machine_status[i], this_machine_prev_status);
-            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration before updating it
             Machine_status_duration[i] = ssn_dynamic_clock - Machine_status_timestamp[i];
         }
+//        printf("Machine_status_flag for machine %d is %d\n",i,Machine_status_flag[i]);
     }
-    return status_change_flag;
 }
 
+uint8_t Check_Machine_Status(uint8_t machine_number){//, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS){    
+    uint8_t j,check=0;
+//    if (current_machine_rating == 0) {
+//        return  2;
+//    }else
+//    {
+        for (j = 0; j < n_for_rms_status_assignment; j++){
+            if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=current_machine_threshold && //SSN_CURRENT_SENSOR_THRESHOLDS[machine_number] 
+                RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=idle_min_threshold){                           
+                check++;   
+            }        
+        }    
+        if (check>=check_for_rms_status_assignment){                        
+            return MACHINE_IDLE;               
+        }else{                  
+            return MACHINE_OFF;              
+        }
+    
+}
+//}
+
+void Clear_Machine_Status_flag (uint8_t* Machine_status_flag){
+    uint8_t j=0;
+    for(j=0;j<4;j++){
+        if (Machine_status_flag[j]==1){
+            Machine_status_flag[j]=0;
+        }
+    }
+}

@@ -165,7 +165,7 @@ extern uint16_t SSN_SERVER_PORT;
 /** Static IP Assignment */
 extern uint8_t SSN_STATIC_IP[4];
 extern uint8_t SSN_SUBNET_MASK[4];
-extern uint8_t SSN_GATWAY_ADDRESS[4];
+extern uint8_t SSN_GATEWAY_ADDRESS[4];
 
 /** A counter to maintain how many messages have been sent from SSN to Server since wakeup */
 extern uint32_t SSN_SENT_MESSAGES_COUNTER;
@@ -199,8 +199,8 @@ extern uint8_t Machine_status[NO_OF_MACHINES];
 extern uint32_t Machine_status_timestamp[NO_OF_MACHINES];
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */
 extern uint32_t Machine_status_duration[NO_OF_MACHINES];
-/** Machine status change flag. It will be used for resending status update out of sync with the reporting interval for accurate timing */
-bool machine_status_change_flag;
+/** SSN machine status flag that tells if the machine status changed */
+extern uint8_t Machine_status_flag[NO_OF_MACHINES];
 /** SSN UDP socket number */
 extern uint8_t SSN_UDP_SOCKET_NUM;
 /** SSN default MAC address. This is the same for all SSNs */
@@ -237,10 +237,11 @@ void SSN_GET_AMBIENT_CONDITION();
 void SSN_RESET_AFTER_N_SECONDS(uint32_t seconds);
 void SSN_RESET_AFTER_N_SECONDS_IF_NO_MACHINE_ON(uint32_t seconds);
 void SSN_RESET_IF_SOCKET_CORRUPTED();
+void SSN_GETTIMEOFDAY_AFTER_N_SECONDS(uint32_t seconds); 
+
 /**
  * Peripheral testing and debugging functions
  */
-void led_blink_test();
 void current_test();
 void network_test();
 void watchdog_test();

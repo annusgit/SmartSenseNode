@@ -14,7 +14,7 @@
 
 #include "src/SSN_API/SSN_API.h"
 
-/** Half-Second interrupt that controls our send messag    e routine of the SSN. Half-second and not one second is because we can not set an 
+/** Half-Second interrupt that controls our send message routine of the SSN. Half-second and not one second is because we can not set an 
  *  interrupt of up to 1 second with the current clock of the SSN. We only start this interrupt service once we have Ethernet configured 
  *  and all self-tests are successful. The message to be sent is constructed every half a second in the main function and only reported 
  *  to the server after every "SSN_REPORT_INTERVAL" seconds. */
@@ -39,7 +39,8 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
             report_counter = 0;
             message_count++;
             socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                    Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+                    Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity, Machine_status_flag);
+            Clear_Machine_Status_flag(Machine_status_flag);
             SSN_RESET_IF_SOCKET_CORRUPTED();
         }
         //SSN_RESET_AFTER_N_SECONDS(2*3600); // Test only
@@ -77,8 +78,8 @@ int main() {
     // First find MAC in flash memory or assign default MAC address
     SSN_COPY_MAC_FROM_MEMORY();
     // We can chose two ways to operate over UDP; static or dynamic IP
-    //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
-    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+//    SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
+    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATEWAY_ADDRESS);
     // Get MAC address for SSN if we didn't have one already
     SSN_GET_MAC();
     // Get SSN configurations for SSN or pick from EEPROM if already assigned
@@ -92,7 +93,7 @@ int main() {
     //InterruptEnabled = true;
     while(SSN_IS_ALIVE) {
         // Read temperature and humidity sensor
-        //SSN_GET_AMBIENT_CONDITION();
+//        SSN_GET_AMBIENT_CONDITION();
         // Network critical section begins here. Disable all interrupts
         DisableGlobalInterrupt();
         // Receive time of day or new configurations if they are sent from the server
@@ -104,14 +105,8 @@ int main() {
         // Network critical section ends here. Enable all interrupts
         EnableGlobalInterrupt();
         // Get load currents and status of machines
-        machine_status_change_flag = Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, 
-                Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp);
-        // we will report our status update out of sync with reporting interval if a state changes, this will allow us for accurate timing measurements
-        if(machine_status_change_flag==true) {
-            message_count++;
-            socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                    Machine_load_percentages, Machine_status, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
-        }
+        Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, Machine_load_percentages, Machine_status, 
+                Machine_status_duration, Machine_status_timestamp, Machine_status_flag);
         // Clear the watchdog
         ServiceWatchdog();
         // sleep for 100 milliseconds
@@ -121,5 +116,7 @@ int main() {
     return 1;
 }
 
-
+void test() {
+    temperature_sensor_low_baud_rate_test();
+}
 

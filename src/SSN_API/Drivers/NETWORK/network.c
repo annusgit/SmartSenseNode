@@ -79,9 +79,15 @@ void setup_Ethernet(uint32_t delay_loops) {
 }
 
 unsigned int SPI2_send(unsigned int data) {
+    uint16_t wait = 0;
     /* PIC32MX basic SPI Single Byte transfer method for SPI2 */
     SPI2BUF = data;           // write to shift register to begin transmission
-    while(!SPI2STATbits.SPIRBF); // wait for transfer to complete
+    while(!SPI2STATbits.SPIRBF){ // wait for transfer to complete
+        if(wait++>=wait_loop_count_2) {
+            return 0;
+        }
+    }
+    //printf("%d\n",wait);
     return SPI2BUF;              // read the shift register value 
 }
 
@@ -322,7 +328,8 @@ void Ethernet_get_IP_from_DHCP() {
 				break;
                 
 			default:
-                // printf("LOG: -> Default Case. Return code: %d\n", dhcp_status);
+                 
+//                printf("LOG: -> Default Case. Return code: %d\n", dhcp_status);
                 if (request_started > 0) {
                     if (request_started % 500 == 0)
                         printf(".");
