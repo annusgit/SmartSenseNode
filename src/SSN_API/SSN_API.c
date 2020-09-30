@@ -6,14 +6,14 @@
 /** Our SSN UDP communication socket */
 SOCKET SSN_UDP_SOCKET;
 /** SSN Server Address */
-uint8_t SSN_SERVER_IP[] = {172, 16, 0, 57};
+uint8_t SSN_SERVER_IP[] = {172, 16, 0, 41};
 /** SSN Server PORT */
 uint16_t SSN_SERVER_PORT = 9999;
 
 /** Static IP Assignment */
-uint8_t SSN_STATIC_IP[4]        = {172, 16, 0, 55};
+uint8_t SSN_STATIC_IP[4]        = {172, 16, 0, 58};
 uint8_t SSN_SUBNET_MASK[4]      = {255, 255, 255, 192};
-uint8_t SSN_GATEWAY_ADDRESS[4]   = {172, 16, 0, 62};
+uint8_t SSN_GATWAY_ADDRESS[4]   = {172, 16, 0, 1};
 
 /** A counter to maintain how many messages have been sent from SSN to Server since wakeup */
 uint32_t SSN_SENT_MESSAGES_COUNTER = 0;
@@ -45,10 +45,10 @@ uint8_t Machine_load_percentages[NO_OF_MACHINES] = {0};
 uint8_t Machine_status[NO_OF_MACHINES] = {MACHINE_OFF, MACHINE_OFF, MACHINE_OFF, MACHINE_OFF};
 /** SSN machine timestamps for recording since when the machines have been in the current states */
 uint32_t Machine_status_timestamp[NO_OF_MACHINES] = {0};
-/** SSN machine status flag array that tells if the machine status changed */
-uint8_t Machine_status_flag[NO_OF_MACHINES]={0};
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */
 uint32_t Machine_status_duration[NO_OF_MACHINES] = {0};
+/** Machine status change flag. It will be used for resending status update out of sync with the reporting interval for accurate timing */
+bool machine_status_change_flag = false;
 /** SSN UDP socket number */
 uint8_t SSN_UDP_SOCKET_NUM = 4;
 /** SSN default MAC address. This is the same for all SSNs */
@@ -68,9 +68,7 @@ uint32_t message_count = 0;
 bool socket_ok = true;
 /** SSN loop variable */
 uint8_t i;
-    
-uint8_t count1=0;
-uint8_t count2=0;
+
 void SSN_Setup() {
     // Setup calls for all our peripherals/devices
     setup_printf(19200);
@@ -290,16 +288,10 @@ void SSN_GET_AMBIENT_CONDITION() {
     temp_humidity_recv_status = sample_Temperature_Humidity_bytes(temperature_bytes, relative_humidity_bytes);
     if(temp_humidity_recv_status==SENSOR_READ_ERROR) {
         abnormal_activity = TEMP_SENSOR_READ_ERROR_CONDITION;
-        count1++;
-        printf("LOG: TEMP_SENSOR_READ_ERROR_CONDITION\n");
-        printf("Count TEMP_SENSOR_READ_ERROR=%d \n",count1);
         return;
     }
     if(temp_humidity_recv_status==SENSOR_READ_CRC_ERROR) {
         abnormal_activity = TEMP_SENSOR_CRC_ERROR_CONDITION;
-        count2++;
-        printf("LOG: TEMP_SENSOR_CRC_ERROR_CONDITION\n");
-        printf("Count TEMP_SENSOR_CRC_ERROR =%d \n",count2);        
         return;
     }
     abnormal_activity = ambient_condition_status();
@@ -313,8 +305,6 @@ void SSN_GET_AMBIENT_CONDITION() {
     else {
         SSN_PREV_STATE = SSN_CURRENT_STATE;
         SSN_CURRENT_STATE = ABNORMAL_ACTIVITY_STATE;
-        printf("LOG: ABNORMAL_ACTIVITY_STATE\n");        
-        
         if(SSN_PREV_STATE!=SSN_CURRENT_STATE) {
             Clear_LED_INDICATOR();
         }
@@ -353,12 +343,20 @@ void SSN_RESET_IF_SOCKET_CORRUPTED() {
         SoftReset();
     }
 }
-void SSN_GETTIMEOFDAY_AFTER_N_SECONDS(uint32_t seconds) { 
-    if(ssn_uptime_in_seconds > seconds) {
-        SSN_GET_TIMEOFDAY();
+
+void led_blink_test() {
+    SSN_Setup();
+    Clear_LED_INDICATOR();
+    while(true) {
+        No_Ethernet_LED_INDICATE();
+        printf("Trying to show a sign of life...\n");
+        // sleep for a second
+        sleep_for_microseconds(1000000);
     }
+    // we should never get to this point
     return;
 }
+
 void current_test() {
     SSN_Setup();
     SSN_CURRENT_SENSOR_RATINGS[0] = 100;
@@ -377,7 +375,7 @@ void current_test() {
 
 void network_test() {
     SSN_Setup();
-    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATEWAY_ADDRESS);
+    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
     uint8_t test_message_array[100] = "I am Annus Zulfiqar and I am trying to test this network";
     uint8_t test_message_size = 56;
     while(true) {
@@ -385,7 +383,7 @@ void network_test() {
         if(!socket_ok) {
             printf("Socket Corrupted. Reinitializing..\n");
             setup_Ethernet(5000000);
-            SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATEWAY_ADDRESS);
+            SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
             printf("Reinitialization Successful.\n");
         }
         sleep_for_microseconds(1000000);
@@ -408,16 +406,4 @@ void watchdog_test() {
     return;
 }
 
-void temperature_sensor_low_baud_rate_test (){
-    SSN_Setup();
-    uint8_t temp_bytes[2], rhumidity_bytes[2];
-    printf("################# Testing Temperature Sensor #################\n");
-    while(true) {
-        uint8_t status = sample_Temperature_Humidity_bytes(temp_bytes, rhumidity_bytes);
-        float temperature=(float)((temp_bytes[0] << 8) | temp_bytes[1])/10.0;
-        float humidity=(float)((rhumidity_bytes[0] << 8) | rhumidity_bytes[1])/10;
-        printf("Hello World! Temperature: %0.2f; Rel. Humidity: %0.2f;\n", temperature, humidity);
-        sleep_for_microseconds(1000000);
-    }
-    return;
-}
+

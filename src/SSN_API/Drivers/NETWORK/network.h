@@ -40,12 +40,9 @@ uint8_t gDATABUF[DATA_BUF_SIZE];
 /**************************************************************************//**
  * @brief Default Network Inforamtion
  *****************************************************************************/
-//#define SPI_NORMAL_OP_WAIT_LOOP_COUNT   500  
-#define SPI_TEST_OP_WAIT_LOOP_COUNT     100  
 
 volatile uint32_t msTicks;  /* counts 1ms timeTicks */
 uint32_t prevTick;          /* */
-static uint32_t wait_loop_count_2 = SPI_TEST_OP_WAIT_LOOP_COUNT;
 
 wiz_NetInfo WIZ5500_network_information;
 
