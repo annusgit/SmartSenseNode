@@ -30,8 +30,7 @@ uint32_t MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[NO_OF_MACHINES];
 /** Machine load RMS averages */
 #define n_for_rms_averaging     8
 static uint8_t rms_sample_count = 0;
-static bool n_samples_collected = false;
-static float running_RMS_sum[NO_OF_MACHINES] = {0}, RMS_buffer[NO_OF_MACHINES*n_for_rms_averaging] = {0}, last_sample_before_n_samples;
+static float RMS_buffer[NO_OF_MACHINES*n_for_rms_averaging] = {0};
 
 /** Setup up the ADC peripheral */
 void open_ADC();
