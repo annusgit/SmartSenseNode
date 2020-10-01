@@ -43,6 +43,7 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
             Clear_Machine_Status_flag(Machine_status_flag);
             SSN_RESET_IF_SOCKET_CORRUPTED();
         }
+//        SSN_GETTIMEOFDAY_AFTER_N_SECONDS(8*3600);
         //SSN_RESET_AFTER_N_SECONDS(2*3600); // Test only
         SSN_RESET_AFTER_N_SECONDS(8*3600);
         //SSN_RESET_AFTER_N_SECONDS_IF_NO_MACHINE_ON(8*3600);

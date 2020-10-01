@@ -39,7 +39,6 @@ static float running_RMS_sum[NO_OF_MACHINES] = {0}, RMS_buffer[NO_OF_MACHINES*n_
 static float RMS_long_buffer[NO_OF_MACHINES*n_for_rms_status_assignment]={0};
 static uint8_t machine_number=0;
 static float current_machine_threshold=0;
-static uint8_t current_machine_rating=0;
 
 
 /** Setup up the ADC peripheral */
@@ -118,7 +117,7 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint8_t* Machine_status_flag);
 
 
-uint8_t Check_Machine_Status(uint8_t machine_number);//, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS);  
+uint8_t Check_Machine_Status(uint8_t machine_number);  
 void Clear_Machine_Status_flag (uint8_t* Machine_status_flag);
 
 

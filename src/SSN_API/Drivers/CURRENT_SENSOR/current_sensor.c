@@ -290,7 +290,6 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     uint8_t i; for(i=0; i<NO_OF_MACHINES; i++) {
         Machine_load_currents[i] = round_float_to_2_decimal_place(Machine_load_currents[i]);
     }
-    
     /* Decide the states of these machines based on current values and assign them timestamps */
     uint8_t this_machine_rating, this_machine_maxload, this_machine_prev_status;
     float this_machine_threshold;
@@ -304,7 +303,6 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         // if the sensor is rated 0, it simply means no sensor attached, so everything is 0
         if (this_machine_rating == 0) {
             // load current is 0
-//            current_machine_rating=this_machine_rating;
             Machine_load_currents[i] = 0;
             // load percentage is 0
             Machine_load_percentages[i] = 0;
@@ -318,7 +316,7 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             continue;
         }
         if (Machine_status[i]==SENSOR_NOT_CONNECTED){
-            printf("Hi\n");
+//            printf("Hi\n");
             this_machine_prev_status=SENSOR_NOT_CONNECTED;
             Machine_status[i]=MACHINE_OFF;
             // assign the current SSN Clock timestamp
@@ -326,15 +324,12 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             Machine_status_duration[i] = 0; // because it just its state
             Machine_status_flag[i]=1;
             continue;
-        }
-//        current_machine_rating=this_machine_rating;
-        //printf("cmr for %d is %d\n",i,current_machine_rating);        
+        }   
         // Calculate the load percentage on the machine based on the maximum rated load and load current
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
         // Also check previous state and decide how to update the machine status duration and timestamp
         this_machine_prev_status = Machine_status[i];
-//        printf("1-Machine Status for %d is %d\n",i,Machine_status[i]);        
 //        if (Machine_load_currents[i] == 0) {
 //            Machine_status[i] = MACHINE_OFF;
 //        }
@@ -343,27 +338,17 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
 //        }
 //        else {
 //            Machine_status[i] = MACHINE_ON;
-//        }        
-        if (Machine_load_currents[i] < this_machine_threshold){     
-            uint8_t status=Check_Machine_Status(i);
-//            if (status==SENSOR_NOT_CONNECTED){
-//                Machine_status[i] = SENSOR_NOT_CONNECTED;
-//            }else 
-//                
-            if(status==MACHINE_OFF) {
-                Machine_status[i] = MACHINE_OFF;
-            }else{
-                Machine_status[i] = MACHINE_IDLE;
-            }
-        }
-        else{
+//        } 
+        
+        uint8_t status=Check_Machine_Status(i);                            
+        if(status==MACHINE_OFF) {                
+            Machine_status[i] = MACHINE_OFF;
+        }else if(status==MACHINE_IDLE){
+            Machine_status[i] = MACHINE_IDLE;
+        }else if(status==MACHINE_ON){            
             Machine_status[i] = MACHINE_ON;
-        } 
-//        printf("Machine Load currents for %d is %0.2f \n",i,Machine_load_currents[i]);
-//        printf("2-Machine Status for %d is %d\n",i,Machine_status[i]);        
-//        if (Machine_status[i]=SENSOR_NOT_CONNECTED){
-//            continue;
-//        }
+        }
+         
         /* Has the machine status changed just now? */
         if (Machine_status[i] != this_machine_prev_status) {
             // assign the current SSN Clock timestamp
@@ -376,26 +361,31 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             // printf(">>>>>>>>>>>>>>>>>> States %d %d\n", Machine_status[i], this_machine_prev_status);
             Machine_status_duration[i] = ssn_dynamic_clock - Machine_status_timestamp[i];
         }
-//        printf("Machine_status_flag for machine %d is %d\n",i,Machine_status_flag[i]);
     }
 }
 
-uint8_t Check_Machine_Status(uint8_t machine_number){//, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS){    
-    uint8_t j,check=0;
-//    if (current_machine_rating == 0) {
-//        return  2;
-//    }else
-//    {
+uint8_t Check_Machine_Status(uint8_t machine_number){   
+    uint8_t j,OFF_check=0, ON_check=0, IDLE_check=0;
         for (j = 0; j < n_for_rms_status_assignment; j++){
-            if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=current_machine_threshold && //SSN_CURRENT_SENSOR_THRESHOLDS[machine_number] 
-                RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=idle_min_threshold){                           
-                check++;   
-            }        
+            if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=0 &&  
+                RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=idle_min_threshold){                           
+                OFF_check++;
+            } 
+            else if(RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=current_machine_threshold &&  
+                RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=idle_min_threshold){
+                IDLE_check++;                        
+            }
+            else
+            {
+                ON_check++;
+            }
         }    
-        if (check>=check_for_rms_status_assignment){                        
-            return MACHINE_IDLE;               
-        }else{                  
-            return MACHINE_OFF;              
+        if (OFF_check>=check_for_rms_status_assignment){                        
+            return MACHINE_OFF;               
+        }else if(IDLE_check>=check_for_rms_status_assignment){                  
+            return MACHINE_IDLE;              
+        }else if(ON_check>=check_for_rms_status_assignment){
+            return MACHINE_ON;
         }
     
 }
