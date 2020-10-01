@@ -32,7 +32,7 @@ uint32_t MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[NO_OF_MACHINES];
 #define n_for_rms_status_assignment     50
 #define state_change_criteria           (int)(0.9*n_for_rms_status_assignment)
 #define off_current_threshold           0.5
-static uint8_t rms_sample_count = 0;
+static uint8_t rms_averaging_sample_count = 0, rms_status_assignment_sample_count = 0;
 static float RMS_buffer[NO_OF_MACHINES*n_for_rms_averaging] = {0};
 static float RMS_long_buffer[NO_OF_MACHINES*n_for_rms_status_assignment]={0};
 

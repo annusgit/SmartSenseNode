@@ -185,6 +185,15 @@ void Calculate_True_RMS_Current_On_All_Channels(uint8_t* SENSOR_RATINGS, uint16_
         } else {
             CURRENT_RMS_VALUE[i] = (float)SENSOR_RATINGS[i] * sqrt(non_zero_voltage_squared_running_sum[i]/non_zero_voltage_count[i]);
         }
+        // fill the new current value into the RMS buffer for RMS Averaging
+        RMS_buffer[i*n_for_rms_averaging+rms_averaging_sample_count] = CURRENT_RMS_VALUE[i];
+        // fill the new current value into the long RMS buffer for lagging state assignment
+        RMS_long_buffer[i*n_for_rms_status_assignment+rms_status_assignment_sample_count] = CURRENT_RMS_VALUE[i];
+        if(i==NO_OF_MACHINES-1) {
+            // increment counters only at the last machine
+            rms_averaging_sample_count++;
+            rms_status_assignment_sample_count++;
+        }
         // calculate the average RMS current value over the buffered RMS values
         float buffer_sum = 0;
         uint8_t j=0; for(j=0; j<n_for_rms_averaging; j++) {
@@ -272,6 +281,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             // no need to proceed from here
             continue;
         }
+        
         // Calculate the load percentage on the machine based on the maximum rated load and load current
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
@@ -313,7 +323,7 @@ int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){
             else {
                 ON_count++;
             }
-        }    
+        }
         if (OFF_count>=state_change_criteria){                        
             return MACHINE_OFF;               
         } else if(IDLE_count>=state_change_criteria){                  
@@ -321,6 +331,12 @@ int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){
         } else if(ON_count>=state_change_criteria){
             return MACHINE_ON;
         } else {
+            if(OFF_count>ON_count && IDLE_count>ON_count) {
+                return MACHINE_OFF;
+            } else if(ON_count>OFF_count && IDLE_count>OFF_count) {
+                return MACHINE_ON;
+            }
             return -1; // this indicates that we don't need to change our state
         }
 }
+
