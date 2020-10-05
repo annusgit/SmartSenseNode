@@ -20,7 +20,7 @@
 #define CURRENT_OUTPUT_CURRENT_SENSOR_SCALAR    2
 
 /** Enumeration for listing the possible machine states */
-enum Machine_Status {MACHINE_OFF=0, MACHINE_IDLE, MACHINE_ON};
+enum Machine_Status {MACHINE_OFF=0, MACHINE_IDLE, MACHINE_ON, SENSOR_NOT_CONNECTED};
 
 /** Implementation specific machine status time markers for keeping state timestamps */
 uint32_t MACHINES_STATE_TIME_MARKERS[NO_OF_MACHINES];
