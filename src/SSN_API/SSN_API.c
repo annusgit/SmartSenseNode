@@ -43,6 +43,8 @@ float Machine_load_currents[NO_OF_MACHINES] = {0};
 uint8_t Machine_load_percentages[NO_OF_MACHINES] = {0};
 /** SSN machine status array initialized to a OFF state */
 uint8_t Machine_status[NO_OF_MACHINES] = {SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED};
+/** SSN machine status flag array that tells if the machine status changed */
+uint8_t Machine_status_flag = 0;
 /** SSN machine timestamps for recording since when the machines have been in the current states */
 uint32_t Machine_status_timestamp[NO_OF_MACHINES] = {0};
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */

@@ -194,6 +194,12 @@ void Calculate_True_RMS_Current_On_All_Channels(uint8_t* SENSOR_RATINGS, uint16_
             rms_averaging_sample_count++;
             rms_status_assignment_sample_count++;
         }
+        if (rms_averaging_sample_count>=n_for_rms_averaging) {
+            rms_averaging_sample_count = 0;
+        }
+        if (rms_status_assignment_sample_count>=n_for_rms_status_assignment) {
+            rms_status_assignment_sample_count = 0;
+        }
         // calculate the average RMS current value over the buffered RMS values
         float buffer_sum = 0;
         uint8_t j=0; for(j=0; j<n_for_rms_averaging; j++) {
@@ -239,7 +245,7 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* adc_samples_array, uin
 }
 
 bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
-        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp) {
+        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t* Machine_status_flag, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp) {
     
     // This function will calculate the load currents, load percentages and machine on/off status for all four machines
     // It will also calculate the time-in-state in SSN-Seconds and assign a timestamp to the state as well
@@ -252,15 +258,18 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     
     /* Sample all channels and record their respective RMS currents before proceeding */
     Calculate_True_RMS_Current_On_All_Channels(SSN_CURRENT_SENSOR_RATINGS, 150, Machine_load_currents);
-    // Round-off machine currents to 2-decimal places
-    uint8_t i; for(i=0; i<NO_OF_MACHINES; i++) {
-        Machine_load_currents[i] = round_float_to_2_decimal_place(Machine_load_currents[i]);
-    }
+    
+//    // Round-off machine currents to 2-decimal places
+//    uint8_t i; for(i=0; i<NO_OF_MACHINES; i++) {
+//        Machine_load_currents[i] = round_float_to_2_decimal_place(Machine_load_currents[i]);
+//    }
     
     /* Decide the states of these machines based on current values and assign them timestamps */
-    uint8_t this_machine_rating, this_machine_maxload, this_machine_prev_status;
+    uint8_t i, this_machine_rating, this_machine_maxload, this_machine_prev_status;
     float this_machine_threshold;
     for (i = 0; i < NO_OF_MACHINES; i++) {
+        // Round-off machine currents to 2-decimal places
+        Machine_load_currents[i] = round_float_to_2_decimal_place(Machine_load_currents[i]);
         /* Get the parameters from the Configurations */
         this_machine_rating     = SSN_CURRENT_SENSOR_RATINGS[i];
         this_machine_threshold  = (float)SSN_CURRENT_SENSOR_THRESHOLDS[i]/10.0; // the thresholds 
@@ -281,6 +290,17 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             // no need to proceed from here
             continue;
         }
+        if (Machine_status[i]==SENSOR_NOT_CONNECTED){
+            this_machine_prev_status = SENSOR_NOT_CONNECTED;
+            Machine_status[i] = MACHINE_OFF;
+            // assign the current SSN Clock timestamp
+            Machine_status_timestamp[i] = ssn_dynamic_clock;
+            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = 0; // because it was just turned on
+            Machine_status_duration[i] = 0; // because it just its state
+            *Machine_status_flag = (*Machine_status_flag) | (1 << i); // status flag assignment at the right bit location
+            status_change_flag = true; // set the flag to true
+            continue;
+        }
         
         // Calculate the load percentage on the machine based on the maximum rated load and load current
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
@@ -299,6 +319,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             Machine_status_timestamp[i] = ssn_dynamic_clock; // update the timestamp
             MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration for which the machine remained in the previous state
             Machine_status_duration[i] = 0; // because it just its state
+            *Machine_status_flag = (*Machine_status_flag) | (1 << i); // status flag assignment at the right bit location
             status_change_flag = true; // set the flag to true
         }
         else {
@@ -338,5 +359,9 @@ int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){
             }
             return -1; // this indicates that we don't need to change our state
         }
+}
+
+void Clear_Machine_Status_flag (uint8_t* Machine_status_flag){
+    *Machine_status_flag = 0x00;
 }
 

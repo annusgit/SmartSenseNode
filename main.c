@@ -39,7 +39,8 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
             report_counter = 0;
             message_count++;
             socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                    Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+                    Machine_load_percentages, Machine_status, Machine_status_flag, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+            Clear_Machine_Status_flag(&Machine_status_flag);
             SSN_RESET_IF_SOCKET_CORRUPTED();
         }
         //SSN_RESET_AFTER_N_SECONDS(2*3600); // Test only
@@ -101,19 +102,20 @@ int main() {
         SSN_CHECK_ETHERNET_CONNECTION();
         //Reset node if we have been running for more than 8 hours
         SSN_RESET_AFTER_N_SECONDS(8*3600);
-        // Network critical section ends here. Enable all interrupts
-        EnableGlobalInterrupt();
         // Get load currents and status of machines
         machine_status_change_flag = Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, 
-                Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp);
+                Machine_load_percentages, Machine_status, &Machine_status_flag, Machine_status_duration, Machine_status_timestamp);
         // we will report our status update out of sync with reporting interval if a state changes, this will allow us for accurate timing measurements
         if(machine_status_change_flag==true) {
             message_count++;
             socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                    Machine_load_percentages, Machine_status, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+                    Machine_load_percentages, Machine_status, Machine_status_flag, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+            Clear_Machine_Status_flag(&Machine_status_flag);
         }
         // Clear the watchdog
         ServiceWatchdog();
+        // Network critical section ends here. Enable all interrupts
+        EnableGlobalInterrupt();
         // sleep for 100 milliseconds
         sleep_for_microseconds(100000);
     }

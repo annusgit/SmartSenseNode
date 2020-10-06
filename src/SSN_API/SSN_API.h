@@ -195,6 +195,8 @@ extern float Machine_load_currents[NO_OF_MACHINES];
 extern uint8_t Machine_load_percentages[NO_OF_MACHINES];
 /** SSN machine status array initialized to a OFF state */
 extern uint8_t Machine_status[NO_OF_MACHINES];
+/** SSN machine status flag array that tells if the machine status changed */
+extern uint8_t Machine_status_flag;
 /** SSN machine timestamps for recording since when the machines have been in the current states */
 extern uint32_t Machine_status_timestamp[NO_OF_MACHINES];
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */

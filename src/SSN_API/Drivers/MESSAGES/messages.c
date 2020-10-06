@@ -91,10 +91,9 @@ uint8_t construct_get_timeofday_message(uint8_t* message_array, uint8_t* node_id
     return count;
 }
 
-
 uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, float* Machine_load_currents, 
-        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint32_t node_uptime_in_seconds, 
-        uint8_t abnormal_activity) {
+        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
+        uint32_t node_uptime_in_seconds, uint8_t abnormal_activity) {
     
     uint8_t count = 0;
     uint8_t temp_array[4];
@@ -113,6 +112,9 @@ uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id
     /* Send the humidity in two bytes */
     message_array[count++] = relative_humidity_bytes[0];
     message_array[count++] = relative_humidity_bytes[1];
+    
+    /* Send the status change flags */
+    message_array[count++] = Machine_status_flag; // a single bytes whose bit values indicate which machines had their states changed
     
     ////////////////////// M1 //////////////////////////
     /* Send the load current, percentage load and on/off state of current sensor-i */
