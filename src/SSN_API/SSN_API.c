@@ -46,7 +46,7 @@ uint8_t Machine_status[NO_OF_MACHINES] = {SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNE
 /** SSN machine timestamps for recording since when the machines have been in the current states */
 uint32_t Machine_status_timestamp[NO_OF_MACHINES] = {0};
 /** SSN machine status flag array that tells if the machine status changed */
-uint8_t Machine_status_flag[NO_OF_MACHINES]={0};
+uint8_t Machine_status_flag=0;
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */
 uint32_t Machine_status_duration[NO_OF_MACHINES] = {0};
 /** SSN UDP socket number */
@@ -409,15 +409,11 @@ void watchdog_test() {
 }
 
 void temperature_sensor_low_baud_rate_test (){
-    SSN_Setup();
     uint8_t temp_bytes[2], rhumidity_bytes[2];
     printf("################# Testing Temperature Sensor #################\n");
-    while(true) {
-        uint8_t status = sample_Temperature_Humidity_bytes(temp_bytes, rhumidity_bytes);
-        float temperature=(float)((temp_bytes[0] << 8) | temp_bytes[1])/10.0;
-        float humidity=(float)((rhumidity_bytes[0] << 8) | rhumidity_bytes[1])/10;
-        printf("Hello World! Temperature: %0.2f; Rel. Humidity: %0.2f;\n", temperature, humidity);
-        sleep_for_microseconds(1000000);
-    }
-    return;
+    uint8_t status = sample_Temperature_Humidity_bytes(temp_bytes, rhumidity_bytes);
+    float temperature=(float)((temp_bytes[0] << 8) | temp_bytes[1])/10.0;
+    float humidity=(float)((rhumidity_bytes[0] << 8) | rhumidity_bytes[1])/10;
+    printf("Hello World! Temperature: %0.2f; Rel. Humidity: %0.2f;\n", temperature, humidity);
+    sleep_for_microseconds(1000000);
 }

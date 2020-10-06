@@ -11,6 +11,7 @@
 #define AM2320_I2C_Address              0xB8
 #define AM2320_Read_Function_Code       0x03
 #define AM2320_Starting_Address         0x00
+#define AM2320_Starting_Address_2       0x02
 #define AM2320_Num_Bytes_Requested      0x04
 
 /** Minimum normal ambient temperature */
@@ -142,6 +143,7 @@ int8_t sample_Temperature_Humidity_bytes(uint8_t* temperature_bytes, uint8_t* re
  * @return <b>NORMAL_AMBIENT_CONDITION</b> if normal; <b>ABNORMAL_AMBIENT_CONDITION</b> otherwise.
  */
 uint8_t ambient_condition_status();
+
 
 #endif
 

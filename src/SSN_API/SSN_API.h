@@ -199,8 +199,10 @@ extern uint8_t Machine_status[NO_OF_MACHINES];
 extern uint32_t Machine_status_timestamp[NO_OF_MACHINES];
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */
 extern uint32_t Machine_status_duration[NO_OF_MACHINES];
+/** Machine status change flag. It will be used for resending status update out of sync with the reporting interval for accurate timing */
+bool machine_status_change_flag;
 /** SSN machine status flag that tells if the machine status changed */
-extern uint8_t Machine_status_flag[NO_OF_MACHINES];
+extern uint8_t Machine_status_flag;
 /** SSN UDP socket number */
 extern uint8_t SSN_UDP_SOCKET_NUM;
 /** SSN default MAC address. This is the same for all SSNs */
@@ -238,7 +240,7 @@ void SSN_RESET_AFTER_N_SECONDS(uint32_t seconds);
 void SSN_RESET_AFTER_N_SECONDS_IF_NO_MACHINE_ON(uint32_t seconds);
 void SSN_RESET_IF_SOCKET_CORRUPTED();
 void SSN_GETTIMEOFDAY_AFTER_N_SECONDS(uint32_t seconds); 
-
+void temperature_sensor_test ();
 /**
  * Peripheral testing and debugging functions
  */

@@ -132,6 +132,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     // Address the temperature sensor
     I2C2_transmit_byte((AM2320_I2C_Address | 0));
     if(!I2C2_wait_while_busy()) return 0;
+    sleep_for_microseconds(800);
     // stop bit
     if(!I2C2_transmit_stop_bit()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
@@ -177,7 +178,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
     sleep_for_microseconds(10);
-    if (recv_data[0] == AM2320_Read_Function_Code)
+    if (recv_data[0] == AM2320_Read_Function_Code);
 #ifdef _TEMPSENSOR_DEBUG_
         printf(">> Control byte received\n");
 #endif
@@ -188,7 +189,7 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     if(!I2C2_ack()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
     sleep_for_microseconds(10);
-    if (recv_data[1] == AM2320_Num_Bytes_Requested)
+    if (recv_data[1] == AM2320_Num_Bytes_Requested);
 #ifdef _TEMPSENSOR_DEBUG_
     printf(">> Number byte received\n");
 #endif
@@ -241,6 +242,8 @@ bool AM2320_I2C2_Read_Temp_and_Humidity(){
     // transmit final stop bit
     if(!I2C2_transmit_stop_bit()) return 0;
     if(!I2C2_wait_while_busy()) return 0;
+    printf("---- %x %x %x %x %x %x %x %x \n", recv_data[0], recv_data[1], recv_data[2], recv_data[3],recv_data[4], recv_data[5], recv_data[6], recv_data[7]);
+
     return 1;
 }
 
@@ -253,7 +256,7 @@ unsigned short crc16(unsigned char *ptr, unsigned char len) {
     unsigned char i;
     while(len--) {
         crc ^= *ptr++;
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 6; i++) {
             if(crc & 0x01) {
                 crc >>= 1;
                 crc ^= 0xA001;
@@ -289,7 +292,10 @@ uint8_t sample_Temperature_Humidity(uint16_t *temperature, uint16_t* relative_hu
 int8_t sample_Temperature_Humidity_bytes(uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes) {
     bool read_ok = AM2320_I2C2_Read_Temp_and_Humidity();
     if(!read_ok) return SENSOR_READ_ERROR;
-    if(!CRC_check()) return SENSOR_READ_CRC_ERROR;
+//    if(!CRC_check()) {
+//        printf("CRC\n");
+//        return SENSOR_READ_CRC_ERROR;
+//    }
     temperature_bytes[0] = recv_data[4];
     temperature_bytes[1] = recv_data[5];
     relative_humidity_bytes[0] = recv_data[2];
@@ -319,3 +325,4 @@ uint8_t ambient_condition_status() {
 //        printf("Humid inside: %x %x\n", relative_humidity_bytes[0], relative_humidity_bytes[1]);
 //        printf("---- %x %x %x %x\n", recv_data[4], recv_data[5], recv_data[2], recv_data[3]);
 //        printf("Addresses inside: %x %x %x %x\n", &temperature_bytes[0], &temperature_bytes[1], &relative_humidity_bytes[0], &relative_humidity_bytes[1]);
+

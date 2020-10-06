@@ -78,7 +78,7 @@ void Send_GETTimeOfDay_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN
  */
 bool Send_STATUSUPDATE_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
         float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
-        uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity, uint8_t* Machine_status_flag);
+        uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity, uint8_t Machine_status_flag);
 
 /**
  * Receives a response for MAC requested from SSN Server

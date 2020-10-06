@@ -185,57 +185,27 @@ void Calculate_True_RMS_Current_On_All_Channels(uint8_t* SENSOR_RATINGS, uint16_
         } else {
             CURRENT_RMS_VALUE[i] = (float)SENSOR_RATINGS[i] * sqrt(non_zero_voltage_squared_running_sum[i]/non_zero_voltage_count[i]);
         }
-        // now do RMS averaging for the last n samples
-        if(!n_samples_collected) {
-            RMS_buffer[i*n_for_rms_averaging+rms_sample_count] = CURRENT_RMS_VALUE[i];
-            running_RMS_sum[i] += CURRENT_RMS_VALUE[i];
-            RMS_CURRENTS[i] = CURRENT_RMS_VALUE[i];
-            if(i==NO_OF_MACHINES-1) {
-                // increment only at the last machine
-                rms_sample_count++;                
-            }
-            if(rms_sample_count>=n_for_rms_averaging) {
-                n_samples_collected = true;
-                rms_sample_count = 0;
-            }
-        } else {
-            last_sample_before_n_samples = RMS_buffer[i*n_for_rms_averaging+rms_sample_count];
-            RMS_buffer[i*n_for_rms_averaging+rms_sample_count] = CURRENT_RMS_VALUE[i];
-            running_RMS_sum[i] += (CURRENT_RMS_VALUE[i] - last_sample_before_n_samples);
-//            if(running_RMS_sum[i]<0) {
-//                running_RMS_sum[i] = 0;
-//            }
-            RMS_CURRENTS[i] = running_RMS_sum[i]/n_for_rms_averaging;
-            //printf("Running Sum @ %d/%d: %.2f\n", i+1, rms_sample_count, running_RMS_sum[i]);
-            if(i==NO_OF_MACHINES-1) {
-                // increment only at the last machine
-                rms_sample_count++;                
-            }
-            if(rms_sample_count>=n_for_rms_averaging) {
-                rms_sample_count = 0;
-            }
+        // fill the new current value into the RMS buffer for RMS Averaging
+        RMS_buffer[i*n_for_rms_averaging+rms_averaging_sample_count] = CURRENT_RMS_VALUE[i];
+        // fill the new current value into the long RMS buffer for lagging state assignment
+        RMS_long_buffer[i*n_for_rms_status_assignment+rms_status_assignment_sample_count] = CURRENT_RMS_VALUE[i];
+        if(i==NO_OF_MACHINES-1) {
+            // increment counters only at the last machine
+            rms_averaging_sample_count++;
+            rms_status_assignment_sample_count++;
         }
-                
-        if(!n_samples_collected_status_assignment) {
-            RMS_long_buffer[i*n_for_rms_status_assignment+rms_sample_count_status_assignment] = CURRENT_RMS_VALUE[i];
-            if(i==NO_OF_MACHINES-1) {
-                // increment only at the last machine
-                rms_sample_count_status_assignment++;                
-            }
-            if(rms_sample_count_status_assignment>=n_for_rms_status_assignment) {
-                n_samples_collected_status_assignment = true;
-                rms_sample_count_status_assignment = 0;
-            }
-        } else {
-            RMS_long_buffer[i*n_for_rms_status_assignment+rms_sample_count_status_assignment] = CURRENT_RMS_VALUE[i];
-            if(i==NO_OF_MACHINES-1) {
-                // increment only at the last machine
-                rms_sample_count_status_assignment++;                
-            }
-            if(rms_sample_count_status_assignment>=n_for_rms_status_assignment) {
-                rms_sample_count_status_assignment = 0;
-            }
+        if (rms_averaging_sample_count>=n_for_rms_averaging) {
+            rms_averaging_sample_count=0;
         }
+        if (rms_status_assignment_sample_count>=n_for_rms_status_assignment) {       
+            rms_status_assignment_sample_count=0;
+        }        
+        // calculate the average RMS current value over the buffered RMS values
+        float buffer_sum = 0;
+        uint8_t j=0; for(j=0; j<n_for_rms_averaging; j++) {
+            buffer_sum += RMS_buffer[i*n_for_rms_averaging+j];
+        }
+        RMS_CURRENTS[i] = buffer_sum/n_for_rms_averaging;
     }
 //    printf("%.2f, %.2f, %.2f, %.2f\n", CURRENT_RMS_VALUE[0], CURRENT_RMS_VALUE[1], CURRENT_RMS_VALUE[2], CURRENT_RMS_VALUE[3]);
 }
@@ -274,8 +244,8 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* adc_samples_array, uin
     return single_byte_raw_RMS_value;
 }
 
-void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
-        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint8_t* Machine_status_flag) {
+bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
+        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint8_t Machine_status_flag) {
     
     // This function will calculate the load currents, load percentages and machine on/off status for all four machines
     // It will also calculate the time-in-state in SSN-Seconds and assign a timestamp to the state as well
@@ -284,20 +254,22 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     // All Sensor Threshold Currents in SSN_CONFIG are at: 2, 5, 8, 11  =>  SSN_CONFIG[3*i+2]
     // All Sensor Max Load Currents in SSN_CONFIG are at: 3, 6, 9, 12   =>  SSN_CONFIG[3*i+3]
     
+    bool status_change_flag = false;
+    
     /* Sample all channels and record their respective RMS currents before proceeding */
     Calculate_True_RMS_Current_On_All_Channels(SSN_CURRENT_SENSOR_RATINGS, 150, Machine_load_currents);
     // Round-off machine currents to 2-decimal places
     uint8_t i; for(i=0; i<NO_OF_MACHINES; i++) {
         Machine_load_currents[i] = round_float_to_2_decimal_place(Machine_load_currents[i]);
     }
+    
     /* Decide the states of these machines based on current values and assign them timestamps */
     uint8_t this_machine_rating, this_machine_maxload, this_machine_prev_status;
     float this_machine_threshold;
     for (i = 0; i < NO_OF_MACHINES; i++) {
         /* Get the parameters from the Configurations */
         this_machine_rating     = SSN_CURRENT_SENSOR_RATINGS[i];
-        this_machine_threshold  = (float)SSN_CURRENT_SENSOR_THRESHOLDS[i]/10.0; // the thresholds
-        current_machine_threshold = this_machine_threshold;
+        this_machine_threshold  = (float)SSN_CURRENT_SENSOR_THRESHOLDS[i]/10.0; // the thresholds 
         this_machine_maxload    = SSN_CURRENT_SENSOR_MAXLOADS[i];
         // printf("Machine-%d: %d %d %d\n", i, this_machine_rating, this_machine_threshold, this_machine_maxload);
         // if the sensor is rated 0, it simply means no sensor attached, so everything is 0
@@ -307,7 +279,7 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             // load percentage is 0
             Machine_load_percentages[i] = 0;
             // Machine Status is "OFF"
-            Machine_status[i] = SENSOR_NOT_CONNECTED;            
+            Machine_status[i] = MACHINE_OFF;
             // Machine is off, so no duration
             Machine_status_duration[i] = 0;
             // assign a completely zero timestamp
@@ -315,87 +287,71 @@ void Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             // no need to proceed from here
             continue;
         }
-        if (Machine_status[i]==SENSOR_NOT_CONNECTED){
-//            printf("Hi\n");
-            this_machine_prev_status=SENSOR_NOT_CONNECTED;
-            Machine_status[i]=MACHINE_OFF;
-            // assign the current SSN Clock timestamp
-            Machine_status_timestamp[i] = ssn_dynamic_clock;
-            Machine_status_duration[i] = 0; // because it just its state
-            Machine_status_flag[i]=1;
-            continue;
-        }   
+        
         // Calculate the load percentage on the machine based on the maximum rated load and load current
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
         // Also check previous state and decide how to update the machine status duration and timestamp
         this_machine_prev_status = Machine_status[i];
-//        if (Machine_load_currents[i] == 0) {
-//            Machine_status[i] = MACHINE_OFF;
-//        }
-//        else if (Machine_load_currents[i] < this_machine_threshold) {
-//            Machine_status[i] = MACHINE_IDLE;
-//        }
-//        else {
-//            Machine_status[i] = MACHINE_ON;
-//        } 
-        
-        uint8_t status=Check_Machine_Status(i);                            
-        if(status==MACHINE_OFF) {                
-            Machine_status[i] = MACHINE_OFF;
-        }else if(status==MACHINE_IDLE){
-            Machine_status[i] = MACHINE_IDLE;
-        }else if(status==MACHINE_ON){            
-            Machine_status[i] = MACHINE_ON;
+        // Lagging State Assignment, happens only if we see consistent pattern of a state
+        // will remain persistent on noisy signals
+        int8_t updated_status = Get_Machine_Status(i, this_machine_threshold);                            
+        if(updated_status!=-1) {
+            Machine_status[i] = updated_status;
         }
-         
         /* Has the machine status changed just now? */
         if (Machine_status[i] != this_machine_prev_status) {
             // assign the current SSN Clock timestamp
-            Machine_status_timestamp[i] = ssn_dynamic_clock;
+            Machine_status_timestamp[i] = ssn_dynamic_clock; // update the timestamp
+            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration for which the machine remained in the previous state
             Machine_status_duration[i] = 0; // because it just its state
-            Machine_status_flag[i]=1;
+            status_change_flag = true; // set the flag to true
+             Machine_status_flag = Machine_status_flag | (1 << i);
         }
         else {
             /* Else the machine is sustaining its state */
             // printf(">>>>>>>>>>>>>>>>>> States %d %d\n", Machine_status[i], this_machine_prev_status);
+            MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration before updating it
             Machine_status_duration[i] = ssn_dynamic_clock - Machine_status_timestamp[i];
         }
     }
+    return status_change_flag;
 }
 
-uint8_t Check_Machine_Status(uint8_t machine_number){   
-    uint8_t j,OFF_check=0, ON_check=0, IDLE_check=0;
+int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){   
+    uint8_t j, OFF_count=0, IDLE_count=0, ON_count=0;
         for (j = 0; j < n_for_rms_status_assignment; j++){
-            if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=0 &&  
-                RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=idle_min_threshold){                           
-                OFF_check++;
+            if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=0 &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=off_current_threshold){                           
+                OFF_count++;
             } 
-            else if(RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=current_machine_threshold &&  
-                RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=idle_min_threshold){
-                IDLE_check++;                        
+            else if(RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=off_current_threshold &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=idle_threshold){
+                IDLE_count++;                        
             }
-            else
-            {
-                ON_check++;
+            else {
+                ON_count++;
             }
-        }    
-        if (OFF_check>=check_for_rms_status_assignment){                        
-            return MACHINE_OFF;               
-        }else if(IDLE_check>=check_for_rms_status_assignment){                  
-            return MACHINE_IDLE;              
-        }else if(ON_check>=check_for_rms_status_assignment){
-            return MACHINE_ON;
         }
-    
+        if (OFF_count>=state_change_criteria){                        
+            return MACHINE_OFF;               
+        } else if(IDLE_count>=state_change_criteria){                  
+            return MACHINE_IDLE;
+        } else if(ON_count>=state_change_criteria){
+            return MACHINE_ON;
+        } else {
+            if(OFF_count>ON_count && IDLE_count>ON_count) {
+                return MACHINE_OFF;
+            } else if(ON_count>OFF_count && IDLE_count>OFF_count) {
+                return MACHINE_ON;
+            }
+            return -1; // this indicates that we don't need to change our state
+        }
 }
-//}
 
-void Clear_Machine_Status_flag (uint8_t* Machine_status_flag){
+void Clear_Machine_Status_flag (uint8_t Machine_status_flag){
     uint8_t j=0;
     for(j=0;j<4;j++){
-        if (Machine_status_flag[j]==1){
-            Machine_status_flag[j]=0;
+        if ((Machine_status_flag>>j)& 1==1){
+            Machine_status_flag=0;
         }
     }
 }
