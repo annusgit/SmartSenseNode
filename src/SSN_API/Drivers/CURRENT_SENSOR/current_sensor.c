@@ -1,5 +1,6 @@
 
 #include "current_sensor.h"
+#include "SSN_API/SSN_API.h"
 
 void open_ADC() {
     // configure and enable the ADC
@@ -291,7 +292,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             continue;
         }
         if (Machine_status[i]==SENSOR_NOT_CONNECTED){
-            this_machine_prev_status = SENSOR_NOT_CONNECTED;
+            Machine_prev_status[i] = SENSOR_NOT_CONNECTED;
             Machine_status[i] = MACHINE_OFF;
             // assign the current SSN Clock timestamp
             Machine_status_timestamp[i] = ssn_dynamic_clock;
@@ -306,7 +307,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         Machine_load_percentages[i] = (unsigned char)(100*Machine_load_currents[i]/this_machine_maxload);
         // Assign Machine Status based on RMS Load Current and threshold current for this machine
         // Also check previous state and decide how to update the machine status duration and timestamp
-        this_machine_prev_status = Machine_status[i];
+        Machine_prev_status[i] = Machine_status[i];
         // Lagging State Assignment, happens only if we see consistent pattern of a state
         // will remain persistent on noisy signals
         int8_t updated_status = Get_Machine_Status(i, this_machine_threshold);                            
@@ -314,7 +315,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             Machine_status[i] = updated_status;
         }
         /* Has the machine status changed just now? */
-        if (Machine_status[i] != this_machine_prev_status) {
+        if (Machine_status[i] != Machine_prev_status[i]) {
             // assign the current SSN Clock timestamp
             Machine_status_timestamp[i] = ssn_dynamic_clock; // update the timestamp
             MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration for which the machine remained in the previous state

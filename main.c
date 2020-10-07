@@ -109,7 +109,8 @@ int main() {
         if(machine_status_change_flag==true) {
             message_count++;
             socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                    Machine_load_percentages, Machine_status, Machine_status_flag, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+                    Machine_load_percentages, Machine_prev_status, Machine_status_flag, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, 
+                    abnormal_activity);
             Clear_Machine_Status_flag(&Machine_status_flag);
         }
         // Clear the watchdog

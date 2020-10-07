@@ -193,8 +193,10 @@ extern uint8_t SSN_CURRENT_SENSOR_MAXLOADS[4];
 extern float Machine_load_currents[NO_OF_MACHINES];
 /** SSN machine load percentages array */
 extern uint8_t Machine_load_percentages[NO_OF_MACHINES];
-/** SSN machine status array initialized to a OFF state */
+/** SSN machine status array */
 extern uint8_t Machine_status[NO_OF_MACHINES];
+/** SSN machine status tracker array */
+extern uint8_t Machine_prev_status[NO_OF_MACHINES];
 /** SSN machine status flag array that tells if the machine status changed */
 extern uint8_t Machine_status_flag;
 /** SSN machine timestamps for recording since when the machines have been in the current states */
