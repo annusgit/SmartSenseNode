@@ -339,7 +339,7 @@ int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){
             if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=0 &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=off_current_threshold){                           
                 OFF_count++;
             } 
-            else if(RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=off_current_threshold &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=idle_threshold){
+            else if(RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>off_current_threshold &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=idle_threshold){
                 IDLE_count++;                        
             }
             else {
@@ -353,11 +353,11 @@ int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){
         } else if(ON_count>=state_change_criteria){
             return MACHINE_ON;
         } else {
-            if(OFF_count>ON_count && IDLE_count>ON_count) {
-                return MACHINE_OFF;
-            } else if(ON_count>OFF_count && IDLE_count>OFF_count) {
-                return MACHINE_ON;
-            }
+//            if(OFF_count>ON_count && IDLE_count>ON_count) {
+//                return MACHINE_OFF;
+//            } else if(ON_count>OFF_count && IDLE_count>OFF_count) {
+//                return MACHINE_ON;
+//            }
             return -1; // this indicates that we don't need to change our state
         }
 }

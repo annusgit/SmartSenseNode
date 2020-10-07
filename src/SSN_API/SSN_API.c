@@ -6,12 +6,12 @@
 /** Our SSN UDP communication socket */
 SOCKET SSN_UDP_SOCKET;
 /** SSN Server Address */
-uint8_t SSN_SERVER_IP[] = {172, 16, 0, 41};
+uint8_t SSN_SERVER_IP[] = {172, 16, 0, 57};
 /** SSN Server PORT */
 uint16_t SSN_SERVER_PORT = 9999;
 
 /** Static IP Assignment */
-uint8_t SSN_STATIC_IP[4]        = {172, 16, 0, 58};
+uint8_t SSN_STATIC_IP[4]        = {172, 16, 0, 55};
 uint8_t SSN_SUBNET_MASK[4]      = {255, 255, 255, 192};
 uint8_t SSN_GATWAY_ADDRESS[4]   = {172, 16, 0, 1};
 
