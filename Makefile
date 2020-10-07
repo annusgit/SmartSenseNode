@@ -49,9 +49,6 @@ CP=cp
 CCADMIN=CCadmin
 RANLIB=ranlib
 
-# our custom build go here :)
-ssnbuild: 
-
 # build
 build: .build-post
 
