@@ -112,7 +112,7 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* current_samples_array,
 bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
         uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t* Machine_status_flag, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp);
 
-int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold);
+int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold, uint8_t prev_state);
 
 void Clear_Machine_Status_flag (uint8_t* Machine_status_flag);
 

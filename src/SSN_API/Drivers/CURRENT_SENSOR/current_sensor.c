@@ -310,7 +310,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
         Machine_prev_status[i] = Machine_status[i];
         // Lagging State Assignment, happens only if we see consistent pattern of a state
         // will remain persistent on noisy signals
-        int8_t updated_status = Get_Machine_Status(i, this_machine_threshold);                            
+        int8_t updated_status = Get_Machine_Status(i, this_machine_threshold, Machine_prev_status[i]);                            
         if(updated_status!=-1) {
             Machine_status[i] = updated_status;
         }
@@ -321,6 +321,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
             MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[i] = Machine_status_duration[i]; // save the max duration for which the machine remained in the previous state
             Machine_status_duration[i] = 0; // because it just its state
             *Machine_status_flag = (*Machine_status_flag) | (1 << i); // status flag assignment at the right bit location
+            //printf("Machine Status Flag: %d\n", *Machine_status_flag);
             status_change_flag = true; // set the flag to true
         }
         else {
@@ -333,7 +334,7 @@ bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SS
     return status_change_flag;
 }
 
-int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){   
+int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold, uint8_t prev_state){   
     uint8_t j, OFF_count=0, IDLE_count=0, ON_count=0;
         for (j = 0; j < n_for_rms_status_assignment; j++){
             if (RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]>=0 &&  RMS_long_buffer[machine_number*n_for_rms_status_assignment+j]<=off_current_threshold){                           
@@ -353,11 +354,11 @@ int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold){
         } else if(ON_count>=state_change_criteria){
             return MACHINE_ON;
         } else {
-//            if(OFF_count>ON_count && IDLE_count>ON_count) {
-//                return MACHINE_OFF;
-//            } else if(ON_count>OFF_count && IDLE_count>OFF_count) {
-//                return MACHINE_ON;
-//            }
+            if(prev_state==MACHINE_ON && OFF_count>ON_count && IDLE_count>ON_count) {
+                return MACHINE_OFF;
+            } else if(prev_state==MACHINE_OFF && ON_count>OFF_count && IDLE_count>OFF_count) {
+                return MACHINE_ON;
+            }
             return -1; // this indicates that we don't need to change our state
         }
 }
