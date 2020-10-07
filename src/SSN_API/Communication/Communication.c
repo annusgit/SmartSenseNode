@@ -176,8 +176,9 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
                     SSN_CURRENT_SENSOR_RATINGS[2], SSN_CURRENT_SENSOR_THRESHOLDS[2], SSN_CURRENT_SENSOR_MAXLOADS[2],
                     SSN_CURRENT_SENSOR_RATINGS[3], SSN_CURRENT_SENSOR_THRESHOLDS[3], SSN_CURRENT_SENSOR_MAXLOADS[3], *SSN_REPORT_INTERVAL);
                 // Reset Machine States 
-                for (i = 0; i < NO_OF_MACHINES; i++)
-                    Machine_status[i] = MACHINE_OFF;
+                for (i = 0; i < NO_OF_MACHINES; i++) {
+                    Machine_status[i] = SENSOR_NOT_CONNECTED;
+                }
                 return 1;
                 break;
 
