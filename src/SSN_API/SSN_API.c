@@ -11,7 +11,7 @@ uint8_t SSN_SERVER_IP[] = {192, 168, 0, 100};
 uint16_t SSN_SERVER_PORT = 9999;
 
 /** Static IP Assignment */
-uint8_t SSN_STATIC_IP[4]        = {192, 168, 0, 103};
+uint8_t SSN_STATIC_IP[4]        = {192, 168, 0, 106};
 uint8_t SSN_SUBNET_MASK[4]      = {255, 255, 255, 0};
 uint8_t SSN_GATWAY_ADDRESS[4]   = {192, 168, 0, 1};
 
