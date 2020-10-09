@@ -1,0 +1,1 @@
+ipecmd.exe -TPPK3 -P32MX170f256B -M -F"C:\Users\annuszulfiqar\MPLABXProjects\SSN_AMF_290120.X\dist\default\production\SSN_AMF_290120.X.production.hex" -OL

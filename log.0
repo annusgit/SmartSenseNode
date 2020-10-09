@@ -1,0 +1,217 @@
+Oct 08, 2020 2:26:53 PM org.openide.util.NbPreferences getPreferencesProvider
+WARNING: NetBeans implementation of Preferences not found
+Oct 08, 2020 2:26:53 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO Using version 5.30.rc5
+
+
+Oct 08, 2020 2:26:55 PM com.microchip.packslib.packutilities.HttpConnectionFactory openHttpUrlConnection
+INFO: No change in ETag since previous connection, skipping file download from https://packs.download.microchip.com/index.idx.gz
+Oct 08, 2020 2:26:56 PM com.microchip.packslib.packutilities.HttpConnectionFactory openHttpUrlConnection
+INFO: No change in ETag since previous connection, skipping file download from https://packs.download.microchip.com/index.idx.gz
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z SEVERE Device family is unknown for the device ATtiny3214. Possibly DCore information is not mapped
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162050
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162052
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162053
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162054
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162055
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162056
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162057
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162058
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162060
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162061
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162066
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC162083
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC244049
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC244050
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.mplabinfo 2020-10-08T09:26Z INFO AC with null getTargetRegisterAddrAC244060
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find a <edc:Programming> element.
+
+Oct 08, 2020 2:26:56 PM  
+STDERR: com.microchip.crownking.edc 2020-10-08T09:26Z INFO Cannot find an <edc:Oscillator> element.
+
+Oct 08, 2020 2:26:57 PM com.microchip.mplab.mdbcore.RealICETool.RIMessages OutputMessage
+INFO: 
+
