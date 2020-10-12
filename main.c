@@ -14,7 +14,7 @@
 
 #include "src/SSN_API/SSN_API.h"
 
-/** Half-Second interrupt that controls our send messag    e routine of the SSN. Half-second and not one second is because we can not set an 
+/** Half-Second interrupt that controls our send message routine of the SSN. Half-second and not one second is because we can not set an 
  *  interrupt of up to 1 second with the current clock of the SSN. We only start this interrupt service once we have Ethernet configured 
  *  and all self-tests are successful. The message to be sent is constructed every half a second in the main function and only reported 
  *  to the server after every "SSN_REPORT_INTERVAL" seconds. */
@@ -68,7 +68,7 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
  *      - SSN calculates machine status update and ambient conditions every 100 milliseconds. 
           The ISR sends the status update after every ${SSN_REPORT_INTERVAL} seconds
  */
-int main() {
+int main_1() {
     // Setup Smart Sense Node
     SSN_Setup();
     // Check the EEPROM, temperature sensor and network connection before proceeding
@@ -124,5 +124,98 @@ int main() {
     return 1;
 }
 
+#define TCP_SOCKET  0
+#define MAX_LEN     10
+#define BUFFER_SIZE	2048
+#define targetPort  1883    // mqtt server port
+
+unsigned char targetIP[4] = {192, 168, 0, 120}; // mqtt server IP
+unsigned char tempBuffer[BUFFER_SIZE] = {};
+const char* cliendId = "4C:DF";
+
+typedef struct opts_struct {
+	char clientid[MAX_LEN];
+	int nodelimiter;
+	char delimiter[MAX_LEN];
+	enum QoS qos;
+	char username[MAX_LEN];
+	char password[MAX_LEN];
+	char host[4]; // this is an ip
+	int port;
+	int showtopics;
+} opts_struct;
+
+opts_struct opts = { 
+    .clientid="annusman", 
+    .nodelimiter=0, 
+    .delimiter="\n", 
+    .qos=QOS0, 
+    .username=NULL, 
+    .password=NULL, 
+    .host={192, 168, 0, 120},
+//    .host[0]=targetIP[0], 
+//    .host[1]=targetIP[1], 
+//    .host[2]=targetIP[2], 
+//    .host[3]=targetIP[3], 
+    .port=targetPort, 
+    .showtopics=0
+};
+
+// @brief messageArrived callback function
+void messageArrived(MessageData* md) {
+	unsigned char testbuffer[100];
+	MQTTMessage* message = md->message;
+
+	if (opts.showtopics) {
+		memcpy(testbuffer,(char*)message->payload,(int)message->payloadlen);
+		*(testbuffer + (int)(message->payloadlen) + 1) = "\n";
+		printf("%s\r\n",testbuffer);
+	}
+
+	if (opts.nodelimiter)
+		printf("%.*s", (int)message->payloadlen, (char*)message->payload);
+	else
+		printf("%.*s%s", (int)message->payloadlen, (char*)message->payload, opts.delimiter);
+}
+
+int main() {
+    // Basic setup for our SSN to work
+    SSN_Setup();
+    SSN_COPY_MAC_FROM_MEMORY();
+    Ethernet_set_Static_IP(SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+
+    int rc = 0;
+	unsigned char buf[100];
+    Network n;
+	MQTTClient c;
+
+	NewNetwork(&n, TCP_SOCKET);
+	ConnectNetwork(&n, targetIP, targetPort);
+	MQTTClientInit(&c, &n, 1000, buf, 100, tempBuffer, 2048);
+
+	MQTTPacket_connectData data = MQTTPacket_connectData_initializer;
+	data.willFlag = 0;
+	data.MQTTVersion = 3;
+	data.clientID.cstring = opts.clientid;
+	data.username.cstring = opts.username;
+	data.password.cstring = opts.password;
+
+	data.keepAliveInterval = 60;
+	data.cleansession = 1;
+
+	rc = MQTTConnect(&c, &data);
+	printf("Connected %d\r\n", rc);
+	opts.showtopics = 1;
+
+	printf("Subscribing to %s\r\n", "annus");
+	rc = MQTTSubscribe(&c, "annus", opts.qos, messageArrived);
+	printf("Subscribed %d\r\n", rc);
+
+    while(1) {
+    	MQTTYield(&c, data.keepAliveInterval);
+    }
+    while(true);
+    return 1;
+}
 
 

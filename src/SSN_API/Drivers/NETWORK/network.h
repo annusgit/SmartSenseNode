@@ -12,6 +12,7 @@
 #include <string.h>
 #include "Ethernet/socket.h"
 #include "Internet/DHCP/dhcp.h"
+#include "Internet/MQTT/MQTTClient.h"
 
 #define WIZ5500_R_COMMON_RTR    0x001A0100 // Reset Value: 0xD0
 #define WIZ5500_W_COMMON_RTR    0x001A05F1 // Write Value: 0xF1
@@ -199,6 +200,5 @@ uint16_t is_Message_to_be_transmitted(uint8_t socket_number);
  * @return Number of bytes in received message
  */
 uint8_t Recv_Message_Over_UDP(uint8_t socket_number, char* message, uint8_t message_byte_length, char* destination_ip, uint16_t destination_port);
-
 
 #endif
