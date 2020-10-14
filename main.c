@@ -135,7 +135,7 @@ int main() {
 //    Recv_Message_Over_MQTT("test"); 
     while(1) {
         Send_Message_Over_MQTT(messagetosend);       
-//        Send_GETMAC_Message();///SSN/CONFIG");
+//        Send_GETMAC_Message_MQTT(&SSN_MAC_ADDRESS[4]);///SSN/CONFIG");
         Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
 
         MQTTYield(&Client_MQTT, MQTT_DataPacket.keepAliveInterval);
