@@ -400,3 +400,87 @@ uint8_t Recv_Message_Over_UDP(uint8_t socket_number, char* message, uint8_t mess
 //        printf("Received Message\r\n");
     return data_size;
 }
+void SetupMQTTOptions(opts_struct* MQTTOptions,char* cliendId ,enum QoS x,int showtopics,char* MQTT_IP){
+    strcpy(MQTTOptions->clientid,cliendId);
+    MQTTOptions->nodelimiter=0; 
+    strcpy(MQTTOptions->delimiter,"\n");
+    MQTTOptions->qos=x; 
+    strcpy(MQTTOptions->username,"NULL");        
+    strcpy(MQTTOptions->password,"NULL");  
+    strcpy(MQTTOptions->host,MQTT_IP);  
+//    .host[0]=targetIP[0], 
+//    .host[1]=targetIP[1], 
+//    .host[2]=targetIP[2], 
+//    .host[3]=targetIP[3], 
+    MQTTOptions->port=MQTTPort; 
+    MQTTOptions->showtopics=showtopics;
+}
+
+void SetupMQTTMessage(MQTTMessage* Message_MQTT,uint8_t* payload ,enum QoS x){
+//    printf("%d\n",Message_MQTT->payloadlen);
+    Message_MQTT->qos=x;
+    Message_MQTT->retained=0;
+    Message_MQTT->dup=0;
+    Message_MQTT->id=1;
+    Message_MQTT->payload=payload;
+//    printf("In SetupMQTTMessage=%d \n",payload);
+    Message_MQTT->payloadlen=strlen(payload);
+    printf("SetupMQTTMessage %d\n",Message_MQTT->payloadlen);
+//    strcpy(MQTTOptions->clientid,cliendId);
+//    MQTTOptions->nodelimiter=0; 
+//    strcpy(MQTTOptions->delimiter,"\n");
+//    MQTTOptions->qos=x; 
+//    strcpy(MQTTOptions->username,"NULL");        
+//    strcpy(MQTTOptions->password,"NULL");  
+//    strcpy(MQTTOptions->host,MQTT_IP);  
+////    .host[0]=targetIP[0], 
+////    .host[1]=targetIP[1], 
+////    .host[2]=targetIP[2], 
+////    .host[3]=targetIP[3], 
+//    MQTTOptions->port=MQTTPort; 
+//    MQTTOptions->showtopics=showtopics;
+//
+}
+void SetupMQTTData(MQTTPacket_connectData* MQTT_DataPacket){
+    	
+    MQTT_DataPacket->willFlag = 0;
+	MQTT_DataPacket->MQTTVersion = 3;
+	MQTT_DataPacket->clientID.cstring = MQTTOptions.clientid;
+	MQTT_DataPacket->username.cstring = MQTTOptions.username;
+	MQTT_DataPacket->password.cstring = MQTTOptions.password;
+
+	MQTT_DataPacket->keepAliveInterval = 60;
+	MQTT_DataPacket->cleansession = 1;
+}
+void Recv_Message_Over_MQTT(char* topic){
+    int rc = 0;    
+//	MQTTOptions.showtopics = 1;	
+    printf("Subscribing to %s\r\n", topic);
+	rc = MQTTSubscribe(&Client_MQTT, topic, MQTTOptions.qos, messageArrivedoverMQTT);
+	printf("Subscribed %d\r\n", rc);
+}
+
+void Send_Message_Over_MQTT(uint8_t* messagetosend){        
+    int rc = 0;    
+    SetupMQTTMessage(&Message_MQTT,messagetosend,QOS1 );    
+    rc= MQTTPublish(&Client_MQTT, TopicToPublishTo, &Message_MQTT);
+    printf("Published %d\r\n", rc);
+//    return rc;
+}
+
+void messageArrivedoverMQTT(MessageData* md) {
+	unsigned char testbuffer[100];
+	MQTTMessage* message = md->message;
+
+	if (MQTTOptions.showtopics) {
+		memcpy(testbuffer,(char*)message->payload,(int)message->payloadlen);
+		*(testbuffer + (int)(message->payloadlen) + 1) = "\n";
+		printf("%s\r\n",testbuffer);
+	}
+
+	if (MQTTOptions.nodelimiter)
+		printf("%.*s", (int)message->payloadlen, (char*)message->payload);
+	else
+		printf("%.*s%s", (int)message->payloadlen, (char*)message->payload, MQTTOptions.delimiter);
+}
+

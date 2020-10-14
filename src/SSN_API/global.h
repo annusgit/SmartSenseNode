@@ -56,6 +56,8 @@
 //#define _CURRENTSENSOR_DEBUG_
 //#define _TEMPSENSOR_DEBUG_
 //#define _NETWORK_DEBUG_
+#define _MQTT
+//#define _UDP
 
 /** 
  * A simple loop count based delay 

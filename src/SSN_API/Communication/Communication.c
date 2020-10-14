@@ -13,14 +13,45 @@ bool SendMessage(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
         return false;
     }
 }
+bool SendMessageMQTT(uint8_t* messagetosend, uint8_t ssn_message_to_send_size) {
+    int8_t messagetosendsize=strlen(messagetosend);
+    printf("In sendmessageMQTT %d\n",ssn_message_to_send_size);
+//    int8_t send_message_status =
+    Send_Message_Over_MQTT(messagetosend);    
+    printf("In sendmessageMQTT=%d %d %d\n",messagetosend[0],messagetosend[1],messagetosend[2]);
+//    printf("In sendmessageMQTT %d\n",send_message_status);
+
+//    if (send_message_status==ssn_message_to_send_size) {
+//        
+    printf("-> %d-Byte Message Sent\n", messagetosendsize);
+//                //" to IP: %d:%d:%d:%d @ PORT:%d\n", SSN_SERVER_IP[0], SSN_SERVER_IP[1], SSN_SERVER_IP[2], SSN_SERVER_IP[3], SSN_SERVER_PORT);
+        return true;
+//    }
+//    else {
+//        printf("-> Error : %d\n", send_message_status);
+//        return false;
+//    }
+}
+
 
 void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     /* Clear the message array */
-    clear_array(message_to_send, max_send_message_size);
+    clear_array(message_to_send, max_send_message_size); 
     uint8_t ssn_message_to_send_size = construct_get_mac_message(message_to_send, NodeID);
+#ifdef _UDP
     SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);
+#endif
+#ifdef _MQTT
+    SendMessageMQTT(message_to_send, ssn_message_to_send_size);
+#endif        
 }
 
+//void Send_GETMAC_Message_MQTT(char* NodeID) {
+//    /* Clear the message array */
+//    clear_array(message_to_send, max_send_message_size);
+//    uint8_t ssn_message_to_send_size = construct_get_mac_message(message_to_send, NodeID);
+//    SendMessageMQTT(message_to_send, NodeID, ssn_message_to_send_size);
+//}
 void Send_GETCONFIG_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     /* Clear the message array */
     clear_array(message_to_send, max_send_message_size);
@@ -43,20 +74,33 @@ void Send_GETTimeOfDay_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN
 }
 
 bool Send_STATUSUPDATE_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
-        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
-        uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity) {
+        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, 
+        uint32_t* Machine_status_timestamp, uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity) {
     /* Clear the message array but we can't because if we do, this will throw an error at the server end */
     //clear_array(message_to_send, max_send_message_size);
     // Finally, construct the full status update message structure
     uint8_t ssn_message_to_send_size = construct_status_update_message(message_to_send, NodeID, temperature_bytes, relative_humidity_bytes, Machine_load_currents, Machine_load_percentages, 
-            Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity);
-    if(ssn_message_to_send_size!=60) {
+            Machine_status, Machine_status_flag, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity);
+    if(ssn_message_to_send_size!=STATUS_UPDATE_MESSAGE_Size) {
         // This is not possible but still..
         printf("(Message BAD) ");
     }
     return SendMessage(SSN_Socket, SSN_SERVER_IP, SSN_SERVER_PORT, message_to_send, ssn_message_to_send_size);    
 }
-
+//bool Send_STATUSUPDATE_Message_MQTT(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
+//        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, 
+//        uint32_t* Machine_status_timestamp, uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity) {
+//    /* Clear the message array but we can't because if we do, this will throw an error at the server end */
+//    //clear_array(message_to_send, max_send_message_size);
+//    // Finally, construct the full status update message structure
+//    uint8_t ssn_message_to_send_size = construct_status_update_message(message_to_send, NodeID, temperature_bytes, relative_humidity_bytes, Machine_load_currents, Machine_load_percentages, 
+//            Machine_status, Machine_status_flag, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity);
+//    if(ssn_message_to_send_size!=STATUS_UPDATE_MESSAGE_Size) {
+//        // This is not possible but still..
+//        printf("(Message BAD) ");
+//    }
+//    return SendMessageMQTT(messagetosend ,topic);    
+//}
 void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     
     /* Clear the message array */
@@ -176,8 +220,9 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
                     SSN_CURRENT_SENSOR_RATINGS[2], SSN_CURRENT_SENSOR_THRESHOLDS[2], SSN_CURRENT_SENSOR_MAXLOADS[2],
                     SSN_CURRENT_SENSOR_RATINGS[3], SSN_CURRENT_SENSOR_THRESHOLDS[3], SSN_CURRENT_SENSOR_MAXLOADS[3], *SSN_REPORT_INTERVAL);
                 // Reset Machine States 
-                for (i = 0; i < NO_OF_MACHINES; i++)
-                    Machine_status[i] = MACHINE_OFF;
+                for (i = 0; i < NO_OF_MACHINES; i++) {
+                    Machine_status[i] = SENSOR_NOT_CONNECTED;
+                }
                 return 1;
                 break;
 

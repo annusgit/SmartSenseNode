@@ -5,15 +5,19 @@
 
 /** Our SSN UDP communication socket */
 SOCKET SSN_UDP_SOCKET;
+
+
 /** SSN Server Address */
-uint8_t SSN_SERVER_IP[] = {172, 16, 0, 41};
+uint8_t SSN_SERVER_IP[] = {192, 168, 0, 110};
 /** SSN Server PORT */
 uint16_t SSN_SERVER_PORT = 9999;
+uint8_t MQTT_IP[4] = {192, 168, 0, 110}; // mqtt server IP
 
 /** Static IP Assignment */
-uint8_t SSN_STATIC_IP[4]        = {172, 16, 0, 58};
-uint8_t SSN_SUBNET_MASK[4]      = {255, 255, 255, 192};
-uint8_t SSN_GATWAY_ADDRESS[4]   = {172, 16, 0, 1};
+uint8_t SSN_STATIC_IP[4]        = {192, 168, 0, 10};
+uint8_t SSN_SUBNET_MASK[4]      = {255, 255, 255, 0};
+uint8_t SSN_GATWAY_ADDRESS[4]   = {192, 168, 0, 1};
+uint8_t SSN_DNS_ADDRESS[4]   = {192, 168, 0, 1};
 
 /** A counter to maintain how many messages have been sent from SSN to Server since wakeup */
 uint32_t SSN_SENT_MESSAGES_COUNTER = 0;
@@ -42,7 +46,11 @@ float Machine_load_currents[NO_OF_MACHINES] = {0};
 /** SSN machine load percentages array */
 uint8_t Machine_load_percentages[NO_OF_MACHINES] = {0};
 /** SSN machine status array initialized to a OFF state */
-uint8_t Machine_status[NO_OF_MACHINES] = {MACHINE_OFF, MACHINE_OFF, MACHINE_OFF, MACHINE_OFF};
+uint8_t Machine_status[NO_OF_MACHINES] = {SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED};
+/** SSN machine status tracker array */
+uint8_t Machine_prev_status[NO_OF_MACHINES] = {SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED, SENSOR_NOT_CONNECTED};
+/** SSN machine status flag array that tells if the machine status changed */
+uint8_t Machine_status_flag = 0;
 /** SSN machine timestamps for recording since when the machines have been in the current states */
 uint32_t Machine_status_timestamp[NO_OF_MACHINES] = {0};
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */
@@ -68,6 +76,9 @@ uint32_t message_count = 0;
 bool socket_ok = true;
 /** SSN loop variable */
 uint8_t i;
+
+uint8_t count1tempreaderror=0;
+uint8_t count2tempcrcerror=0;
 
 void SSN_Setup() {
     // Setup calls for all our peripherals/devices
@@ -288,10 +299,16 @@ void SSN_GET_AMBIENT_CONDITION() {
     temp_humidity_recv_status = sample_Temperature_Humidity_bytes(temperature_bytes, relative_humidity_bytes);
     if(temp_humidity_recv_status==SENSOR_READ_ERROR) {
         abnormal_activity = TEMP_SENSOR_READ_ERROR_CONDITION;
+//        count1tempreaderror++;
+//        printf("LOG: TEMP_SENSOR_READ_ERROR_CONDITION\n");
+//        printf("Count TEMP_SENSOR_READ_ERROR=%d \n",count1tempreaderror);
         return;
     }
     if(temp_humidity_recv_status==SENSOR_READ_CRC_ERROR) {
         abnormal_activity = TEMP_SENSOR_CRC_ERROR_CONDITION;
+//        count2tempcrcerror++;
+//        printf("LOG: TEMP_SENSOR_CRC_ERROR_CONDITION\n");
+//        printf("Count TEMP_SENSOR_CRC_ERROR =%d \n",count2tempcrcerror); 
         return;
     }
     abnormal_activity = ambient_condition_status();

@@ -22,6 +22,7 @@ static uint8_t params[max_recv_message_size];
  * @param ssn_message_to_send_size Message size in bytes
  */
 bool SendMessage(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* message_to_send, uint8_t ssn_message_to_send_size);
+bool SendMessageMQTT(uint8_t* messagetosend , uint8_t ssn_message_to_send_size);
 
 /**
  * Sends a MAC Request message to receive a custom MAC address for host SSN
@@ -31,7 +32,7 @@ bool SendMessage(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
  * @param SSN_SERVER_PORT Port of the destination Server
  */
 void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT);
-
+void Send_GETMAC_Message_MQTT();
 /**
  * Sends a Sensor Configuration Request message to receive a configuration for SSN to compute statistics of the connected machines
  * @param NodeID Two byte identity of SSN which are the last two bytes of the MAC address
@@ -76,9 +77,11 @@ void Send_GETTimeOfDay_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN
  * @param abnormal_activity A single byte indicating NORMAL or ABNORMAL ambient condition based on temperature and humidity readings
  */
 bool Send_STATUSUPDATE_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
-        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
-        uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity);
-
+        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, 
+        uint32_t* Machine_status_timestamp, uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity);
+//bool Send_STATUSUPDATE_Message_MQTT(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
+//        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, 
+//        uint32_t* Machine_status_timestamp, uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity);
 /**
  * Receives a response for MAC requested from SSN Server
  * @param SSN_Socket UDP socket used by SSN

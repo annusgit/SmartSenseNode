@@ -39,7 +39,8 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
             report_counter = 0;
             message_count++;
             socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-                    Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+                    Machine_load_percentages, Machine_status, Machine_status_flag, Machine_status_duration, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
+            Clear_Machine_Status_flag(&Machine_status_flag);
             SSN_RESET_IF_SOCKET_CORRUPTED();
         }
         //SSN_RESET_AFTER_N_SECONDS(2*3600); // Test only
@@ -67,7 +68,7 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
  *      - SSN calculates machine status update and ambient conditions every 100 milliseconds. 
           The ISR sends the status update after every ${SSN_REPORT_INTERVAL} seconds
  */
-int main() {
+int main_2() {
     // Setup Smart Sense Node
     SSN_Setup();
     // Check the EEPROM, temperature sensor and network connection before proceeding
@@ -79,6 +80,7 @@ int main() {
     // We can chose two ways to operate over UDP; static or dynamic IP
     //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
     SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+//    SetupConnectionWithMQTT(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
     // Get MAC address for SSN if we didn't have one already
     SSN_GET_MAC();
     // Get SSN configurations for SSN or pick from EEPROM if already assigned
@@ -92,7 +94,7 @@ int main() {
     //InterruptEnabled = true;
     while(SSN_IS_ALIVE) {
         // Read temperature and humidity sensor
-        //SSN_GET_AMBIENT_CONDITION();
+        SSN_GET_AMBIENT_CONDITION();
         // Network critical section begins here. Disable all interrupts
         DisableGlobalInterrupt();
         // Receive time of day or new configurations if they are sent from the server
@@ -101,19 +103,21 @@ int main() {
         SSN_CHECK_ETHERNET_CONNECTION();
         //Reset node if we have been running for more than 8 hours
         SSN_RESET_AFTER_N_SECONDS(8*3600);
-        // Network critical section ends here. Enable all interrupts
-        EnableGlobalInterrupt();
         // Get load currents and status of machines
         machine_status_change_flag = Get_Machines_Status_Update(SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, Machine_load_currents, 
-                Machine_load_percentages, Machine_status, Machine_status_duration, Machine_status_timestamp);
+                Machine_load_percentages, Machine_status, &Machine_status_flag, Machine_status_duration, Machine_status_timestamp);
         // we will report our status update out of sync with reporting interval if a state changes, this will allow us for accurate timing measurements
-//        if(machine_status_change_flag==true) {
-//            message_count++;
-//            socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
-//                    Machine_load_percentages, Machine_status, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, abnormal_activity);
-//        }
+        if(machine_status_change_flag==true) {
+            message_count++;
+            socket_ok = Send_STATUSUPDATE_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, temperature_bytes, relative_humidity_bytes, Machine_load_currents, 
+                    Machine_load_percentages, Machine_prev_status, Machine_status_flag, MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE, Machine_status_timestamp, ssn_static_clock, 
+                    abnormal_activity);
+            Clear_Machine_Status_flag(&Machine_status_flag);
+        }
         // Clear the watchdog
         ServiceWatchdog();
+        // Network critical section ends here. Enable all interrupts
+        EnableGlobalInterrupt();
         // sleep for 100 milliseconds
         sleep_for_microseconds(100000);
     }
@@ -121,5 +125,25 @@ int main() {
     return 1;
 }
 
+char* cliendId = "helloSSN";
+char* messagetosend="hiiiiiiiiiiiii";
+
+int main() {
+    // Basic setup for our SSN to work    
+    SSN_Setup();
+    SetupConnectionWithMQTTClient(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS,cliendId);
+//    Recv_Message_Over_MQTT("test"); 
+    while(1) {
+        Send_Message_Over_MQTT(messagetosend);       
+//        Send_GETMAC_Message();///SSN/CONFIG");
+        Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+
+        MQTTYield(&Client_MQTT, MQTT_DataPacket.keepAliveInterval);
+        sleep_for_microseconds(1000000);
+    }
+
+    while(true);
+    return 1;
+}
 
 

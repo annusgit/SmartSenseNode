@@ -12,12 +12,19 @@
 #include <string.h>
 #include "Ethernet/socket.h"
 #include "Internet/DHCP/dhcp.h"
+#include "Internet/MQTT/MQTTClient.h"
+#include "Internet/MQTT/mqtt_interface.h"
 
 #define WIZ5500_R_COMMON_RTR    0x001A0100 // Reset Value: 0xD0
 #define WIZ5500_W_COMMON_RTR    0x001A05F1 // Write Value: 0xF1
 #define WIZ5500_R_COMMON_RCR    0x001B0100 // Reset Value: 0x08
 #define WIZ5500_W_COMMON_RCR    0x001B05F1 // Write Value: 0xF1
 #define setPR2(seconds)         (seconds * PERIPH_CLK / 64)
+
+#define TCP_SOCKET  0
+#define MAX_LEN     100
+#define BUFFER_SIZE	2048
+#define MQTTPort  1883    // mqtt server port
 
 ///////////////////////////////////////
 // Debugging Message Printout enable //
@@ -35,7 +42,7 @@
  * Shared Buffer Definition for LOOPBACK TEST *
  **********************************************/
 #define DATA_BUF_SIZE   2048
-uint8_t gDATABUF[DATA_BUF_SIZE];
+uint8_t gDATABUF[DATA_BUF_SIZE];	
 
 /**************************************************************************//**
  * @brief Default Network Inforamtion
@@ -45,6 +52,30 @@ volatile uint32_t msTicks;  /* counts 1ms timeTicks */
 uint32_t prevTick;          /* */
 
 wiz_NetInfo WIZ5500_network_information;
+
+
+/**************************************************************************//**
+ * @MQTT variables
+ *****************************************************************************/
+Network n;	   
+MQTTClient Client_MQTT;    
+MQTTMessage Message_MQTT;
+MQTTPacket_connectData MQTT_DataPacket;
+static char* TopicToPublishTo="/SSN/CONFIG";
+unsigned char MQTT_buf[100];
+//const char* cliendId = "4C:E5";
+typedef struct opts_struct {
+	char clientid[MAX_LEN];
+	int nodelimiter;
+	char delimiter[MAX_LEN];
+	enum QoS qos;
+	char username[MAX_LEN];
+	char password[MAX_LEN];
+	char host[4]; // this is an ip
+	int port;
+	int showtopics;
+} opts_struct;
+opts_struct MQTTOptions;
 
 // Device level functions
 
@@ -200,5 +231,14 @@ uint16_t is_Message_to_be_transmitted(uint8_t socket_number);
  */
 uint8_t Recv_Message_Over_UDP(uint8_t socket_number, char* message, uint8_t message_byte_length, char* destination_ip, uint16_t destination_port);
 
+
+void SetupMQTTOptions(opts_struct* MQTTOptions,char* cliendId ,enum QoS,int showtopics,char* MQTT_IP);
+void SetupMQTTMessage(MQTTMessage* Message_MQTT,uint8_t* payload ,enum QoS );
+void SetupMQTTData(MQTTPacket_connectData* MQTT_DataPacket);
+
+void Recv_Message_Over_MQTT(char* topic);
+void Send_Message_Over_MQTT(uint8_t* messagetosend);        
+
+void messageArrivedoverMQTT(MessageData* md);
 
 #endif

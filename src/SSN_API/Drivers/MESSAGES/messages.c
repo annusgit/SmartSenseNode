@@ -27,7 +27,7 @@ void clear_array(uint8_t* this_array, uint32_t this_size) {
     }
 }
 
-uint8_t construct_get_mac_message(uint8_t* message_array, uint8_t* node_id) {
+uint8_t construct_get_mac_message(uint8_t* message_array, char* node_id) {
     uint8_t count = 0;
    
     /* Send the NODE ID */
@@ -36,7 +36,7 @@ uint8_t construct_get_mac_message(uint8_t* message_array, uint8_t* node_id) {
     
     /* Send the MESSAGE ID */
     message_array[count++] = GET_MAC_MESSAGE_ID;
-   
+    printf("constructgetmacmessage=%d %d %d\n",message_array[0],message_array[1],message_array[2]);
     // return how many bytes the message is
     return count;
 }
@@ -91,10 +91,9 @@ uint8_t construct_get_timeofday_message(uint8_t* message_array, uint8_t* node_id
     return count;
 }
 
-
 uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, float* Machine_load_currents, 
-        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, uint32_t node_uptime_in_seconds, 
-        uint8_t abnormal_activity) {
+        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp, 
+        uint32_t node_uptime_in_seconds, uint8_t abnormal_activity) {
     
     uint8_t count = 0;
     uint8_t temp_array[4];
@@ -114,13 +113,16 @@ uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id
     message_array[count++] = relative_humidity_bytes[0];
     message_array[count++] = relative_humidity_bytes[1];
     
+    /* Send the status change flags */
+    message_array[count++] = Machine_status_flag; // a single bytes whose bit values indicate which machines had their states changed
+    
     ////////////////////// M1 //////////////////////////
     /* Send the load current, percentage load and on/off state of current sensor-i */
     get_bytes_from_uint16((uint16_t)(Machine_load_currents[0]*100), temp_array); // multiply the current with 100 before reporting, decipher on server side
     message_array[count++] = temp_array[0];
     message_array[count++] = temp_array[1];
     message_array[count++] = Machine_load_percentages[0];
-    message_array[count++] = Machine_status[0];
+    message_array[count++] = (Machine_status[0] % 3);
     /* Send the time since on/off of this machine on current sensor-i (4 bytes) */        
     get_bytes_from_uint32(Machine_status_timestamp[0], temp_array);
     message_array[count++] = temp_array[0];
@@ -140,7 +142,7 @@ uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id
     message_array[count++] = temp_array[0];
     message_array[count++] = temp_array[1];
     message_array[count++] = Machine_load_percentages[1];
-    message_array[count++] = Machine_status[1];
+    message_array[count++] = (Machine_status[1] % 3);
     /* Send the time since on/off of this machine on current sensor-i (4 bytes) */        
     get_bytes_from_uint32(Machine_status_timestamp[1], temp_array);
     message_array[count++] = temp_array[0];
@@ -160,7 +162,7 @@ uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id
     message_array[count++] = temp_array[0];
     message_array[count++] = temp_array[1];
     message_array[count++] = Machine_load_percentages[2];
-    message_array[count++] = Machine_status[2];
+    message_array[count++] = (Machine_status[2] % 3);
     /* Send the time since on/off of this machine on current sensor-i (4 bytes) */        
     get_bytes_from_uint32(Machine_status_timestamp[2], temp_array);
     message_array[count++] = temp_array[0];
@@ -180,7 +182,7 @@ uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id
     message_array[count++] = temp_array[0];
     message_array[count++] = temp_array[1];
     message_array[count++] = Machine_load_percentages[3];
-    message_array[count++] = Machine_status[3];
+    message_array[count++] = (Machine_status[3] % 3);
     /* Send the time since on/off of this machine on current sensor-i (4 bytes) */        
     get_bytes_from_uint32(Machine_status_timestamp[3], temp_array);
     message_array[count++] = temp_array[0];

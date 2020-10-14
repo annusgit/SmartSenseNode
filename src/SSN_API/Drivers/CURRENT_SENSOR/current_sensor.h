@@ -20,7 +20,7 @@
 #define CURRENT_OUTPUT_CURRENT_SENSOR_SCALAR    2
 
 /** Enumeration for listing the possible machine states */
-enum Machine_Status {MACHINE_OFF=0, MACHINE_IDLE, MACHINE_ON};
+enum Machine_Status {MACHINE_OFF=0, MACHINE_IDLE, MACHINE_ON, SENSOR_NOT_CONNECTED};
 
 /** Implementation specific machine status time markers for keeping state timestamps */
 uint32_t MACHINES_STATE_TIME_MARKERS[NO_OF_MACHINES];
@@ -28,10 +28,13 @@ uint32_t MACHINES_STATE_TIME_MARKERS[NO_OF_MACHINES];
 uint32_t MACHINES_STATE_TIME_DURATION_UPON_STATE_CHANGE[NO_OF_MACHINES];
 
 /** Machine load RMS averages */
-#define n_for_rms_averaging     8
-static uint8_t rms_sample_count = 0;
-static bool n_samples_collected = false;
-static float running_RMS_sum[NO_OF_MACHINES] = {0}, RMS_buffer[NO_OF_MACHINES*n_for_rms_averaging] = {0}, last_sample_before_n_samples;
+#define n_for_rms_averaging             8
+#define n_for_rms_status_assignment     50
+#define state_change_criteria           (int)(0.9*n_for_rms_status_assignment)
+#define off_current_threshold           0.5
+static uint8_t rms_averaging_sample_count = 0, rms_status_assignment_sample_count = 0;
+static float RMS_buffer[NO_OF_MACHINES*n_for_rms_averaging] = {0};
+static float RMS_long_buffer[NO_OF_MACHINES*n_for_rms_status_assignment]={0};
 
 /** Setup up the ADC peripheral */
 void open_ADC();
@@ -107,7 +110,10 @@ float Current_CSensor_Read_RMS(uint8_t channel, uint16_t* current_samples_array,
  * @return Status_change_flag a flag that will indicate if the state of any machine has changed
  */
 bool Get_Machines_Status_Update(uint8_t* SSN_CURRENT_SENSOR_RATINGS, uint8_t* SSN_CURRENT_SENSOR_THRESHOLDS, uint8_t* SSN_CURRENT_SENSOR_MAXLOADS, float* Machine_load_currents, 
-        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp);
+        uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t* Machine_status_flag, uint32_t* Machine_status_duration, uint32_t* Machine_status_timestamp);
 
+int8_t Get_Machine_Status(uint8_t machine_number, float idle_threshold, uint8_t prev_state);
+
+void Clear_Machine_Status_flag (uint8_t* Machine_status_flag);
 
 #endif

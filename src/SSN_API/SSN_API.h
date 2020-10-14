@@ -7,6 +7,8 @@
 #include "FlashMemory/FlashMemory.h"
 #include "Connection/Connection.h"
 #include "Communication/Communication.h"
+#include "Drivers/NETWORK/Internet/MQTT/MQTTClient.h"
+#include "Drivers/NETWORK/Internet/MQTT/mqtt_interface.h"
 
 /** 
  * \mainpage 
@@ -157,10 +159,13 @@
  */
 /** Our SSN UDP communication socket */
 extern SOCKET SSN_UDP_SOCKET;
+
 /** SSN Server Address */
 extern uint8_t SSN_SERVER_IP[4];
 /** SSN Server PORT */
 extern uint16_t SSN_SERVER_PORT;
+
+extern uint8_t MQTT_IP[4]; // mqtt server IP
 
 /** Static IP Assignment */
 extern uint8_t SSN_STATIC_IP[4];
@@ -193,8 +198,12 @@ extern uint8_t SSN_CURRENT_SENSOR_MAXLOADS[4];
 extern float Machine_load_currents[NO_OF_MACHINES];
 /** SSN machine load percentages array */
 extern uint8_t Machine_load_percentages[NO_OF_MACHINES];
-/** SSN machine status array initialized to a OFF state */
+/** SSN machine status array */
 extern uint8_t Machine_status[NO_OF_MACHINES];
+/** SSN machine status tracker array */
+extern uint8_t Machine_prev_status[NO_OF_MACHINES];
+/** SSN machine status flag array that tells if the machine status changed */
+extern uint8_t Machine_status_flag;
 /** SSN machine timestamps for recording since when the machines have been in the current states */
 extern uint32_t Machine_status_timestamp[NO_OF_MACHINES];
 /** SSN machine status duration array for holding the number of seconds for which the machines have been in the current state */

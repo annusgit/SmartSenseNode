@@ -24,4 +24,7 @@ uint8_t SetupConnectionWithStaticIP(uint8_t UDP_SOCKET, uint8_t* SSN_MAC_ADDRESS
  */
 uint8_t ResetConnection(uint8_t* SSN_CURRENT_MAC, uint8_t UDP_SOCKET);
 
+struct MQTTClient SetupConnectionWithMQTTClient(uint8_t *MQTT_IP, uint8_t* SSN_MAC_ADDRESS, uint8_t* static_IP, uint8_t* subnet_mask, uint8_t* gateway,char* cliendId);   
+
+
 #endif
