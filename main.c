@@ -127,16 +127,20 @@ int main_2() {
 
 char* cliendId = "helloSSN";
 char* messagetosend="hiiiiiiiiiiiii";
-
+char Receivemsg[BUFFER_SIZE]={};
 int main() {
     // Basic setup for our SSN to work    
     SSN_Setup();
-    SetupConnectionWithMQTTClient(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS,cliendId);
-//    Recv_Message_Over_MQTT("test"); 
+    SSN_COPY_MAC_FROM_MEMORY();
+    printf("HELLOWORLD");
+    SetupConnectionWithMQTTClient(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS,cliendId);            
+//    Send_Message_Over_MQTT(messagetosend);       
+    Receive_MAC(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+//    Recv_Message_Over_MQTT(Receivemsg); 
     while(1) {
         Send_Message_Over_MQTT(messagetosend);       
 //        Send_GETMAC_Message_MQTT(&SSN_MAC_ADDRESS[4]);///SSN/CONFIG");
-        Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+//        Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
 
         MQTTYield(&Client_MQTT, MQTT_DataPacket.keepAliveInterval);
         sleep_for_microseconds(1000000);

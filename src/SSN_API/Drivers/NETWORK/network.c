@@ -1,6 +1,7 @@
 
 
 #include "network.h"
+#include "SSN_API/Drivers/MESSAGES/messages.h"
 
 void WIZ5500_Reset() {
     /* Reset WIZ5500 for ~460ms */
@@ -400,6 +401,18 @@ uint8_t Recv_Message_Over_UDP(uint8_t socket_number, char* message, uint8_t mess
 //        printf("Received Message\r\n");
     return data_size;
 }
+
+void Recv_Message_Over_MQTT(uint8_t* messagetorecv){
+    int rc = 0;    
+//	MQTTOptions.showtopics = 1;	
+    printf("Subscribing to %s\r\n", TopicToSubscribeTo);
+	rc = MQTTSubscribe(&Client_MQTT, TopicToSubscribeTo, MQTTOptions.qos, messageArrivedoverMQTT);
+    printf("Messagetorecieve %s\r\n",Messagetorecieve);
+    messagetorecv=*Messagetorecieve;
+    printf("Messagetorecv %s\r\n",messagetorecv);
+	printf("Subscribed %d\r\n", rc);
+}
+
 void SetupMQTTOptions(opts_struct* MQTTOptions,char* cliendId ,enum QoS x,int showtopics,char* MQTT_IP){
     strcpy(MQTTOptions->clientid,cliendId);
     MQTTOptions->nodelimiter=0; 
@@ -408,10 +421,6 @@ void SetupMQTTOptions(opts_struct* MQTTOptions,char* cliendId ,enum QoS x,int sh
     strcpy(MQTTOptions->username,"NULL");        
     strcpy(MQTTOptions->password,"NULL");  
     strcpy(MQTTOptions->host,MQTT_IP);  
-//    .host[0]=targetIP[0], 
-//    .host[1]=targetIP[1], 
-//    .host[2]=targetIP[2], 
-//    .host[3]=targetIP[3], 
     MQTTOptions->port=MQTTPort; 
     MQTTOptions->showtopics=showtopics;
 }
@@ -425,21 +434,7 @@ void SetupMQTTMessage(MQTTMessage* Message_MQTT,uint8_t* payload ,enum QoS x){
     Message_MQTT->payload=payload;
 //    printf("In SetupMQTTMessage=%d \n",payload);
     Message_MQTT->payloadlen=strlen(payload);
-    printf("SetupMQTTMessage %d\n",Message_MQTT->payloadlen);
-//    strcpy(MQTTOptions->clientid,cliendId);
-//    MQTTOptions->nodelimiter=0; 
-//    strcpy(MQTTOptions->delimiter,"\n");
-//    MQTTOptions->qos=x; 
-//    strcpy(MQTTOptions->username,"NULL");        
-//    strcpy(MQTTOptions->password,"NULL");  
-//    strcpy(MQTTOptions->host,MQTT_IP);  
-////    .host[0]=targetIP[0], 
-////    .host[1]=targetIP[1], 
-////    .host[2]=targetIP[2], 
-////    .host[3]=targetIP[3], 
-//    MQTTOptions->port=MQTTPort; 
-//    MQTTOptions->showtopics=showtopics;
-//
+//    printf("SetupMQTTMessage %d\n",Message_MQTT->payloadlen);
 }
 void SetupMQTTData(MQTTPacket_connectData* MQTT_DataPacket){
     	
@@ -449,16 +444,10 @@ void SetupMQTTData(MQTTPacket_connectData* MQTT_DataPacket){
 	MQTT_DataPacket->username.cstring = MQTTOptions.username;
 	MQTT_DataPacket->password.cstring = MQTTOptions.password;
 
-	MQTT_DataPacket->keepAliveInterval = 60;
+	MQTT_DataPacket->keepAliveInterval = 180;
 	MQTT_DataPacket->cleansession = 1;
 }
-void Recv_Message_Over_MQTT(char* topic){
-    int rc = 0;    
-//	MQTTOptions.showtopics = 1;	
-    printf("Subscribing to %s\r\n", topic);
-	rc = MQTTSubscribe(&Client_MQTT, topic, MQTTOptions.qos, messageArrivedoverMQTT);
-	printf("Subscribed %d\r\n", rc);
-}
+
 
 void Send_Message_Over_MQTT(uint8_t* messagetosend){        
     int rc = 0;    
@@ -468,19 +457,132 @@ void Send_Message_Over_MQTT(uint8_t* messagetosend){
 //    return rc;
 }
 
-void messageArrivedoverMQTT(MessageData* md) {
-	unsigned char testbuffer[100];
-	MQTTMessage* message = md->message;
-
+void messageArrivedoverMQTT(MessageData* md){//,char* Messagetorecv) {
+	unsigned char testbuffer[BUFFER_SIZE];
+	MQTTMessage* message = md->message; 
+    printf(":::::\n");
+//    clear_array(testbuffer,20);
 	if (MQTTOptions.showtopics) {
 		memcpy(testbuffer,(char*)message->payload,(int)message->payloadlen);
 		*(testbuffer + (int)(message->payloadlen) + 1) = "\n";
-		printf("%s\r\n",testbuffer);
-	}
+                
+        uint8_t received_message_id;
 
+        uint32_t TimeOFDayTick;
+
+        received_message_id = decipher_received_message(testbuffer, params);
+    
+        received_message_id = received_message_id - '0';  // ASCii value of '0' is 48 so 52-48 will return 4.
+
+//        printf("Received message ID is %d\n",received_message_id);
+
+        // based on which message was received (received_message_id), we extract and save the data
+        switch (received_message_id) {
+            case SET_MAC_MESSAGE_ID:
+                printf("<- SET_MAC MESSAGE RECEIVED: %X:%X:%X:%X:%X:%X\n", params[0], params[1], params[2], params[3], params[4], params[5]);
+                printf("Resetting Controller Now...\n");
+                // write the new MAC addresses to designated location in EEPROM
+                EEPROM_Write_Array(EEPROM_BLOCK_0, EEPROM_MAC_LOC, params, EEPROM_MAC_SIZE);
+                // reset the SSN from software
+                SoftReset();
+                while(1);
+                break;
+
+            case SET_TIMEOFDAY_MESSAGE_ID:
+                TimeOFDayTick = get_uint32_from_bytes(params);
+                printf("<- SET_TIMEOFDAY MESSAGE RECEIVED: %d\n", TimeOFDayTick);
+                // assign incoming clock time to SSN Global Clock (Pseudo Clock because we don't have an RTCC)
+                set_ssn_time(TimeOFDayTick);
+//                return 1;
+                break;
+
+                            
+//            case SET_CONFIG_MESSAGE_ID:
+//                // write the new config to designated location in EEPROM
+//                EEPROM_Write_Array(EEPROM_BLOCK_0, EEPROM_CONFIG_LOC, params, EEPROM_CONFIG_SIZE);
+//                // Copy received configurations to the SSN_CONFIG array
+//                int i; for (i = 0; i < EEPROM_CONFIG_SIZE; i++) {
+//                    SSN_CONFIG[i] = params[i];
+//                }
+//                // Copy from the configurations, the sensor ratings, thresholds and maximum load values to our variables
+//                for (i = 0; i < NO_OF_MACHINES; i++) {
+//                    /* Get the parameters from the Configurations */
+//                    SSN_CURRENT_SENSOR_RATINGS[i]    = SSN_CONFIG[3*i+0];
+//                    SSN_CURRENT_SENSOR_THRESHOLDS[i] = SSN_CONFIG[3*i+1];
+//                    SSN_CURRENT_SENSOR_MAXLOADS[i]   = SSN_CONFIG[3*i+2];
+//                }
+//                // save new reporting interval
+//                *SSN_REPORT_INTERVAL = SSN_CONFIG[EEPROM_CONFIG_SIZE-1];
+//                printf("LOG: Received New Current Sensor Configuration from SSN Server: \n"
+//                    "     >> S1-Rating: %03d A | M1-Threshold: %03d A | M1-Maxload: %03d A |\n"
+//                    "     >> S2-Rating: %03d A | M2-Threshold: %03d A | M2-Maxload: %03d A |\n"
+//                    "     >> S3-Rating: %03d A | M3-Threshold: %03d A | M3-Maxload: %03d A |\n"
+//                    "     >> S4-Rating: %03d A | M4-Threshold: %03d A | M4-Maxload: %03d A |\n"
+//                    "     >> Reporting Interval: %d sec\n", 
+//                    SSN_CURRENT_SENSOR_RATINGS[0], SSN_CURRENT_SENSOR_THRESHOLDS[0], SSN_CURRENT_SENSOR_MAXLOADS[0],
+//                    SSN_CURRENT_SENSOR_RATINGS[1], SSN_CURRENT_SENSOR_THRESHOLDS[1], SSN_CURRENT_SENSOR_MAXLOADS[1],
+//                    SSN_CURRENT_SENSOR_RATINGS[2], SSN_CURRENT_SENSOR_THRESHOLDS[2], SSN_CURRENT_SENSOR_MAXLOADS[2],
+//                    SSN_CURRENT_SENSOR_RATINGS[3], SSN_CURRENT_SENSOR_THRESHOLDS[3], SSN_CURRENT_SENSOR_MAXLOADS[3], *SSN_REPORT_INTERVAL);
+//                // Reset Machine States 
+//                for (i = 0; i < NO_OF_MACHINES; i++) {
+//                    Machine_status[i] = SENSOR_NOT_CONNECTED;
+//                }
+////                return 1;
+//                break;
+
+            // Only for debugging, will be removed
+            // This message will clear the EEPROM of our SSN
+            case DEBUG_EEPROM_CLEAR_MESSAGE_ID:
+                // stop the global timer
+                stop_Global_Clock();
+                printf("(DEBUG): Clearing EEPROM Now...\n");
+                // Clear EEPROM and reset node
+                EEPROM_Clear();
+                // reset the SSN
+                printf("(DEBUG): Resetting Controller Now...\n");
+                SoftReset();
+                while(1);
+                break;
+
+            // Only for debugging, will be removed
+            // This message will reset our SSN
+            case DEBUG_RESET_SSN_MESSAGE_ID:
+                // stop the global timer
+                stop_Global_Clock();
+                // reset the SSN
+                printf("(DEBUG): Resetting Controller Now...\n");
+                sleep_for_microseconds(1000000);
+                SoftReset();
+                while(1);
+                break;
+
+            default:
+                break;
+        }
+		printf("testbuffer %s\r\n",testbuffer); 
+//        printf("%s\r\n",message->payload);
+        clear_array(testbuffer,100);
+//        printf("testbuffer %s\r\n",testbuffer); 
+
+	}
 	if (MQTTOptions.nodelimiter)
 		printf("%.*s", (int)message->payloadlen, (char*)message->payload);
 	else
-		printf("%.*s%s", (int)message->payloadlen, (char*)message->payload, MQTTOptions.delimiter);
-}
+    {
+        printf("%.*s%s", (int)message->payloadlen, (char*)message->payload, MQTTOptions.delimiter);
+//        *Messagetorecieve=message->pay load;              
+//        printf("Message->Payload %s\r\n",message->payload);                
+//        printf("Messagetorecieve %s\r\n",*Messagetorecieve);
+        
+    }
 
+    }
+        
+//    *Messagetorecieve=testbuffer;              
+//            
+//    printf("test buffer %s\r\n",*Messagetorecieve);
+
+//    return Messagetorecv;
+//}
+//    %.* s    payloadlen, payload
+//    %.* s %s payloadlen, payload, delimiter

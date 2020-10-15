@@ -14,7 +14,7 @@ bool SendMessage(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
     }
 }
 bool SendMessageMQTT(uint8_t* messagetosend, uint8_t ssn_message_to_send_size) {
-    int8_t messagetosendsize=strlen(messagetosend);
+//    int8_t messagetosendsize=strlen(messagetosend);
     printf("In sendmessageMQTT %d\n",ssn_message_to_send_size);
 //    int8_t send_message_status =
     Send_Message_Over_MQTT(messagetosend);    
@@ -23,7 +23,7 @@ bool SendMessageMQTT(uint8_t* messagetosend, uint8_t ssn_message_to_send_size) {
 
 //    if (send_message_status==ssn_message_to_send_size) {
 //        
-    printf("-> %d-Byte Message Sent\n", messagetosendsize);
+    printf("-> %d-Byte Message Sent\n", ssn_message_to_send_size);
 //                //" to IP: %d:%d:%d:%d @ PORT:%d\n", SSN_SERVER_IP[0], SSN_SERVER_IP[1], SSN_SERVER_IP[2], SSN_SERVER_IP[3], SSN_SERVER_PORT);
         return true;
 //    }
@@ -32,7 +32,10 @@ bool SendMessageMQTT(uint8_t* messagetosend, uint8_t ssn_message_to_send_size) {
 //        return false;
 //    }
 }
-
+bool ReceiveMessageMQTT(uint8_t* messagetorecv, uint8_t ssn_message_to_recv_size) {
+    Recv_Message_Over_MQTT(messagetorecv);    
+        return true;
+}
 
 void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     /* Clear the message array */
@@ -107,20 +110,6 @@ bool Send_STATUSUPDATE_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN
     return SendMessageMQTT(message_to_send, ssn_message_to_send_size);
 #endif 
 }
-//bool Send_STATUSUPDATE_Message_MQTT(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* temperature_bytes, uint8_t* relative_humidity_bytes, 
-//        float* Machine_load_currents, uint8_t* Machine_load_percentages, uint8_t* Machine_status, uint8_t Machine_status_flag, uint32_t* Machine_status_duration, 
-//        uint32_t* Machine_status_timestamp, uint32_t ssn_uptime_in_seconds, uint8_t abnormal_activity) {
-//    /* Clear the message array but we can't because if we do, this will throw an error at the server end */
-//    //clear_array(message_to_send, max_send_message_size);
-//    // Finally, construct the full status update message structure
-//    uint8_t ssn_message_to_send_size = construct_status_update_message(message_to_send, NodeID, temperature_bytes, relative_humidity_bytes, Machine_load_currents, Machine_load_percentages, 
-//            Machine_status, Machine_status_flag, Machine_status_duration, Machine_status_timestamp, ssn_uptime_in_seconds, abnormal_activity);
-//    if(ssn_message_to_send_size!=STATUS_UPDATE_MESSAGE_Size) {
-//        // This is not possible but still..
-//        printf("(Message BAD) ");
-//    }
-//    return SendMessageMQTT(messagetosend ,topic);    
-//}
 
 void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     
@@ -129,16 +118,18 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
     
     uint32_t Received_Message_Bytes_in_Buffer;
     uint8_t received_message_id, received_message_status;
-
+    
+#ifdef _UDP
     // check how many bytes in RX buffer of Ethernet, if it is not empty (non-zero number returned), we should read it
     Received_Message_Bytes_in_Buffer = is_Message_Received_Over_UDP(SSN_Socket);
-
     // if there are more than one messages in buffer, we want to receive all of them
     while (Received_Message_Bytes_in_Buffer) {
-
         // read the message from buffer
         received_message_status = Recv_Message_Over_UDP(SSN_Socket, message_to_recv, max_recv_message_size, SSN_SERVER_IP, SSN_SERVER_PORT);
-
+#endif
+#ifdef _MQTT
+        ReceiveMessageMQTT(message_to_recv,max_recv_message_size);
+#endif 
         // Parse and make sense of the message
         // 'params' array stores and organizes whatever data we have received in the message
         // this might be a new MAC address, or new Sensor Configurations, or Time of Day, etc.
@@ -148,7 +139,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
         switch (received_message_id) {
             case SET_MAC_MESSAGE_ID:
                 printf("<- SET_MAC MESSAGE RECEIVED: %X:%X:%X:%X:%X:%X\n", params[0], params[1], params[2], params[3], params[4], params[5]);
-                printf("Reseting Controller Now...\n");
+                printf("Resetting Controller Now...\n");
                 // write the new MAC addresses to designated location in EEPROM
                 EEPROM_Write_Array(EEPROM_BLOCK_0, EEPROM_MAC_LOC, params, EEPROM_MAC_SIZE);
                 // reset the SSN from software
@@ -165,7 +156,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
                 // Clear EEPROM and reset node
                 EEPROM_Clear();
                 // reset the SSN
-                printf("(DEBUG): Reseting Controller Now...\n");
+                printf("(DEBUG): Resetting Controller Now...\n");
                 SoftReset();
                 while(1);
                 break;
@@ -176,7 +167,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
                 // stop the global timer
                 stop_Global_Clock();
                 // reset the SSN
-                printf("(DEBUG): Reseting Controller Now...\n");
+                printf("(DEBUG): Resetting Controller Now...\n");
                 sleep_for_microseconds(1000000);
                 SoftReset();
                 while(1);
@@ -187,7 +178,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
         }
         // See if there is another message in the buffer so we can do this all over again
         Received_Message_Bytes_in_Buffer = is_Message_Received_Over_UDP(SSN_Socket);            
-    }
+//    }
 }
 
 uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* SSN_CONFIG, uint8_t* SSN_REPORT_INTERVAL, uint8_t* SSN_CURRENT_SENSOR_RATINGS, 
@@ -257,7 +248,7 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
                 // Clear EEPROM and reset node
                 EEPROM_Clear();
                 // reset the SSN
-                printf("(DEBUG): Reseting Controller Now...\n");
+                printf("(DEBUG): Resetting Controller Now...\n");
                 SoftReset();
                 while(1);
                 break;
@@ -269,7 +260,7 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
                 //stop_Global_Clock();
                 DisableGlobalInterrupt();
                 // reset the SSN
-                printf("(DEBUG): Reseting Controller Now...\n");
+                printf("(DEBUG): Resetting Controller Now...\n");
                 sleep_for_microseconds(1000000);
                 SoftReset();
                 while(1);
@@ -326,7 +317,7 @@ uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t S
                 // Clear EEPROM and reset node
                 EEPROM_Clear();
                 // reset the SSN
-                printf("(DEBUG): Reseting Controller Now...\n");
+                printf("(DEBUG): Resetting Controller Now...\n");
                 SoftReset();
                 while(1);
                 break;
@@ -337,7 +328,7 @@ uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t S
                 // stop the global timer
                 stop_Global_Clock();
                 // reset the SSN
-                printf("(DEBUG): Reseting Controller Now...\n");
+                printf("(DEBUG): Resetting Controller Now...\n");
                 sleep_for_microseconds(1000000);
                 SoftReset();
                 while(1);

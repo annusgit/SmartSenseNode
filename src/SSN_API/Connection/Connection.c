@@ -39,17 +39,13 @@ uint8_t ResetConnection(uint8_t* SSN_MAC_ADDRESS, uint8_t UDP_SOCKET) {
 
 struct MQTTClient SetupConnectionWithMQTTClient(uint8_t *MQTT_IP,uint8_t* SSN_MAC_ADDRESS, uint8_t* static_IP, uint8_t* subnet_mask, uint8_t* gateway,char* cliendId){	       
     unsigned char tempBuffer[BUFFER_SIZE] = {};
-    SSN_COPY_MAC_FROM_MEMORY();
     Ethernet_Save_MAC(SSN_MAC_ADDRESS);
     Ethernet_set_Static_IP(static_IP, subnet_mask, gateway);
-
     NewNetwork(&n, TCP_SOCKET);
 	ConnectNetwork(&n, MQTT_IP, MQTTPort);
-//    printf("%d\n",Client_MQTT.command_timeout_ms);
-    MQTTClientInit(&Client_MQTT, &n, 1000, MQTT_buf, 100, tempBuffer, 2048);
-//    printf("%d\n",Client_MQTT.command_timeout_ms);
-        int rc = 0;    
-    SetupMQTTOptions(&MQTTOptions,cliendId ,QOS0,0,MQTT_IP);
+    MQTTClientInit(&Client_MQTT, &n, 1000, MQTT_buf, 100, tempBuffer, 2048);    
+    int rc = 0;    
+    SetupMQTTOptions(&MQTTOptions,cliendId ,QOS0,1,MQTT_IP);
     SetupMQTTData(&MQTT_DataPacket);    
 	rc = MQTTConnect(&Client_MQTT, &MQTT_DataPacket);
 	printf("Connected %d\r\n", rc);

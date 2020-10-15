@@ -59,7 +59,7 @@ void MQTTClientInit(MQTTClient* c, Network* network, unsigned int command_timeou
         c->messageHandlers[i].topicFilter = 0;
     c->command_timeout_ms = command_timeout_ms;
     c->buf = sendbuf;
-    c->buf_size = sendbuf_size;
+    c->buf_size = sendbuf_size;    
     c->readbuf = readbuf;
     c->readbuf_size = readbuf_size;
     c->isconnected = 0;
@@ -498,8 +498,6 @@ exit:
 
 int MQTTPublish(MQTTClient* c, const char* topicName, MQTTMessage* message)
 {
-        
-    printf("HERE in MQTTPublish\n");
     int rc = FAILURE;
     Timer timer;
     MQTTString topic = MQTTString_initializer;
@@ -549,7 +547,6 @@ int MQTTPublish(MQTTClient* c, const char* topicName, MQTTMessage* message)
         else
             rc = FAILURE;
     }
-    printf("EXITING in MQTTPublish\n");
 
 exit:
 #if defined(MQTT_TASK)

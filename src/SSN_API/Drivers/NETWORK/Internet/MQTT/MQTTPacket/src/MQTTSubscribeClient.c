@@ -80,6 +80,7 @@ int MQTTSerialize_subscribe(unsigned char* buf, int buflen, unsigned char dup, u
 	}
 
 	rc = ptr - buf;
+
 exit:
 	FUNC_EXIT_RC(rc);
 	return rc;
@@ -127,7 +128,6 @@ int MQTTDeserialize_suback(unsigned short* packetid, int maxcount, int* count, i
 		}
 		grantedQoSs[(*count)++] = readChar(&curdata);
 	}
-
 	rc = 1;
 exit:
 	FUNC_EXIT_RC(rc);

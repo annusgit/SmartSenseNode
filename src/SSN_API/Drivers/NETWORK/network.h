@@ -14,6 +14,7 @@
 #include "Internet/DHCP/dhcp.h"
 #include "Internet/MQTT/MQTTClient.h"
 #include "Internet/MQTT/mqtt_interface.h"
+#include "../../Communication/Communication.h"
 
 #define WIZ5500_R_COMMON_RTR    0x001A0100 // Reset Value: 0xD0
 #define WIZ5500_W_COMMON_RTR    0x001A05F1 // Write Value: 0xF1
@@ -61,7 +62,9 @@ Network n;
 MQTTClient Client_MQTT;    
 MQTTMessage Message_MQTT;
 MQTTPacket_connectData MQTT_DataPacket;
-static char* TopicToPublishTo="/SSN/CONFIG";
+static char* TopicToPublishTo="/SSN/";
+static char* TopicToSubscribeTo="/SSN/CONFIG";
+char* Messagetorecieve[BUFFER_SIZE];
 unsigned char MQTT_buf[100];
 //const char* cliendId = "4C:E5";
 typedef struct opts_struct {
@@ -236,9 +239,9 @@ void SetupMQTTOptions(opts_struct* MQTTOptions,char* cliendId ,enum QoS,int show
 void SetupMQTTMessage(MQTTMessage* Message_MQTT,uint8_t* payload ,enum QoS );
 void SetupMQTTData(MQTTPacket_connectData* MQTT_DataPacket);
 
-void Recv_Message_Over_MQTT(char* topic);
+void Recv_Message_Over_MQTT(uint8_t* messagetosend);
 void Send_Message_Over_MQTT(uint8_t* messagetosend);        
 
-void messageArrivedoverMQTT(MessageData* md);
+void messageArrivedoverMQTT(MessageData* md);//, char* Messagetorecv);
 
 #endif
