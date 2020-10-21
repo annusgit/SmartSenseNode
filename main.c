@@ -13,7 +13,7 @@
 #pragma config JTAGEN   = OFF           // JTAG Enable (Disabled)
 
 #include "src/SSN_API/SSN_API.h"
-
+char* cliendId = "helloSSN";
 /** Half-Second interrupt that controls our send messag    e routine of the SSN. Half-second and not one second is because we can not set an 
  *  interrupt of up to 1 second with the current clock of the SSN. We only start this interrupt service once we have Ethernet configured 
  *  and all self-tests are successful. The message to be sent is constructed every half a second in the main function and only reported 
@@ -68,7 +68,7 @@ void __ISR(_TIMER_1_VECTOR, IPL4SOFT) Timer1IntHandler_SSN_Hearbeat(void){
  *      - SSN calculates machine status update and ambient conditions every 100 milliseconds. 
           The ISR sends the status update after every ${SSN_REPORT_INTERVAL} seconds
  */
-int main_2() {
+int main1() {
     // Setup Smart Sense Node
     SSN_Setup();
     // Check the EEPROM, temperature sensor and network connection before proceeding
@@ -77,10 +77,14 @@ int main_2() {
     EnableWatchdog();
     // First find MAC in flash memory or assign default MAC address
     SSN_COPY_MAC_FROM_MEMORY();
-    // We can chose two ways to operate over UDP; static or dynamic IP
+    // We can chose two ways to operate over UDP; static or dynamic IP    
+#ifdef _MQTT
+    SetupConnectionWithMQTTClient(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS,cliendId);  
+#endif
+#ifdef _UDP
     //SSN_UDP_SOCKET = SetupConnectionWithDHCP(SSN_MAC_ADDRESS, SSN_UDP_SOCKET_NUM);
-    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
-//    SetupConnectionWithMQTT(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+    SSN_UDP_SOCKET = SetupConnectionWithStaticIP(SSN_UDP_SOCKET_NUM, SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);    
+#endif
     // Get MAC address for SSN if we didn't have one already
     SSN_GET_MAC();
     // Get SSN configurations for SSN or pick from EEPROM if already assigned
@@ -94,11 +98,13 @@ int main_2() {
     //InterruptEnabled = true;
     while(SSN_IS_ALIVE) {
         // Read temperature and humidity sensor
-        SSN_GET_AMBIENT_CONDITION();
+//        SSN_GET_AMBIENT_CONDITION();
         // Network critical section begins here. Disable all interrupts
         DisableGlobalInterrupt();
         // Receive time of day or new configurations if they are sent from the server
+#ifdef _UDP
         SSN_RECEIVE_ASYNC_MESSAGE();
+#endif   
         // Make sure Ethernet is working fine (blocking if no physical link available)
         SSN_CHECK_ETHERNET_CONNECTION();
         //Reset node if we have been running for more than 8 hours
@@ -119,32 +125,98 @@ int main_2() {
         // Network critical section ends here. Enable all interrupts
         EnableGlobalInterrupt();
         // sleep for 100 milliseconds
+#ifdef _MQTT
+        MQTTYield(&Client_MQTT, MQTT_DataPacket.keepAliveInterval);
+#endif
         sleep_for_microseconds(100000);
     }
     // we should never reach this point
     return 1;
 }
 
-char* cliendId = "helloSSN";
-char* messagetosend="hiiiiiiiiiiiii";
-char Receivemsg[BUFFER_SIZE]={};
+//char* messagetosend="HELLO";
+//char Receivemsg[BUFFER_SIZE]={};
+unsigned char tempBuffer[BUFFER_SIZE] = {};
+unsigned char TargetName[40] = "m11.cloudmqtt.com";
+uint8_t DNS_ADDRESS[4]   = {8, 8, 8, 8};
+
 int main() {
     // Basic setup for our SSN to work    
     SSN_Setup();
     SSN_COPY_MAC_FROM_MEMORY();
-    printf("HELLOWORLD");
-    SetupConnectionWithMQTTClient(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS,cliendId);            
-//    Send_Message_Over_MQTT(messagetosend);       
-    Receive_MAC(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
-//    Recv_Message_Over_MQTT(Receivemsg); 
-    while(1) {
-        Send_Message_Over_MQTT(messagetosend);       
-//        Send_GETMAC_Message_MQTT(&SSN_MAC_ADDRESS[4]);///SSN/CONFIG");
-//        Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+    Ethernet_Save_MAC(SSN_MAC_ADDRESS);
+    Ethernet_set_Static_IP(SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS);
+    printf("HELLOWORLD\n"); 
+    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+   	
+    Network n;
+	n.my_socket = 0;
+	DNS_init(1,tempBuffer);
+    
+    T5CON = 0x8000; TMR5 = 0;
+    strcpy(TargetName, "m11.cloudmqtt.com");
+    while((DNS_run(DNS_ADDRESS,TargetName,MQTT_IP) == 0) && (TMR5<PERIPH_CLK));
+    TMR5 = 0; T5CONCLR = 0x8000;
+    printf("***%s\n",TargetName);
+    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+    sleep_for_microseconds(1000000);
+    
+    T5CON = 0x8000; TMR5 = 0;
+    strcpy(TargetName, "www.google.com");
+    while((DNS_run(DNS_ADDRESS,TargetName,MQTT_IP) == 0) && (TMR5<PERIPH_CLK));
+    TMR5 = 0; T5CONCLR = 0x8000;    
+    printf("***%s\n",TargetName);
+    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+    sleep_for_microseconds(1000000);
 
-        MQTTYield(&Client_MQTT, MQTT_DataPacket.keepAliveInterval);
-        sleep_for_microseconds(1000000);
-    }
+//    T5CON = 0x8000; TMR5 = 0;
+//    strcpy(TargetName, "www.pubnub.com/");
+//    while((DNS_run(DNS_ADDRESS,TargetName,MQTT_IP) == 0) && (TMR5<PERIPH_CLK));
+//    TMR5 = 0; T5CONCLR = 0x8000;
+//    printf("***%s\n",TargetName);
+//    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+//    sleep_for_microseconds(1000000);
+    
+    T5CON = 0x8000; TMR5 = 0;
+    strcpy(TargetName, "www.facebook.com");
+    while((DNS_run(DNS_ADDRESS,TargetName,MQTT_IP) == 0) && (TMR5<PERIPH_CLK));
+    TMR5 = 0; T5CONCLR = 0x8000;
+    printf("***%s\n",TargetName);
+    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+    sleep_for_microseconds(1000000);
+    
+    T5CON = 0x8000; TMR5 = 0;
+    strcpy(TargetName, "www.twitter.com");
+    while((DNS_run(DNS_ADDRESS,TargetName,MQTT_IP) == 0) && (TMR5<PERIPH_CLK));
+    TMR5 = 0; T5CONCLR = 0x8000;
+    printf("***%s\n",TargetName);
+    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+    sleep_for_microseconds(1000000);
+    
+    T5CON = 0x8000; TMR5 = 0;
+    strcpy(TargetName, "www.drive.google.com");
+    while((DNS_run(DNS_ADDRESS,TargetName,MQTT_IP) == 0) && (TMR5<PERIPH_CLK));
+    TMR5 = 0; T5CONCLR = 0x8000;
+    printf("***%s\n",TargetName);
+    printf("***%d.%d.%d.%d\n",MQTT_IP[0],MQTT_IP[1],MQTT_IP[2],MQTT_IP[3]);
+    sleep_for_microseconds(1000000);
+    
+//    SetupConnectionWithMQTTClient(MQTT_IP,SSN_MAC_ADDRESS, SSN_STATIC_IP, SSN_SUBNET_MASK, SSN_GATWAY_ADDRESS,cliendId);            
+////    Send_Message_Over_MQTT(messagetosend);               
+//    SetupTopic(&SSN_MAC_ADDRESS[4]); 
+//    Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+////    Send_GETTimeOfDay_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+//    ReceiveMessageMQTT(&SSN_MAC_ADDRESS[4]);  
+////    Receive_MAC(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+////    Receive_CONFIG(SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT, SSN_CONFIG, &SSN_REPORT_INTERVAL, SSN_CURRENT_SENSOR_RATINGS, SSN_CURRENT_SENSOR_THRESHOLDS, SSN_CURRENT_SENSOR_MAXLOADS, 
+////            Machine_status);//    Recv_Message_Over_MQTT(Receivemsg); 
+//    while(1) {
+////        Send_Message_Over_MQTT(messagetosend);       
+////        Send_GETMAC_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+////        Send_GETCONFIG_Message(&SSN_MAC_ADDRESS[4], SSN_UDP_SOCKET, SSN_SERVER_IP, SSN_SERVER_PORT);
+//        MQTTYield(&Client_MQTT, MQTT_DataPacket.keepAliveInterval);
+//        sleep_for_microseconds(10000000);
+//    }
 
     while(true);
     return 1;

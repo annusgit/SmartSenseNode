@@ -32,7 +32,6 @@ bool SendMessageMQTT(uint8_t* messagetosend , uint8_t ssn_message_to_send_size);
  * @param SSN_SERVER_PORT Port of the destination Server
  */
 void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT);
-void Send_GETMAC_Message_MQTT(uint8_t* NodeID);
 /**
  * Sends a Sensor Configuration Request message to receive a configuration for SSN to compute statistics of the connected machines
  * @param NodeID Two byte identity of SSN which are the last two bytes of the MAC address
@@ -114,5 +113,6 @@ uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_
  * @return 1 if received, else 0
  */
 uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT);
+void ReceiveMessageMQTT();   
 
 #endif

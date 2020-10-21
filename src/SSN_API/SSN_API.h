@@ -188,6 +188,8 @@ extern uint8_t SSN_CURRENT_STATE, SSN_PREV_STATE;
 extern uint8_t SSN_REPORT_INTERVAL;
 /** SSN current sensor configurations */
 extern uint8_t SSN_CONFIG[EEPROM_CONFIG_SIZE];
+/** */
+extern bool CONFIG_received, TimeOfDay_received;
 /** SSN current sensor ratings */
 extern uint8_t SSN_CURRENT_SENSOR_RATINGS[4];
 /** SSN machine thresholds for deciding IDLE state */
@@ -232,7 +234,7 @@ extern bool socket_ok;
 extern uint8_t i;
 
 /** 
- *  Includes are needed peripherals and APIs for SSN functionality
+ *  Included are needed peripherals and APIs for SSN functionality
  */
 void SSN_Setup();
 void SSN_COPY_MAC_FROM_MEMORY();
@@ -246,6 +248,9 @@ void SSN_GET_AMBIENT_CONDITION();
 void SSN_RESET_AFTER_N_SECONDS(uint32_t seconds);
 void SSN_RESET_AFTER_N_SECONDS_IF_NO_MACHINE_ON(uint32_t seconds);
 void SSN_RESET_IF_SOCKET_CORRUPTED();
+void Received_message_over_MQTT(MessageData* md);//, char* Messagetorecv);
+void Recv_Message_Over_MQTT(uint8_t* messagetosend);
+
 /**
  * Peripheral testing and debugging functions
  */
@@ -253,6 +258,9 @@ void led_blink_test();
 void current_test();
 void network_test();
 void watchdog_test();
+
+struct MQTTClient SetupConnectionWithMQTTClient(uint8_t *MQTT_IP, uint8_t* SSN_MAC_ADDRESS, uint8_t* static_IP, uint8_t* subnet_mask, uint8_t* gateway,char* cliendId); 
+
 
 #endif /* _EXAMPLE_FILE_NAME_H */
 

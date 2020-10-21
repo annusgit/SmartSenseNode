@@ -17,8 +17,12 @@ bool SendMessageMQTT(uint8_t* messagetosend, uint8_t ssn_message_to_send_size) {
 //    int8_t messagetosendsize=strlen(messagetosend);
     printf("In sendmessageMQTT %d\n",ssn_message_to_send_size);
 //    int8_t send_message_status =
-    Send_Message_Over_MQTT(messagetosend);    
-    printf("In sendmessageMQTT=%d %d %d\n",messagetosend[0],messagetosend[1],messagetosend[2]);
+    Send_Message_Over_MQTT(messagetosend, ssn_message_to_send_size);    
+        
+//    printf("In sendmessage MQTT== %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x \n\n",messagetosend[0],messagetosend[1],messagetosend[2],messagetosend[3],messagetosend[4],messagetosend[5],messagetosend[6],messagetosend[7],messagetosend[8],messagetosend[9],messagetosend[10],messagetosend[11],messagetosend[12],messagetosend[13],messagetosend[14]);
+    printf("In sendmessage MQTT== %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x \n\n",messagetosend[15],messagetosend[16],messagetosend[17],messagetosend[18],messagetosend[19],messagetosend[20],messagetosend[21],messagetosend[22],messagetosend[23],messagetosend[24],messagetosend[25],messagetosend[26],messagetosend[27],messagetosend[28],messagetosend[29]);
+    printf("In sendmessage MQTT== %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x \n\n",messagetosend[30],messagetosend[31],messagetosend[32],messagetosend[33],messagetosend[34],messagetosend[35],messagetosend[36],messagetosend[37],messagetosend[38],messagetosend[39],messagetosend[40],messagetosend[41],messagetosend[42],messagetosend[43],messagetosend[44]);
+//    printf("In sendmessage MQTT== %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x \n\n",messagetosend[45],messagetosend[46],messagetosend[47],messagetosend[48],messagetosend[49],messagetosend[50],messagetosend[51],messagetosend[52],messagetosend[53],messagetosend[54],messagetosend[55],messagetosend[56],messagetosend[57],messagetosend[58],messagetosend[59],messagetosend[60]);
 //    printf("In sendmessageMQTT %d\n",send_message_status);
 
 //    if (send_message_status==ssn_message_to_send_size) {
@@ -32,11 +36,10 @@ bool SendMessageMQTT(uint8_t* messagetosend, uint8_t ssn_message_to_send_size) {
 //        return false;
 //    }
 }
-bool ReceiveMessageMQTT(uint8_t* messagetorecv, uint8_t ssn_message_to_recv_size) {
-    Recv_Message_Over_MQTT(messagetorecv);    
-        return true;
+void ReceiveMessageMQTT() {        
+    clear_array(message_to_recv, max_recv_message_size);           
+    Recv_Message_Over_MQTT(message_to_recv);    
 }
-
 void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     /* Clear the message array */
     clear_array(message_to_send, max_send_message_size); 
@@ -49,12 +52,6 @@ void Send_GETMAC_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVE
 #endif        
 }
 
-void Send_GETMAC_Message_MQTT(uint8_t* NodeID) {
-    /* Clear the message array */
-    clear_array(message_to_send, max_send_message_size);
-    uint8_t ssn_message_to_send_size = construct_get_mac_message(message_to_send, NodeID);
-    SendMessageMQTT(message_to_send, ssn_message_to_send_size);
-}
 void Send_GETCONFIG_Message(uint8_t* NodeID, uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT) {
     /* Clear the message array */
     clear_array(message_to_send, max_send_message_size);
@@ -119,21 +116,18 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
     uint32_t Received_Message_Bytes_in_Buffer;
     uint8_t received_message_id, received_message_status;
     
-#ifdef _UDP
+
     // check how many bytes in RX buffer of Ethernet, if it is not empty (non-zero number returned), we should read it
     Received_Message_Bytes_in_Buffer = is_Message_Received_Over_UDP(SSN_Socket);
     // if there are more than one messages in buffer, we want to receive all of them
-    while (Received_Message_Bytes_in_Buffer) {
-        // read the message from buffer
-        received_message_status = Recv_Message_Over_UDP(SSN_Socket, message_to_recv, max_recv_message_size, SSN_SERVER_IP, SSN_SERVER_PORT);
-#endif
-#ifdef _MQTT
-        ReceiveMessageMQTT(message_to_recv,max_recv_message_size);
-#endif 
-        // Parse and make sense of the message
-        // 'params' array stores and organizes whatever data we have received in the message
-        // this might be a new MAC address, or new Sensor Configurations, or Time of Day, etc.
+
+        while (Received_Message_Bytes_in_Buffer) {
+//         read the message from buffer
+        received_message_status = Recv_Message_Over_UDP(SSN_Socket, message_to_recv, max_recv_message_size, SSN_SERVER_IP, SSN_SERVER_PORT);        // Parse and make sense of the message
+//         'params' array stores and organizes whatever data we have received in the message
+//         this might be a new MAC address, or new Sensor Configurations, or Time of Day, etc.
         received_message_id = decipher_received_message(message_to_recv, params);
+
 
         // based on which message was received (received_message_id), we extract and save the data
         switch (received_message_id) {
@@ -178,7 +172,7 @@ void Receive_MAC(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER
         }
         // See if there is another message in the buffer so we can do this all over again
         Received_Message_Bytes_in_Buffer = is_Message_Received_Over_UDP(SSN_Socket);            
-//    }
+    }
 }
 
 uint8_t Receive_CONFIG(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t SSN_SERVER_PORT, uint8_t* SSN_CONFIG, uint8_t* SSN_REPORT_INTERVAL, uint8_t* SSN_CURRENT_SENSOR_RATINGS, 
@@ -342,5 +336,4 @@ uint8_t Receive_TimeOfDay(uint8_t SSN_Socket, uint8_t* SSN_SERVER_IP, uint16_t S
     }
     return 0;
 }
-
 

@@ -64,7 +64,7 @@ MQTTMessage Message_MQTT;
 MQTTPacket_connectData MQTT_DataPacket;
 static char* TopicToPublishTo="/SSN/";
 static char* TopicToSubscribeTo="/SSN/CONFIG";
-char* Messagetorecieve[BUFFER_SIZE];
+//&SSN_MAC_ADDRESS[4];//"/SSN/";//char* Messagetorecieve[BUFFER_SIZE];//&SSN_MAC_ADDRESS[4];//"/SSN/CONFIG";
 unsigned char MQTT_buf[100];
 //const char* cliendId = "4C:E5";
 typedef struct opts_struct {
@@ -236,12 +236,10 @@ uint8_t Recv_Message_Over_UDP(uint8_t socket_number, char* message, uint8_t mess
 
 
 void SetupMQTTOptions(opts_struct* MQTTOptions,char* cliendId ,enum QoS,int showtopics,char* MQTT_IP);
-void SetupMQTTMessage(MQTTMessage* Message_MQTT,uint8_t* payload ,enum QoS );
+void SetupMQTTMessage(MQTTMessage* Message_MQTT,uint8_t* payload, uint8_t payload_len, enum QoS x);
 void SetupMQTTData(MQTTPacket_connectData* MQTT_DataPacket);
 
-void Recv_Message_Over_MQTT(uint8_t* messagetosend);
-void Send_Message_Over_MQTT(uint8_t* messagetosend);        
-
-void messageArrivedoverMQTT(MessageData* md);//, char* Messagetorecv);
+void Send_Message_Over_MQTT(uint8_t* messagetosend, uint8_t len);
+void SetupTopic(char* MAC_ID);
 
 #endif

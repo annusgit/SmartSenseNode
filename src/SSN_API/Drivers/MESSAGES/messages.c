@@ -36,7 +36,7 @@ uint8_t construct_get_mac_message(uint8_t* message_array, char* node_id) {
     
     /* Send the MESSAGE ID */
     message_array[count++] = GET_MAC_MESSAGE_ID;
-    printf("constructgetmacmessage=%d %d %d\n",message_array[0],message_array[1],message_array[2]);
+//    printf("construct getmac message=%d %d %d\n",message_array[0],message_array[1],message_array[2]);
     // return how many bytes the message is
     return count;
 }
@@ -205,7 +205,7 @@ uint8_t construct_status_update_message(uint8_t* message_array, uint8_t* node_id
     
     /* Send abnormal activity status */
     message_array[count++] = abnormal_activity;
-    
+//    printf("Message Constructed= %x %x %x %x %x %x %x %x %x %x %x %x %x %x %x \n\n",message_array[0],message_array[1],message_array[2],message_array[3],message_array[4],message_array[5],message_array[6],message_array[7],message_array[8],message_array[9],message_array[10],message_array[11],message_array[12],message_array[13],message_array[14]);
     // return how many bytes the message is
     return count;
 }

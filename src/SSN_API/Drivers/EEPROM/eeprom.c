@@ -86,6 +86,7 @@ uint8_t EEPROM_Read_BYTE(uint8_t block, uint8_t address){
 }
 
 uint8_t EEPROM_Write_Array(uint8_t block, uint8_t address, uint8_t* arr, uint8_t size) {
+    printf("HI THERE\n");
     uint16_t count = 0;
     // write
     while(count < size) {
@@ -101,6 +102,7 @@ uint8_t EEPROM_Write_Array(uint8_t block, uint8_t address, uint8_t* arr, uint8_t
             return 0;
         count++;
     }
+    printf("HELLO THERE\n");    
     return 1;
 }
 
